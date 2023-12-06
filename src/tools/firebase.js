@@ -10,14 +10,13 @@ import {
 } from "firebase/storage";
 
 export const firebaseConfig = {
-  apiKey: "AIzaSyBUS_jXqW-xQdBzeiiAGmYC-tl1Byzfhw8",
-  authDomain: "cc-tracker-new.firebaseapp.com",
-  databaseURL: "https://cc-tracker-new-default-rtdb.firebaseio.com/",
-  projectId: "cc-tracker-new",
-  storageBucket: "cc-tracker-new.appspot.com",
-  messagingSenderId: "278786623631",
-  appId: "1:278786623631:web:918ade05f2772ea64248fa",
-  measurementId: "G-34RE8T9GE9",
+  apiKey: "AIzaSyCeGlbd_IUxNhGQaWChisz6naRXE5sMXnA",
+  authDomain: "epic-rides-aa67e.firebaseapp.com",
+  databaseURL: "https://epic-rides-aa67e-default-rtdb.firebaseio.com",
+  projectId: "epic-rides-aa67e",
+  storageBucket: "epic-rides-aa67e.appspot.com",
+  messagingSenderId: "7456355664",
+  appId: "1:7456355664:web:a2f71ec2d7ceb53c1e6855"
 };
 
 const app = initializeApp(firebaseConfig);
