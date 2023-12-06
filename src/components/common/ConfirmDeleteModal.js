@@ -2,9 +2,7 @@ import React, { useState } from "react";
 import { connect } from "react-redux";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
-import { deleteCardFromFirebase } from "../../redux/actions/cardsActions";
-import { deleteLoyaltyDataFromFirebase } from "../../redux/actions/loyaltyActions";
-import { deleteCardholderFromFirebase } from "../../redux/actions/cardholderActions";
+import { deleteDataFromFirebase } from "../../redux/actions/dataActions";
 import { toast } from "react-toastify";
 import { DeleteButton } from "./DeleteButton";
 import PropTypes from "prop-types";
@@ -14,9 +12,7 @@ import { DELETE_MODAL_TYPES } from "../../constants";
 function ConfirmDeleteModal({
   data,
   dataType,
-  deleteCardFromFirebase,
-  deleteLoyaltyDataFromFirebase,
-  deleteCardholderFromFirebase,
+  deleteDataFromFirebase,
   setModalOpen,
   redirect,
   disableBtn = false,
@@ -42,17 +38,9 @@ function ConfirmDeleteModal({
   function handleDelete(data) {
     switch (dataType) {
       case "card":
-        deleteCardFromFirebase(data, user?.uid);
+        deleteDataFromFirebase(data, user?.uid);
         toast.success("Card deleted");
         if (redirect) history.push("/cards");
-        break;
-      case "loyaltyAcc":
-        deleteLoyaltyDataFromFirebase(data, user?.uid);
-        toast.success("Loyalty Account Deleted");
-        break;
-      case "cardholder":
-        deleteCardholderFromFirebase(data, user?.uid);
-        toast.success("Card Holder Deleted");
         break;
       default:
         break;
@@ -116,9 +104,7 @@ ConfirmDeleteModal.propTypes = {
 };
 
 const mapDispatchToProps = {
-  deleteCardFromFirebase,
-  deleteLoyaltyDataFromFirebase,
-  deleteCardholderFromFirebase,
+  deleteDataFromFirebase,
 };
 
 export default connect(null, mapDispatchToProps)(ConfirmDeleteModal);

@@ -1,10 +1,10 @@
 import {
-  CREATE_CARDS_SUCCESS,
+  CREATE_DATA_SUCCESS,
   CREATE_CARD_NOTES_SUCCESS,
   DELETE_CARD_NOTES_SUCCESS,
-  DELETE_CARD_SUCCESS,
-  LOAD_CARDS_SUCCESS,
-  UPDATE_CARDS_SUCCESS,
+  DELETE_DATA_SUCCESS,
+  LOAD_DATA_SUCCESS,
+  UPDATE_DATA_SUCCESS,
 } from "./actionTypes";
 import * as cardsApi from "../../api/cardsApi";
 import { apiCallError, beginApiCall } from "./apiStatusActions";
@@ -16,38 +16,38 @@ import {
 import { slugify } from "../../helpers";
 import { uid } from "uid";
 
-function loadCardsSuccess(cards) {
-  return { type: LOAD_CARDS_SUCCESS, cards };
+function loadDataSuccess(cards) {
+  return { type: LOAD_DATA_SUCCESS, cards };
 }
 
-function createCardSuccess(card) {
-  return { type: CREATE_CARDS_SUCCESS, card };
+function createDataSuccess(card) {
+  return { type: CREATE_DATA_SUCCESS, card };
 }
 
-function updateCardSuccess(card) {
-  return { type: UPDATE_CARDS_SUCCESS, card };
+function updateDataSuccess(card) {
+  return { type: UPDATE_DATA_SUCCESS, card };
 }
 
-function deleteCardSuccess(card) {
-  return { type: DELETE_CARD_SUCCESS, card };
+function deleteDataSuccess(card) {
+  return { type: DELETE_DATA_SUCCESS, card };
 }
 
-function createCardNotesSuccess(cardNote) {
+function createDataNotesSuccess(cardNote) {
   return { type: CREATE_CARD_NOTES_SUCCESS, cardNote };
 }
 
-function deleteCardNotesSuccess(cardNote) {
+function deleteDataNotesSuccess(cardNote) {
   return { type: DELETE_CARD_NOTES_SUCCESS, cardNote };
 }
 
-export function loadCardsFromFirebase(firebaseUid) {
+export function loadDataFromFirebase(firebaseUid) {
   return (dispatch) => {
     dispatch(beginApiCall());
-    getFireBaseData("cards", dispatch, loadCardsSuccess, firebaseUid);
+    getFireBaseData("cards", dispatch, loadDataSuccess, firebaseUid);
   };
 }
 
-export function saveCardToFirebase(card, firebaseUid) {
+export function saveDataToFirebase(card, firebaseUid) {
   return (dispatch) => {
     /*
       BUG: dispatching beginApiCall twice here..This is a workaround for the followinsg issue:
@@ -65,21 +65,21 @@ export function saveCardToFirebase(card, firebaseUid) {
         : card.id;
 
     writeToFirebase("cards", card, cardId, firebaseUid);
-    dispatch(createCardSuccess(card));
+    dispatch(createDataSuccess(card));
   };
 }
 
-export function deleteCardFromFirebase(card, firebaseUid) {
+export function deleteDataFromFirebase(card, firebaseUid) {
   return (dispatch) => {
     // Same reason to dispatch apiCall twice here as mentioned above in save function
     dispatch(beginApiCall());
     dispatch(beginApiCall());
     deleteFromFirebase("cards", card.id, firebaseUid);
-    dispatch(deleteCardSuccess(card));
+    dispatch(deleteDataSuccess(card));
   };
 }
 
-export function saveCardNoteToFirebase(note, cardId, firebaseUid) {
+export function saveDataNoteToFirebase(note, cardId, firebaseUid) {
   return (dispatch) => {
     /*
       BUG: dispatching beginApiCall twice here..This is a workaround for the followinsg issue:
@@ -91,63 +91,17 @@ export function saveCardNoteToFirebase(note, cardId, firebaseUid) {
     dispatch(beginApiCall());
     const uuid = note.id === null || note.id === undefined ? uid() : note.id;
     writeToFirebase(`cards/${cardId}/cardNotes`, note, uuid, firebaseUid);
-    dispatch(createCardNotesSuccess(note));
+    dispatch(createDataNotesSuccess(note));
   };
 }
 
-export function deleteCardNoteFromFirebase(note, cardId, firebaseUid) {
+export function deleteDataNoteFromFirebase(note, cardId, firebaseUid) {
   return (dispatch) => {
     // Same reason to dispatch apiCall twice here as mentioned above in save function
     dispatch(beginApiCall());
     dispatch(beginApiCall());
     deleteFromFirebase(`cards/${cardId}/cardNotes`, note.id, firebaseUid);
-    dispatch(deleteCardNotesSuccess(note));
+    dispatch(deleteDataNotesSuccess(note));
   };
 }
 
-// JSON Server Functions for testing
-export function loadCardsFromJsonServer() {
-  return (dispatch) => {
-    dispatch(beginApiCall());
-    return cardsApi
-      .getCards()
-      .then((cards) => {
-        dispatch(loadCardsSuccess(cards));
-      })
-      .catch((error) => {
-        dispatch(apiCallError(error));
-        throw error;
-      });
-  };
-}
-
-export function saveCardToJsonServer(card) {
-  return (dispatch) => {
-    dispatch(beginApiCall());
-    return cardsApi
-      .saveCard(card)
-      .then((savedCard) => {
-        card.id
-          ? dispatch(updateCardSuccess(savedCard))
-          : dispatch(createCardSuccess(savedCard));
-      })
-      .catch((error) => {
-        dispatch(apiCallError(error));
-        throw error;
-      });
-  };
-}
-
-export function deleteCardFromJsonServer(card) {
-  return (dispatch) => {
-    return cardsApi
-      .deleteCard(card)
-      .then(() => {
-        dispatch(deleteCardSuccess(card));
-      })
-      .catch((error) => {
-        dispatch(apiCallError(error));
-        throw error;
-      });
-  };
-}

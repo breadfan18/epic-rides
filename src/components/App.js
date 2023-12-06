@@ -2,7 +2,7 @@ import React, { useEffect, useState, createContext } from "react";
 import { Route, Switch } from "react-router-dom";
 import HomePage from "./home/HomePage";
 import Header from "./common/Header";
-import CardsPage from "./cards/CardsPage";
+import DataPage from "./cards/CardsPage";
 import PageNotFound from "./PageNotFound";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -37,7 +37,7 @@ function App() {
         <div className="container-fluid">
           <Switch>
             <Route exact path="/" component={HomePage} />
-            <Route path="/main" component={CardsPage} />
+            <Route path="/main" component={DataPage} />
             {/* <Route path="/card/:id" component={CardDetailsPage} /> */}
             {/* <Route path="/loyalty-accounts" component={LoyaltyPage} /> */}
             {/* <Route path="/loyalty/:id" component={ManageLoyaltyPage} /> */}

@@ -54,9 +54,9 @@ function CardTabs({ cards }) {
       ? "23vw"
       : "21vw";
 
-  const userTabs = cardholders.map((user) => {
+  const userTabs = ['2023', '2024', '2025', '2026'].map((year) => {
     return (
-      <Tab eventKey={user.id} title={user.name.split(" ")[0]} key={user.id}>
+      <Tab eventKey={year} title={year} key={year}>
         {windowWidth > 1000 ? (
           <CardListTable
             cards={cardsFilter.cardList}
@@ -86,7 +86,7 @@ function CardTabs({ cards }) {
         className="mb-3"
         onSelect={handleSelectTab}
       >
-        <Tab eventKey="all-cards" title="All Cards">
+        <Tab eventKey="all-data" title="All Data">
           {windowWidth > 1000 ? (
             <CardListTable
               cards={cardsFilter.cardList}

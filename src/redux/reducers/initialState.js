@@ -1,8 +1,6 @@
 const initialState = {
-  cards: [],
-  loyaltyData: [],
+  data: [],
   apiCallsInProgress: 0,
-  cardholders: [],
 };
 
 export default initialState;

@@ -2,10 +2,7 @@ import React, { useContext, useState } from "react";
 import { connect } from "react-redux";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
-import {
-  saveCardToJsonServer,
-  saveCardToFirebase,
-} from "../../redux/actions/cardsActions";
+import {saveDataToFirebase} from "../../redux/actions/dataActions";
 import CardForm from "./CardForm";
 import CardFormResponsive from "./CardFormResponsive";
 import { toast } from "react-toastify";
@@ -17,7 +14,7 @@ import { useUser } from "reactfire";
 
 function CardAddEditModal({
   card,
-  saveCardToFirebase,
+  saveDataToFirebase,
   setModalOpen,
   cardholders,
 }) {
@@ -67,7 +64,7 @@ function CardAddEditModal({
       if (inquiries[i] === null) inquiries[i] = false;
     }
     const finalCard = { ...cardForModal, inquiries: inquiries };
-    saveCardToFirebase(finalCard, user?.uid);
+    saveDataToFirebase(finalCard, user?.uid);
     toast.success(cardForModal.id === null ? "Card Created" : "Card Updated");
     toggleModal();
   }
@@ -75,32 +72,6 @@ function CardAddEditModal({
   function clearCardState() {
     setCardForModal(NEW_CARD);
     toggleShow();
-  }
-
-  function handleSaveForJsonServer(event) {
-    event.preventDefault();
-
-    for (let i in inquiries) {
-      if (inquiries[i] === null) inquiries[i] = false;
-    }
-    const finalCard = { ...cardForModal, inquiries: inquiries };
-    // if (!formIsValid()) return;
-    saveCardToJsonServer(finalCard)
-      .then(() => {
-        toast.success(
-          cardForModal.id === null ? "Card Created" : "Card Updated"
-        );
-        // eslint-disable-next-line no-restricted-globals
-        history.push("/cards");
-      })
-      .catch(() => {
-        // setErrors({
-        //   onSave: error.message,
-        // });
-      });
-
-    toggleShow();
-    setCardForModal(NEW_CARD);
   }
 
   function handleEditButtonClick(e) {
@@ -187,7 +158,7 @@ function mapStateToProps(state) {
 }
 
 const mapDispatchToProps = {
-  saveCardToFirebase,
+  saveDataToFirebase,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(CardAddEditModal);
