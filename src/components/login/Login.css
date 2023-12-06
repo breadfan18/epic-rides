@@ -1,0 +1,90 @@
+:root {
+  --color-blue: #0080ff;
+  --color-light-blue: rgb(210, 237, 246);
+  --light-gray: #d9d7d7;
+  --light-blue: rgb(210, 237, 246);
+  --black-opacity: rgba(0, 0, 0, 0.09);
+}
+
+/* Login Form */
+#loginMain {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 3rem;
+}
+
+#loginForm {
+  background-color: var(--color-light-blue);
+  border-radius: 10px;
+  text-align: center;
+  box-shadow: 0 0 5px gray;
+  width: clamp(15rem, 100vw, 25rem);
+  margin: 10px;
+}
+
+#loginForm h1 {
+  color: var(--color-blue);
+}
+
+#socialLogin {
+  display: flex;
+  flex-direction: column;
+}
+
+#socialLogin button:hover {
+  transform: scale(1.01);
+  background: white;
+}
+
+#loginOr {
+  text-align: center;
+  font-size: 1.2rem;
+  color: var(--color-blue);
+}
+
+#userAndPwdForm {
+  display: flex;
+  flex-direction: column;
+}
+
+#userAndPwdForm svg {
+  align-self: center;
+  justify-self: center;
+}
+
+.login-form-group {
+  display: flex;
+  border: 1px solid var(--light-gray);
+  background-color: white;
+  padding-left: 10px;
+  border-radius: 5px;
+  margin-bottom: 10px;
+}
+
+.userAndPwdInput {
+  border: none;
+  border-radius: 5px;
+  padding: 10px;
+  min-width: 78%;
+}
+
+.loginLabels {
+  font-size: 1.9rem;
+  color: var(--color-blue);
+  padding-right: 10px;
+  border-right: 1px solid var(--light-gray);
+}
+
+#loginSubmit {
+  /* margin-top: 10px; */
+  padding: 10px;
+}
+
+#togglePwd {
+  margin-left: auto;
+  margin-right: 10px;
+  cursor: pointer;
+  color: var(--color-blue);
+  font-size: 1.3rem;
+}
