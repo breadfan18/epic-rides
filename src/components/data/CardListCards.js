@@ -7,7 +7,7 @@ import {
 } from "../../constants";
 import PropTypes from "prop-types";
 import EmptyList from "../common/EmptyList";
-import CardAddEditModal from "./CardAddEditModal";
+import DataAddEditModal from "./DataAddEditModal";
 import ConfirmDeleteModal from "../common/ConfirmDeleteModal";
 import { WindowWidthContext } from "../App";
 import CardText from "./CardText";
@@ -93,7 +93,7 @@ export default function CardListCards({ cards, showEditDelete, showUserName }) {
               className="editDeleteCard editDeleteOnCards"
               style={{ backgroundColor: cardTitleColor }}
             >
-              <CardAddEditModal card={card} />
+              <DataAddEditModal card={card} />
               <ConfirmDeleteModal
                 data={card}
                 dataType={DELETE_MODAL_TYPES.card}

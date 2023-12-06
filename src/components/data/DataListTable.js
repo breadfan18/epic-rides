@@ -10,7 +10,7 @@ import {
   formatCurrency,
   setColorForCardStatus,
 } from "../../helpers";
-import CardAddEditModal from "./CardAddEditModal";
+import DataAddEditModal from "./DataAddEditModal";
 import ConfirmDeleteModal from "../common/ConfirmDeleteModal";
 import { WindowWidthContext } from "../App";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
@@ -18,7 +18,7 @@ import { CARD_DATA_KEYS, DELETE_MODAL_TYPES } from "../../constants";
 import BonusEarnStatusIcon from "../common/BonusEarnStatusIcon";
 import CreditBureauIcons from "../common/CreditBureauIcons";
 
-export default function CardListTable({
+export default function DataListTable({
   cards,
   showEditDelete,
   showUser,
@@ -155,7 +155,7 @@ export default function CardListTable({
               {showEditDelete && (
                 <>
                   <td className="editDeleteCard">
-                    <CardAddEditModal card={card} setModalOpen={setModalOpen} />
+                    <DataAddEditModal card={card} setModalOpen={setModalOpen} />
                     <ConfirmDeleteModal
                       data={card}
                       dataType={DELETE_MODAL_TYPES.card}
@@ -172,7 +172,7 @@ export default function CardListTable({
   );
 }
 
-CardListTable.propTypes = {
+DataListTable.propTypes = {
   cards: PropTypes.array.isRequired,
   history: PropTypes.object,
   showEditDelete: PropTypes.bool.isRequired,

@@ -2,14 +2,14 @@ import React, { useContext, useEffect, useState } from "react";
 import Tab from "react-bootstrap/Tab";
 import Tabs from "react-bootstrap/Tabs";
 import PropTypes from "prop-types";
-import CardListTable from "./CardListTable";
+import DataListTable from "./DataListTable";
 import { useSelector } from "react-redux";
 import CardListCards from "./CardListCards";
 import { WindowWidthContext } from "../App";
 import { useFilteredData } from "../../hooks/filterCards";
 import _ from "lodash";
 
-function CardTabs({ cards }) {
+function DataTabs({ cards }) {
   const windowWidth = useContext(WindowWidthContext);
   const storedUser = JSON.parse(localStorage.getItem("selectedUser"));
   const [selectedUser, setSelectedUser] = useState(storedUser || "all-cards");
@@ -58,7 +58,7 @@ function CardTabs({ cards }) {
     return (
       <Tab eventKey={year} title={year} key={year}>
         {windowWidth > 1000 ? (
-          <CardListTable
+          <DataListTable
             cards={cardsFilter.cardList}
             showEditDelete={true}
             showUser={false}
@@ -88,7 +88,7 @@ function CardTabs({ cards }) {
       >
         <Tab eventKey="all-data" title="All Data">
           {windowWidth > 1000 ? (
-            <CardListTable
+            <DataListTable
               cards={cardsFilter.cardList}
               showEditDelete={true}
               showUser={true}
@@ -108,8 +108,8 @@ function CardTabs({ cards }) {
   );
 }
 
-CardTabs.propTypes = {
+DataTabs.propTypes = {
   cards: PropTypes.array.isRequired,
 };
 
-export default CardTabs;
+export default DataTabs;

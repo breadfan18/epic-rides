@@ -2,10 +2,10 @@ import React, { useContext, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { loadDataFromFirebase } from "../../redux/actions/dataActions";
 import { Spinner } from "../common/Spinner";
-import CardTabs from "./CardTabs";
+import DataTabs from "./DataTabs";
 import { sortCardsByDate } from "../../helpers";
 import CardsByUserDropDown from "./CardsByUserDropDown";
-import CardAddEditModal from "./CardAddEditModal";
+import DataAddEditModal from "./DataAddEditModal";
 import { WindowWidthContext } from "../App";
 import { useUser } from "reactfire";
 
@@ -27,14 +27,14 @@ const DataPage = () => {
     <div className="cardsContainer">
       <section className="sectionHeaders">
         <h2 style={{ marginBottom: 0 }}>Wallet</h2>
-        <CardAddEditModal />
+        <DataAddEditModal />
       </section>
       {loading ? (
         <Spinner />
       ) : windowWidth < 650 ? (
         <CardsByUserDropDown cards={cards} />
       ) : (
-        <CardTabs cards={cards} />
+        <DataTabs cards={cards} />
       )}
     </div>
   );

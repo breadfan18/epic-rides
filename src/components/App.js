@@ -2,14 +2,13 @@ import React, { useEffect, useState, createContext } from "react";
 import { Route, Switch } from "react-router-dom";
 import HomePage from "./home/HomePage";
 import Header from "./common/Header";
-import DataPage from "./cards/CardsPage";
+import DataPage from "./data/DataPage";
 import PageNotFound from "./PageNotFound";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Login from "./login/Login";
 import { Spinner } from "./common/Spinner";
 import { useSigninCheck } from "reactfire";
-import MainPage from "./MainPage";
 export const WindowWidthContext = createContext();
 
 function App() {
