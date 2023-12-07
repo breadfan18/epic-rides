@@ -11,37 +11,34 @@ import _ from "lodash";
 
 function DataTabs({ cards: data }) {
   const windowWidth = useContext(WindowWidthContext);
-  const storedUser = JSON.parse(localStorage.getItem("selectedUser"));
-  const [selectedUser, setSelectedUser] = useState(storedUser || "all-cards");
-  const handleSelectTab = (tabKey) => setSelectedUser(tabKey.toString());
-  const cardholders = useSelector((state) =>
-    _.sortBy(state.cardholders, (o) => o.isPrimary)
-  );
+  // const storedUser = JSON.parse(localStorage.getItem("selectedUser"));
+  // const [selectedUser, setSelectedUser] = useState(storedUser || "all-cards");
+  // const handleSelectTab = (tabKey) => setSelectedUser(tabKey.toString());
 
-  const cardsForSelectedUser =
-    selectedUser === "all-cards"
-      ? data
-      : data.filter((card) => card.userId === selectedUser);
+  // const cardsForSelectedUser =
+  //   selectedUser === "all-cards"
+  //     ? data
+  //     : data.filter((card) => card.userId === selectedUser);
 
-  const { cardsFilter, setCardsFilter, handleCardsFilter, filterCards } =
-    useFilteredData(cardsForSelectedUser);
+  // const { cardsFilter, setCardsFilter, handleCardsFilter, filterCards } =
+  //   useFilteredData(cardsForSelectedUser);
 
-  useEffect(() => {
-    localStorage.setItem("selectedUser", JSON.stringify(selectedUser));
+  // useEffect(() => {
+  //   localStorage.setItem("selectedUser", JSON.stringify(selectedUser));
 
-    if (cardsFilter.query !== "") {
-      const filteredCards = filterCards(cardsFilter.query);
-      setCardsFilter({
-        query: cardsFilter.query,
-        cardList: filteredCards,
-      });
-    } else {
-      setCardsFilter({
-        query: "",
-        cardList: [...cardsForSelectedUser],
-      });
-    }
-  }, [selectedUser, data]);
+  //   if (cardsFilter.query !== "") {
+  //     const filteredCards = filterCards(cardsFilter.query);
+  //     setCardsFilter({
+  //       query: cardsFilter.query,
+  //       cardList: filteredCards,
+  //     });
+  //   } else {
+  //     setCardsFilter({
+  //       query: "",
+  //       cardList: [...cardsForSelectedUser],
+  //     });
+  //   }
+  // }, [selectedUser, data]);
 
   const filterWidth =
     windowWidth >= 750
@@ -59,13 +56,13 @@ function DataTabs({ cards: data }) {
       <Tab eventKey={year} title={year} key={year}>
         {windowWidth > 1000 ? (
           <DataListTable
-            cards={cardsFilter.cardList}
+            cards={data}
             showEditDelete={true}
             showUser={false}
             showCompactTable={false}
           />
         ) : (
-          <CardListCards cards={cardsFilter.cardList} showUserName={false} />
+          <CardListCards cards={data} showUserName={false} />
         )}
       </Tab>
     );
@@ -73,30 +70,30 @@ function DataTabs({ cards: data }) {
 
   return (
     <>
-      <input
+      {/* <input
         type="search"
         value={cardsFilter.query}
         onChange={handleCardsFilter}
         placeholder="Filter by card name.."
         className="cardTabsFilterInput"
         style={{ width: filterWidth }}
-      />
+      /> */}
       <Tabs
-        defaultActiveKey={selectedUser}
+        defaultActiveKey="all-data"
         className="mb-3"
-        onSelect={handleSelectTab}
+        // onSelect={handleSelectTab}
       >
         <Tab eventKey="all-data" title="All Data">
           {windowWidth > 1000 ? (
             <DataListTable
-              cards={cardsFilter.cardList}
+              cards={data}
               showEditDelete={true}
               showUser={true}
               showCompactTable={false}
             />
           ) : (
             <CardListCards
-              cards={cardsFilter.cardList}
+              cards={data}
               windowWidth={windowWidth}
               showUserName={true}
             />

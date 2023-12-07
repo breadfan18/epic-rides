@@ -9,12 +9,20 @@ import DataAddEditModal from "./DataAddEditModal";
 import { WindowWidthContext } from "../App";
 import { useUser } from "reactfire";
 
+/* 
+TO DO:
+- Update the data models and the data table to properly display data in the respective year tabs
+
+*/
+
 const DataPage = () => {
   const windowWidth = useContext(WindowWidthContext);
   const dispatch = useDispatch();
   const { status, data: user } = useUser();
   const cards = useSelector((state) => sortCardsByDate(state.data));
   const loading = useSelector((state) => state.apiCallsInProgress > 0);
+
+  console.log(cards);
 
   useEffect(() => {
     if (cards.length === 0 && status !== "loading" && user !== null) {

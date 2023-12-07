@@ -51,55 +51,42 @@ export default function DataListTable({
   return cards.length === 0 ? (
     <EmptyList dataType={"card"} />
   ) : (
-    <Table>
+    <Table size="sm">
       <thead>
         <tr>
           <th className="tableHeader">
-            App Date
+            File Open Date
             <FaSort
               onClick={() => requestSort(CARD_DATA_KEYS.appDate)}
               style={{ marginLeft: "5px" }}
             />
           </th>
-          {showUser && (
-            <th className="tableHeader">
-              Card Holder
-              <FaSort onClick={() => requestSort(CARD_DATA_KEYS.cardholder)} />
-            </th>
-          )}
           <th className="tableHeader">
-            Card <FaSort onClick={() => requestSort(CARD_DATA_KEYS.card)} />
+            Agent Name
+            <FaSort onClick={() => requestSort(CARD_DATA_KEYS.cardholder)} />
           </th>
           <th className="tableHeader">
-            Type <FaSort onClick={() => requestSort(CARD_DATA_KEYS.cardType)} />
+            Agent Code{" "}
+            <FaSort onClick={() => requestSort(CARD_DATA_KEYS.card)} />
           </th>
-          {windowWidth > 1505 && (
-            <th className="tableHeader">
-              Credit Line{" "}
-              <FaSort onClick={() => requestSort(CARD_DATA_KEYS.creditLine)} />
-            </th>
-          )}
-          {windowWidth > 1550 && <th className="tableHeader">Credit Pull</th>}
           <th className="tableHeader">
-            Annual Fee{" "}
+            Tour Name{" "}
+            <FaSort onClick={() => requestSort(CARD_DATA_KEYS.cardType)} />
+          </th>
+          <th className="tableHeader">
+            Pax Num{" "}
+            <FaSort onClick={() => requestSort(CARD_DATA_KEYS.creditLine)} />
+          </th>
+          <th className="tableHeader">
+            Date From{" "}
             <FaSort onClick={() => requestSort(CARD_DATA_KEYS.annualFee)} />
           </th>
-          <th className="tableHeader">Next Fee Date</th>
-          {windowWidth > 1380 && !showCompactTable && (
-            <th className="tableHeader">Spend Req</th>
-          )}
-          {windowWidth > 1380 && !showCompactTable && (
-            <th className="tableHeader">Spend By</th>
-          )}
-          {windowWidth > 1070 && !showCompactTable && (
-            <th className="tableHeader">Bonus</th>
-          )}
-          {windowWidth > 1280 && !showCompactTable && (
-            <th className="tableHeader">Bonus Earn Date</th>
-          )}
-          <th className="tableHeader">
-            Status <FaSort onClick={() => requestSort(CARD_DATA_KEYS.status)} />
-          </th>
+          <th className="tableHeader">Date To</th>
+
+          <th className="tableHeader">Number of Days</th>
+          <th className="tableHeader">Status</th>
+          <th className="tableHeader">File Num</th>
+          <th className="tableHeader">File Name</th>
           {showEditDelete && (
             <>
               <th></th>
@@ -108,56 +95,35 @@ export default function DataListTable({
         </tr>
       </thead>
       <tbody className="align-middle">
-        {data.map((card) => {
+        {data.map((d) => {
           return (
             <tr
-              key={card.id}
-              className={setColorForCardStatus("cardTable", card.status)}
+              key={d.serialNum}
+              // className={setColorForCardStatus("cardTable", d.status)}
               onMouseEnter={handleTrColorOnHover}
-              onMouseLeave={(e) => handleTrColorReset(e, card)}
+              onMouseLeave={(e) => handleTrColorReset(e, d)}
               style={{ cursor: "pointer" }}
-              onClick={() => routeChange(card)}
+              onClick={() => routeChange(d)}
             >
-              <td>{formatDate(card.appDate)}</td>
-              {showUser && <td>{card.cardholder}</td>}
-              <td>
-                <img className="issuerLogos" src={card.issuer.img} alt="" />
-                {`  ${card.card}`}
-              </td>
-              <td>{card.cardType}</td>
-              {windowWidth > 1505 && <td>{formatCurrency(card.creditLine)}</td>}
-              {windowWidth > 1550 && (
-                <td>
-                  <CreditBureauIcons inquiries={card.inquiries} />
-                </td>
-              )}
-              <td>{formatCurrency(card.annualFee)}</td>
-              <td>{formatDate(card.nextFeeDate)}</td>
-              {windowWidth > 1380 && !showCompactTable && (
-                <td>{formatCurrency(card.spendReq)}</td>
-              )}
-              {windowWidth > 1380 && !showCompactTable && (
-                <td>{formatDate(card.spendBy)}</td>
-              )}
-              {windowWidth > 1070 && !showCompactTable && (
-                <td>
-                  <BonusEarnStatusIcon
-                    bonusEarned={card.bonusEarned}
-                    iconSize="1.3rem"
-                  />
-                  {card.signupBonus}
-                </td>
-              )}
-              {windowWidth > 1280 && !showCompactTable && (
-                <td>{formatDate(card.bonusEarnDate)}</td>
-              )}
-              <td>{titleCase(card.status)}</td>
+              <td>{d.fileOpenDate}</td>
+              {/* {showUser && <td>{d.cardholder}</td>} */}
+              <td>{d.agtName}</td>
+              <td>{d.agtCode}</td>
+              <td>{d.groupOrTourName}</td>
+              <td>{d.paxNum}</td>
+              <td>{d.dateFrm}</td>
+              <td>{d.dateTo}</td>
+              <td>{d.numOfDays}</td>
+              <td>{d.status}</td>
+              <td>{d.fileNo}</td>
+              <td>{d.fileName}</td>
+              <td>{d.signupBonus}</td>
               {showEditDelete && (
                 <>
                   <td className="editDeleteCard">
-                    <DataAddEditModal card={card} setModalOpen={setModalOpen} />
+                    <DataAddEditModal card={d} setModalOpen={setModalOpen} />
                     <ConfirmDeleteModal
-                      data={card}
+                      data={d}
                       dataType={DELETE_MODAL_TYPES.card}
                       setModalOpen={setModalOpen}
                     />
