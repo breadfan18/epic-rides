@@ -29,7 +29,6 @@ const DataPage = () => {
       console.log(user.uid);
       dispatch(loadDataFromFirebase(user.uid));
     }
-
   }, [status, user]);
 
   return (

@@ -1,9 +1,8 @@
 @import url("https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@300;400&display=swap");
 
 :root {
-  --color-blue: #0080ff;
+  --epic-red: #450e02;
   --light-gray: #d9d7d7;
-  --light-blue: rgb(210, 237, 246);
   --black-opacity: rgba(0, 0, 0, 0.09);
   --url-white-bkgrd: url("https://i.imgur.com/zF8fZ5k.jpg");
   --url-black-bkgrd: url("https://i.imgur.com/nK3V6T8.jpg");
@@ -38,7 +37,7 @@ body {
 }
 
 .navContainer {
-  background-color: var(--color-blue);
+  background-color: var(--epic-red);
   padding: 0;
   margin-bottom: 10px;
   min-height: 3rem;
@@ -48,7 +47,7 @@ body {
 }
 
 .smallNavContainer {
-  background-color: var(--color-blue);
+  background-color: var(--epic-red);
   padding: 0;
   margin-bottom: 10px;
   min-height: 3rem;
@@ -63,7 +62,7 @@ body {
 .navFull {
   padding: 10px 0;
   text-decoration: none;
-  color: var(--light-blue);
+  color: var(--black-opacity);
   display: flex;
   justify-content: center;
   /* width: 100%; */
@@ -72,7 +71,7 @@ body {
 .navSmallContent {
   display: flex;
   flex-direction: column;
-  background-color: var(--color-blue);
+  background-color: var(--epic-red);
 }
 
 nav a {
@@ -90,7 +89,7 @@ nav a {
 
 #burgerContainer {
   display: flex;
-  background: var(--color-blue);
+  background: var(--epic-red);
   align-items: center;
   justify-content: space-between;
 }
@@ -105,8 +104,8 @@ nav a {
 
 .navFull a:hover,
 .navSmallContent a:hover {
-  background-color: var(--light-blue);
-  color: var(--color-blue);
+  background-color: var(--black-opacity);
+  color: var(--epic-red);
 }
 
 #userImg {
@@ -125,7 +124,7 @@ nav a {
   background-color: var(--black-opacity);
   padding: 10px;
   border-radius: 10px;
-  color: var(--color-blue);
+  color: var(--epic-red);
   margin-bottom: 1rem;
 }
 
@@ -139,8 +138,8 @@ nav a {
 }
 
 .cardsDropDownContainer .labels {
-  background-color: var(--light-blue);
-  color: var(--color-blue);
+  background-color: var(--black-opacity);
+  color: var(--epic-red);
 }
 
 .field input,
@@ -174,14 +173,14 @@ div.alert-danger {
 }
 
 .nav-tabs .nav-item .nav-link {
-  color: var(--color-blue);
-  background-color: var(--light-blue);
-  border-bottom: 2px solid var(--color-blue);
+  color: var(--epic-red);
+  background-color: var(--black-opacity);
+  border-bottom: 2px solid var(--epic-red);
 }
 
 .nav-tabs .nav-item .nav-link.active {
   color: #fff;
-  background-color: var(--color-blue);
+  background-color: var(--epic-red);
   font-weight: bold;
 }
 
@@ -241,13 +240,13 @@ div.alert-danger {
   display: flex;
   justify-content: center;
   height: 4rem;
-  background-color: var(--light-blue);
+  background-color: var(--black-opacity);
 }
 
 #cardholderCardName {
   text-align: center;
   margin: 10px 0 20px 0px;
-  color: var(--color-blue);
+  color: var(--epic-red);
   font-size: 18px;
 }
 
@@ -303,14 +302,14 @@ form {
 }
 
 .addButton {
-  background-color: var(--color-blue);
-  border-color: var(--color-blue);
+  background-color: var(--epic-red);
+  border-color: var(--epic-red);
   float: right;
 }
 
 .modalHeader {
-  color: var(--color-blue);
-  background-color: var(--light-blue);
+  color: var(--epic-red);
+  background-color: var(--black-opacity);
 }
 
 .list-group-item {
@@ -322,7 +321,7 @@ form {
   display: flex;
   justify-content: center;
   /* padding: 10px 15px; */
-  background-color: var(--light-blue);
+  background-color: var(--black-opacity);
 }
 
 .notesFooter button {
@@ -338,8 +337,8 @@ form {
 .accordion-button,
 .accordion-button[aria-expanded="true"] {
   font-weight: bold;
-  color: var(--color-blue);
-  background-color: var(--light-blue);
+  color: var(--epic-red);
+  background-color: var(--black-opacity);
   text-align: left;
   font-size: clamp(1.2rem, 5vw, 1.5rem);
 }
@@ -375,7 +374,7 @@ form {
   padding: 10px;
   background-color: rgb(210, 237, 246);
   border-radius: 10px 0 0 10px;
-  color: var(--color-blue);
+  color: var(--epic-red);
 }
 
 #cardFilterInput {
@@ -405,7 +404,7 @@ input[type="search"]::-webkit-search-cancel-button {
   background-repeat: no-repeat;
   /* icon size */
   background-size: 18px;
-  border: 2px solid var(--light-blue);
+  border: 2px solid var(--black-opacity);
   border-radius: 50%;
   cursor: pointer;
   background-color: var(--black-opacity);
@@ -413,7 +412,7 @@ input[type="search"]::-webkit-search-cancel-button {
 
 .cardholderCard {
   box-shadow: 0 0 15px gray;
-  border: 10px solid var(--light-blue);
+  border: 10px solid var(--black-opacity);
 }
 
 .cardholderDataSection {
@@ -441,7 +440,7 @@ input[type="search"]::-webkit-search-cancel-button {
 }
 
 .cardholderFooter {
-  background-color: var(--light-blue);
+  background-color: var(--black-opacity);
   border-radius: 0;
 }
 
@@ -488,4 +487,8 @@ input[type="range"] {
   flex-direction: column;
   border: 2px solid gray;
   border-radius: 0 0 10px 10px;
+}
+
+.smaller-table {
+  font-size: 0.8rem;
 }

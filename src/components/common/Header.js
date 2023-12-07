@@ -2,13 +2,13 @@ import React, { useEffect, useState, useRef, useContext } from "react";
 import { NavLink } from "react-router-dom";
 import Burger from "./Burger";
 import { WindowWidthContext } from "../App";
-import { APP_COLOR_BLUE } from "../../constants";
+import { APP_COLOR_EPIC_RED } from "../../constants";
 import UserProfileSection from "./UserProfileSection";
 
 const Header = ({ user }) => {
   const windowWidth = useContext(WindowWidthContext);
   const [open, setOpen] = useState(false);
-  const activeStyle = { backgroundColor: "white", color: APP_COLOR_BLUE };
+  const activeStyle = { backgroundColor: "white", color: APP_COLOR_EPIC_RED };
   let navRef = useRef();
 
   useEffect(() => {
@@ -57,7 +57,6 @@ const Header = ({ user }) => {
         <NavLink to="/main" activeStyle={activeStyle}>
           Main
         </NavLink>
-       
       </nav>
       <UserProfileSection user={user} />
     </main>

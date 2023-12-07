@@ -8,6 +8,7 @@ import CardListCards from "./CardListCards";
 import { WindowWidthContext } from "../App";
 import { useFilteredData } from "../../hooks/filterCards";
 import _ from "lodash";
+import { YEARS } from "../../constants";
 
 function DataTabs({ cards: data }) {
   const windowWidth = useContext(WindowWidthContext);
@@ -51,12 +52,15 @@ function DataTabs({ cards: data }) {
       ? "23vw"
       : "21vw";
 
-  const yearlyTabs = ['2023', '2024', '2025', '2026'].map((year) => {
+  const yearlyTabs = YEARS.map((year) => {
+    const dataForYear = data.filter(
+      (d) => year === d.fileOpenDate.split("-")[0]
+    );
     return (
       <Tab eventKey={year} title={year} key={year}>
         {windowWidth > 1000 ? (
           <DataListTable
-            cards={data}
+            cards={dataForYear}
             showEditDelete={true}
             showUser={false}
             showCompactTable={false}
@@ -79,7 +83,7 @@ function DataTabs({ cards: data }) {
         style={{ width: filterWidth }}
       /> */}
       <Tabs
-        defaultActiveKey="all-data"
+        defaultActiveKey={new Date().getFullYear()}
         className="mb-3"
         // onSelect={handleSelectTab}
       >

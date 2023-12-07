@@ -2,21 +2,22 @@ import React, { useContext, useState } from "react";
 import { connect } from "react-redux";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
-import {saveDataToFirebase} from "../../redux/actions/dataActions";
+import { saveDataToFirebase } from "../../redux/actions/dataActions";
 import CardForm from "./CardForm";
 import CardFormResponsive from "./CardFormResponsive";
 import { toast } from "react-toastify";
 import PropTypes from "prop-types";
 import { MdModeEditOutline } from "react-icons/md";
-import { ISSUERS, NEW_CARD } from "../../constants";
+import {
+  APP_COLOR_EPIC_RED,
+  APP_COLOR_LIGHT_GRAY,
+  ISSUERS,
+  NEW_CARD,
+} from "../../constants";
 import { WindowWidthContext } from "../App";
 import { useUser } from "reactfire";
 
-function DataAddEditModal({
-  card,
-  saveDataToFirebase,
-  setModalOpen,
-}) {
+function DataAddEditModal({ card, saveDataToFirebase, setModalOpen }) {
   const [cardForModal, setCardForModal] = useState(
     card ? { ...card } : NEW_CARD
   );
@@ -95,7 +96,8 @@ function DataAddEditModal({
     <>
       {cardForModal.id !== null ? (
         <Button
-          variant="success"
+          // variant="success"
+          style={{ border: "none", backgroundColor: "black" }}
           onClick={handleEditButtonClick}
           className="rounded-circle"
         >
@@ -107,7 +109,7 @@ function DataAddEditModal({
           onClick={clearCardState}
           className="addButton"
         >
-          Add Card
+          Add Data
         </Button>
       )}
 

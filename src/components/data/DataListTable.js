@@ -51,18 +51,19 @@ export default function DataListTable({
   return cards.length === 0 ? (
     <EmptyList dataType={"card"} />
   ) : (
-    <Table size="sm">
+    <Table striped size="sm" className="smaller-table">
       <thead>
         <tr>
+          <th className="tableHeader">Num</th>
           <th className="tableHeader">
-            File Open Date
+            File Opened
             <FaSort
               onClick={() => requestSort(CARD_DATA_KEYS.appDate)}
               style={{ marginLeft: "5px" }}
             />
           </th>
           <th className="tableHeader">
-            Agent Name
+            Agent
             <FaSort onClick={() => requestSort(CARD_DATA_KEYS.cardholder)} />
           </th>
           <th className="tableHeader">
@@ -74,16 +75,15 @@ export default function DataListTable({
             <FaSort onClick={() => requestSort(CARD_DATA_KEYS.cardType)} />
           </th>
           <th className="tableHeader">
-            Pax Num{" "}
+            Pax{" "}
             <FaSort onClick={() => requestSort(CARD_DATA_KEYS.creditLine)} />
           </th>
           <th className="tableHeader">
-            Date From{" "}
+            From{" "}
             <FaSort onClick={() => requestSort(CARD_DATA_KEYS.annualFee)} />
           </th>
-          <th className="tableHeader">Date To</th>
-
-          <th className="tableHeader">Number of Days</th>
+          <th className="tableHeader">To</th>
+          <th className="tableHeader">Days</th>
           <th className="tableHeader">Status</th>
           <th className="tableHeader">File Num</th>
           <th className="tableHeader">File Name</th>
@@ -105,8 +105,8 @@ export default function DataListTable({
               style={{ cursor: "pointer" }}
               onClick={() => routeChange(d)}
             >
-              <td>{d.fileOpenDate}</td>
-              {/* {showUser && <td>{d.cardholder}</td>} */}
+              <td>{("000" + d.serialNum).slice(-3)}</td>
+              <td>{formatDate(d.fileOpenDate)}</td>
               <td>{d.agtName}</td>
               <td>{d.agtCode}</td>
               <td>{d.groupOrTourName}</td>
@@ -116,20 +116,15 @@ export default function DataListTable({
               <td>{d.numOfDays}</td>
               <td>{d.status}</td>
               <td>{d.fileNo}</td>
-              <td>{d.fileName}</td>
-              <td>{d.signupBonus}</td>
-              {showEditDelete && (
-                <>
-                  <td className="editDeleteCard">
-                    <DataAddEditModal card={d} setModalOpen={setModalOpen} />
-                    <ConfirmDeleteModal
-                      data={d}
-                      dataType={DELETE_MODAL_TYPES.card}
-                      setModalOpen={setModalOpen}
-                    />
-                  </td>
-                </>
-              )}
+              <td className="custom-cell">{d.fileName}</td>
+              <td className="editDeleteCard">
+                <DataAddEditModal card={d} setModalOpen={setModalOpen} />
+                <ConfirmDeleteModal
+                  data={d}
+                  dataType={DELETE_MODAL_TYPES.card}
+                  setModalOpen={setModalOpen}
+                />
+              </td>
             </tr>
           );
         })}

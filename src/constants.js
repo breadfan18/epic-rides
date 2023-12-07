@@ -1,5 +1,8 @@
+// New Constants
+export const YEARS = ["2023", "2024", "2025", "2026", "2027", "2028"];
+
 // Colors
-export const APP_COLOR_BLUE = "#0080FF";
+export const APP_COLOR_EPIC_RED = "rgba(69,15,1,1)";
 export const APP_COLOR_LIGHT_GRAY = "#D9D7D7";
 export const APP_COLOR_LIGHT_BLUE = "rgb(210, 237, 246)";
 export const APP_COLOR_BLACK_OPACITY = "rgba(0,0,0,0.09)";

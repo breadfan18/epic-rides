@@ -8,7 +8,7 @@ import { DeleteButton } from "./DeleteButton";
 import PropTypes from "prop-types";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 import { useUser } from "reactfire";
-import { DELETE_MODAL_TYPES } from "../../constants";
+import { APP_COLOR_EPIC_RED, DELETE_MODAL_TYPES } from "../../constants";
 function ConfirmDeleteModal({
   data,
   dataType,

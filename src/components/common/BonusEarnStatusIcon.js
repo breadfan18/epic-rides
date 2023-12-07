@@ -3,7 +3,7 @@ import {
   TbSquareRoundedCheckFilled,
   TbSquareRoundedChevronsRightFilled,
 } from "react-icons/tb";
-import { APP_COLOR_BLUE, EDIT_COLOR_GREEN } from "../../constants";
+import { APP_COLOR_EPIC_RED, EDIT_COLOR_GREEN } from "../../constants";
 import PropTypes from "prop-types";
 
 export default function BonusEarnStatusIcon({ bonusEarned, iconSize }) {
@@ -13,7 +13,7 @@ export default function BonusEarnStatusIcon({ bonusEarned, iconSize }) {
     />
   ) : (
     <TbSquareRoundedChevronsRightFilled
-      style={{ color: APP_COLOR_BLUE, fontSize: iconSize }}
+      style={{ color: APP_COLOR_EPIC_RED, fontSize: iconSize }}
     />
   );
 }
