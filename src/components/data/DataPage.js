@@ -18,6 +18,7 @@ const DataPage = () => {
 
   useEffect(() => {
     if (cards.length === 0 && status !== "loading" && user !== null) {
+      console.log(user.uid);
       dispatch(loadDataFromFirebase(user.uid));
     }
 

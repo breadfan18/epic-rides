@@ -43,7 +43,7 @@ function deleteDataNotesSuccess(cardNote) {
 export function loadDataFromFirebase(firebaseUid) {
   return (dispatch) => {
     dispatch(beginApiCall());
-    getFireBaseData("cards", dispatch, loadDataSuccess, firebaseUid);
+    getFireBaseData("data", dispatch, loadDataSuccess, firebaseUid);
   };
 }
 

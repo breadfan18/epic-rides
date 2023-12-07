@@ -9,7 +9,7 @@ import { WindowWidthContext } from "../App";
 import { useFilteredData } from "../../hooks/filterCards";
 import _ from "lodash";
 
-function DataTabs({ cards }) {
+function DataTabs({ cards: data }) {
   const windowWidth = useContext(WindowWidthContext);
   const storedUser = JSON.parse(localStorage.getItem("selectedUser"));
   const [selectedUser, setSelectedUser] = useState(storedUser || "all-cards");
@@ -20,8 +20,8 @@ function DataTabs({ cards }) {
 
   const cardsForSelectedUser =
     selectedUser === "all-cards"
-      ? cards
-      : cards.filter((card) => card.userId === selectedUser);
+      ? data
+      : data.filter((card) => card.userId === selectedUser);
 
   const { cardsFilter, setCardsFilter, handleCardsFilter, filterCards } =
     useFilteredData(cardsForSelectedUser);
@@ -41,7 +41,7 @@ function DataTabs({ cards }) {
         cardList: [...cardsForSelectedUser],
       });
     }
-  }, [selectedUser, cards]);
+  }, [selectedUser, data]);
 
   const filterWidth =
     windowWidth >= 750
@@ -54,7 +54,7 @@ function DataTabs({ cards }) {
       ? "23vw"
       : "21vw";
 
-  const userTabs = ['2023', '2024', '2025', '2026'].map((year) => {
+  const yearlyTabs = ['2023', '2024', '2025', '2026'].map((year) => {
     return (
       <Tab eventKey={year} title={year} key={year}>
         {windowWidth > 1000 ? (
@@ -102,7 +102,7 @@ function DataTabs({ cards }) {
             />
           )}
         </Tab>
-        {userTabs}
+        {yearlyTabs}
       </Tabs>
     </>
   );
