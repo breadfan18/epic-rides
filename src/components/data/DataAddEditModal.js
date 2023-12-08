@@ -55,11 +55,13 @@ function DataAddEditModal({ data, setModalOpen }) {
 
     const finalData = { ...dataForModal, numOfDays, ...file };
     dispatch(saveDataToFirebase(finalData, user?.uid, id));
-    toast.success(dataForModal.id === null ? "Data Created" : "Data Updated");
+    toast.success(
+      dataForModal.id === null ? "Record Created" : "Record Updated"
+    );
     toggleModal();
   }
 
-  function clearCardState() {
+  function clearDataState() {
     setDataForModal(NEW_DATA);
     toggleShow();
   }
@@ -87,7 +89,6 @@ function DataAddEditModal({ data, setModalOpen }) {
     <>
       {dataForModal.id !== null ? (
         <Button
-          // variant="success"
           style={{ border: "none", backgroundColor: "black" }}
           onClick={handleEditButtonClick}
           className="rounded-circle"
@@ -97,7 +98,7 @@ function DataAddEditModal({ data, setModalOpen }) {
       ) : (
         <Button
           variant="primary"
-          onClick={clearCardState}
+          onClick={clearDataState}
           className="addButton"
         >
           Add Data

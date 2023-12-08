@@ -64,13 +64,13 @@ export function saveDataToFirebase(data, firebaseUid, id) {
   };
 }
 
-export function deleteDataFromFirebase(card, firebaseUid) {
+export function deleteDataFromFirebase(data, firebaseUid) {
   return (dispatch) => {
     // Same reason to dispatch apiCall twice here as mentioned above in save function
     dispatch(beginApiCall());
     dispatch(beginApiCall());
-    deleteFromFirebase("cards", card.id, firebaseUid);
-    dispatch(deleteDataSuccess(card));
+    deleteFromFirebase("data", data.id, firebaseUid);
+    dispatch(deleteDataSuccess(data));
   };
 }
 

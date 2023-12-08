@@ -105,11 +105,7 @@ export default function DataListTable({ data }) {
               <td className="custom-cell">{d.fileName}</td>
               <td className="editDeleteCard">
                 <DataAddEditModal data={d} setModalOpen={setModalOpen} />
-                <ConfirmDeleteModal
-                  data={d}
-                  dataType={DELETE_MODAL_TYPES.card}
-                  setModalOpen={setModalOpen}
-                />
+                <ConfirmDeleteModal data={d} setModalOpen={setModalOpen} />
               </td>
             </tr>
           );
