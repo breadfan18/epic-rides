@@ -47,7 +47,7 @@ export function loadDataFromFirebase(firebaseUid) {
   };
 }
 
-export function saveDataToFirebase(data, firebaseUid) {
+export function saveDataToFirebase(data, firebaseUid, id) {
   return (dispatch) => {
     /*
       BUG: dispatching beginApiCall twice here..This is a workaround for the followinsg issue:
@@ -57,9 +57,9 @@ export function saveDataToFirebase(data, firebaseUid) {
     */
     dispatch(beginApiCall());
     dispatch(beginApiCall());
-    const dataId = data.id === null ? uid() : data.id;
+    // const dataId = data.id === null ? uid() : data.id;
 
-    writeToFirebase("data", data, dataId, firebaseUid);
+    writeToFirebase("data", data, id, firebaseUid);
     dispatch(createDataSuccess(data));
   };
 }

@@ -51,8 +51,10 @@ function DataAddEditModal({ data, setModalOpen }) {
       dataForModal.groupOrTourName
     );
 
+    const id = dataForModal.id || allData.length + 1;
+
     const finalData = { ...dataForModal, numOfDays, ...file };
-    dispatch(saveDataToFirebase(finalData, user?.uid));
+    dispatch(saveDataToFirebase(finalData, user?.uid, id));
     toast.success(dataForModal.id === null ? "Data Created" : "Data Updated");
     toggleModal();
   }
