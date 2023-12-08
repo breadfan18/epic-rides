@@ -7,7 +7,7 @@ import DateInput from "../common/DateInput";
 import Form from "react-bootstrap/Form";
 import { titleCase } from "../../helpers";
 
-const CardForm = ({ data, onSave, onChange, saving, errors = {} }) => {
+const DataForm = ({ data, onSave, onChange, saving, errors = {} }) => {
   return (
     <>
       <Form onSubmit={onSave}>
@@ -87,7 +87,7 @@ const CardForm = ({ data, onSave, onChange, saving, errors = {} }) => {
   );
 };
 
-CardForm.propTypes = {
+DataForm.propTypes = {
   card: PropTypes.object.isRequired,
   errors: PropTypes.object,
   onSave: PropTypes.func.isRequired,
@@ -95,4 +95,4 @@ CardForm.propTypes = {
   saving: PropTypes.bool,
 };
 
-export default CardForm;
+export default DataForm;

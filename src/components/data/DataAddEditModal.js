@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import { saveDataToFirebase } from "../../redux/actions/dataActions";
-import CardForm from "./DataForm";
+import DataForm from "./DataForm";
 import CardFormResponsive from "./CardFormResponsive";
 import { toast } from "react-toastify";
 import PropTypes from "prop-types";
@@ -114,7 +114,7 @@ function DataAddEditModal({ data, setModalOpen }) {
         </Modal.Header>
         <Modal.Body>
           {windowWidth > 980 ? (
-            <CardForm
+            <DataForm
               data={dataForModal}
               onSave={handleSaveForFirebase}
               onChange={handleChange}
