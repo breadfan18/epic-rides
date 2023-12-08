@@ -11,7 +11,7 @@ import { WindowWidthContext } from "../App";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 import { CARD_DATA_KEYS, DELETE_MODAL_TYPES } from "../../constants";
 
-export default function DataListTable({ data, showEditDelete }) {
+export default function DataListTable({ data }) {
   const windowWidth = useContext(WindowWidthContext);
   const { sortedData, requestSort } = useSortableData(data);
   const [modalOpen, setModalOpen] = useState(false);
@@ -120,9 +120,5 @@ export default function DataListTable({ data, showEditDelete }) {
 }
 
 DataListTable.propTypes = {
-  cards: PropTypes.array.isRequired,
-  history: PropTypes.object,
-  showEditDelete: PropTypes.bool.isRequired,
-  showUser: PropTypes.bool.isRequired,
-  showCompactTable: PropTypes.bool.isRequired,
+  data: PropTypes.array.isRequired,
 };
