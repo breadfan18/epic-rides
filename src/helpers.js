@@ -36,6 +36,15 @@ export function daysTillRewardsExpiration(rewardsExpirationDate) {
   return Math.round((expirationDate - todaysDate) / (1000 * 60 * 60 * 24));
 }
 
+export function getDaysBetweenDates(startDate, endDate) {
+  if (!endDate || !startDate) return;
+  const parsedEndDate = new Date(endDate);
+  const parsedStartDate = new Date(startDate);
+  return (
+    Math.round((parsedEndDate - parsedStartDate) / (1000 * 60 * 60 * 24)) + 1
+  );
+}
+
 export function addUserNameToCard(card, cardholders) {
   const cardholder = cardholders.find((holder) => holder.id === card.userId);
   if (cardholder?.name !== card?.cardholder) {
@@ -191,4 +200,23 @@ export function sortNumberDesc(num1, num2) {
   const parsedNum2 = parseInt(num2 || "0");
 
   return parsedNum2 - parsedNum1;
+}
+
+export function fileNameGenerator(
+  id,
+  agentCode,
+  dateFrom,
+  numOfDays,
+  tourName
+) {
+  const fileNo =
+    dateFrom.substring(2, 7).replaceAll("-", "") +
+    ("000" + id).slice(-3) +
+    agentCode;
+
+  const fileName = `${fileNo}_${numOfDays}_${tourName}`;
+  return {
+    fileNo,
+    fileName,
+  };
 }

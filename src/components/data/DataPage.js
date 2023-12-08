@@ -22,8 +22,6 @@ const DataPage = () => {
   const cards = useSelector((state) => sortCardsByDate(state.data));
   const loading = useSelector((state) => state.apiCallsInProgress > 0);
 
-  console.log(cards);
-
   useEffect(() => {
     if (cards.length === 0 && status !== "loading" && user !== null) {
       console.log(user.uid);

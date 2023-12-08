@@ -47,7 +47,7 @@ export function loadDataFromFirebase(firebaseUid) {
   };
 }
 
-export function saveDataToFirebase(card, firebaseUid) {
+export function saveDataToFirebase(data, firebaseUid) {
   return (dispatch) => {
     /*
       BUG: dispatching beginApiCall twice here..This is a workaround for the followinsg issue:
@@ -57,15 +57,10 @@ export function saveDataToFirebase(card, firebaseUid) {
     */
     dispatch(beginApiCall());
     dispatch(beginApiCall());
-    const cardId =
-      card.id === null
-        ? slugify(
-            card.issuer.name + " " + card.card + " " + card.userId + " " + uid()
-          )
-        : card.id;
+    const dataId = data.id === null ? uid() : data.id;
 
-    writeToFirebase("cards", card, cardId, firebaseUid);
-    dispatch(createDataSuccess(card));
+    writeToFirebase("data", data, dataId, firebaseUid);
+    dispatch(createDataSuccess(data));
   };
 }
 
@@ -104,4 +99,3 @@ export function deleteDataNoteFromFirebase(note, cardId, firebaseUid) {
     dispatch(deleteDataNotesSuccess(note));
   };
 }
-

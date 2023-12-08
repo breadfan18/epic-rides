@@ -64,33 +64,37 @@ const csvFile = (filePath) => {
 };
 
 const fooFile = jsonFile(
-  "/Users/su23140/Developer/personal/projects/cc-tracker-deploy/assets/foo.json"
+  "/Users/su23140/Developer/personal/projects/travel-makers/src/components/data/foo.json"
 );
 const baseData = jsonFile(
-  "/Users/su23140/Developer/personal/projects/cc-tracker-deploy/assets/backup-data/allData_with_users_08162023.json"
+  "/Users/su23140/Developer/personal/projects/travel-makers/src/components/data/data.json"
 );
 
 const test = baseData.read();
 
-const foo = _.values(
-  test.users["iXoAbxO0hMNBUUCzMnpnSydNKZg1"].loyaltyData
-).map((loyalty) => {
-  const thisUser = USERS.find((u) => u.id === loyalty.userId).name;
-  const newUserId = slugify(thisUser);
-  console.log(newUserId);
+const grouped = _.groupBy(
+  test.users["htCE4C1iA2T6p5p2Gcn9kAdL1Vy1"].data,
+  "id"
+);
+// const foo = _.values(
+//   test.users["iXoAbxO0hMNBUUCzMnpnSydNKZg1"].loyaltyData
+// ).map((loyalty) => {
+//   const thisUser = USERS.find((u) => u.id === loyalty.userId).name;
+//   const newUserId = slugify(thisUser);
+//   console.log(newUserId);
 
-  if (loyalty.cardholder === undefined) {
-    return {
-      ...loyalty,
-      userId: newUserId,
-      cardholder: thisUser,
-    };
-  }
-  return {
-    ...loyalty,
-    userId: newUserId,
-  };
-});
+//   if (loyalty.cardholder === undefined) {
+//     return {
+//       ...loyalty,
+//       userId: newUserId,
+//       cardholder: thisUser,
+//     };
+//   }
+//   return {
+//     ...loyalty,
+//     userId: newUserId,
+//   };
+// });
 
 // const withUid = test.map(card => {
 //   const keysSorted = _.chain(card).toPairs().sortBy(0).fromPairs().value()
@@ -130,4 +134,4 @@ const foo = _.values(
 //   };
 // });
 
-fooFile.write(_.keyBy(foo, "id"));
+fooFile.write(_.keyBy(test.users["htCE4C1iA2T6p5p2Gcn9kAdL1Vy1"].data, "id"));

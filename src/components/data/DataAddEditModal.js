@@ -1,75 +1,64 @@
 import React, { useContext, useState } from "react";
-import { connect } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import { saveDataToFirebase } from "../../redux/actions/dataActions";
-import CardForm from "./CardForm";
+import CardForm from "./DataForm";
 import CardFormResponsive from "./CardFormResponsive";
 import { toast } from "react-toastify";
 import PropTypes from "prop-types";
 import { MdModeEditOutline } from "react-icons/md";
-import {
-  APP_COLOR_EPIC_RED,
-  APP_COLOR_LIGHT_GRAY,
-  ISSUERS,
-  NEW_CARD,
-} from "../../constants";
+import { AGENTS, NEW_DATA } from "../../constants";
 import { WindowWidthContext } from "../App";
 import { useUser } from "reactfire";
+import { fileNameGenerator, getDaysBetweenDates } from "../../helpers";
 
-function DataAddEditModal({ card, saveDataToFirebase, setModalOpen }) {
-  const [cardForModal, setCardForModal] = useState(
-    card ? { ...card } : NEW_CARD
+function DataAddEditModal({ data, setModalOpen }) {
+  const [dataForModal, setDataForModal] = useState(
+    data ? { ...data } : NEW_DATA
   );
-  const [inquiries, setInquiries] = useState({ ...cardForModal.inquiries });
+
+  const allData = useSelector((state) => state.data);
+  const dispatch = useDispatch();
+
   const [show, setShow] = useState(false);
   const toggleShow = () => setShow(!show);
   const windowWidth = useContext(WindowWidthContext);
   const { data: user } = useUser();
 
   function handleChange(event) {
-    const { name, value, checked } = event.target;
+    const { name, value } = event.target;
 
-    if (name === "inquiries") {
-      // eslint-disable-next-line no-unused-expressions
-      value === "experian"
-        ? setInquiries((prev) => ({ ...prev, [value]: checked }))
-        : value === "equifax"
-        ? setInquiries((prev) => ({ ...prev, [value]: checked }))
-        : value === "transunion"
-        ? setInquiries((prev) => ({ ...prev, [value]: checked }))
-        : null;
-    } else if (name === "userId") {
-      setCardForModal((prevCard) => ({
-        ...prevCard,
-        userId: value,
-      }));
-    } else {
-      setCardForModal((prevCard) => ({
-        ...prevCard,
-        [name]:
-          name === "bonusEarned"
-            ? checked
-            : name === "issuer"
-            ? ISSUERS.find((issuer) => issuer.name === value)
-            : value,
-      }));
-    }
+    setDataForModal((prevData) => ({
+      ...prevData,
+      [name]: name === "agent" ? AGENTS.find((a) => a.name === value) : value,
+    }));
   }
 
   function handleSaveForFirebase(event) {
     event.preventDefault();
-    for (let i in inquiries) {
-      if (inquiries[i] === null) inquiries[i] = false;
-    }
-    const finalCard = { ...cardForModal, inquiries: inquiries };
-    saveDataToFirebase(finalCard, user?.uid);
-    toast.success(cardForModal.id === null ? "Card Created" : "Card Updated");
+
+    const numOfDays = getDaysBetweenDates(
+      dataForModal.dateFrom,
+      dataForModal.dateTo
+    );
+
+    const file = fileNameGenerator(
+      1,
+      dataForModal.agent.code,
+      dataForModal.dateFrom,
+      numOfDays,
+      dataForModal.groupOrTourName
+    );
+
+    const finalData = { ...dataForModal, numOfDays, ...file };
+    dispatch(saveDataToFirebase(finalData, user?.uid));
+    toast.success(dataForModal.id === null ? "Data Created" : "Data Updated");
     toggleModal();
   }
 
   function clearCardState() {
-    setCardForModal(NEW_CARD);
+    setDataForModal(NEW_DATA);
     toggleShow();
   }
 
@@ -94,7 +83,7 @@ function DataAddEditModal({ card, saveDataToFirebase, setModalOpen }) {
 
   return (
     <>
-      {cardForModal.id !== null ? (
+      {dataForModal.id !== null ? (
         <Button
           // variant="success"
           style={{ border: "none", backgroundColor: "black" }}
@@ -121,12 +110,12 @@ function DataAddEditModal({ card, saveDataToFirebase, setModalOpen }) {
         backdrop="static"
       >
         <Modal.Header className="modalHeader" closeButton>
-          <Modal.Title>{cardForModal.id ? "Edit" : "Add"} Card</Modal.Title>
+          <Modal.Title>{dataForModal.id ? "Edit" : "Add"} Data</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           {windowWidth > 980 ? (
             <CardForm
-              card={cardForModal}
+              data={dataForModal}
               onSave={handleSaveForFirebase}
               onChange={handleChange}
               // toggle={toggle}
@@ -134,7 +123,7 @@ function DataAddEditModal({ card, saveDataToFirebase, setModalOpen }) {
             />
           ) : (
             <CardFormResponsive
-              card={cardForModal}
+              card={dataForModal}
               onSave={handleSaveForFirebase}
               onChange={handleChange}
             />
@@ -146,13 +135,9 @@ function DataAddEditModal({ card, saveDataToFirebase, setModalOpen }) {
 }
 
 DataAddEditModal.propTypes = {
-  card: PropTypes.object,
+  data: PropTypes.object,
   saveCardToFirebase: PropTypes.func.isRequired,
   setModalOpen: PropTypes.func,
 };
 
-const mapDispatchToProps = {
-  saveDataToFirebase,
-};
-
-export default connect(null, mapDispatchToProps)(DataAddEditModal);
+export default DataAddEditModal;

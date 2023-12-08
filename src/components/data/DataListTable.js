@@ -15,8 +15,6 @@ import ConfirmDeleteModal from "../common/ConfirmDeleteModal";
 import { WindowWidthContext } from "../App";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 import { CARD_DATA_KEYS, DELETE_MODAL_TYPES } from "../../constants";
-import BonusEarnStatusIcon from "../common/BonusEarnStatusIcon";
-import CreditBureauIcons from "../common/CreditBureauIcons";
 
 export default function DataListTable({
   cards,
@@ -98,27 +96,27 @@ export default function DataListTable({
         {data.map((d) => {
           return (
             <tr
-              key={d.serialNum}
+              key={d.id}
               // className={setColorForCardStatus("cardTable", d.status)}
               onMouseEnter={handleTrColorOnHover}
               onMouseLeave={(e) => handleTrColorReset(e, d)}
               style={{ cursor: "pointer" }}
               onClick={() => routeChange(d)}
             >
-              <td>{("000" + d.serialNum).slice(-3)}</td>
+              <td>{("000" + d.id).slice(-3)}</td>
               <td>{formatDate(d.fileOpenDate)}</td>
-              <td>{d.agtName}</td>
-              <td>{d.agtCode}</td>
+              <td>{d.agent.name}</td>
+              <td>{d.agent.code}</td>
               <td>{d.groupOrTourName}</td>
               <td>{d.paxNum}</td>
-              <td>{d.dateFrm}</td>
-              <td>{d.dateTo}</td>
+              <td>{formatDate(d.dateFrom)}</td>
+              <td>{formatDate(d.dateTo)}</td>
               <td>{d.numOfDays}</td>
               <td>{d.status}</td>
               <td>{d.fileNo}</td>
               <td className="custom-cell">{d.fileName}</td>
               <td className="editDeleteCard">
-                <DataAddEditModal card={d} setModalOpen={setModalOpen} />
+                <DataAddEditModal data={d} setModalOpen={setModalOpen} />
                 <ConfirmDeleteModal
                   data={d}
                   dataType={DELETE_MODAL_TYPES.card}

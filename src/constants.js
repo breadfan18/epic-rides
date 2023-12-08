@@ -1,6 +1,66 @@
 // New Constants
 export const YEARS = ["2023", "2024", "2025", "2026", "2027", "2028"];
 
+export const AGENTS = [
+  {
+    name: "Direct Clients",
+    code: "DIR",
+  },
+  {
+    name: "DAV Summit Club",
+    code: "DAV",
+  },
+  {
+    name: "Xtrip",
+    code: "XTP",
+  },
+  {
+    name: "TCE",
+    code: "TCE",
+  },
+  {
+    name: "Untamed Traveling",
+    code: "UTR",
+  },
+  {
+    name: "Experience Travel",
+    code: "EXP",
+  },
+  {
+    name: "BB Voyages",
+    code: "BBV",
+  },
+];
+
+export const STATUS_CODES = [
+  { name: "Open Dated", code: "OP" },
+  { name: "Reserved", code: "RR" },
+  { name: "Confirmed", code: "HK" },
+  { name: "Completed and Closed", code: "CC" },
+  { name: "Cancelled", code: "XX" },
+  { name: "Status Not Available", code: "NA" },
+  { name: "Declined", code: "DL" },
+];
+
+export const NEW_DATA = {
+  fileOpenDate: null,
+  id: null,
+  agent: {
+    name: null,
+    code: null,
+  },
+  groupOrTourName: null,
+  paxNum: null,
+  dateFrom: null,
+  dateTo: null,
+  numOfDays: null,
+  status: null,
+  fileNo: null,
+  fileName: null,
+  remarks: null,
+  fileLocation: null,
+};
+
 // Colors
 export const APP_COLOR_EPIC_RED = "rgba(69,15,1,1)";
 export const APP_COLOR_LIGHT_GRAY = "#D9D7D7";
@@ -16,30 +76,6 @@ export const REMINDERS_TEXT_AF = "Annual Fee is due within 90 days";
 export const REMINDERS_TEXT_BONUS = "Bonus earn deadline is within 30 days";
 
 // Data
-export const NEW_CARD = {
-  id: null,
-  issuer: {
-    name: null,
-    img: null,
-  },
-  card: "",
-  userId: null,
-  inquiries: {
-    experian: null,
-    equifax: null,
-    transunion: null,
-  },
-  annualFee: 0,
-  nextFeeDate: null,
-  creditLine: null,
-  spendReq: 0,
-  spendBy: null,
-  signupBonus: null,
-  bonusEarnDate: null,
-  status: null,
-  cardholder: null,
-};
-
 export const NEW_NOTE = {
   note: "",
   date: null,

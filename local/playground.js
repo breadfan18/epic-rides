@@ -1,9 +1,22 @@
-const foo = ["sew", "too", "foo"];
+const id = 12;
+const agent = {
+  name: "Direct Clients",
+  code: "DIR",
+};
 
-const laa = foo.join(",");
+const dateFrom = "2024-05-15";
 
-const baa = laa.split(",");
+function fileNameGenerator(id, agentCode, dateFrom, numOfDays, tourName) {
+  const fileNum =
+    dateFrom.substring(2, 7).replaceAll("-", "") +
+    ("000" + id).slice(-3) +
+    agentCode;
 
-// console.log(baa);
+  const fileName = `${fileNum}_${numOfDays}_${tourName}}`;
+  return {
+    fileNum,
+    fileName,
+  };
+}
 
-console.log("".split(","));
+console.log(fileNameGenerator(id, agent.code, dateFrom));

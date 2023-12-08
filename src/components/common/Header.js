@@ -68,6 +68,9 @@ const Header = ({ user }) => {
         <NavLink to="/lists" activeStyle={activeStyle}>
           Lists
         </NavLink>
+        <NavLink to="/agents" activeStyle={activeStyle}>
+          Agents
+        </NavLink>
       </nav>
       <UserProfileSection user={user} />
     </main>
