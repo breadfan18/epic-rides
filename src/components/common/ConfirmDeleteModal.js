@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { connect, useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import { deleteDataFromFirebase } from "../../redux/actions/dataActions";
@@ -79,9 +79,6 @@ function ConfirmDeleteModal({
 
 ConfirmDeleteModal.propTypes = {
   data: PropTypes.object.isRequired,
-  deleteCardFromFirebase: PropTypes.func.isRequired,
-  deleteLoyaltyDataFromFirebase: PropTypes.func.isRequired,
-  deleteCardholderFromFirebase: PropTypes.func.isRequired,
   setModalOpen: PropTypes.func || undefined,
   redirect: PropTypes.bool,
 };
