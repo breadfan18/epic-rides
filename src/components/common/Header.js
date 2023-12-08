@@ -8,7 +8,7 @@ import UserProfileSection from "./UserProfileSection";
 const Header = ({ user }) => {
   const windowWidth = useContext(WindowWidthContext);
   const [open, setOpen] = useState(false);
-  const activeStyle = { backgroundColor: "white", color: APP_COLOR_EPIC_RED };
+  const activeStyle = { backgroundColor: APP_COLOR_EPIC_RED, color: "white" };
   let navRef = useRef();
 
   useEffect(() => {
@@ -43,19 +43,30 @@ const Header = ({ user }) => {
             activeStyle={activeStyle}
             onClick={() => setOpen(false)}
           >
-            Main
+            Files
           </NavLink>
         </nav>
       )}
     </main>
   ) : (
     <main className="navContainer">
+      <img
+        src="https://i.imgur.com/M0W3075.png"
+        alt=""
+        style={{ height: "5rem" }}
+      />
       <nav className="navFull">
         <NavLink to="/" activeStyle={activeStyle} exact>
           Home
         </NavLink>
         <NavLink to="/main" activeStyle={activeStyle}>
-          Main
+          Files
+        </NavLink>
+        <NavLink to="/explanations" activeStyle={activeStyle}>
+          Explanations
+        </NavLink>
+        <NavLink to="/lists" activeStyle={activeStyle}>
+          Lists
         </NavLink>
       </nav>
       <UserProfileSection user={user} />

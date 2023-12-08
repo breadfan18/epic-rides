@@ -34,7 +34,7 @@ const DataPage = () => {
   return (
     <div className="cardsContainer">
       <section className="sectionHeaders">
-        <h2 style={{ marginBottom: 0 }}>Wallet</h2>
+        <h2 style={{ marginBottom: 0 }}>Epic Rides File Data</h2>
         <DataAddEditModal />
       </section>
       {loading ? (

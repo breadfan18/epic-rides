@@ -37,7 +37,7 @@ body {
 }
 
 .navContainer {
-  background-color: var(--epic-red);
+  /* background-color: var(--epic-red); */
   padding: 0;
   margin-bottom: 10px;
   min-height: 3rem;
@@ -76,7 +76,7 @@ body {
 
 nav a {
   text-decoration: none;
-  color: white;
+  color: var(--epic-red);
   margin-left: 1rem;
   margin-right: 1rem;
   padding: 5px 10px;
