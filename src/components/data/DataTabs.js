@@ -1,12 +1,10 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext } from "react";
 import Tab from "react-bootstrap/Tab";
 import Tabs from "react-bootstrap/Tabs";
 import PropTypes from "prop-types";
 import DataListTable from "./DataListTable";
-import { useSelector } from "react-redux";
 import CardListCards from "./CardListCards";
 import { WindowWidthContext } from "../App";
-import { useFilteredData } from "../../hooks/filterCards";
 import _ from "lodash";
 import { YEARS } from "../../constants";
 
