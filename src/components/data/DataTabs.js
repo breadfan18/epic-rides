@@ -32,7 +32,7 @@ function DataTabs({ data }) {
       <Tab eventKey={year} title={year} key={year}>
         {windowWidth > 1000 ? (
           <DataListTable
-            cards={dataForYear}
+            data={dataForYear}
             showEditDelete={true}
             showUser={false}
             showCompactTable={false}
@@ -62,7 +62,7 @@ function DataTabs({ data }) {
         <Tab eventKey="all-data" title="All Data">
           {windowWidth > 1000 ? (
             <DataListTable
-              cards={data}
+              data={data}
               showEditDelete={true}
               showUser={true}
               showCompactTable={false}

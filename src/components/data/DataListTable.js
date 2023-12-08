@@ -4,26 +4,16 @@ import EmptyList from "../common/EmptyList";
 import Table from "react-bootstrap/Table";
 import { FaSort } from "react-icons/fa";
 import { useSortableData } from "../../hooks/sortData";
-import {
-  formatDate,
-  titleCase,
-  formatCurrency,
-  setColorForCardStatus,
-} from "../../helpers";
+import { formatDate, setColorForCardStatus } from "../../helpers";
 import DataAddEditModal from "./DataAddEditModal";
 import ConfirmDeleteModal from "../common/ConfirmDeleteModal";
 import { WindowWidthContext } from "../App";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 import { CARD_DATA_KEYS, DELETE_MODAL_TYPES } from "../../constants";
 
-export default function DataListTable({
-  cards,
-  showEditDelete,
-  showUser,
-  showCompactTable,
-}) {
+export default function DataListTable({ data, showEditDelete }) {
   const windowWidth = useContext(WindowWidthContext);
-  const { sortedData, requestSort } = useSortableData(cards);
+  const { sortedData, requestSort } = useSortableData(data);
   const [modalOpen, setModalOpen] = useState(false);
   const history = useHistory();
 
@@ -46,7 +36,7 @@ export default function DataListTable({
     }
   }
 
-  return cards.length === 0 ? (
+  return data.length === 0 ? (
     <EmptyList dataType={"card"} />
   ) : (
     <Table striped size="sm" className="smaller-table">
@@ -85,11 +75,9 @@ export default function DataListTable({
           <th className="tableHeader">Status</th>
           <th className="tableHeader">File Num</th>
           <th className="tableHeader">File Name</th>
-          {showEditDelete && (
-            <>
-              <th></th>
-            </>
-          )}
+          <>
+            <th></th>
+          </>
         </tr>
       </thead>
       <tbody className="align-middle">
