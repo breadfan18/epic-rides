@@ -54,10 +54,12 @@ export default function DataListTable({ data }) {
             Agent
             <FaSort onClick={() => requestSort(CARD_DATA_KEYS.cardholder)} />
           </th>
-          <th className="tableHeader">
-            Agent Code{" "}
-            <FaSort onClick={() => requestSort(CARD_DATA_KEYS.card)} />
-          </th>
+          {windowWidth > 1300 && (
+            <th className="tableHeader">
+              Agent Code{" "}
+              <FaSort onClick={() => requestSort(CARD_DATA_KEYS.card)} />
+            </th>
+          )}
           <th className="tableHeader">
             Tour Name{" "}
             <FaSort onClick={() => requestSort(CARD_DATA_KEYS.cardType)} />
@@ -73,8 +75,8 @@ export default function DataListTable({ data }) {
           <th className="tableHeader">To</th>
           <th className="tableHeader">Days</th>
           <th className="tableHeader">Status</th>
-          <th className="tableHeader">File Num</th>
-          <th className="tableHeader">File Name</th>
+          {windowWidth > 1300 && <th className="tableHeader">File Num</th>}
+          {windowWidth > 1125 && <th className="tableHeader">File Name</th>}
           <>
             <th></th>
           </>
@@ -94,15 +96,15 @@ export default function DataListTable({ data }) {
               <td>{("000" + d.id).slice(-3)}</td>
               <td>{formatDate(d.fileOpenDate)}</td>
               <td>{d.agent.name}</td>
-              <td>{d.agent.code}</td>
+              {windowWidth > 1300 && <td>{d.agent.code}</td>}
               <td>{d.groupOrTourName}</td>
               <td>{d.paxNum}</td>
               <td>{formatDate(d.dateFrom)}</td>
               <td>{formatDate(d.dateTo)}</td>
               <td>{d.numOfDays}</td>
               <td>{d.status}</td>
-              <td>{d.fileNo}</td>
-              <td className="custom-cell">{d.fileName}</td>
+              {windowWidth > 1300 && <td>{d.fileNo}</td>}
+              {windowWidth > 1125 && <td>{d.fileName}</td>}
               <td className="editDeleteCard">
                 <DataAddEditModal data={d} setModalOpen={setModalOpen} />
                 <ConfirmDeleteModal data={d} setModalOpen={setModalOpen} />
