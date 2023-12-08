@@ -58,5 +58,5 @@ export const useSortableData = (data) => {
     setSortConfig({ key, direction });
   };
 
-  return { data: sortedData, requestSort };
+  return { sortedData, requestSort };
 };

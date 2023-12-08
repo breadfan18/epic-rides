@@ -10,36 +10,8 @@ import { useFilteredData } from "../../hooks/filterCards";
 import _ from "lodash";
 import { YEARS } from "../../constants";
 
-function DataTabs({ cards: data }) {
+function DataTabs({ data }) {
   const windowWidth = useContext(WindowWidthContext);
-  // const storedUser = JSON.parse(localStorage.getItem("selectedUser"));
-  // const [selectedUser, setSelectedUser] = useState(storedUser || "all-cards");
-  // const handleSelectTab = (tabKey) => setSelectedUser(tabKey.toString());
-
-  // const cardsForSelectedUser =
-  //   selectedUser === "all-cards"
-  //     ? data
-  //     : data.filter((card) => card.userId === selectedUser);
-
-  // const { cardsFilter, setCardsFilter, handleCardsFilter, filterCards } =
-  //   useFilteredData(cardsForSelectedUser);
-
-  // useEffect(() => {
-  //   localStorage.setItem("selectedUser", JSON.stringify(selectedUser));
-
-  //   if (cardsFilter.query !== "") {
-  //     const filteredCards = filterCards(cardsFilter.query);
-  //     setCardsFilter({
-  //       query: cardsFilter.query,
-  //       cardList: filteredCards,
-  //     });
-  //   } else {
-  //     setCardsFilter({
-  //       query: "",
-  //       cardList: [...cardsForSelectedUser],
-  //     });
-  //   }
-  // }, [selectedUser, data]);
 
   const filterWidth =
     windowWidth >= 750

@@ -19,11 +19,11 @@ const DataPage = () => {
   const windowWidth = useContext(WindowWidthContext);
   const dispatch = useDispatch();
   const { status, data: user } = useUser();
-  const cards = useSelector((state) => sortCardsByDate(state.data));
+  const data = useSelector((state) => sortCardsByDate(state.data));
   const loading = useSelector((state) => state.apiCallsInProgress > 0);
 
   useEffect(() => {
-    if (cards.length === 0 && status !== "loading" && user !== null) {
+    if (data.length === 0 && status !== "loading" && user !== null) {
       console.log(user.uid);
       dispatch(loadDataFromFirebase(user.uid));
     }
@@ -38,9 +38,9 @@ const DataPage = () => {
       {loading ? (
         <Spinner />
       ) : windowWidth < 650 ? (
-        <CardsByUserDropDown cards={cards} />
+        <CardsByUserDropDown cards={data} />
       ) : (
-        <DataTabs cards={cards} />
+        <DataTabs data={data} />
       )}
     </div>
   );

@@ -23,7 +23,7 @@ export default function DataListTable({
   showCompactTable,
 }) {
   const windowWidth = useContext(WindowWidthContext);
-  const { data, requestSort } = useSortableData(cards);
+  const { sortedData, requestSort } = useSortableData(cards);
   const [modalOpen, setModalOpen] = useState(false);
   const history = useHistory();
 
@@ -93,7 +93,7 @@ export default function DataListTable({
         </tr>
       </thead>
       <tbody className="align-middle">
-        {data.map((d) => {
+        {sortedData.map((d) => {
           return (
             <tr
               key={d.id}
