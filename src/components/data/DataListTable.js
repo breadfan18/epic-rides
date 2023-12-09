@@ -9,7 +9,7 @@ import DataAddEditModal from "./DataAddEditModal";
 import ConfirmDeleteModal from "../common/ConfirmDeleteModal";
 import { WindowWidthContext } from "../App";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
-import { CARD_DATA_KEYS, DELETE_MODAL_TYPES } from "../../constants";
+import { ERN_DATA_KEYS, DELETE_MODAL_TYPES } from "../../constants";
 
 export default function DataListTable({ data }) {
   const windowWidth = useContext(WindowWidthContext);
@@ -46,31 +46,29 @@ export default function DataListTable({ data }) {
           <th className="tableHeader">
             File Opened
             <FaSort
-              onClick={() => requestSort(CARD_DATA_KEYS.appDate)}
+              onClick={() => requestSort(ERN_DATA_KEYS.appDate)}
               style={{ marginLeft: "5px" }}
             />
           </th>
           <th className="tableHeader">
             Agent
-            <FaSort onClick={() => requestSort(CARD_DATA_KEYS.cardholder)} />
+            <FaSort onClick={() => requestSort(ERN_DATA_KEYS.cardholder)} />
           </th>
           {windowWidth > 1300 && (
             <th className="tableHeader">
               Agent Code{" "}
-              <FaSort onClick={() => requestSort(CARD_DATA_KEYS.card)} />
+              <FaSort onClick={() => requestSort(ERN_DATA_KEYS.card)} />
             </th>
           )}
           <th className="tableHeader">
             Tour Name{" "}
-            <FaSort onClick={() => requestSort(CARD_DATA_KEYS.cardType)} />
+            <FaSort onClick={() => requestSort(ERN_DATA_KEYS.cardType)} />
           </th>
           <th className="tableHeader">
-            Pax{" "}
-            <FaSort onClick={() => requestSort(CARD_DATA_KEYS.creditLine)} />
+            Pax <FaSort onClick={() => requestSort(ERN_DATA_KEYS.creditLine)} />
           </th>
           <th className="tableHeader">
-            From{" "}
-            <FaSort onClick={() => requestSort(CARD_DATA_KEYS.annualFee)} />
+            From <FaSort onClick={() => requestSort(ERN_DATA_KEYS.annualFee)} />
           </th>
           <th className="tableHeader">To</th>
           <th className="tableHeader">Days</th>

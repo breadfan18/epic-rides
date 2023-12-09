@@ -1,50 +1,52 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { formatCurrency, formatDate } from "../../helpers";
-import { CARD_DATA_KEYS } from "../../constants";
+import { formatCurrency, formatDate, titleCase } from "../../helpers";
+import { ERN_DATA_KEYS } from "../../constants";
 
-function CardText({ card, dataType }) {
-  const setCardDataType = (card, dataType) => {
+function CardText({ data, dataType }) {
+  const setCardDataType = (data, dataType) => {
     switch (dataType) {
-      case CARD_DATA_KEYS.appDate:
+      case ERN_DATA_KEYS.fileOpenDate:
         return {
-          fieldName: "App Date",
-          value: formatDate(card.appDate),
+          fieldName: "File Opened",
+          value: formatDate(data.fileOpenDate),
         };
-      case CARD_DATA_KEYS.creditLine:
+      case ERN_DATA_KEYS.paxNum:
         return {
-          fieldName: "Credit Line",
-          value: formatCurrency(card.creditLine),
+          fieldName: "Passengers",
+          value: data.paxNum,
         };
-      case CARD_DATA_KEYS.annualFee:
+      case ERN_DATA_KEYS.dateFrom:
         return {
-          fieldName: "Annual Fee",
-          value: formatCurrency(card.annualFee),
+          fieldName: "From",
+          value: data.dateFrom === "" ? "N/A" : formatDate(data.dateFrom),
         };
-      case CARD_DATA_KEYS.nextFeeDate:
+      case ERN_DATA_KEYS.dateTo:
         return {
-          fieldName: "Next Fee Date",
-          value: card.nextFeeDate === "" ? "N/A" : formatDate(card.nextFeeDate),
+          fieldName: "To",
+          value: data.dateTo === "" ? "N/A" : formatDate(data.dateTo),
         };
-      case CARD_DATA_KEYS.bonusEarnDate:
+      case ERN_DATA_KEYS.numOfDays:
         return {
-          fieldName: "Bonus Earned Date",
-          value:
-            card.bonusEarnDate === undefined ||card.bonusEarnDate === ""
-              ? "N/A"
-              : formatDate(card.bonusEarnDate),
+          fieldName: "Num of Days",
+          value: data.numOfDays,
         };
-      case CARD_DATA_KEYS.cardType:
+      case ERN_DATA_KEYS.status:
         return {
-          fieldName: "Card Type",
-          value: card.cardType,
+          fieldName: "Status",
+          value: data.status,
+        };
+      case ERN_DATA_KEYS.fileName:
+        return {
+          fieldName: "File",
+          value: data.fileName,
         };
       default:
         break;
     }
   };
 
-  const cardDataType = setCardDataType(card, dataType);
+  const cardDataType = setCardDataType(data, dataType);
   return (
     <p className="mb-0 text-muted">
       <small>

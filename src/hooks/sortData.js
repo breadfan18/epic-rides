@@ -1,5 +1,5 @@
 import { useMemo, useState } from "react";
-import { CARD_DATA_KEYS, PROGRAMS } from "../constants";
+import { ERN_DATA_KEYS, PROGRAMS } from "../constants";
 
 export const useSortableData = (data) => {
   const [sortConfig, setSortConfig] = useState({
@@ -20,13 +20,13 @@ export const useSortableData = (data) => {
     if (sortConfig.key !== null) {
       dataCopy.sort((a, b) => {
         const a_value =
-          sortConfig.key === CARD_DATA_KEYS.annualFee ||
-          sortConfig.key === CARD_DATA_KEYS.creditLine
+          sortConfig.key === ERN_DATA_KEYS.annualFee ||
+          sortConfig.key === ERN_DATA_KEYS.creditLine
             ? parseInt(a[sortConfig.key])
             : a[sortConfig.key];
         const b_value =
-          sortConfig.key === CARD_DATA_KEYS.annualFee ||
-          sortConfig.key === CARD_DATA_KEYS.creditLine
+          sortConfig.key === ERN_DATA_KEYS.annualFee ||
+          sortConfig.key === ERN_DATA_KEYS.creditLine
             ? parseInt(b[sortConfig.key])
             : b[sortConfig.key];
 

@@ -81,23 +81,20 @@ export const NEW_NOTE = {
   date: null,
 };
 
-export const CARD_DATA_KEYS = {
-  appDate: "appDate",
-  creditLine: "creditLine",
-  annualFee: "annualFee",
-  nextFeeDate: "nextFeeDate",
-  bonusEarnDate: "bonusEarnDate",
-  cardType: "cardType",
-  userId: "userId",
-  bonusEarned: "bonusEarned",
+export const ERN_DATA_KEYS = {
+  fileOpenDate: "fileOpenDate",
+  id: "id",
+  groupOrTourName: "groupOrTourName",
+  paxNum: "paxNum",
+  dateFrom: "dateFrom",
+  dateTo: "dateTo",
+  numOfDays: "numOfDays",
   status: "status",
-  issuer: "issuer",
-  card: "card",
-  spendReq: "spendReq",
-  spendBy: "spendBy",
-  signupBonus: "signupBonus",
-  inquiries: "inquiries",
-  cardholder: "cardholder",
+  fileNo: "fileNo",
+  fileName: "fileName",
+  remarks: "remarks",
+  fileLocation: "fileLocation",
+  agent: "agent",
 };
 
 export const LOYALTY_DATA_KEYS = {

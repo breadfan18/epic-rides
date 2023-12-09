@@ -4,7 +4,7 @@ import TextInput from "../common/TextInput";
 import SelectInput from "../common/SelectInput";
 import {
   CARD_STATUS,
-  CARD_DATA_KEYS,
+  ERN_DATA_KEYS,
   CARD_TYPE,
   ISSUERS,
 } from "../../constants";
@@ -31,16 +31,16 @@ const CardFormResponsive = ({
           </div>
         )}
         <Form.Check
-          name={CARD_DATA_KEYS.bonusEarned}
+          name={ERN_DATA_KEYS.bonusEarned}
           type="switch"
           label="Bonus Earned"
-          value={CARD_DATA_KEYS.bonusEarned}
+          value={ERN_DATA_KEYS.bonusEarned}
           checked={card.bonusEarned}
           onChange={onChange}
           style={{ float: "right" }}
         />
         <SelectInput
-          name={CARD_DATA_KEYS.status}
+          name={ERN_DATA_KEYS.status}
           label="Account Status"
           value={card.status || ""}
           defaultOption="Select Status"
@@ -52,13 +52,13 @@ const CardFormResponsive = ({
           error={errors.author}
         />
         <DateInput
-          name={CARD_DATA_KEYS.appDate}
+          name={ERN_DATA_KEYS.appDate}
           label="Application Date"
           onChange={onChange}
           value={card.appDate}
         />
         <SelectInput
-          name={CARD_DATA_KEYS.userId}
+          name={ERN_DATA_KEYS.userId}
           label="Card Holder"
           value={card.userId || ""}
           defaultOption="Select Card Holder"
@@ -70,7 +70,7 @@ const CardFormResponsive = ({
           error={errors.author}
         />
         <SelectInput
-          name={CARD_DATA_KEYS.issuer}
+          name={ERN_DATA_KEYS.issuer}
           label="Issuer"
           value={card.issuer.name || ""}
           defaultOption="Select Issuer"
@@ -83,14 +83,14 @@ const CardFormResponsive = ({
         />
 
         <TextInput
-          name={CARD_DATA_KEYS.card}
+          name={ERN_DATA_KEYS.card}
           label="Card"
           value={card.card || ""}
           onChange={onChange}
           error={errors.title}
         />
         <SelectInput
-          name={CARD_DATA_KEYS.cardType}
+          name={ERN_DATA_KEYS.cardType}
           label="Card Type"
           value={card.cardType}
           defaultOption="Select Card Type"
@@ -102,7 +102,7 @@ const CardFormResponsive = ({
           error={errors.author}
         />
         <TextInput
-          name={CARD_DATA_KEYS.creditLine}
+          name={ERN_DATA_KEYS.creditLine}
           label="Credit Line"
           value={card.creditLine || ""}
           onChange={onChange}
@@ -111,7 +111,7 @@ const CardFormResponsive = ({
         />
 
         <TextInput
-          name={CARD_DATA_KEYS.annualFee}
+          name={ERN_DATA_KEYS.annualFee}
           label="Annual Fee"
           value={card.annualFee}
           onChange={onChange}
@@ -120,7 +120,7 @@ const CardFormResponsive = ({
         />
 
         <DateInput
-          name={CARD_DATA_KEYS.nextFeeDate}
+          name={ERN_DATA_KEYS.nextFeeDate}
           label="Next Annual Fee Due"
           onChange={onChange}
           value={formDisabledCheck(card.annualFee) ? "" : card.nextFeeDate}
@@ -128,7 +128,7 @@ const CardFormResponsive = ({
         />
 
         <TextInput
-          name={CARD_DATA_KEYS.spendReq}
+          name={ERN_DATA_KEYS.spendReq}
           label="Spending Requirement"
           value={card.spendReq}
           onChange={onChange}
@@ -136,28 +136,28 @@ const CardFormResponsive = ({
           isCurrency={true}
         />
         <DateInput
-          name={CARD_DATA_KEYS.spendBy}
+          name={ERN_DATA_KEYS.spendBy}
           label="Spend By"
           onChange={onChange}
           value={formDisabledCheck(card.spendReq) ? "" : card.spendBy}
           disabled={formDisabledCheck(card.spendReq)}
         />
         <TextInput
-          name={CARD_DATA_KEYS.signupBonus}
+          name={ERN_DATA_KEYS.signupBonus}
           label="Signup Bonus"
           value={card.signupBonus}
           onChange={onChange}
           error={errors.title}
         />
         <DateInput
-          name={CARD_DATA_KEYS.bonusEarnDate}
+          name={ERN_DATA_KEYS.bonusEarnDate}
           label="Bonus Earn Date"
           onChange={onChange}
           value={card.bonusEarnDate}
           disabled={!card.bonusEarned}
         />
         <RadioInput
-          name={CARD_DATA_KEYS.inquiries}
+          name={ERN_DATA_KEYS.inquiries}
           label="Inquiries"
           inquiriesStatus={card.inquiries}
           onChange={onChange}

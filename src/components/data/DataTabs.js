@@ -36,7 +36,7 @@ function DataTabs({ data }) {
             showCompactTable={false}
           />
         ) : (
-          <CardListCards cards={data} showUserName={false} />
+          <CardListCards data={data} showUserName={false} />
         )}
       </Tab>
     );
@@ -67,7 +67,7 @@ function DataTabs({ data }) {
             />
           ) : (
             <CardListCards
-              cards={data}
+              data={data}
               windowWidth={windowWidth}
               showUserName={true}
             />
