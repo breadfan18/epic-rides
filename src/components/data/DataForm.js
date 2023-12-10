@@ -35,9 +35,9 @@ const DataForm = ({ data, onSave, onChange, saving, errors = {} }) => {
           error={errors.author}
         />
         <TextInput
-          name="groupOrTourName"
+          name="tourName"
           label="Group or Tour Name"
-          value={data.groupOrTourName || ""}
+          value={data.tourName || ""}
           onChange={onChange}
           error={errors.title}
         />
