@@ -102,7 +102,7 @@ function DataAddEditModal({ data, setModalOpen }) {
           onClick={clearDataState}
           className="addButton"
         >
-          Add Data
+          Add Tour
         </Button>
       )}
 
@@ -114,7 +114,7 @@ function DataAddEditModal({ data, setModalOpen }) {
         backdrop="static"
       >
         <Modal.Header className="modalHeader" closeButton>
-          <Modal.Title>{dataForModal.id ? "Edit" : "Add"} Data</Modal.Title>
+          <Modal.Title>{dataForModal.id ? "Edit" : "Add"} Tour</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           {windowWidth > 980 ? (

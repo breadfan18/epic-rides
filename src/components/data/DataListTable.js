@@ -43,7 +43,7 @@ export default function DataListTable({ data }) {
     <Table striped size="sm" className="smaller-table">
       <thead>
         <tr>
-          <th></th>
+          <th className="tableHeader">Status</th>
           <th className="tableHeader">Num</th>
           <th className="tableHeader">
             File Opened
@@ -72,7 +72,6 @@ export default function DataListTable({ data }) {
           </th>
           <th className="tableHeader">To</th>
           <th className="tableHeader">Days</th>
-          <th className="tableHeader">Status</th>
           <>
             <th></th>
           </>
@@ -104,7 +103,6 @@ export default function DataListTable({ data }) {
               <td>{formatDate(d.dateFrom)}</td>
               <td>{formatDate(d.dateTo)}</td>
               <td>{d.numOfDays === "" ? "N/A" : d.numOfDays}</td>
-              <td>{d.status}</td>
               <td className="editDeleteCard">
                 <DataAddEditModal data={d} setModalOpen={setModalOpen} />
                 <ConfirmDeleteModal data={d} setModalOpen={setModalOpen} />
