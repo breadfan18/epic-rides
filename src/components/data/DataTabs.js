@@ -25,7 +25,7 @@ function DataTabs({ data }) {
   const yearlyTabs = YEARS.map((year) => {
     // const dataForYear = data.filter((d) => year === d.dateFrom.split("-")[0]);
     const dataForYear = data.filter((d) =>
-      d.dateFrom === "" ? year === "Undated" : year === d.dateFrom.split("-")[0]
+      d.dateFrom === "" ? year === "UNDATED" : year === d.dateFrom.split("-")[0]
     );
     return (
       <Tab eventKey={year} title={year} key={year}>

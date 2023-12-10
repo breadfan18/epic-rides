@@ -95,7 +95,7 @@ export default function DataListTable({ data }) {
               <td>{d.paxNum}</td>
               <td>{formatDate(d.dateFrom)}</td>
               <td>{formatDate(d.dateTo)}</td>
-              <td>{d.numOfDays}</td>
+              <td>{d.numOfDays === "" ? "N/A" : d.numOfDays}</td>
               <td>{d.status}</td>
               <td className="editDeleteCard">
                 <DataAddEditModal data={d} setModalOpen={setModalOpen} />

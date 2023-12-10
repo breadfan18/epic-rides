@@ -6,7 +6,7 @@ export const YEARS = [
   "2026",
   "2027",
   "2028",
-  "Undated",
+  "UNDATED",
 ];
 
 export const AGENTS = [

@@ -55,7 +55,6 @@ function DataAddEditModal({ data, setModalOpen }) {
 
     const finalData = { ...dataForModal, numOfDays, ...file };
 
-    debugger;
     dispatch(saveDataToFirebase(finalData, user?.uid, id));
     toast.success(
       dataForModal.id === null ? "Record Created" : "Record Updated"
