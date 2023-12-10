@@ -2,7 +2,7 @@ import React, { useContext, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { loadDataFromFirebase } from "../../redux/actions/dataActions";
 import { Spinner } from "../common/Spinner";
-import DataTabs from "./DataTabs";
+import TourTabs from "./TourTabs";
 import { sortCardsByDate } from "../../helpers";
 import CardsByUserDropDown from "./CardsByUserDropDown";
 import DataAddEditModal from "./DataAddEditModal";
@@ -15,7 +15,7 @@ TO DO:
 
 */
 
-const DataPage = () => {
+const TourPage = () => {
   const windowWidth = useContext(WindowWidthContext);
   const dispatch = useDispatch();
   const { status, data: user } = useUser();
@@ -40,10 +40,10 @@ const DataPage = () => {
       ) : windowWidth < 650 ? (
         <CardsByUserDropDown cards={data} />
       ) : (
-        <DataTabs data={data} />
+        <TourTabs data={data} />
       )}
     </div>
   );
 };
 
-export default DataPage;
+export default TourPage;

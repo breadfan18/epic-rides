@@ -12,7 +12,7 @@ import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 import { ERN_DATA_KEYS, DELETE_MODAL_TYPES } from "../../constants";
 import BonusEarnStatusIcon from "../common/BonusEarnStatusIcon";
 
-export default function DataListTable({ data }) {
+export default function TourTable({ data }) {
   const windowWidth = useContext(WindowWidthContext);
   const { sortedData, requestSort } = useSortableData(data);
   const [modalOpen, setModalOpen] = useState(false);
@@ -115,6 +115,6 @@ export default function DataListTable({ data }) {
   );
 }
 
-DataListTable.propTypes = {
+TourTable.propTypes = {
   data: PropTypes.array.isRequired,
 };

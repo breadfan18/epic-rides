@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import CardListCards from "./CardListCards";
+import TourCards from "./TourCards";
 import PropTypes from "prop-types";
 import { Form } from "react-bootstrap";
 import { useFilteredData } from "../../hooks/filterCards";
@@ -69,7 +69,7 @@ function CardsByUserDropDown({ cards }) {
         />
       </div>
       <hr />
-      <CardListCards cards={cardsFilter.cardList} showUserName={showAllUsers} />
+      <TourCards cards={cardsFilter.cardList} showUserName={showAllUsers} />
     </div>
   );
 }

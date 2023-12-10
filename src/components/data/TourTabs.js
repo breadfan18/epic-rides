@@ -2,13 +2,13 @@ import React, { useContext } from "react";
 import Tab from "react-bootstrap/Tab";
 import Tabs from "react-bootstrap/Tabs";
 import PropTypes from "prop-types";
-import DataListTable from "./DataListTable";
-import CardListCards from "./CardListCards";
+import TourTable from "./TourTable";
+import TourCards from "./TourCards";
 import { WindowWidthContext } from "../App";
 import _ from "lodash";
 import { YEARS } from "../../constants";
 
-function DataTabs({ data }) {
+function TourTabs({ data }) {
   const windowWidth = useContext(WindowWidthContext);
 
   const filterWidth =
@@ -30,14 +30,14 @@ function DataTabs({ data }) {
     return (
       <Tab eventKey={year} title={year} key={year}>
         {windowWidth > 1000 ? (
-          <DataListTable
+          <TourTable
             data={dataForYear}
             showEditDelete={true}
             showUser={false}
             showCompactTable={false}
           />
         ) : (
-          <CardListCards data={data} showUserName={false} />
+          <TourCards data={data} showUserName={false} />
         )}
       </Tab>
     );
@@ -60,14 +60,14 @@ function DataTabs({ data }) {
       >
         <Tab eventKey="all-data" title="All Data">
           {windowWidth > 1000 ? (
-            <DataListTable
+            <TourTable
               data={data}
               showEditDelete={true}
               showUser={true}
               showCompactTable={false}
             />
           ) : (
-            <CardListCards
+            <TourCards
               data={data}
               windowWidth={windowWidth}
               showUserName={true}
@@ -80,8 +80,8 @@ function DataTabs({ data }) {
   );
 }
 
-DataTabs.propTypes = {
+TourTabs.propTypes = {
   cards: PropTypes.array.isRequired,
 };
 
-export default DataTabs;
+export default TourTabs;

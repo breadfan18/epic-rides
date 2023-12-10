@@ -15,7 +15,7 @@ import CardText from "./CardText";
 import { setColorForCardStatus } from "../../helpers";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 import BonusEarnStatusIcon from "../common/BonusEarnStatusIcon";
-export default function CardListCards({ data, showEditDelete, showUserName }) {
+export default function TourCards({ data, showEditDelete, showUserName }) {
   const windowWidth = useContext(WindowWidthContext);
   const cardWidth = windowWidth < 650 ? windowWidth : "18rem";
   const history = useHistory();
@@ -99,7 +99,7 @@ export default function CardListCards({ data, showEditDelete, showUserName }) {
   );
 }
 
-CardListCards.propTypes = {
+TourCards.propTypes = {
   cards: PropTypes.array.isRequired,
   showEditDelete: PropTypes.bool,
   showUserName: PropTypes.bool,
