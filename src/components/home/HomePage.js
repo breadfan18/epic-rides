@@ -8,7 +8,7 @@ function HomePage() {
       <h2 className="sectionHeaders">Epic Rides Nepal</h2>
       <p>File Register</p>
       <Link
-        to="about"
+        to="explanations"
         className="btn btn-lg"
         style={{ backgroundColor: APP_COLOR_EPIC_RED, color: "white" }}
       >

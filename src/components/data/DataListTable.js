@@ -59,6 +59,10 @@ export default function DataListTable({ data }) {
             <FaSort onClick={() => requestSort(ERN_DATA_KEYS.cardType)} />
           </th>
           <th className="tableHeader">
+            Group Name{" "}
+            <FaSort onClick={() => requestSort(ERN_DATA_KEYS.cardType)} />
+          </th>
+          <th className="tableHeader">
             Pax <FaSort onClick={() => requestSort(ERN_DATA_KEYS.creditLine)} />
           </th>
           <th className="tableHeader">
@@ -87,6 +91,7 @@ export default function DataListTable({ data }) {
               <td>{formatDate(d.fileOpenDate)}</td>
               <td>{d.agent.name}</td>
               <td>{d.tourName}</td>
+              <td>{d.groupFitName}</td>
               <td>{d.paxNum}</td>
               <td>{formatDate(d.dateFrom)}</td>
               <td>{formatDate(d.dateTo)}</td>

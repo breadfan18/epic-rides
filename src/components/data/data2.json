@@ -10,6 +10,7 @@
                         "code": "DIR"
                     },
                     "tourName": "Splendor of the Himalayas_Group John",
+                    "groupFitName": "Epic Group",
                     "paxNum": 15,
                     "dateFrom": "2023-10-21",
                     "dateTo": "2023-10-24",
@@ -28,6 +29,7 @@
                         "code": "DAV"
                     },
                     "tourName": "Around Annapurna_RAMANA III",
+                    "groupFitName": "Epic Group",
                     "paxNum": 10,
                     "dateFrom": "2023-10-21",
                     "dateTo": "2023-10-27",
@@ -46,6 +48,7 @@
                         "code": "XTP"
                     },
                     "tourName": "Hoever Good it is",
+                    "groupFitName": "Epic Group",
                     "paxNum": 7,
                     "dateFrom": "2023-10-27",
                     "dateTo": "2023-10-30",
@@ -64,6 +67,7 @@
                         "code": "DIR"
                     },
                     "tourName": "The Legend's Path",
+                    "groupFitName": "Epic Group",
                     "paxNum": 10,
                     "dateFrom": "",
                     "dateTo": "",
@@ -82,6 +86,7 @@
                         "code": "XTP"
                     },
                     "tourName": "On the way to eternity",
+                    "groupFitName": "Epic Group",
                     "paxNum": 9,
                     "dateFrom": "2024-01-10",
                     "dateTo": "2024-01-15",
@@ -100,6 +105,7 @@
                         "code": "DAV"
                     },
                     "tourName": "Mystical Montage",
+                    "groupFitName": "Epic Group",
                     "paxNum": 10,
                     "dateFrom": "2024-09-15",
                     "dateTo": "2024-09-27",
@@ -118,6 +124,7 @@
                         "code": "TCE"
                     },
                     "tourName": "Teracotta hunters",
+                    "groupFitName": "Epic Group",
                     "paxNum": 17,
                     "dateFrom": "",
                     "dateTo": "",
@@ -136,6 +143,7 @@
                         "code": "DAV"
                     },
                     "tourName": "On the trails of Tenzing_Mr. Mark",
+                    "groupFitName": "Epic Group",
                     "paxNum": 5,
                     "dateFrom": "2025-6-10",
                     "dateTo": "2025-6-10",
@@ -154,6 +162,7 @@
                         "code": "XTP"
                     },
                     "tourName": "The desert busters",
+                    "groupFitName": "Epic Group",
                     "paxNum": 7,
                     "dateFrom": "",
                     "dateTo": "",
@@ -172,6 +181,7 @@
                         "code": "DIR"
                     },
                     "tourName": "Happy Feet",
+                    "groupFitName": "Epic Group",
                     "paxNum": 2,
                     "dateFrom": "",
                     "dateTo": "",
@@ -190,6 +200,7 @@
                         "code": "DAV"
                     },
                     "tourName": "Say Hello to the Legends",
+                    "groupFitName": "Epic Group",
                     "paxNum": 2,
                     "dateFrom": "",
                     "dateTo": "",
@@ -208,6 +219,7 @@
                         "code": "DAV"
                     },
                     "tourName": "Nepal Exttravaganza",
+                    "groupFitName": "Epic Group",
                     "paxNum": 15,
                     "dateFrom": "2024-05-15",
                     "dateTo": "2024-05-20",
@@ -226,6 +238,7 @@
                         "code": "TCE"
                     },
                     "tourName": "Boring bites",
+                    "groupFitName": "Epic Group",
                     "paxNum": 5,
                     "dateFrom": "",
                     "dateTo": "",
@@ -244,6 +257,7 @@
                         "code": "BBV"
                     },
                     "tourName": "Nepal Exploration",
+                    "groupFitName": "Epic Group",
                     "paxNum": 16,
                     "dateFrom": "2024-02-20",
                     "dateTo": "2024-02-25",
@@ -262,6 +276,7 @@
                         "code": "TCE"
                     },
                     "tourName": "Nepal Exploration",
+                    "groupFitName": "Epic Group",
                     "paxNum": 17,
                     "dateFrom": "2024-02-20",
                     "dateTo": "2024-02-25",
@@ -280,6 +295,7 @@
                         "code": "XTP"
                     },
                     "tourName": "Lalala",
+                    "groupFitName": "Epic Group",
                     "paxNum": 3,
                     "dateFrom": "2024-02-20",
                     "dateTo": "2024-02-25",

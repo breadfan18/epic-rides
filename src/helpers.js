@@ -209,14 +209,14 @@ export function fileNameGenerator(
   numOfDays,
   tourName
 ) {
-  const fileNo =
+  const fileRef =
     dateFrom.substring(2, 7).replaceAll("-", "") +
     ("000" + id).slice(-3) +
     agentCode;
 
-  const fileName = `${fileNo}_${numOfDays}_${tourName}`;
+  const fileName = `${fileRef}_${numOfDays}_${tourName}`;
   return {
-    fileNo,
+    fileRef,
     fileName,
   };
 }

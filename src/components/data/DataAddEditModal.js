@@ -43,17 +43,21 @@ function DataAddEditModal({ data, setModalOpen }) {
       dataForModal.dateTo
     );
 
+    const id = dataForModal.id || allData.length + 1;
+
     const file = fileNameGenerator(
-      1,
+      id,
       dataForModal.agent.code,
       dataForModal.dateFrom,
       numOfDays,
-      dataForModal.groupOrTourName
+      dataForModal.tourName
     );
 
-    const id = dataForModal.id || allData.length + 1;
+    console.log(file.fileName);
 
     const finalData = { ...dataForModal, numOfDays, ...file };
+
+    debugger;
     dispatch(saveDataToFirebase(finalData, user?.uid, id));
     toast.success(
       dataForModal.id === null ? "Record Created" : "Record Updated"
