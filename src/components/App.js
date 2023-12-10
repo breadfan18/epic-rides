@@ -36,8 +36,8 @@ function App() {
         <div className="container-fluid">
           <Switch>
             <Route exact path="/" component={HomePage} />
-            <Route path="/main" component={DataPage} />
-            {/* <Route path="/card/:id" component={CardDetailsPage} /> */}
+            <Route path="/tours" component={DataPage} />
+            {/* <Route path="/tour/:id" component={CardDetailsPage} /> */}
             {/* <Route path="/loyalty-accounts" component={LoyaltyPage} /> */}
             {/* <Route path="/loyalty/:id" component={ManageLoyaltyPage} /> */}
             {/* <Route path="/loyalty" component={ManageLoyaltyPage} /> */}

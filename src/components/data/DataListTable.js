@@ -10,6 +10,7 @@ import ConfirmDeleteModal from "../common/ConfirmDeleteModal";
 import { WindowWidthContext } from "../App";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 import { ERN_DATA_KEYS, DELETE_MODAL_TYPES } from "../../constants";
+import BonusEarnStatusIcon from "../common/BonusEarnStatusIcon";
 
 export default function DataListTable({ data }) {
   const windowWidth = useContext(WindowWidthContext);
@@ -37,11 +38,12 @@ export default function DataListTable({ data }) {
   }
 
   return data.length === 0 ? (
-    <EmptyList dataType={"card"} />
+    <EmptyList dataType={"tours"} />
   ) : (
     <Table striped size="sm" className="smaller-table">
       <thead>
         <tr>
+          <th></th>
           <th className="tableHeader">Num</th>
           <th className="tableHeader">
             File Opened
@@ -87,6 +89,12 @@ export default function DataListTable({ data }) {
               style={{ cursor: "pointer" }}
               onClick={() => routeChange(d)}
             >
+              <td>
+                <BonusEarnStatusIcon
+                  bonusEarned={d.status === "HK"}
+                  iconSize="1.5rem"
+                />
+              </td>
               <td>{("000" + d.id).slice(-3)}</td>
               <td>{formatDate(d.fileOpenDate)}</td>
               <td>{d.agent.name}</td>

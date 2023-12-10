@@ -59,8 +59,8 @@ const Header = ({ user }) => {
         <NavLink to="/" activeStyle={activeStyle} exact>
           Home
         </NavLink>
-        <NavLink to="/main" activeStyle={activeStyle}>
-          Files
+        <NavLink to="/tours" activeStyle={activeStyle}>
+          Tours
         </NavLink>
         <NavLink to="/explanations" activeStyle={activeStyle}>
           Explanations

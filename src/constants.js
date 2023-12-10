@@ -42,12 +42,12 @@ export const AGENTS = [
 
 export const STATUS_CODES = [
   { name: "Open Dated", code: "OP" },
-  { name: "Reserved", code: "RR" },
   { name: "Confirmed", code: "HK" },
-  { name: "Completed and Closed", code: "CC" },
-  { name: "Cancelled", code: "XX" },
-  { name: "Status Not Available", code: "NA" },
-  { name: "Declined", code: "DL" },
+  // { name: "Reserved", code: "RR" },
+  // { name: "Completed and Closed", code: "CC" },
+  // { name: "Cancelled", code: "XX" },
+  // { name: "Status Not Available", code: "NA" },
+  // { name: "Declined", code: "DL" },
 ];
 
 export const NEW_DATA = {
