@@ -53,8 +53,6 @@ function DataAddEditModal({ data, setModalOpen }) {
       dataForModal.tourName
     );
 
-    console.log(file.fileName);
-
     const finalData = { ...dataForModal, numOfDays, ...file };
 
     debugger;

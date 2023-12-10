@@ -37,7 +37,7 @@ export function daysTillRewardsExpiration(rewardsExpirationDate) {
 }
 
 export function getDaysBetweenDates(startDate, endDate) {
-  if (!endDate || !startDate) return;
+  if (!endDate || !startDate) return null;
   const parsedEndDate = new Date(endDate);
   const parsedStartDate = new Date(startDate);
   return (
