@@ -33,6 +33,11 @@ function App() {
     <>
       <WindowWidthContext.Provider value={windowWidth}>
         <Header user={user} />
+        <img
+          src="https://i.imgur.com/DKkCN78.png"
+          alt=""
+          style={{ width: "100vw", height: "40vh", marginBottom: "15px" }}
+        />
         <div className="container-fluid">
           <Switch>
             <Route exact path="/" component={HomePage} />
