@@ -4,7 +4,7 @@ import { loadDataFromFirebase } from "../../redux/actions/dataActions";
 import { Spinner } from "../common/Spinner";
 import TourTabs from "./TourTabs";
 import { sortCardsByDate } from "../../helpers";
-import CardsByUserDropDown from "./CardsByUserDropDown";
+import ToursByDropDown from "./ToursByDropDown";
 import DataAddEditModal from "./DataAddEditModal";
 import { WindowWidthContext } from "../App";
 import { useUser } from "reactfire";
@@ -38,7 +38,7 @@ const TourPage = () => {
       {loading ? (
         <Spinner />
       ) : windowWidth < 650 ? (
-        <CardsByUserDropDown cards={data} />
+        <ToursByDropDown cards={data} />
       ) : (
         <TourTabs data={data} />
       )}

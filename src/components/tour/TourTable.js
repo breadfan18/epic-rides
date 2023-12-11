@@ -18,8 +18,8 @@ export default function TourTable({ data }) {
   const [modalOpen, setModalOpen] = useState(false);
   const history = useHistory();
 
-  const routeChange = (card) => {
-    let path = `/card/${card.id}`;
+  const routeChange = (tour) => {
+    let path = `/tour/${tour.id}`;
     if (!modalOpen) history.push(path);
   };
 

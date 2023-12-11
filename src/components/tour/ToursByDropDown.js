@@ -6,7 +6,7 @@ import { useFilteredData } from "../../hooks/filterCards";
 import { useSelector } from "react-redux";
 import _ from "lodash";
 
-function CardsByUserDropDown({ cards }) {
+function ToursByDropDown({ tours }) {
   const storedUser = JSON.parse(localStorage.getItem("selectedUser"));
   const [selectedUser, setSelectedUser] = useState(storedUser || "all-cards");
   const cardholders = useSelector((state) =>
@@ -17,8 +17,8 @@ function CardsByUserDropDown({ cards }) {
     selectedUser === undefined || selectedUser === "all-cards";
 
   const cardsForSelectedUser = showAllUsers
-    ? cards
-    : cards.filter((card) => card.userId === selectedUser);
+    ? tours
+    : tours.filter((card) => card.userId === selectedUser);
 
   const { cardsFilter, setCardsFilter, handleCardsFilter, filterCards } =
     useFilteredData(cardsForSelectedUser);
@@ -38,7 +38,7 @@ function CardsByUserDropDown({ cards }) {
         cardList: [...cardsForSelectedUser],
       });
     }
-  }, [selectedUser, cards]);
+  }, [selectedUser, tours]);
 
   const handleUserChange = (event) =>
     setSelectedUser(event.target.value || "all-cards");
@@ -74,9 +74,9 @@ function CardsByUserDropDown({ cards }) {
   );
 }
 
-CardsByUserDropDown.propTypes = {
-  cards: PropTypes.array.isRequired,
+ToursByDropDown.propTypes = {
+  tours: PropTypes.array.isRequired,
   cardholders: PropTypes.array.isRequired,
 };
 
-export default CardsByUserDropDown;
+export default ToursByDropDown;

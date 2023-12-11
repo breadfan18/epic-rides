@@ -20,8 +20,8 @@ export default function TourCards({ data, showEditDelete, showUserName }) {
   const cardWidth = windowWidth < 650 ? windowWidth : "18rem";
   const history = useHistory();
 
-  const routeChange = (card) => {
-    let path = `/card/${card.id}`;
+  const routeChange = (tour) => {
+    let path = `/tour/${tour.id}`;
     history.push(path);
   };
 
