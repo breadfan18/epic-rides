@@ -2,7 +2,7 @@ import React, { useEffect, useState, createContext } from "react";
 import { Route, Switch } from "react-router-dom";
 import HomePage from "./home/HomePage";
 import Header from "./common/Header";
-import TourPage from "./data/TourPage";
+import TourPage from "./tour/TourPage";
 import PageNotFound from "./PageNotFound";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
