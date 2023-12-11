@@ -209,6 +209,11 @@ export function fileNameGenerator(
   numOfDays,
   tourName
 ) {
+  if (dateFrom === "" || dateFrom === null || dateFrom === undefined)
+    return {
+      fileRef: "undated",
+      fileName: "undated",
+    };
   const fileRef =
     dateFrom.substring(2, 7).replaceAll("-", "") +
     ("000" + id).slice(-3) +

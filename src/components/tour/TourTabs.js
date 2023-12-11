@@ -54,7 +54,7 @@ function TourTabs({ data }) {
         style={{ width: filterWidth }}
       /> */}
       <Tabs defaultActiveKey={new Date().getFullYear()} className="mb-3">
-        <Tab eventKey="all-data" title="All Data">
+        <Tab eventKey="all-data" title="All Tours">
           {windowWidth > 1000 ? (
             <TourTable
               data={data}

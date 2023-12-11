@@ -5,7 +5,7 @@ import Table from "react-bootstrap/Table";
 import { FaSort } from "react-icons/fa";
 import { useSortableData } from "../../hooks/sortData";
 import { formatDate, setColorForCardStatus } from "../../helpers";
-import DataAddEditModal from "./DataAddEditModal";
+import TourAddEditModal from "./TourAddEditModal";
 import ConfirmDeleteModal from "../common/ConfirmDeleteModal";
 import { WindowWidthContext } from "../App";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
@@ -90,7 +90,7 @@ export default function TourTable({ data }) {
             >
               <td>
                 <BonusEarnStatusIcon
-                  bonusEarned={d.status === "HK"}
+                  confirmed={d.status === "HK"}
                   iconSize="1.5rem"
                 />
               </td>
@@ -104,7 +104,7 @@ export default function TourTable({ data }) {
               <td>{formatDate(d.dateTo)}</td>
               <td>{d.numOfDays === "" ? "N/A" : d.numOfDays}</td>
               <td className="editDeleteCard">
-                <DataAddEditModal data={d} setModalOpen={setModalOpen} />
+                <TourAddEditModal data={d} setModalOpen={setModalOpen} />
                 {/* <ConfirmDeleteModal data={d} setModalOpen={setModalOpen} /> */}
               </td>
             </tr>

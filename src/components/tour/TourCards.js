@@ -8,7 +8,7 @@ import {
 } from "../../constants";
 import PropTypes from "prop-types";
 import EmptyList from "../common/EmptyList";
-import DataAddEditModal from "./DataAddEditModal";
+import TourAddEditModal from "./TourAddEditModal";
 import ConfirmDeleteModal from "../common/ConfirmDeleteModal";
 import { WindowWidthContext } from "../App";
 import CardText from "./CardText";
@@ -50,7 +50,7 @@ export default function TourCards({ data, showEditDelete, showUserName }) {
                 <p style={{ margin: 0 }}>{d.tourName}</p>
                 <p style={{ margin: 0 }}>
                   <BonusEarnStatusIcon
-                    bonusEarned={d.status === "HK"}
+                    confirmed={d.status === "HK"}
                     iconSize="1.5rem"
                   />
                 </p>
@@ -63,13 +63,19 @@ export default function TourCards({ data, showEditDelete, showUserName }) {
               <CardText data={d} dataType={ERN_DATA_KEYS.agent} />
               <CardText data={d} dataType={ERN_DATA_KEYS.groupFitName} />
               <CardText data={d} dataType={ERN_DATA_KEYS.paxNum} />
-              <CardText data={d} dataType={ERN_DATA_KEYS.dateFrom} />
-              <CardText data={d} dataType={ERN_DATA_KEYS.dateTo} />
-              <CardText data={d} dataType={ERN_DATA_KEYS.numOfDays} />
+              {d.dateFrom !== "" &&
+                d.dateFrom !== null &&
+                d.dateFrom !== undefined && (
+                  <>
+                    <CardText data={d} dataType={ERN_DATA_KEYS.dateFrom} />
+                    <CardText data={d} dataType={ERN_DATA_KEYS.dateTo} />
+                    <CardText data={d} dataType={ERN_DATA_KEYS.numOfDays} />
+                  </>
+                )}
             </div>
           </section>
           <div className="editDeleteCard editDeleteOnCards">
-            <DataAddEditModal data={d} />
+            <TourAddEditModal data={d} />
             {/* <ConfirmDeleteModal data={d} dataType={DELETE_MODAL_TYPES.card} /> */}
           </div>
         </Card.Body>

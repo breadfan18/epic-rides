@@ -5,7 +5,7 @@ import { Spinner } from "../common/Spinner";
 import TourTabs from "./TourTabs";
 import { sortCardsByDate } from "../../helpers";
 import ToursByDropDown from "./ToursByDropDown";
-import DataAddEditModal from "./DataAddEditModal";
+import TourAddEditModal from "./TourAddEditModal";
 import { WindowWidthContext } from "../App";
 import { useUser } from "reactfire";
 
@@ -33,7 +33,7 @@ const TourPage = () => {
     <div className="cardsContainer">
       <section className="sectionHeaders">
         <h2 style={{ marginBottom: 0 }}>Tours</h2>
-        <DataAddEditModal />
+        <TourAddEditModal />
       </section>
       {loading ? (
         <Spinner />

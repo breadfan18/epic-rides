@@ -6,10 +6,13 @@ import {
 import { APP_COLOR_EPIC_RED, EDIT_COLOR_GREEN } from "../../constants";
 import PropTypes from "prop-types";
 
-export default function BonusEarnStatusIcon({ bonusEarned, iconSize }) {
-  return bonusEarned ? (
+export default function BonusEarnStatusIcon({ confirmed, iconSize }) {
+  return confirmed ? (
     <TbSquareRoundedCheckFilled
-      style={{ color: EDIT_COLOR_GREEN, fontSize: iconSize }}
+      style={{
+        color: EDIT_COLOR_GREEN,
+        fontSize: iconSize,
+      }}
     />
   ) : (
     <TbSquareRoundedChevronsRightFilled

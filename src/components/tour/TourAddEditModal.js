@@ -12,7 +12,7 @@ import { WindowWidthContext } from "../App";
 import { useUser } from "reactfire";
 import { fileNameGenerator, getDaysBetweenDates } from "../../helpers";
 
-function DataAddEditModal({ data, setModalOpen }) {
+function TourAddEditModal({ data, setModalOpen }) {
   const [dataForModal, setDataForModal] = useState(
     data ? { ...data } : NEW_DATA
   );
@@ -111,6 +111,7 @@ function DataAddEditModal({ data, setModalOpen }) {
         centered
         size="lg"
         backdrop="static"
+        animation
       >
         <Modal.Header className="modalHeader" closeButton>
           <Modal.Title>{dataForModal.id ? "Edit" : "Add"} Tour</Modal.Title>
@@ -129,10 +130,10 @@ function DataAddEditModal({ data, setModalOpen }) {
   );
 }
 
-DataAddEditModal.propTypes = {
+TourAddEditModal.propTypes = {
   data: PropTypes.object,
   saveCardToFirebase: PropTypes.func.isRequired,
   setModalOpen: PropTypes.func,
 };
 
-export default DataAddEditModal;
+export default TourAddEditModal;

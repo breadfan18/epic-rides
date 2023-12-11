@@ -30,6 +30,15 @@ const Header = ({ user }) => {
     <main className="smallNavContainer">
       <div id="smallNavTopHeader">
         <Burger open={open} setOpen={setOpen} />
+        <img
+          src="https://i.imgur.com/M0W3075.png"
+          alt=""
+          style={{
+            height: "2.6rem",
+            backgroundColor: "white",
+            borderRadius: "10px",
+          }}
+        />
         <UserProfileSection user={user} windowWidth={windowWidth} smallNav />
       </div>
       {open && (

@@ -10,7 +10,7 @@ import { YEARS } from "../../constants";
 function ToursByDropDown({ tours }) {
   // const storedUser = JSON.parse(localStorage.getItem("selectedUser"));
   const [selectedYear, setSelectedYear] = useState(
-    new Date().getFullYear() || "all-tours"
+    new Date().getFullYear().toString()
   );
   // const cardholders = useSelector((state) =>
   //   _.sortBy(state.cardholders, (o) => o.isPrimary)
@@ -23,7 +23,8 @@ function ToursByDropDown({ tours }) {
 
   const cardsForSelectedYear = showAllData
     ? tours
-    : tours.filter((d) =>
+    : // : tours.filter((d) => selectedYear.toString() === d.dateFrom.split("-")[0]);
+      tours.filter((d) =>
         d.dateFrom === ""
           ? selectedYear === "UNDATED"
           : selectedYear === d.dateFrom.split("-")[0]
