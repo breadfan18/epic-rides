@@ -93,7 +93,8 @@ export const NEW_NOTE = {
 export const ERN_DATA_KEYS = {
   fileOpenDate: "fileOpenDate",
   id: "id",
-  groupOrTourName: "groupOrTourName",
+  tourName: "tourName",
+  groupFitName: "groupFitName",
   paxNum: "paxNum",
   dateFrom: "dateFrom",
   dateTo: "dateTo",

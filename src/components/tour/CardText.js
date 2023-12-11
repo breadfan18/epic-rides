@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { formatCurrency, formatDate, titleCase } from "../../helpers";
+import { formatDate } from "../../helpers";
 import { ERN_DATA_KEYS } from "../../constants";
 
 function CardText({ data, dataType }) {
@@ -29,7 +29,7 @@ function CardText({ data, dataType }) {
       case ERN_DATA_KEYS.numOfDays:
         return {
           fieldName: "Num of Days",
-          value: data.numOfDays,
+          value: data.numOfDays || "N/A",
         };
       case ERN_DATA_KEYS.status:
         return {
@@ -40,6 +40,16 @@ function CardText({ data, dataType }) {
         return {
           fieldName: "File",
           value: data.fileName,
+        };
+      case ERN_DATA_KEYS.groupFitName:
+        return {
+          fieldName: "Group Name",
+          value: data.groupFitName,
+        };
+      case ERN_DATA_KEYS.agent:
+        return {
+          fieldName: "Agent",
+          value: data.agent.name,
         };
       default:
         break;

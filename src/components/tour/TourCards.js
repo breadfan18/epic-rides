@@ -36,9 +36,7 @@ export default function TourCards({ data, showEditDelete, showUserName }) {
           >
             <Card.Title
               style={{
-                padding: "10px 0 0 10px",
-                marginBottom: 0,
-                borderRadius: "5px 5px 0 0 ",
+                padding: "10px",
                 fontSize: "15px",
               }}
             >
@@ -49,61 +47,31 @@ export default function TourCards({ data, showEditDelete, showUserName }) {
                   alignContent: "center",
                 }}
               >
-                <p style={{ margin: 0 }}>{`${d.tourName}`}</p>
+                <p style={{ margin: 0 }}>{d.tourName}</p>
                 <p style={{ margin: 0 }}>
                   <BonusEarnStatusIcon
-                    bonusEarned={d.bonusEarned}
-                    iconSize="1.3rem"
+                    bonusEarned={d.status === "HK"}
+                    iconSize="1.5rem"
                   />
                 </p>
               </div>
-              {/* {d.tourName} */}
             </Card.Title>
-            {/* <Card.Subtitle
-              style={{
-                padding: "10px",
-                margin: "0",
-                borderRadius: showUserName ? null : "5px 5px 0 0 ",
-                color: showUserName ? "rgba(33, 37, 41, 0.75)" : "black",
-              }}
-            >
-              <div
-                style={{
-                  display: "flex",
-                  justifyContent: "space-between",
-                  alignContent: "center",
-                }}
-              >
-                <p style={{ margin: 0 }}>{`${d.agent.name}`}</p>
-                <p style={{ margin: 0 }}>
-                  <BonusEarnStatusIcon
-                    bonusEarned={d.bonusEarned}
-                    iconSize="1.3rem"
-                  />
-                </p>
-              </div>
-            </Card.Subtitle> */}
           </div>
           <section id="cardBody" onClick={() => routeChange(d)}>
             <div>
               <CardText data={d} dataType={ERN_DATA_KEYS.fileOpenDate} />
+              <CardText data={d} dataType={ERN_DATA_KEYS.agent} />
+              <CardText data={d} dataType={ERN_DATA_KEYS.groupFitName} />
               <CardText data={d} dataType={ERN_DATA_KEYS.paxNum} />
               <CardText data={d} dataType={ERN_DATA_KEYS.dateFrom} />
               <CardText data={d} dataType={ERN_DATA_KEYS.dateTo} />
               <CardText data={d} dataType={ERN_DATA_KEYS.numOfDays} />
-              <CardText data={d} dataType={ERN_DATA_KEYS.status} />
-              {/* <CardText data={d} dataType={ERN_DATA_KEYS.fileName} /> */}
             </div>
-            {/* <div>
-              <img src={d.issuer.img} alt="Issuer" className="issuerLogos" />
-            </div> */}
           </section>
-          {/* {showEditDelete ?? ( */}
           <div className="editDeleteCard editDeleteOnCards">
             <DataAddEditModal data={d} />
             <ConfirmDeleteModal data={d} dataType={DELETE_MODAL_TYPES.card} />
           </div>
-          {/* )} */}
         </Card.Body>
       </Card>
     );

@@ -4,7 +4,6 @@ import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import { saveDataToFirebase } from "../../redux/actions/dataActions";
 import DataForm from "./DataForm";
-import CardFormResponsive from "./CardFormResponsive";
 import { toast } from "react-toastify";
 import PropTypes from "prop-types";
 import { MdModeEditOutline } from "react-icons/md";
@@ -117,21 +116,13 @@ function DataAddEditModal({ data, setModalOpen }) {
           <Modal.Title>{dataForModal.id ? "Edit" : "Add"} Tour</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          {windowWidth > 980 ? (
-            <DataForm
-              data={dataForModal}
-              onSave={handleSaveForFirebase}
-              onChange={handleChange}
-              // toggle={toggle}
-              // errors={errors}
-            />
-          ) : (
-            <CardFormResponsive
-              card={dataForModal}
-              onSave={handleSaveForFirebase}
-              onChange={handleChange}
-            />
-          )}
+          <DataForm
+            data={dataForModal}
+            onSave={handleSaveForFirebase}
+            onChange={handleChange}
+            // toggle={toggle}
+            // errors={errors}
+          />
         </Modal.Body>
       </Modal>
     </>
