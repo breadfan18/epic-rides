@@ -223,5 +223,6 @@ export function fileNameGenerator(
   return {
     fileRef,
     fileName,
+    fileOpenDate: new Date().toISOString().split("T")[0],
   };
 }

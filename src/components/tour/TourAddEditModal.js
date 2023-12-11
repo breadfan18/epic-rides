@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import { saveDataToFirebase } from "../../redux/actions/dataActions";
-import DataForm from "./DataForm";
+import TourForm from "./TourForm";
 import { toast } from "react-toastify";
 import PropTypes from "prop-types";
 import { MdModeEditOutline } from "react-icons/md";
@@ -117,8 +117,8 @@ function TourAddEditModal({ data, setModalOpen }) {
           <Modal.Title>{dataForModal.id ? "Edit" : "Add"} Tour</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <DataForm
-            data={dataForModal}
+          <TourForm
+            tour={dataForModal}
             onSave={handleSaveForFirebase}
             onChange={handleChange}
             // toggle={toggle}

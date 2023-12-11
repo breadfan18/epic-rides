@@ -7,7 +7,7 @@ import DateInput from "../common/DateInput";
 import Form from "react-bootstrap/Form";
 import { titleCase } from "../../helpers";
 
-const DataForm = ({ data, onSave, onChange, saving, errors = {} }) => {
+const TourForm = ({ tour, onSave, onChange, saving, errors = {} }) => {
   return (
     <>
       <Form onSubmit={onSave}>
@@ -16,16 +16,10 @@ const DataForm = ({ data, onSave, onChange, saving, errors = {} }) => {
             {errors.onSave}
           </div>
         )}
-        <DateInput
-          name="fileOpenDate"
-          label="File Open Date"
-          onChange={onChange}
-          value={data.fileOpenDate}
-        />
         <SelectInput
           name="agent"
           label="Agent"
-          value={data.agent.name || ""}
+          value={tour.agent.name || ""}
           defaultOption="Select Agent"
           options={AGENTS.map((agent) => ({
             value: agent.name,
@@ -37,21 +31,21 @@ const DataForm = ({ data, onSave, onChange, saving, errors = {} }) => {
         <TextInput
           name="tourName"
           label="Tour Name"
-          value={data.tourName || ""}
+          value={tour.tourName || ""}
           onChange={onChange}
           error={errors.title}
         />
         <TextInput
           name="groupFitName"
           label="Group/FIT Name"
-          value={data.groupFitName || ""}
+          value={tour.groupFitName || ""}
           onChange={onChange}
           error={errors.title}
         />
         <TextInput
           name="paxNum"
           label="Number of Passengers"
-          value={data.paxNum || ""}
+          value={tour.paxNum || ""}
           onChange={onChange}
           error={errors.title}
         />
@@ -59,20 +53,20 @@ const DataForm = ({ data, onSave, onChange, saving, errors = {} }) => {
           name="dateFrom"
           label="Start Date"
           onChange={onChange}
-          value={data.dateFrom}
+          value={tour.dateFrom}
           // disabled={formDisabledCheck(card.annualFee)}
         />
         <DateInput
           name="dateTo"
           label="End Date"
           onChange={onChange}
-          value={data.dateTo}
+          value={tour.dateTo}
           // disabled={formDisabledCheck(card.annualFee)}
         />
         <SelectInput
           name="status"
           label="Status"
-          value={data.status || ""}
+          value={tour.status || ""}
           defaultOption="Select Status"
           options={STATUS_CODES.map((status) => ({
             value: status.code,
@@ -87,14 +81,14 @@ const DataForm = ({ data, onSave, onChange, saving, errors = {} }) => {
           disabled={saving}
           className="btn btn-primary addButton"
         >
-          {data.id === null ? "Add Data" : "Save Data"}
+          {tour.id === null ? "Add Data" : "Save Data"}
         </button>
       </Form>
     </>
   );
 };
 
-DataForm.propTypes = {
+TourForm.propTypes = {
   card: PropTypes.object.isRequired,
   errors: PropTypes.object,
   onSave: PropTypes.func.isRequired,
@@ -102,4 +96,4 @@ DataForm.propTypes = {
   saving: PropTypes.bool,
 };
 
-export default DataForm;
+export default TourForm;
