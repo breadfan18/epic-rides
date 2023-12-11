@@ -25,7 +25,7 @@ export default function TourCards({ data, showEditDelete, showUserName }) {
     history.push(path);
   };
 
-  const allCards = data.map((d) => {
+  const allTours = data.map((d) => {
     return (
       <Card style={{ width: cardWidth }} key={d.id} className="cardCard">
         <Card.Body style={{ padding: "0" }}>
@@ -39,11 +39,27 @@ export default function TourCards({ data, showEditDelete, showUserName }) {
                 padding: "10px 0 0 10px",
                 marginBottom: 0,
                 borderRadius: "5px 5px 0 0 ",
+                fontSize: "15px",
               }}
             >
-              {d.groupOrTourName}
+              <div
+                style={{
+                  display: "flex",
+                  justifyContent: "space-between",
+                  alignContent: "center",
+                }}
+              >
+                <p style={{ margin: 0 }}>{`${d.tourName}`}</p>
+                <p style={{ margin: 0 }}>
+                  <BonusEarnStatusIcon
+                    bonusEarned={d.bonusEarned}
+                    iconSize="1.3rem"
+                  />
+                </p>
+              </div>
+              {/* {d.tourName} */}
             </Card.Title>
-            <Card.Subtitle
+            {/* <Card.Subtitle
               style={{
                 padding: "10px",
                 margin: "0",
@@ -66,7 +82,7 @@ export default function TourCards({ data, showEditDelete, showUserName }) {
                   />
                 </p>
               </div>
-            </Card.Subtitle>
+            </Card.Subtitle> */}
           </div>
           <section id="cardBody" onClick={() => routeChange(d)}>
             <div>
@@ -76,18 +92,18 @@ export default function TourCards({ data, showEditDelete, showUserName }) {
               <CardText data={d} dataType={ERN_DATA_KEYS.dateTo} />
               <CardText data={d} dataType={ERN_DATA_KEYS.numOfDays} />
               <CardText data={d} dataType={ERN_DATA_KEYS.status} />
-              <CardText data={d} dataType={ERN_DATA_KEYS.fileName} />
+              {/* <CardText data={d} dataType={ERN_DATA_KEYS.fileName} /> */}
             </div>
             {/* <div>
               <img src={d.issuer.img} alt="Issuer" className="issuerLogos" />
             </div> */}
           </section>
-          {showEditDelete ?? (
-            <div className="editDeleteCard editDeleteOnCards">
-              <DataAddEditModal card={d} />
-              <ConfirmDeleteModal data={d} dataType={DELETE_MODAL_TYPES.card} />
-            </div>
-          )}
+          {/* {showEditDelete ?? ( */}
+          <div className="editDeleteCard editDeleteOnCards">
+            <DataAddEditModal data={d} />
+            <ConfirmDeleteModal data={d} dataType={DELETE_MODAL_TYPES.card} />
+          </div>
+          {/* )} */}
         </Card.Body>
       </Card>
     );
@@ -95,7 +111,7 @@ export default function TourCards({ data, showEditDelete, showUserName }) {
   return data.length === 0 ? (
     <EmptyList dataType={"card"} />
   ) : (
-    <div id="cardCardContainer">{allCards}</div>
+    <div id="cardCardContainer">{allTours}</div>
   );
 }
 

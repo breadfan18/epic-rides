@@ -37,7 +37,7 @@ function TourTabs({ data }) {
             showCompactTable={false}
           />
         ) : (
-          <TourCards data={data} showUserName={false} />
+          <TourCards data={dataForYear} showUserName={false} />
         )}
       </Tab>
     );
