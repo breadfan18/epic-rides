@@ -38,7 +38,7 @@ export default function TourTable({ data }) {
   }
 
   return data.length === 0 ? (
-    <EmptyList dataType={"tours"} />
+    <EmptyList dataType={"tour"} />
   ) : (
     <Table striped size="sm" className="smaller-table">
       <thead>
@@ -105,7 +105,7 @@ export default function TourTable({ data }) {
               <td>{d.numOfDays === "" ? "N/A" : d.numOfDays}</td>
               <td className="editDeleteCard">
                 <DataAddEditModal data={d} setModalOpen={setModalOpen} />
-                <ConfirmDeleteModal data={d} setModalOpen={setModalOpen} />
+                {/* <ConfirmDeleteModal data={d} setModalOpen={setModalOpen} /> */}
               </td>
             </tr>
           );

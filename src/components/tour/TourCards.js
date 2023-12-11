@@ -70,14 +70,14 @@ export default function TourCards({ data, showEditDelete, showUserName }) {
           </section>
           <div className="editDeleteCard editDeleteOnCards">
             <DataAddEditModal data={d} />
-            <ConfirmDeleteModal data={d} dataType={DELETE_MODAL_TYPES.card} />
+            {/* <ConfirmDeleteModal data={d} dataType={DELETE_MODAL_TYPES.card} /> */}
           </div>
         </Card.Body>
       </Card>
     );
   });
   return data.length === 0 ? (
-    <EmptyList dataType={"card"} />
+    <EmptyList dataType={"tour"} />
   ) : (
     <div id="cardCardContainer">{allTours}</div>
   );

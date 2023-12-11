@@ -19,11 +19,11 @@ const TourPage = () => {
   const windowWidth = useContext(WindowWidthContext);
   const dispatch = useDispatch();
   const { status, data: user } = useUser();
-  const data = useSelector((state) => sortCardsByDate(state.data));
+  const tours = useSelector((state) => sortCardsByDate(state.data));
   const loading = useSelector((state) => state.apiCallsInProgress > 0);
 
   useEffect(() => {
-    if (data.length === 0 && status !== "loading" && user !== null) {
+    if (tours.length === 0 && status !== "loading" && user !== null) {
       console.log(user.uid);
       dispatch(loadDataFromFirebase(user.uid));
     }
@@ -38,9 +38,9 @@ const TourPage = () => {
       {loading ? (
         <Spinner />
       ) : windowWidth < 650 ? (
-        <ToursByDropDown cards={data} />
+        <ToursByDropDown tours={tours} />
       ) : (
-        <TourTabs data={data} />
+        <TourTabs data={tours} />
       )}
     </div>
   );

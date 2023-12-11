@@ -5,43 +5,54 @@ import { Form } from "react-bootstrap";
 import { useFilteredData } from "../../hooks/filterCards";
 import { useSelector } from "react-redux";
 import _ from "lodash";
+import { YEARS } from "../../constants";
 
 function ToursByDropDown({ tours }) {
-  const storedUser = JSON.parse(localStorage.getItem("selectedUser"));
-  const [selectedUser, setSelectedUser] = useState(storedUser || "all-cards");
-  const cardholders = useSelector((state) =>
-    _.sortBy(state.cardholders, (o) => o.isPrimary)
+  // const storedUser = JSON.parse(localStorage.getItem("selectedUser"));
+  const [selectedYear, setSelectedYear] = useState(
+    new Date().getFullYear() || "all-tours"
   );
+  // const cardholders = useSelector((state) =>
+  //   _.sortBy(state.cardholders, (o) => o.isPrimary)
+  // );
 
-  const showAllUsers =
-    selectedUser === undefined || selectedUser === "all-cards";
+  console.log(tours);
 
-  const cardsForSelectedUser = showAllUsers
+  const showAllData =
+    selectedYear === undefined || selectedYear === "all-tours";
+
+  const cardsForSelectedYear = showAllData
     ? tours
-    : tours.filter((card) => card.userId === selectedUser);
+    : tours.filter((d) =>
+        d.dateFrom === ""
+          ? selectedYear === "UNDATED"
+          : selectedYear === d.dateFrom.split("-")[0]
+      );
 
-  const { cardsFilter, setCardsFilter, handleCardsFilter, filterCards } =
-    useFilteredData(cardsForSelectedUser);
+  console.log({ cardsForSelectedYear });
 
-  useEffect(() => {
-    localStorage.setItem("selectedUser", JSON.stringify(selectedUser));
+  // const { cardsFilter, setCardsFilter, handleCardsFilter, filterCards } =
+  //   useFilteredData(cardsForSelectedYear);
 
-    if (cardsFilter.query !== "") {
-      const filteredCards = filterCards(cardsFilter.query);
-      setCardsFilter({
-        query: cardsFilter.query,
-        cardList: filteredCards,
-      });
-    } else {
-      setCardsFilter({
-        query: "",
-        cardList: [...cardsForSelectedUser],
-      });
-    }
-  }, [selectedUser, tours]);
+  // useEffect(() => {
+  //   localStorage.setItem("selectedUser", JSON.stringify(selectedYear));
+
+  //   if (cardsFilter.query !== "") {
+  //     const filteredCards = filterCards(cardsFilter.query);
+  //     setCardsFilter({
+  //       query: cardsFilter.query,
+  //       cardList: filteredCards,
+  //     });
+  //   } else {
+  //     setCardsFilter({
+  //       query: "",
+  //       cardList: [...cardsForSelectedYear],
+  //     });
+  //   }
+  // }, [selectedYear, tours]);
 
   const handleUserChange = (event) =>
-    setSelectedUser(event.target.value || "all-cards");
+    setSelectedYear(event.target.value || "all-tours");
 
   return (
     <div className="cardsDropDownContainer">
@@ -49,27 +60,27 @@ function ToursByDropDown({ tours }) {
         <Form.Select
           id="cardFilterUserSelect"
           onChange={handleUserChange}
-          value={selectedUser}
+          value={selectedYear}
         >
-          <option value="">All Users</option>
-          {cardholders.map((holder) => {
+          <option value="">All Tours</option>
+          {YEARS.map((year) => {
             return (
-              <option key={holder.id} value={holder.id}>
-                {holder.name}
+              <option key={year} value={year}>
+                {year}
               </option>
             );
           })}
         </Form.Select>
         <input
           type="search"
-          value={cardsFilter.query}
-          onChange={handleCardsFilter}
+          value=""
+          // onChange={handleCardsFilter}
           placeholder="Filter by card name.."
           id="cardFilterInput"
         />
       </div>
       <hr />
-      <TourCards cards={cardsFilter.cardList} showUserName={showAllUsers} />
+      <TourCards data={cardsForSelectedYear} showUserName={showAllData} />
     </div>
   );
 }
