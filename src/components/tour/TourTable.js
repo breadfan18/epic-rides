@@ -10,7 +10,7 @@ import ConfirmDeleteModal from "../common/ConfirmDeleteModal";
 import { WindowWidthContext } from "../App";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 import { ERN_DATA_KEYS, DELETE_MODAL_TYPES } from "../../constants";
-import BonusEarnStatusIcon from "../common/BonusEarnStatusIcon";
+import TourStatusIcon from "../common/TourStatusIcon";
 
 export default function TourTable({ data }) {
   const windowWidth = useContext(WindowWidthContext);
@@ -28,10 +28,11 @@ export default function TourTable({ data }) {
       e.target.parentNode.className = "table-active";
     }
   }
+
   function handleTrColorReset(e, card) {
     if (e.target.parentNode.tagName === "TR") {
       e.target.parentNode.className = setColorForCardStatus(
-        "cardTable",
+        "tourTable",
         card.status
       );
     }
@@ -82,17 +83,15 @@ export default function TourTable({ data }) {
           return (
             <tr
               key={d.id}
-              // className={setColorForCardStatus("cardTable", d.status)}
+              className={setColorForCardStatus("tourTable", d.status)}
               onMouseEnter={handleTrColorOnHover}
               onMouseLeave={(e) => handleTrColorReset(e, d)}
               style={{ cursor: "pointer" }}
               onClick={() => routeChange(d)}
+              // className={d.status === "CA" ? "table-danger" : ""}
             >
               <td>
-                <BonusEarnStatusIcon
-                  confirmed={d.status === "HK"}
-                  iconSize="1.5rem"
-                />
+                <TourStatusIcon tourStatus={d.status} iconSize="1.5rem" />
               </td>
               <td>{("000" + d.id).slice(-3)}</td>
               <td>{formatDate(d.fileOpenDate)}</td>

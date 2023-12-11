@@ -14,7 +14,7 @@ import { WindowWidthContext } from "../App";
 import CardText from "./CardText";
 import { setColorForCardStatus } from "../../helpers";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
-import BonusEarnStatusIcon from "../common/BonusEarnStatusIcon";
+import TourStatusIcon from "../common/TourStatusIcon";
 export default function TourCards({ data, showEditDelete, showUserName }) {
   const windowWidth = useContext(WindowWidthContext);
   const cardWidth = windowWidth < 650 ? windowWidth : "18rem";
@@ -49,10 +49,7 @@ export default function TourCards({ data, showEditDelete, showUserName }) {
               >
                 <p style={{ margin: 0 }}>{d.tourName}</p>
                 <p style={{ margin: 0 }}>
-                  <BonusEarnStatusIcon
-                    confirmed={d.status === "HK"}
-                    iconSize="1.5rem"
-                  />
+                  <TourStatusIcon tourStatus={d.status} iconSize="1.5rem" />
                 </p>
               </div>
             </Card.Title>

@@ -152,17 +152,13 @@ export function handleInquiriesList(inq) {
     .map((inq) => CREDIT_BUREAUS.find((i) => inq === i.name));
 }
 
-export function setColorForCardStatus(componentType, cardStatus) {
-  if (componentType === "cardTable") {
-    return cardStatus === "closed"
-      ? "table-danger"
-      : cardStatus === "downgraded"
-      ? "table-warning"
-      : null;
+export function setColorForCardStatus(componentType, tourStatus) {
+  if (componentType === "tourTable") {
+    return tourStatus === "CA" ? "table-danger" : null;
   } else if (componentType === "cardCard") {
-    return cardStatus === "closed"
+    return tourStatus === "closed"
       ? CARD_COLOR_CLOSED
-      : cardStatus === "downgraded"
+      : tourStatus === "downgraded"
       ? CARD_COLOR_DOWNGRADED
       : null;
   }
