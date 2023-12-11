@@ -71,12 +71,12 @@ body {
 .navSmallContent {
   display: flex;
   flex-direction: column;
-  background-color: var(--epic-red);
+  color: white;
 }
 
 nav a {
   text-decoration: none;
-  color: var(--epic-red);
+  color: white;
   margin-left: 1rem;
   margin-right: 1rem;
   padding: 5px 10px;
@@ -102,9 +102,13 @@ nav a {
   cursor: pointer;
 }
 
-.navFull a:hover,
-.navSmallContent a:hover {
+.navFull a:hover {
   background-color: var(--black-opacity);
+  color: var(--epic-red);
+}
+
+.navSmallContent a:hover {
+  background-color: var(--light-gray);
   color: var(--epic-red);
 }
 

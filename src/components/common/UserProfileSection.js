@@ -6,7 +6,7 @@ import { userLogout } from "../../redux/actions/authActions";
 import { connect } from "react-redux";
 import { APP_COLOR_EPIC_RED } from "../../constants";
 
-function UserProfileSection({ user, userLogout }) {
+function UserProfileSection({ user, userLogout, smallNav }) {
   const history = useHistory();
 
   function handleSignOut() {
@@ -21,7 +21,7 @@ function UserProfileSection({ user, userLogout }) {
         alt=""
         style={{
           borderRadius: "50%",
-          height: "2.7rem",
+          height: smallNav ? "2.1rem" : "2.7rem",
           border: `2px solid white`,
         }}
         title={user.displayName}
@@ -29,10 +29,10 @@ function UserProfileSection({ user, userLogout }) {
       <GoSignOut
         onClick={handleSignOut}
         style={{
-          fontSize: "2rem",
+          fontSize: smallNav ? "1.9rem" : "2rem",
           cursor: "pointer",
           marginLeft: "5px",
-          color: APP_COLOR_EPIC_RED,
+          color: smallNav ? "white" : APP_COLOR_EPIC_RED,
         }}
         title="Sign Out"
       />

@@ -9,6 +9,10 @@ const Header = ({ user }) => {
   const windowWidth = useContext(WindowWidthContext);
   const [open, setOpen] = useState(false);
   const activeStyle = { backgroundColor: APP_COLOR_EPIC_RED, color: "white" };
+  const activeStyleSmall = {
+    backgroundColor: "white",
+    color: APP_COLOR_EPIC_RED,
+  };
   let navRef = useRef();
 
   useEffect(() => {
@@ -26,24 +30,45 @@ const Header = ({ user }) => {
     <main className="smallNavContainer">
       <div id="smallNavTopHeader">
         <Burger open={open} setOpen={setOpen} />
-        <UserProfileSection user={user} windowWidth={windowWidth} />
+        <UserProfileSection user={user} windowWidth={windowWidth} smallNav />
       </div>
       {open && (
         <nav className="navSmallContent" ref={navRef}>
           <NavLink
             to="/"
-            activeStyle={activeStyle}
+            activeStyle={activeStyleSmall}
             exact
             onClick={() => setOpen(false)}
           >
             Home
           </NavLink>
           <NavLink
-            to="/main"
-            activeStyle={activeStyle}
+            to="/tours"
+            activeStyle={activeStyleSmall}
             onClick={() => setOpen(false)}
           >
-            Files
+            Tours
+          </NavLink>
+          <NavLink
+            to="/explanations"
+            activeStyle={activeStyleSmall}
+            onClick={() => setOpen(false)}
+          >
+            Explanations
+          </NavLink>
+          <NavLink
+            to="/lists"
+            activeStyle={activeStyleSmall}
+            onClick={() => setOpen(false)}
+          >
+            Lists
+          </NavLink>
+          <NavLink
+            to="/agents"
+            activeStyle={activeStyleSmall}
+            onClick={() => setOpen(false)}
+          >
+            Agents
           </NavLink>
         </nav>
       )}

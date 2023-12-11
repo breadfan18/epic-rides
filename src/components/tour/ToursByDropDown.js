@@ -75,7 +75,7 @@ function ToursByDropDown({ tours }) {
           type="search"
           value=""
           // onChange={handleCardsFilter}
-          placeholder="Filter by card name.."
+          placeholder="Filter by tour name.."
           id="cardFilterInput"
         />
       </div>
