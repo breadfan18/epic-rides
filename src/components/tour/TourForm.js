@@ -2,18 +2,31 @@ import React from "react";
 import PropTypes from "prop-types";
 import TextInput from "../common/TextInput";
 import SelectInput from "../common/SelectInput";
-import { AGENTS, STATUS_CODES } from "../../constants";
+import {
+  AGENTS,
+  APP_COLOR_BLACK_OPACITY,
+  APP_COLOR_EPIC_RED,
+  STATUS_CODES,
+} from "../../constants";
 import DateInput from "../common/DateInput";
 import Form from "react-bootstrap/Form";
 import { titleCase } from "../../helpers";
+import { isEmpty } from "lodash";
 
 const TourForm = ({ tour, onSave, onChange, saving, errors = {} }) => {
   return (
     <>
       <Form onSubmit={onSave}>
-        {errors.onSave && (
-          <div className="alert alert-danger" role="alert">
-            {errors.onSave}
+        {!isEmpty(errors) && (
+          <div
+            className="alert"
+            role="alert"
+            style={{
+              backgroundColor: APP_COLOR_BLACK_OPACITY,
+              color: APP_COLOR_EPIC_RED,
+            }}
+          >
+            Please address the errors below
           </div>
         )}
         <SelectInput
@@ -26,34 +39,35 @@ const TourForm = ({ tour, onSave, onChange, saving, errors = {} }) => {
             text: titleCase(agent.name),
           }))}
           onChange={onChange}
-          error={errors.author}
+          error={errors.agent}
         />
         <TextInput
           name="tourName"
           label="Tour Name"
           value={tour.tourName || ""}
           onChange={onChange}
-          error={errors.title}
+          error={errors.tourName}
         />
         <TextInput
           name="groupFitName"
           label="Group/FIT Name"
           value={tour.groupFitName || ""}
           onChange={onChange}
-          error={errors.title}
+          error={errors.groupFitName}
         />
         <TextInput
           name="paxNum"
           label="Number of Passengers"
           value={tour.paxNum || ""}
           onChange={onChange}
-          error={errors.title}
+          error={errors.paxNum}
         />
         <DateInput
           name="dateFrom"
           label="Start Date"
           onChange={onChange}
           value={tour.dateFrom}
+          // error={errors.dateFrom}
           // disabled={formDisabledCheck(card.annualFee)}
         />
         <DateInput
@@ -61,6 +75,7 @@ const TourForm = ({ tour, onSave, onChange, saving, errors = {} }) => {
           label="End Date"
           onChange={onChange}
           value={tour.dateTo}
+          // error={errors.dateTo}
           // disabled={formDisabledCheck(card.annualFee)}
         />
         <SelectInput
@@ -73,7 +88,7 @@ const TourForm = ({ tour, onSave, onChange, saving, errors = {} }) => {
             text: titleCase(status.name),
           }))}
           onChange={onChange}
-          error={errors.author}
+          error={errors.status}
         />
         <hr />
         <button

@@ -36,6 +36,7 @@ function TourAddEditModal({ data, setModalOpen }) {
 
   function handleSaveForFirebase(event) {
     event.preventDefault();
+    if (!formIsValid()) return;
 
     const numOfDays = getDaysBetweenDates(
       dataForModal.dateFrom,
@@ -63,6 +64,7 @@ function TourAddEditModal({ data, setModalOpen }) {
 
   function clearDataState() {
     setDataForModal(NEW_DATA);
+    setErrors({});
     toggleShow();
   }
 
@@ -83,6 +85,25 @@ function TourAddEditModal({ data, setModalOpen }) {
     } catch (err) {
       console.log("setModalOpen func is not passed for this component");
     }
+  }
+
+  const [errors, setErrors] = useState({});
+
+  function formIsValid() {
+    const { agent, tourName, groupFitName, paxNum, dateFrom, dateTo, status } =
+      dataForModal;
+    const errors = {};
+
+    if (!agent.name) errors.agent = "Agent is required";
+    if (!tourName) errors.tourName = "Tour Name is required";
+    if (!groupFitName) errors.groupFitName = "Group Name is required";
+    if (!paxNum) errors.paxNum = "Passengers number is required";
+    if (!status) errors.status = "Status is required";
+    if (!status) errors.dateFrom = "Status is required";
+
+    setErrors(errors);
+    // Form is valid if the errors objects has no properties
+    return Object.keys(errors).length === 0;
   }
 
   return (
@@ -122,7 +143,7 @@ function TourAddEditModal({ data, setModalOpen }) {
             onSave={handleSaveForFirebase}
             onChange={handleChange}
             // toggle={toggle}
-            // errors={errors}
+            errors={errors}
           />
         </Modal.Body>
       </Modal>

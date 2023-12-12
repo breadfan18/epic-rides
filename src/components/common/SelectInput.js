@@ -1,6 +1,11 @@
 import React from "react";
 import PropTypes from "prop-types";
 import Form from "react-bootstrap/Form";
+import {
+  APP_COLOR_EPIC_RED,
+  CANCELLED_COLOR_RED,
+  DELETE_COLOR_RED,
+} from "../../constants";
 
 const SelectInput = ({
   name,
@@ -15,8 +20,25 @@ const SelectInput = ({
 }) => {
   return (
     <div className="form-group">
-      <label htmlFor={name} className="labels">
+      <label
+        htmlFor={name}
+        className="inputLabels"
+        style={{
+          backgroundColor: error ? CANCELLED_COLOR_RED : "",
+        }}
+      >
         {label}
+        {error && (
+          <p
+            style={{
+              margin: "0 10px 0 0",
+              fontSize: "0.8rem",
+              color: APP_COLOR_EPIC_RED,
+            }}
+          >
+            Required
+          </p>
+        )}
       </label>
       <Form.Select
         aria-label={defaultOption}
@@ -37,9 +59,9 @@ const SelectInput = ({
           );
         })}
       </Form.Select>
-      <div className="field">
+      {/* <div className="field">
         {error && <div className="alert alert-danger">{error}</div>}
-      </div>
+      </div> */}
     </div>
   );
 };

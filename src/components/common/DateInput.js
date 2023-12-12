@@ -1,6 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import Form from "react-bootstrap/Form";
+import { CANCELLED_COLOR_RED } from "../../constants";
 
 const DateInput = ({ name, label, onChange, value, error, disabled }) => {
   let wrapperClass = "form-group";
@@ -10,7 +11,13 @@ const DateInput = ({ name, label, onChange, value, error, disabled }) => {
 
   return (
     <div className={wrapperClass}>
-      <label htmlFor={name} className="labels">
+      <label
+        htmlFor={name}
+        className="inputLabels"
+        style={{
+          backgroundColor: error ? CANCELLED_COLOR_RED : "",
+        }}
+      >
         {label}
       </label>
       <div className="field">
