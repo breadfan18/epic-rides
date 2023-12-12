@@ -1,5 +1,6 @@
 const initialState = {
   data: [],
+  agents: [],
   apiCallsInProgress: 0,
 };
 

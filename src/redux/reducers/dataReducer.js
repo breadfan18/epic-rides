@@ -9,7 +9,7 @@ import initialState from "./initialState";
 export default function cardsReducer(state = initialState.data, action) {
   switch (action.type) {
     case LOAD_DATA_SUCCESS:
-      return action.cards;
+      return action.data;
     case CREATE_DATA_SUCCESS:
       /* This is just returning state instead of [...state, { ...action.card }]
       because Firebase real time database adds new data immediately..

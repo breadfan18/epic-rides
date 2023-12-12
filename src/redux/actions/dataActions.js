@@ -16,20 +16,20 @@ import {
 import { slugify } from "../../helpers";
 import { uid } from "uid";
 
-function loadDataSuccess(cards) {
-  return { type: LOAD_DATA_SUCCESS, cards };
+function loadDataSuccess(data) {
+  return { type: LOAD_DATA_SUCCESS, data };
 }
 
-function createDataSuccess(card) {
-  return { type: CREATE_DATA_SUCCESS, card };
+function createDataSuccess(data) {
+  return { type: CREATE_DATA_SUCCESS, data };
 }
 
-function updateDataSuccess(card) {
-  return { type: UPDATE_DATA_SUCCESS, card };
+function updateDataSuccess(data) {
+  return { type: UPDATE_DATA_SUCCESS, data };
 }
 
-function deleteDataSuccess(card) {
-  return { type: DELETE_DATA_SUCCESS, card };
+function deleteDataSuccess(data) {
+  return { type: DELETE_DATA_SUCCESS, data };
 }
 
 function createDataNotesSuccess(cardNote) {
