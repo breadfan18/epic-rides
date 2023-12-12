@@ -6,14 +6,12 @@ import {
   LOAD_DATA_SUCCESS,
   UPDATE_DATA_SUCCESS,
 } from "./actionTypes";
-import * as cardsApi from "../../api/cardsApi";
 import { apiCallError, beginApiCall } from "./apiStatusActions";
 import {
   deleteFromFirebase,
   getFireBaseData,
   writeToFirebase,
 } from "../../tools/firebase";
-import { slugify } from "../../helpers";
 import { uid } from "uid";
 
 function loadDataSuccess(data) {
