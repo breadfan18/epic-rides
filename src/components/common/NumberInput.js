@@ -33,7 +33,9 @@ const NumberInput = ({ name, label, onChange, placeholder, value, error }) => {
       <div className="field" style={{ display: "flex" }}>
         <input
           type="number"
-          pattern="[0-9]"
+          min="0"
+          inputmode="numeric"
+          pattern="[0-9]*"
           name={name}
           className="form-control"
           placeholder={placeholder}
