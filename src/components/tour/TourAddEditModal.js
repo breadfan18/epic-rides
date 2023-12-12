@@ -28,6 +28,9 @@ function TourAddEditModal({ data, setModalOpen }) {
   function handleChange(event) {
     const { name, value } = event.target;
 
+    if (value !== "" || value !== null) {
+      delete errors[name];
+    }
     setDataForModal((prevData) => ({
       ...prevData,
       [name]: name === "agent" ? AGENTS.find((a) => a.name === value) : value,
@@ -80,6 +83,7 @@ function TourAddEditModal({ data, setModalOpen }) {
 
   function toggleModal() {
     toggleShow();
+    setErrors({});
     try {
       setModalOpen(false);
     } catch (err) {
@@ -99,7 +103,7 @@ function TourAddEditModal({ data, setModalOpen }) {
     if (!groupFitName) errors.groupFitName = "Group Name is required";
     if (!paxNum) errors.paxNum = "Passengers number is required";
     if (!status) errors.status = "Status is required";
-    if (!status) errors.dateFrom = "Status is required";
+    // if (!status) errors.dateFrom = "Status is required";
 
     setErrors(errors);
     // Form is valid if the errors objects has no properties

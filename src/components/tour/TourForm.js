@@ -12,6 +12,7 @@ import DateInput from "../common/DateInput";
 import Form from "react-bootstrap/Form";
 import { titleCase } from "../../helpers";
 import { isEmpty } from "lodash";
+import NumberInput from "../common/NumberInput";
 
 const TourForm = ({ tour, onSave, onChange, saving, errors = {} }) => {
   return (
@@ -24,6 +25,7 @@ const TourForm = ({ tour, onSave, onChange, saving, errors = {} }) => {
             style={{
               backgroundColor: APP_COLOR_BLACK_OPACITY,
               color: APP_COLOR_EPIC_RED,
+              border: `2px solid ${APP_COLOR_EPIC_RED}`,
             }}
           >
             Please address the errors below
@@ -55,7 +57,7 @@ const TourForm = ({ tour, onSave, onChange, saving, errors = {} }) => {
           onChange={onChange}
           error={errors.groupFitName}
         />
-        <TextInput
+        <NumberInput
           name="paxNum"
           label="Number of Passengers"
           value={tour.paxNum || ""}
