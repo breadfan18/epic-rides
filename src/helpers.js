@@ -137,15 +137,6 @@ export function formDisabledCheck(dataType) {
   );
 }
 
-// export function handleInquiriesList(inq, delimiter) {
-//   const inqArr = Object.keys(inq).filter((i) => inq[i]);
-//   const lastInq = inqArr[inqArr.length - 1];
-//   return inqArr.reduce(
-//     (output, i) => (output += titleCase(i) + (i === lastInq ? "" : delimiter)),
-//     ""
-//   );
-// }
-
 export function handleInquiriesList(inq) {
   return Object.keys(inq)
     .filter((i) => inq[i])
@@ -154,12 +145,16 @@ export function handleInquiriesList(inq) {
 
 export function setColorForCardStatus(componentType, tourStatus) {
   if (componentType === "tourTable") {
-    return tourStatus === "CA" ? "table-danger" : null;
-  } else if (componentType === "cardCard") {
-    return tourStatus === "closed"
+    return tourStatus === "CA"
+      ? "table-danger"
+      : tourStatus === "HK"
+      ? "table-success"
+      : null;
+  } else if (componentType === "tourCard") {
+    return tourStatus === "CA"
       ? CARD_COLOR_CLOSED
-      : tourStatus === "downgraded"
-      ? CARD_COLOR_DOWNGRADED
+      : tourStatus === "HK"
+      ? "#C3E6CB"
       : null;
   }
 }

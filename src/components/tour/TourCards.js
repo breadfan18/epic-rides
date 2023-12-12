@@ -38,6 +38,7 @@ export default function TourCards({ data, showEditDelete, showUserName }) {
               style={{
                 padding: "10px",
                 fontSize: "15px",
+                backgroundColor: setColorForCardStatus("tourCard", d.status),
               }}
             >
               <div
