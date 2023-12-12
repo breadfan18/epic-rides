@@ -16,41 +16,16 @@ function ToursByDropDown({ tours }) {
   //   _.sortBy(state.cardholders, (o) => o.isPrimary)
   // );
 
-  console.log(tours);
-
   const showAllData =
     selectedYear === undefined || selectedYear === "all-tours";
 
   const cardsForSelectedYear = showAllData
     ? tours
-    : // : tours.filter((d) => selectedYear.toString() === d.dateFrom.split("-")[0]);
-      tours.filter((d) =>
+    : tours.filter((d) =>
         d.dateFrom === ""
           ? selectedYear === "UNDATED"
           : selectedYear === d.dateFrom.split("-")[0]
       );
-
-  console.log({ cardsForSelectedYear });
-
-  // const { cardsFilter, setCardsFilter, handleCardsFilter, filterCards } =
-  //   useFilteredData(cardsForSelectedYear);
-
-  // useEffect(() => {
-  //   localStorage.setItem("selectedUser", JSON.stringify(selectedYear));
-
-  //   if (cardsFilter.query !== "") {
-  //     const filteredCards = filterCards(cardsFilter.query);
-  //     setCardsFilter({
-  //       query: cardsFilter.query,
-  //       cardList: filteredCards,
-  //     });
-  //   } else {
-  //     setCardsFilter({
-  //       query: "",
-  //       cardList: [...cardsForSelectedYear],
-  //     });
-  //   }
-  // }, [selectedYear, tours]);
 
   const handleUserChange = (event) =>
     setSelectedYear(event.target.value || "all-tours");
