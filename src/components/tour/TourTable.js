@@ -4,7 +4,7 @@ import EmptyList from "../common/EmptyList";
 import Table from "react-bootstrap/Table";
 import { FaSort } from "react-icons/fa";
 import { useSortableData } from "../../hooks/sortData";
-import { formatDate, setColorForCardStatus } from "../../helpers";
+import { formatDate, setColorForCardStatus, titleCase } from "../../helpers";
 import TourAddEditModal from "./TourAddEditModal";
 import ConfirmDeleteModal from "../common/ConfirmDeleteModal";
 import { WindowWidthContext } from "../App";
@@ -96,8 +96,8 @@ export default function TourTable({ data }) {
               <td>{("000" + d.id).slice(-3)}</td>
               <td>{formatDate(d.fileOpenDate)}</td>
               <td>{d.agent.name}</td>
-              <td>{d.tourName}</td>
-              <td>{d.groupFitName}</td>
+              <td>{titleCase(d.tourName)}</td>
+              <td>{titleCase(d.groupFitName)}</td>
               <td>{d.paxNum}</td>
               <td>{formatDate(d.dateFrom)}</td>
               <td>{formatDate(d.dateTo)}</td>
