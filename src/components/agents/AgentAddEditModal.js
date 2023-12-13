@@ -9,9 +9,7 @@ import PropTypes from "prop-types";
 import { MdModeEditOutline } from "react-icons/md";
 import { useUser } from "reactfire";
 import AgentForm from "./AgentForm";
-import { titleCase } from "../../helpers";
 import _ from "lodash";
-import { getFirebaseImgUrlForDataURL } from "../../tools/firebase";
 import COUNTRY_CODES from "../../countryCodes";
 
 const newAgent = {
@@ -35,10 +33,7 @@ function AgentAddEditModal({ agent, disableBtn }) {
   );
   const dispatch = useDispatch();
   const [show, setShow] = useState(false);
-  const toggleShow = () => {
-    setShow(!show);
-    if (agentForModal.imgFile) delete agentForModal.imgFile;
-  };
+  const toggleShow = () => setShow(!show);
   const [saving, setSaving] = useState(false);
   const { data: user } = useUser();
   const tours = useSelector((state) =>
@@ -47,6 +42,10 @@ function AgentAddEditModal({ agent, disableBtn }) {
 
   const handleChange = (event) => {
     const { name, value } = event.target;
+
+    if (value !== "" || value !== null) {
+      delete errors[name];
+    }
 
     if (name === "nationality") {
       setAgentForModal((prevValue) => ({
@@ -65,6 +64,7 @@ function AgentAddEditModal({ agent, disableBtn }) {
 
   const handleSaveAgent = async (e) => {
     e.preventDefault();
+    if (!formIsValid()) return;
     setSaving(true);
 
     const finalAgent = {
@@ -108,15 +108,32 @@ function AgentAddEditModal({ agent, disableBtn }) {
 
   function clearCardholderState() {
     setAgentForModal(newAgent);
+    setErrors({});
     toggleShow();
     delete agentForModal.imgFile;
+  }
+
+  const [errors, setErrors] = useState({});
+
+  function formIsValid() {
+    const { name, code, nationality } = agentForModal;
+    const errors = {};
+
+    if (!name) errors.name = "Required";
+    if (!code) errors.code = "Required";
+    if (!nationality) errors.nationality = "Required";
+    // if (!status) errors.dateFrom = "Status is required";
+
+    setErrors(errors);
+    // Form is valid if the errors objects has no properties
+    return Object.keys(errors).length === 0;
   }
 
   return (
     <>
       {agentForModal.id !== null ? (
         <Button
-          variant="success"
+          style={{ border: "none", backgroundColor: "black" }}
           onClick={toggleShow}
           className="rounded-circle"
           disabled={disableBtn}
@@ -149,7 +166,7 @@ function AgentAddEditModal({ agent, disableBtn }) {
               onSave={handleSaveAgent}
               onChange={handleChange}
               saving={saving}
-              // errors={errors}
+              errors={errors}
             />
           </div>
         </Modal.Body>

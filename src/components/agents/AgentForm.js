@@ -4,6 +4,8 @@ import TextInput from "../common/TextInput";
 import SelectInput from "../common/SelectInput";
 import COUNTRY_CODES from "../../countryCodes";
 import { titleCase } from "../../helpers";
+import { isEmpty } from "lodash";
+import { APP_COLOR_BLACK_OPACITY, APP_COLOR_EPIC_RED } from "../../constants";
 
 const AgentForm = ({ agent, onSave, onChange, errors = {}, saving }) => {
   const buttonText = saving
@@ -14,9 +16,17 @@ const AgentForm = ({ agent, onSave, onChange, errors = {}, saving }) => {
 
   return (
     <form onSubmit={onSave} style={{ margin: 0 }}>
-      {errors.onSave && (
-        <div className="alert alert-danger" role="alert">
-          {errors.onSave}
+      {!isEmpty(errors) && (
+        <div
+          className="alert"
+          role="alert"
+          style={{
+            backgroundColor: APP_COLOR_BLACK_OPACITY,
+            color: APP_COLOR_EPIC_RED,
+            border: `2px solid ${APP_COLOR_EPIC_RED}`,
+          }}
+        >
+          Please address the errors below
         </div>
       )}
       <TextInput
@@ -24,14 +34,14 @@ const AgentForm = ({ agent, onSave, onChange, errors = {}, saving }) => {
         label="Agent Name"
         value={agent.name || ""}
         onChange={onChange}
-        // error={errors.title}
+        error={errors.name}
       />
       <TextInput
         name="code"
         label="Agent Code"
         value={agent.code || ""}
         onChange={onChange}
-        // error={errors.title}
+        error={errors.code}
       />
       <SelectInput
         name="nationality"
@@ -43,7 +53,7 @@ const AgentForm = ({ agent, onSave, onChange, errors = {}, saving }) => {
           text: titleCase(country.name),
         }))}
         onChange={onChange}
-        error={errors.agent}
+        error={errors.nationality}
       />
       <hr />
       <button

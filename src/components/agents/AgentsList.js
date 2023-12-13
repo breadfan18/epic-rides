@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import EmptyList from "../common/EmptyList";
 import Table from "react-bootstrap/Table";
 import ConfirmDeleteModal from "../common/ConfirmDeleteModal";
-import CardHolderAddEditModal from "./AgentAddEditModal";
+import AgentAddEditModal from "./AgentAddEditModal";
 import { DELETE_MODAL_TYPES } from "../../constants";
 import AgentTourDataMiniTable from "./AgentTourDataMiniTable";
 import CardholderPhoto from "./CardholderPhoto";
@@ -19,7 +19,7 @@ const AgentsList = ({ toursByAgent, agents }) => {
           <th className="tableHeader">Agent Name</th>
           <th className="tableHeader">Agent Code</th>
           <th className="tableHeader">Nationality</th>
-          <th className="tableHeader">Tours</th>
+          <th className="tableHeader">Agent Tours</th>
           <th className="tableHeader"></th>
         </tr>
       </thead>
@@ -44,16 +44,14 @@ const AgentsList = ({ toursByAgent, agents }) => {
                 />
               </td>
               <td className="editDeleteCard">
-                <CardHolderAddEditModal
+                <AgentAddEditModal
                   agent={agent}
                   // disableBtn={agent.isPrimary}
                 />
                 <ConfirmDeleteModal
                   data={agent}
                   dataType={DELETE_MODAL_TYPES.agent}
-                  disableBtn={
-                    agent.hasCards || agent.hasLoyalty || agent.isPrimary
-                  }
+                  disableBtn={agent.hasTours}
                 />
               </td>
             </tr>

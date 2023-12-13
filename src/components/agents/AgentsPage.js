@@ -30,13 +30,16 @@ const AgentsPage = () => {
 
   const toursByAgent = _.groupBy(tours, (o) => o.agent.code);
 
-  // const cardholdersFinal = agents.map((holder) => {
-  //   return {
-  //     ...holder,
-  //     hasCards: cardsByHolder.hasOwnProperty(holder.id),
-  //     hasLoyalty: loyaltyByHolder.hasOwnProperty(holder.id),
-  //   };
-  // });
+  console.log({ toursByAgent });
+
+  const agentsFinal = agents.map((agent) => {
+    return {
+      ...agent,
+      hasTours: toursByAgent.hasOwnProperty(agent.code),
+    };
+  });
+
+  console.log({ agentsFinal });
 
   return (
     <div className="cardHoldersContainer">
@@ -57,7 +60,7 @@ const AgentsPage = () => {
       {loading ? (
         <Spinner />
       ) : windowWidth > 700 ? (
-        <AgentsList agents={agents} toursByAgent={toursByAgent} />
+        <AgentsList agents={agentsFinal} toursByAgent={toursByAgent} />
       ) : (
         <div>TEST</div>
         // <CardholderCards
