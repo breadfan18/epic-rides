@@ -1,10 +1,16 @@
 import React from "react";
 import { groupBy } from "lodash";
-import { CARD_STATUS, STATUS_CODES } from "../../constants";
+import {
+  APP_COLOR_EPIC_RED,
+  CANCELLED_COLOR_RED,
+  CARD_STATUS,
+  DELETE_COLOR_RED,
+  EDIT_COLOR_GREEN,
+  STATUS_CODES,
+} from "../../constants";
 import { titleCase } from "../../helpers";
 
 export default function AgentTourDataMiniTable({ tours, layout }) {
-  console.log(tours);
   const toursByStatus = groupBy(tours, "status");
   const miniDataSectionMarginRight = layout === "list" && "1.5rem";
   return (
@@ -16,8 +22,14 @@ export default function AgentTourDataMiniTable({ tours, layout }) {
       <hr />
       <div className="dataTableDataSection">
         {STATUS_CODES.map((status) => {
+          const statusColor =
+            status.code === "HK"
+              ? EDIT_COLOR_GREEN
+              : status.code === "OP"
+              ? APP_COLOR_EPIC_RED
+              : DELETE_COLOR_RED;
           return (
-            <div key={status.code}>
+            <div key={status.code} style={{ color: statusColor }}>
               <label htmlFor="">{titleCase(status.name)}</label>
               <p>{toursByStatus[status.code]?.length || 0}</p>
             </div>

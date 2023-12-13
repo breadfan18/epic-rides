@@ -41,8 +41,8 @@ export const AGENTS = [
 ];
 
 export const STATUS_CODES = [
-  { name: "Open Dated", code: "OP" },
   { name: "Confirmed", code: "HK" },
+  { name: "Open Dated", code: "OP" },
   { name: "Cancelled", code: "CA" },
   // { name: "Reserved", code: "RR" },
   // { name: "Completed and Closed", code: "CC" },

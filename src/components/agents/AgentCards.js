@@ -4,29 +4,20 @@ import PropTypes from "prop-types";
 import ConfirmDeleteModal from "../common/ConfirmDeleteModal";
 import { WindowWidthContext } from "../App";
 import { DELETE_MODAL_TYPES } from "../../constants";
-import CardholderAddEditModal from "./CardHolderAddEditModal";
-import CardsDataMiniTable from "./CardsDataMiniTable";
-import LoyaltyDataMiniTable from "./LoyaltyDataMiniTable";
-import CardholderPhoto from "./CardholderPhoto";
-import InquiriesMiniTable from "./InquiriesMiniTable";
+import AgentAddEditModal from "./AgentAddEditModal";
+import AgentTourDataMiniTable from "./AgentTourDataMiniTable";
+import AgentImg from "./AgentImg";
 
-export default function CardholderCards({
-  cardholders,
-  cardsByHolder,
-  loyaltyByHolder,
-  inquiriesByHolder,
-}) {
+export default function AgentCards({ agents, toursByAgent }) {
   const windowWidth = useContext(WindowWidthContext);
   const cardWidth = windowWidth < 650 ? windowWidth : "18em";
-  const allCardholders = cardholders.map((holder) => {
-    const cardsForThisHolder = cardsByHolder[holder.id];
-    const loyaltyForThisHolder = loyaltyByHolder[holder.id];
-    const inquiriesForThisHolder = inquiriesByHolder[holder.id];
+  const allAgents = agents.map((agent) => {
+    const toursForThisAgent = toursByAgent[agent.code];
 
     return (
       <Card
         style={{ width: cardWidth }}
-        key={holder.id}
+        key={agent.code}
         className="cardCard cardholderCard"
       >
         <Card.Body style={{ padding: "0" }}>
@@ -36,8 +27,8 @@ export default function CardholderCards({
             }}
           >
             <Card.Title className="mb-0 cardholderCardTitle">
-              <CardholderPhoto
-                img={holder.img}
+              <AgentImg
+                img={`flags/${agent.nationCode}.svg`}
                 heightAndWidth="6rem"
                 imgOnCard={true}
               />
@@ -45,52 +36,33 @@ export default function CardholderCards({
           </div>
           <section id="cardholderCardBody">
             <h6 id="cardholderCardName">
-              {holder.name} {holder.isPrimary && "(Primary)"}
+              {agent.name} ({agent.code})
             </h6>
             <article style={{ textAlign: "center" }}>
-              <b>Cards</b>
+              <b>Agent Tours</b>
               <div>
-                <CardsDataMiniTable cards={cardsForThisHolder} />
+                <AgentTourDataMiniTable tours={toursForThisAgent} />
               </div>
             </article>
             <br />
-            <article style={{ textAlign: "center" }}>
-              <b>Loyalty</b>
-              <div>
-                <LoyaltyDataMiniTable loyaltyData={loyaltyForThisHolder} />
-              </div>
-            </article>
-            <br />
-            <article style={{ textAlign: "center" }}>
-              <b>Inquiries (24 mos)</b>
-              <div>
-                <InquiriesMiniTable inquiries={inquiriesForThisHolder} />
-              </div>
-            </article>
           </section>
 
           <div className="editDeleteCard editDeleteOnCards cardholderFooter">
-            <CardholderAddEditModal
-              cardholder={holder}
-              disableBtn={holder.isPrimary}
-            />
+            <AgentAddEditModal agent={agent} />
             <ConfirmDeleteModal
-              data={holder}
+              data={agent}
               dataType={DELETE_MODAL_TYPES.cardholder}
-              disableBtn={
-                holder.hasCards || holder.hasLoyalty || holder.isPrimary
-              }
+              disableBtn={agent.hasTours}
             />
           </div>
         </Card.Body>
       </Card>
     );
   });
-  return <div id="cardCardContainer">{allCardholders}</div>;
+  return <div id="cardCardContainer">{allAgents}</div>;
 }
 
-CardholderCards.propTypes = {
-  cardholders: PropTypes.array.isRequired,
-  cardsByHolder: PropTypes.object.isRequired,
-  loyaltyByHolder: PropTypes.object.isRequired,
+AgentCards.propTypes = {
+  agents: PropTypes.array.isRequired,
+  toursByAgent: PropTypes.object.isRequired,
 };

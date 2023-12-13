@@ -1,7 +1,7 @@
 import React from "react";
 import { CARDHOLDER_STOCK_IMG } from "../../constants";
 
-export default function CardholderPhoto({ img, heightAndWidth, imgOnCard }) {
+export default function AgentImg({ img, heightAndWidth, imgOnCard }) {
   const baseStyles = {
     height: heightAndWidth,
     width: heightAndWidth,

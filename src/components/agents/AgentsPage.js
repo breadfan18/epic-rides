@@ -7,7 +7,7 @@ import AgentsList from "./AgentsList";
 import { Spinner } from "../common/Spinner";
 import _ from "lodash";
 import { WindowWidthContext } from "../App";
-// import CardholderCards from "./CardholderCards";
+import AgentCards from "./AgentCards";
 import AgentAddEditModal from "./AgentAddEditModal";
 
 const AgentsPage = () => {
@@ -30,16 +30,12 @@ const AgentsPage = () => {
 
   const toursByAgent = _.groupBy(tours, (o) => o.agent.code);
 
-  console.log({ toursByAgent });
-
   const agentsFinal = agents.map((agent) => {
     return {
       ...agent,
       hasTours: toursByAgent.hasOwnProperty(agent.code),
     };
   });
-
-  console.log({ agentsFinal });
 
   return (
     <div className="cardHoldersContainer">
@@ -59,16 +55,10 @@ const AgentsPage = () => {
       </p>
       {loading ? (
         <Spinner />
-      ) : windowWidth > 700 ? (
+      ) : windowWidth > 800 ? (
         <AgentsList agents={agentsFinal} toursByAgent={toursByAgent} />
       ) : (
-        <div>TEST</div>
-        // <CardholderCards
-        //   cardholders={agents}
-        //   // cardsByHolder={cardsByHolder}
-        //   // loyaltyByHolder={loyaltyByHolder}
-        //   // inquiriesByHolder={inquiriesByHolder}
-        // />
+        <AgentCards agents={agentsFinal} toursByAgent={toursByAgent} />
       )}
     </div>
   );

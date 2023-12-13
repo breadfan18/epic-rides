@@ -6,7 +6,7 @@ import ConfirmDeleteModal from "../common/ConfirmDeleteModal";
 import AgentAddEditModal from "./AgentAddEditModal";
 import { DELETE_MODAL_TYPES } from "../../constants";
 import AgentTourDataMiniTable from "./AgentTourDataMiniTable";
-import CardholderPhoto from "./CardholderPhoto";
+import AgentImg from "./AgentImg";
 
 const AgentsList = ({ toursByAgent, agents }) => {
   return agents.length === 0 ? (
@@ -29,7 +29,7 @@ const AgentsList = ({ toursByAgent, agents }) => {
           return (
             <tr key={agent.id}>
               <td style={{ textAlign: "center", padding: "10px" }}>
-                <CardholderPhoto
+                <AgentImg
                   img={`flags/${agent.nationCode}.svg`}
                   heightAndWidth="4rem"
                 />
