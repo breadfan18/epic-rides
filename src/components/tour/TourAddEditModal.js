@@ -33,7 +33,7 @@ function TourAddEditModal({ data, setModalOpen }) {
     }
     setDataForModal((prevData) => ({
       ...prevData,
-      [name]: name === "agent" ? AGENTS.find((a) => a.name === value) : value,
+      [name]: name === "agent" ? AGENTS.find((a) => a.code === value) : value,
     }));
   }
 

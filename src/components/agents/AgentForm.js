@@ -8,12 +8,7 @@ import { isEmpty } from "lodash";
 import { APP_COLOR_BLACK_OPACITY, APP_COLOR_EPIC_RED } from "../../constants";
 
 const AgentForm = ({ agent, onSave, onChange, errors = {}, saving }) => {
-  const buttonText = saving
-    ? "Saving..."
-    : agent.id === null
-    ? "Add Agent"
-    : "Save Changes";
-
+  const buttonText = saving ? "Saving..." : agent.id === null ? "Add" : "Save";
   return (
     <form onSubmit={onSave} style={{ margin: 0 }}>
       {!isEmpty(errors) && (
@@ -46,7 +41,7 @@ const AgentForm = ({ agent, onSave, onChange, errors = {}, saving }) => {
       <SelectInput
         name="nationality"
         label="Agent Nationality"
-        value={agent.nationality || ""}
+        value={agent.nationCode || ""}
         defaultOption="Select Nationality"
         options={COUNTRY_CODES.map((country) => ({
           value: country.code,

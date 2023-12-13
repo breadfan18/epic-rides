@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import PropTypes from "prop-types";
 import TextInput from "../common/TextInput";
 import SelectInput from "../common/SelectInput";
@@ -13,8 +13,10 @@ import Form from "react-bootstrap/Form";
 import { titleCase } from "../../helpers";
 import { isEmpty } from "lodash";
 import NumberInput from "../common/NumberInput";
+import { AgentsDataContext } from "./TourPage";
 
 const TourForm = ({ tour, onSave, onChange, saving, errors = {} }) => {
+  const agentData = useContext(AgentsDataContext);
   return (
     <>
       <Form onSubmit={onSave}>
@@ -36,8 +38,8 @@ const TourForm = ({ tour, onSave, onChange, saving, errors = {} }) => {
           label="Agent"
           value={tour.agent.name || ""}
           defaultOption="Select Agent"
-          options={AGENTS.map((agent) => ({
-            value: agent.name,
+          options={agentData.map((agent) => ({
+            value: agent.code,
             text: titleCase(agent.name),
           }))}
           onChange={onChange}
