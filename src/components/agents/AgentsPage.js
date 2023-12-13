@@ -17,7 +17,6 @@ const AgentsPage = () => {
   const agents = useSelector((state) => _.sortBy(state.agents));
   const loading = useSelector((state) => state.apiCallsInProgress > 0);
   const tours = useSelector((state) => state.data);
-  // const loyaltyData = useSelector((state) => state.loyaltyData);
 
   useEffect(() => {
     if (agents.length === 0 && status !== "loading") {

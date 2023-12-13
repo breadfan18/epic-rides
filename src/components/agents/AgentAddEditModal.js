@@ -11,6 +11,7 @@ import { useUser } from "reactfire";
 import AgentForm from "./AgentForm";
 import _ from "lodash";
 import COUNTRY_CODES from "../../countryCodes";
+import { fileNameGenerator } from "../../helpers";
 
 const newAgent = {
   id: null,
@@ -77,26 +78,35 @@ function AgentAddEditModal({ agent, disableBtn }) {
 
     dispatch(saveAgentToFirebase(finalAgent, user?.uid));
 
-    // Need to revisit the following after using agent data in TourForm
+    const shouldUpdateTourData =
+      (agentForModal?.id !== null && agent?.name !== agentForModal.name) ||
+      agent?.code !== agentForModal.code;
 
-    // const shouldUpdateTourData =
-    //   (agentForModal?.id !== null && agent?.name !== agentForModal.name) ||
-    //   agent?.code !== agentForModal.code ||
-    //   agent?.nationality !== agentForModal.nationality;
+    if (shouldUpdateTourData) {
+      const toursForThisAgent = tours[agent.code];
 
-    // if (shouldUpdateTourData) {
-    //   const toursForThisAgent = tours[agentForModal.id];
-
-    //   if (toursForThisAgent) {
-    //     toursForThisAgent.forEach((tour) => {
-    //       const updatedTour = {
-    //         ...tour,
-    //         cardholder: finalAgent.name,
-    //       };
-    //       dispatch(saveDataToFirebase(updatedTour, user?.uid));
-    //     });
-    //   }
-    // }
+      if (toursForThisAgent) {
+        toursForThisAgent.forEach((tour) => {
+          const { id, dateFrom, numOfDays, tourName } = tour;
+          const updatedFileInfo = fileNameGenerator(
+            id,
+            finalAgent.code,
+            dateFrom,
+            numOfDays,
+            tourName
+          );
+          const updatedTour = {
+            ...tour,
+            ...updatedFileInfo,
+            agent: {
+              name: finalAgent.name,
+              code: finalAgent.code,
+            },
+          };
+          dispatch(saveDataToFirebase(updatedTour, user?.uid, tour.id));
+        });
+      }
+    }
 
     toast.success(
       agentForModal?.id === null ? "Agent Created" : "Agent Updated"
@@ -176,8 +186,8 @@ function AgentAddEditModal({ agent, disableBtn }) {
 }
 
 AgentAddEditModal.propTypes = {
-  cardholder: PropTypes.object,
-  saveLoyaltyDataToFirebase: PropTypes.func,
+  agent: PropTypes.object,
+  disableBtn: PropTypes.bool,
 };
 
 export default AgentAddEditModal;

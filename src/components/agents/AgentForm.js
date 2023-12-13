@@ -64,10 +64,11 @@ const AgentForm = ({ agent, onSave, onChange, errors = {}, saving }) => {
 };
 
 AgentForm.propTypes = {
-  cardholder: PropTypes.object.isRequired,
+  agent: PropTypes.object.isRequired,
   errors: PropTypes.object,
   onSave: PropTypes.func.isRequired,
   onChange: PropTypes.func.isRequired,
+  saving: PropTypes.bool,
 };
 
 export default AgentForm;

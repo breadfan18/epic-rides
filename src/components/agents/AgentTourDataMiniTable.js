@@ -2,8 +2,6 @@ import React from "react";
 import { groupBy } from "lodash";
 import {
   APP_COLOR_EPIC_RED,
-  CANCELLED_COLOR_RED,
-  CARD_STATUS,
   DELETE_COLOR_RED,
   EDIT_COLOR_GREEN,
   STATUS_CODES,
