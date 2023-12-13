@@ -1,16 +1,14 @@
 import React, { useContext, useEffect } from "react";
-// import CardHolderAddEditModal from "./CardHolderAddEditModal";
 import { useDispatch, useSelector } from "react-redux";
 import { loadAgentsFromFirebase } from "../../redux/actions/agentActions";
 import { loadDataFromFirebase } from "../../redux/actions/dataActions";
-// import { loadloyaltyDataFromFirebase } from "../../redux/actions/loyaltyActions";
 import { useUser } from "reactfire";
 import AgentsList from "./AgentsList";
 import { Spinner } from "../common/Spinner";
 import _ from "lodash";
 import { WindowWidthContext } from "../App";
 // import CardholderCards from "./CardholderCards";
-import { calculateCurrentInquiries } from "../../helpers";
+import AgentAddEditModal from "./AgentAddEditModal";
 
 const AgentsPage = () => {
   const windowWidth = useContext(WindowWidthContext);
@@ -32,12 +30,6 @@ const AgentsPage = () => {
 
   const toursByAgent = _.groupBy(tours, (o) => o.agent.code);
 
-  console.log(tours);
-  console.log({ toursByAgent });
-
-  // const loyaltyByHolder = _.groupBy(loyaltyData, (o) => o.userId);
-  // const inquiriesByHolder = calculateCurrentInquiries(cardsByHolder);
-
   // const cardholdersFinal = agents.map((holder) => {
   //   return {
   //     ...holder,
@@ -50,7 +42,7 @@ const AgentsPage = () => {
     <div className="cardHoldersContainer">
       <section className="sectionHeaders">
         <h2 style={{ marginBottom: 0 }}>Agents</h2>
-        {/* <CardHolderAddEditModal /> */}
+        <AgentAddEditModal />
       </section>
       <p
         style={{

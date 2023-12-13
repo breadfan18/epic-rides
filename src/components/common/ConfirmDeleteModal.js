@@ -1,16 +1,18 @@
 import React, { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import { deleteDataFromFirebase } from "../../redux/actions/dataActions";
+import { deleteAgentFromFirebase } from "../../redux/actions/agentActions";
 import { toast } from "react-toastify";
 import { DeleteButton } from "./DeleteButton";
 import PropTypes from "prop-types";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 import { useUser } from "reactfire";
-import { APP_COLOR_EPIC_RED } from "../../constants";
+import { DELETE_MODAL_TYPES } from "../../constants";
 function ConfirmDeleteModal({
   data,
+  dataType,
   setModalOpen,
   redirect,
   disableBtn = false,
@@ -21,10 +23,31 @@ function ConfirmDeleteModal({
   const { data: user } = useUser();
   const dispatch = useDispatch();
 
+  function setDataText() {
+    switch (dataType) {
+      case DELETE_MODAL_TYPES.tour:
+        return "tour";
+      case DELETE_MODAL_TYPES.agent:
+        return "agent";
+      default:
+        break;
+    }
+  }
+
   function handleDelete(data) {
-    dispatch(deleteDataFromFirebase(data, user?.uid));
-    toast.success("Record deleted");
-    if (redirect) history.push("/main");
+    switch (dataType) {
+      case DELETE_MODAL_TYPES.tour:
+        dispatch(deleteDataFromFirebase(data, user?.uid));
+        toast.success("Tour deleted");
+        if (redirect) history.push("/cards");
+        break;
+      case DELETE_MODAL_TYPES.agent:
+        dispatch(deleteAgentFromFirebase(data, user?.uid));
+        toast.success("Agent Deleted");
+        break;
+      default:
+        break;
+    }
 
     toggleModal();
   }
@@ -48,6 +71,8 @@ function ConfirmDeleteModal({
     }
   }
 
+  const dataText = setDataText();
+
   return (
     <>
       <DeleteButton onClick={handleDeleteButtonClick} disableBtn={disableBtn} />
@@ -56,19 +81,13 @@ function ConfirmDeleteModal({
           <Modal.Title>Confirm Delete</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          Are you sure you want to permanently delete this data?
+          Are you sure you want to permanently delete this {dataText}?
         </Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={toggleShow}>
             Cancel
           </Button>
-          <Button
-            onClick={() => handleDelete(data)}
-            style={{
-              backgroundColor: APP_COLOR_EPIC_RED,
-              border: `1px solid ${APP_COLOR_EPIC_RED}`,
-            }}
-          >
+          <Button variant="danger" onClick={() => handleDelete(data)}>
             Delete
           </Button>
         </Modal.Footer>
@@ -79,6 +98,7 @@ function ConfirmDeleteModal({
 
 ConfirmDeleteModal.propTypes = {
   data: PropTypes.object.isRequired,
+  dataType: PropTypes.string.isRequired,
   setModalOpen: PropTypes.func || undefined,
   redirect: PropTypes.bool,
 };

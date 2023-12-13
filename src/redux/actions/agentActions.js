@@ -10,6 +10,7 @@ import {
   getFireBaseData,
   writeToFirebase,
 } from "../../tools/firebase";
+import { uid } from "uid";
 
 function loadDataSuccess(agents) {
   return { type: LOAD_AGENTS_SUCCESS, agents };
@@ -34,7 +35,7 @@ export function loadAgentsFromFirebase(firebaseUid) {
   };
 }
 
-export function saveAgentToFirebase(agents, firebaseUid, id) {
+export function saveAgentToFirebase(agent, firebaseUid) {
   return (dispatch) => {
     /*
       BUG: dispatching beginApiCall twice here..This is a workaround for the followinsg issue:
@@ -44,10 +45,10 @@ export function saveAgentToFirebase(agents, firebaseUid, id) {
     */
     dispatch(beginApiCall());
     dispatch(beginApiCall());
-    // const dataId = data.id === null ? uid() : data.id;
+    const agentId = agent.id === null ? `${agent.code}_${uid()}` : agent.id;
 
-    writeToFirebase("agents", agents, id, firebaseUid);
-    dispatch(createDataSuccess(agents));
+    writeToFirebase("agents", agent, agentId, firebaseUid);
+    dispatch(createDataSuccess(agent));
   };
 }
 

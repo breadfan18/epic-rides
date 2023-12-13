@@ -74,7 +74,7 @@ export default function TourCards({ data, showEditDelete, showUserName }) {
           </section>
           <div className="editDeleteCard editDeleteOnCards">
             <TourAddEditModal data={d} />
-            {/* <ConfirmDeleteModal data={d} dataType={DELETE_MODAL_TYPES.card} /> */}
+            {/* <ConfirmDeleteModal data={d} dataType={DELETE_MODAL_TYPES.tour} /> */}
           </div>
         </Card.Body>
       </Card>

@@ -3,11 +3,10 @@ import PropTypes from "prop-types";
 import EmptyList from "../common/EmptyList";
 import Table from "react-bootstrap/Table";
 import ConfirmDeleteModal from "../common/ConfirmDeleteModal";
-import CardHolderAddEditModal from "./CardHolderAddEditModal";
+import CardHolderAddEditModal from "./AgentAddEditModal";
 import { DELETE_MODAL_TYPES } from "../../constants";
-import AgentTourDataMiniTable from "./CardsDataMiniTable";
+import AgentTourDataMiniTable from "./AgentTourDataMiniTable";
 import CardholderPhoto from "./CardholderPhoto";
-// import * from '../../../public/cc-icon.png'
 
 const AgentsList = ({ toursByAgent, agents }) => {
   return agents.length === 0 ? (
@@ -27,9 +26,6 @@ const AgentsList = ({ toursByAgent, agents }) => {
       <tbody className="align-middle">
         {agents.map((agent) => {
           const toursForThisAgent = toursByAgent[agent.code];
-          // const loyaltyForThisHolder = loyaltyByHolder[holder.id];
-          // const inquiriesForThisHolder = inquiriesByHolder[holder.id];
-
           return (
             <tr key={agent.id}>
               <td style={{ textAlign: "center", padding: "10px" }}>
@@ -47,19 +43,19 @@ const AgentsList = ({ toursByAgent, agents }) => {
                   layout="list"
                 />
               </td>
-              {/* <td className="editDeleteCard">
+              <td className="editDeleteCard">
                 <CardHolderAddEditModal
-                  cardholder={agent}
-                  disableBtn={agent.isPrimary}
+                  agent={agent}
+                  // disableBtn={agent.isPrimary}
                 />
                 <ConfirmDeleteModal
                   data={agent}
-                  dataType={DELETE_MODAL_TYPES.cardholder}
+                  dataType={DELETE_MODAL_TYPES.agent}
                   disableBtn={
                     agent.hasCards || agent.hasLoyalty || agent.isPrimary
                   }
                 />
-              </td> */}
+              </td>
             </tr>
           );
         })}

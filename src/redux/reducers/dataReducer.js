@@ -20,7 +20,7 @@ export default function cardsReducer(state = initialState.data, action) {
         card.id === action.card.id ? action.card : card
       );
     case DELETE_DATA_SUCCESS:
-      return state.filter((card) => card.id !== action.card.id);
+      return state.filter((card) => card.id !== action.data.id);
     default:
       return state;
   }
