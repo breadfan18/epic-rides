@@ -155,7 +155,7 @@ export function setColorForCardStatus(componentType, tourStatus) {
     return tourStatus === "CA"
       ? CARD_COLOR_CLOSED
       : tourStatus === "HK"
-      ? "#C3E6CB"
+      ? "#D1E7DD"
       : null;
   }
 }

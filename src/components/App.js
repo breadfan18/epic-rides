@@ -10,6 +10,7 @@ import Login from "./login/Login";
 import { Spinner } from "./common/Spinner";
 import { useSigninCheck } from "reactfire";
 import AgentsPage from "./agents/AgentsPage";
+import TourDetailsPage from "./tour/TourDetailsPage";
 export const WindowWidthContext = createContext();
 
 function App() {
@@ -38,7 +39,7 @@ function App() {
           <Switch>
             <Route exact path="/" component={HomePage} />
             <Route path="/tours" component={TourPage} />
-            {/* <Route path="/tour/:id" component={CardDetailsPage} /> */}
+            <Route path="/tour/:id" component={TourDetailsPage} />
             <Route path="/agents" component={AgentsPage} />
             {/* <Route path="/loyalty-accounts" component={LoyaltyPage} /> */}
             {/* <Route path="/loyalty/:id" component={ManageLoyaltyPage} /> */}

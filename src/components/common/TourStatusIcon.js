@@ -50,6 +50,6 @@ export default function TourStatusIcon({ tourStatus, iconSize }) {
   return foo;
 }
 TourStatusIcon.propTypes = {
-  bonusEarned: PropTypes.bool || undefined,
+  tourStatus: PropTypes.bool || undefined,
   iconSize: PropTypes.string,
 };
