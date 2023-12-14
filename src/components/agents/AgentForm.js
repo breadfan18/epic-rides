@@ -27,16 +27,17 @@ const AgentForm = ({ agent, onSave, onChange, errors = {}, saving }) => {
       <TextInput
         name="name"
         label="Agent Name"
-        value={agent.name || ""}
+        value={titleCase(agent.name) || ""}
         onChange={onChange}
         error={errors.name}
       />
       <TextInput
         name="code"
-        label="Agent Code"
+        label="Agent Code (3 characters max)"
         value={agent.code || ""}
         onChange={onChange}
         error={errors.code}
+        length={"3"}
       />
       <SelectInput
         name="nationality"

@@ -14,6 +14,7 @@ const TextInput = ({
   value,
   error,
   isCurrency,
+  length,
 }) => {
   let wrapperClass = "form-group";
   if (error && error.length > 0) {
@@ -68,6 +69,8 @@ const TextInput = ({
             // borderRadius: fieldBorderRadius,
             paddingLeft: isCurrency ? "5px" : "12px",
           }}
+          maxLength={length}
+          // minLength={length}
         />
       </div>
       {/* {error && (

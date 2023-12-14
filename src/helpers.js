@@ -68,6 +68,7 @@ export function sortNotesByDate(notes) {
 }
 
 export function titleCase(str) {
+  if ((str === "") | (str === null) || str === undefined) return "";
   return str
     .toLowerCase()
     .split(" ")

@@ -58,7 +58,7 @@ function AgentAddEditModal({ agent, disableBtn }) {
     } else {
       setAgentForModal((prevValue) => ({
         ...prevValue,
-        [name]: value,
+        [name]: name === "code" ? value.toUpperCase() : value,
       }));
     }
   };
@@ -83,7 +83,7 @@ function AgentAddEditModal({ agent, disableBtn }) {
       agent?.code !== agentForModal.code;
 
     if (shouldUpdateTourData) {
-      const toursForThisAgent = tours[agent.code];
+      const toursForThisAgent = tours[agent?.code] || [];
 
       if (toursForThisAgent) {
         toursForThisAgent.forEach((tour) => {
