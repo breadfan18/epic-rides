@@ -51,7 +51,7 @@ export default function AgentCards({ agents, toursByAgent }) {
             <AgentAddEditModal agent={agent} />
             <ConfirmDeleteModal
               data={agent}
-              dataType={DELETE_MODAL_TYPES.cardholder}
+              dataType={DELETE_MODAL_TYPES.agent}
               disableBtn={agent.hasTours}
             />
           </div>
