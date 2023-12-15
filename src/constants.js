@@ -71,6 +71,16 @@ export const NEW_DATA = {
   fileLocation: null,
 };
 
+export const TOUR_DETAILS_IMAGES = [
+  "https://i.imgur.com/6zoDtVD.png",
+  "https://i.imgur.com/MI2XBOj.png",
+  "https://i.imgur.com/AmGmkVV.png",
+  "https://i.imgur.com/jILeCMi.png",
+  "https://i.imgur.com/k7nQEbV.png",
+  "https://i.imgur.com/wzt7N7G.png",
+  "https://i.imgur.com/DKkCN78.png",
+];
+
 // Colors
 export const APP_COLOR_EPIC_RED = "rgba(69,15,1,1)";
 export const APP_COLOR_LIGHT_GRAY = "#D9D7D7";

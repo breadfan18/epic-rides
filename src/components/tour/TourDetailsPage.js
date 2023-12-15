@@ -10,11 +10,9 @@ import { Spinner } from "../common/Spinner";
 import {
   NEW_DATA,
   APP_COLOR_EPIC_RED,
-  APP_COLOR_LIGHT_BLUE,
-  DELETE_MODAL_TYPES,
   STATUS_CODES,
   APP_COLOR_BLACK_OPACITY,
-  APP_COLOR_LIGHT_GRAY,
+  TOUR_DETAILS_IMAGES,
 } from "../../constants";
 import { Card, Table } from "react-bootstrap";
 import {
@@ -31,6 +29,7 @@ import { useUser } from "reactfire";
 import TourAddEditModal from "./TourAddEditModal";
 import { MdOutlineContentCopy } from "react-icons/md";
 import { toast } from "react-toastify";
+
 function TourDetailsPage({ tours, loadDataFromFirebase, ...props }) {
   const dispatch = useDispatch();
   const [tour, setTour] = useState({ ...props.tour });
@@ -40,6 +39,10 @@ function TourDetailsPage({ tours, loadDataFromFirebase, ...props }) {
     (state) => state.apiCallsInProgress > 0 || state.data.length === 0
   );
   const { status, data: user } = useUser();
+
+  const [tourDetailsBannerImg, setImg] = useState(
+    TOUR_DETAILS_IMAGES[Math.floor(Math.random() * TOUR_DETAILS_IMAGES.length)]
+  );
 
   useEffect(() => {
     if (tours.length === 0 && status === "success") {
@@ -60,6 +63,9 @@ function TourDetailsPage({ tours, loadDataFromFirebase, ...props }) {
       .then(() => toast.info("File Name copied to clipboard"))
       .catch((err) => toast.error("Error copying file name"));
   };
+
+  const randomImg =
+    TOUR_DETAILS_IMAGES[Math.floor(Math.random() * TOUR_DETAILS_IMAGES.length)];
 
   return loading ? (
     <Spinner />
@@ -94,10 +100,10 @@ function TourDetailsPage({ tours, loadDataFromFirebase, ...props }) {
         >
           <Card.Img
             variant="top"
-            src="https://i.imgur.com/DKkCN78.png"
+            src={tourDetailsBannerImg}
             style={{
-              maxHeight: "10rem",
-              objectFit: "contain",
+              height: "8rem",
+              objectFit: "cover",
             }}
           />
           <Card.Body>
@@ -195,7 +201,13 @@ function TourDetailsPage({ tours, loadDataFromFirebase, ...props }) {
                     File Name:
                   </td>
                   <td>
-                    <div style={{ display: "flex", alignItems: "center" }}>
+                    <div
+                      style={{
+                        display: "flex",
+                        alignItems: "center",
+                        justifyContent: "space-between",
+                      }}
+                    >
                       <p style={{ margin: 0 }}>{tour.fileName}</p>
                       <MdOutlineContentCopy
                         style={{
