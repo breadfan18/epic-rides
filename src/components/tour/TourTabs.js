@@ -7,6 +7,7 @@ import TourCards from "./TourCards";
 import { WindowWidthContext } from "../App";
 import _ from "lodash";
 import { YEARS } from "../../constants/constants";
+import { getYearsFromTours, sortNumbers } from "../../helpers";
 
 function TourTabs({ data }) {
   const windowWidth = useContext(WindowWidthContext);
@@ -22,8 +23,9 @@ function TourTabs({ data }) {
       ? "23vw"
       : "21vw";
 
-  const yearlyTabs = YEARS.map((year) => {
-    // const dataForYear = data.filter((d) => year === d.dateFrom.split("-")[0]);
+  const yearsWithTours = sortNumbers(getYearsFromTours(data));
+
+  const yearlyTabs = [...yearsWithTours, "UNDATED"].map((year) => {
     const dataForYear = data.filter((d) =>
       d.dateFrom === "" ? year === "UNDATED" : year === d.dateFrom.split("-")[0]
     );

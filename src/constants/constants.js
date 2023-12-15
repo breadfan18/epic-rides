@@ -1,14 +1,4 @@
 // New Constants
-export const YEARS = [
-  "2023",
-  "2024",
-  "2025",
-  "2026",
-  "2027",
-  "2028",
-  "UNDATED",
-];
-
 export const AGENTS = [
   {
     name: "Direct Clients",

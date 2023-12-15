@@ -77,6 +77,20 @@ export function sortNotesByDate(notes) {
   return notes.sort((a, b) => Date.parse(a.date) - Date.parse(b.date));
 }
 
+export function sortNumbers(data) {
+  return data.sort((a, b) => a - b);
+}
+
+export function getYearsFromTours(tours) {
+  return tours.reduce((yearArr, tour) => {
+    const thisYear = tour.dateFrom.split("-")[0];
+    if (!yearArr.includes(thisYear) && thisYear !== "") {
+      yearArr.push(thisYear);
+    }
+    return yearArr;
+  }, []);
+}
+
 export function titleCase(str) {
   if ((str === "") | (str === null) || str === undefined) return "";
   return str

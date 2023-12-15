@@ -5,16 +5,15 @@ import { Form } from "react-bootstrap";
 import { useFilteredData } from "../../hooks/filterCards";
 import { useSelector } from "react-redux";
 import _ from "lodash";
-import { YEARS } from "../../constants/constants";
+import { getYearsFromTours, sortNumbers } from "../../helpers";
 
 function ToursByDropDown({ tours }) {
   // const storedUser = JSON.parse(localStorage.getItem("selectedUser"));
   const [selectedYear, setSelectedYear] = useState(
     new Date().getFullYear().toString()
   );
-  // const cardholders = useSelector((state) =>
-  //   _.sortBy(state.cardholders, (o) => o.isPrimary)
-  // );
+
+  const yearsWithTours = sortNumbers(getYearsFromTours(tours));
 
   const showAllData =
     selectedYear === undefined || selectedYear === "all-tours";
@@ -39,7 +38,7 @@ function ToursByDropDown({ tours }) {
           value={selectedYear}
         >
           <option value="">All Tours</option>
-          {YEARS.map((year) => {
+          {[...yearsWithTours, "UNDATED"].map((year) => {
             return (
               <option key={year} value={year}>
                 {year}

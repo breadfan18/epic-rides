@@ -26,7 +26,7 @@ const Header = ({ user }) => {
     return () => document.removeEventListener("mousedown", navMenuHandler);
   });
 
-  return windowWidth < 650 ? (
+  return windowWidth < 690 ? (
     <main className="smallNavContainer">
       <div id="smallNavTopHeader">
         <Burger open={open} setOpen={setOpen} />

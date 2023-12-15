@@ -21,8 +21,8 @@ function UserProfileSection({ user, userLogout, smallNav }) {
         alt=""
         style={{
           borderRadius: "50%",
-          height: smallNav ? "2.1rem" : "2.7rem",
-          border: `2px solid white`,
+          height: smallNav ? "2.1rem" : "2.4rem",
+          boxShadow: "0 0 10px " + APP_COLOR_EPIC_RED,
         }}
         title={user.displayName}
       />

@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React from "react";
 import PropTypes from "prop-types";
 import TextInput from "../common/TextInput";
 import SelectInput from "../common/SelectInput";
@@ -47,14 +47,14 @@ const TourForm = ({ tour, onSave, onChange, saving, errors = {} }) => {
         <TextInput
           name="tourName"
           label="Tour Name"
-          value={tour.tourName || ""}
+          value={titleCase(tour.tourName) || ""}
           onChange={onChange}
           error={errors.tourName}
         />
         <TextInput
           name="groupFitName"
           label="Group/FIT Name"
-          value={tour.groupFitName || ""}
+          value={titleCase(tour.groupFitName) || ""}
           onChange={onChange}
           error={errors.groupFitName}
         />
