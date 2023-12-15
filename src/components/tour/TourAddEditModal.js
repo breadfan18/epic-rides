@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
@@ -8,7 +8,6 @@ import { toast } from "react-toastify";
 import PropTypes from "prop-types";
 import { MdModeEditOutline } from "react-icons/md";
 import { AGENTS, NEW_DATA } from "../../constants/constants";
-import { WindowWidthContext } from "../App";
 import { useUser } from "reactfire";
 import { fileNameGenerator, getDaysBetweenDates } from "../../helpers";
 
@@ -19,10 +18,10 @@ function TourAddEditModal({ data, setModalOpen }) {
 
   const allData = useSelector((state) => state.data);
   const dispatch = useDispatch();
+  const agents = useSelector((state) => state.agents);
 
   const [show, setShow] = useState(false);
   const toggleShow = () => setShow(!show);
-  const windowWidth = useContext(WindowWidthContext);
   const { data: user } = useUser();
 
   function handleChange(event) {
@@ -33,7 +32,7 @@ function TourAddEditModal({ data, setModalOpen }) {
     }
     setDataForModal((prevData) => ({
       ...prevData,
-      [name]: name === "agent" ? AGENTS.find((a) => a.code === value) : value,
+      [name]: name === "agent" ? agents.find((a) => a.code === value) : value,
     }));
   }
 
@@ -98,11 +97,11 @@ function TourAddEditModal({ data, setModalOpen }) {
       dataForModal;
     const errors = {};
 
-    if (!agent.name) errors.agent = "Agent is required";
-    if (!tourName) errors.tourName = "Tour Name is required";
-    if (!groupFitName) errors.groupFitName = "Group Name is required";
-    if (!paxNum) errors.paxNum = "Passengers number is required";
-    if (!status) errors.status = "Status is required";
+    if (!agent.name) errors.agent = "Required";
+    if (!tourName) errors.tourName = "Required";
+    if (!groupFitName) errors.groupFitName = "Required";
+    if (!paxNum) errors.paxNum = "Required";
+    if (!status) errors.status = "Required";
     // if (!status) errors.dateFrom = "Status is required";
 
     setErrors(errors);

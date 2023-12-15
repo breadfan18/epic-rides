@@ -35,7 +35,7 @@ const TourForm = ({ tour, onSave, onChange, saving, errors = {} }) => {
         <SelectInput
           name="agent"
           label="Agent"
-          value={tour.agent.name || ""}
+          value={tour.agent?.code || ""}
           defaultOption="Select Agent"
           options={agentData.map((agent) => ({
             value: agent.code,
