@@ -13,7 +13,7 @@ import CardText from "./CardText";
 import { setColorForTourStatus } from "../../helpers";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 import TourStatusIcon from "../common/TourStatusIcon";
-export default function TourCards({ data, showEditDelete, showUserName }) {
+export default function TourCards({ data }) {
   const windowWidth = useContext(WindowWidthContext);
   const cardWidth = windowWidth < 650 ? windowWidth : "18rem";
   const history = useHistory();
@@ -37,6 +37,7 @@ export default function TourCards({ data, showEditDelete, showUserName }) {
                 padding: "10px",
                 fontSize: "15px",
                 backgroundColor: setColorForTourStatus("tourCard", d.status),
+                margin: 0,
               }}
             >
               <div
@@ -86,7 +87,5 @@ export default function TourCards({ data, showEditDelete, showUserName }) {
 }
 
 TourCards.propTypes = {
-  cards: PropTypes.array.isRequired,
-  showEditDelete: PropTypes.bool,
-  showUserName: PropTypes.bool,
+  data: PropTypes.array.isRequired,
 };
