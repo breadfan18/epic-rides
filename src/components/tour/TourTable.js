@@ -44,35 +44,39 @@ export default function TourTable({ data }) {
     <Table striped size="sm" className="smaller-table">
       <thead>
         <tr>
-          <th className="tableHeader">Status</th>
+          <th className="tableHeader">
+            Status
+            <FaSort onClick={() => requestSort(ERN_DATA_KEYS.status)} />
+          </th>
           <th className="tableHeader">Num</th>
           <th className="tableHeader">
             File Opened
-            <FaSort
-              onClick={() => requestSort(ERN_DATA_KEYS.appDate)}
-              style={{ marginLeft: "5px" }}
-            />
+            <FaSort onClick={() => requestSort(ERN_DATA_KEYS.fileOpenDate)} />
           </th>
           <th className="tableHeader">
             Agent
-            <FaSort onClick={() => requestSort(ERN_DATA_KEYS.cardholder)} />
+            <FaSort onClick={() => requestSort(ERN_DATA_KEYS.agent.name)} />
           </th>
           <th className="tableHeader">
             Tour Name{" "}
-            <FaSort onClick={() => requestSort(ERN_DATA_KEYS.cardType)} />
+            <FaSort onClick={() => requestSort(ERN_DATA_KEYS.tourName)} />
           </th>
           <th className="tableHeader">
             Group Name{" "}
-            <FaSort onClick={() => requestSort(ERN_DATA_KEYS.cardType)} />
+            <FaSort onClick={() => requestSort(ERN_DATA_KEYS.groupFitName)} />
           </th>
           <th className="tableHeader">
-            Pax <FaSort onClick={() => requestSort(ERN_DATA_KEYS.creditLine)} />
+            Pax <FaSort onClick={() => requestSort(ERN_DATA_KEYS.paxNum)} />
           </th>
           <th className="tableHeader">
-            From <FaSort onClick={() => requestSort(ERN_DATA_KEYS.annualFee)} />
+            From <FaSort onClick={() => requestSort(ERN_DATA_KEYS.dateFrom)} />
           </th>
-          <th className="tableHeader">To</th>
-          <th className="tableHeader">Days</th>
+          <th className="tableHeader">
+            To <FaSort onClick={() => requestSort(ERN_DATA_KEYS.dateTo)} />
+          </th>
+          <th className="tableHeader">
+            Days <FaSort onClick={() => requestSort(ERN_DATA_KEYS.numOfDays)} />
+          </th>
           <>
             <th></th>
           </>

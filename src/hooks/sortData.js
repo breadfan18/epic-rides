@@ -8,27 +8,11 @@ export const useSortableData = (data) => {
   });
 
   const sortedData = useMemo(() => {
-    let dataCopy = data.map((i) => {
-      if (i.hasOwnProperty("program")) {
-        return {
-          ...i,
-          program: i.program.name,
-        };
-      }
-      return i;
-    });
+    let dataCopy = [...data];
     if (sortConfig.key !== null) {
       dataCopy.sort((a, b) => {
-        const a_value =
-          sortConfig.key === ERN_DATA_KEYS.annualFee ||
-          sortConfig.key === ERN_DATA_KEYS.creditLine
-            ? parseInt(a[sortConfig.key])
-            : a[sortConfig.key];
-        const b_value =
-          sortConfig.key === ERN_DATA_KEYS.annualFee ||
-          sortConfig.key === ERN_DATA_KEYS.creditLine
-            ? parseInt(b[sortConfig.key])
-            : b[sortConfig.key];
+        const a_value = a[sortConfig.key];
+        const b_value = b[sortConfig.key];
 
         if (a_value < b_value) {
           return sortConfig.direction === "ascending" ? -1 : 1;
@@ -39,15 +23,7 @@ export const useSortableData = (data) => {
         return 0;
       });
     }
-    return dataCopy.map((i) => {
-      if (i.hasOwnProperty("program")) {
-        return {
-          ...i,
-          program: PROGRAMS.find((p) => p.name === i.program),
-        };
-      }
-      return i;
-    });
+    return dataCopy;
   }, [data, sortConfig]);
 
   const requestSort = (key) => {
