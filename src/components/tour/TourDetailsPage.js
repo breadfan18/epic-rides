@@ -19,11 +19,10 @@ import {
 import { Card, Table } from "react-bootstrap";
 import {
   formatDate,
-  setColorForCardStatus,
+  setColorForTourStatus,
   sortNotesByDate,
-  titleCase,
 } from "../../helpers";
-// import CardNotes from "./CardNotes";
+import TourNotes from "./TourNotes";
 import { WindowWidthContext } from "../App";
 import _ from "lodash";
 import TourStatusIcon from "../common/TourStatusIcon";
@@ -81,13 +80,13 @@ function TourDetailsPage({ tours, loadDataFromFirebase, ...props }) {
         <Card
           style={{
             width: windowWidth > 800 ? "30rem" : windowWidth,
-            backgroundColor: setColorForCardStatus("tourCard", tour.status),
+            backgroundColor: setColorForTourStatus("tourCard", tour.status),
             marginRight: windowWidth > 800 ? "15px" : null,
             marginBottom: windowWidth > 800 ? null : "15px",
             boxShadow:
               tour.status === "OP"
                 ? "2px 0 10px gray"
-                : `2px 0 15px ${setColorForCardStatus(
+                : `2px 0 15px ${setColorForTourStatus(
                     "tourCard",
                     tour.status
                   )}`,
@@ -120,7 +119,7 @@ function TourDetailsPage({ tours, loadDataFromFirebase, ...props }) {
                 />
               </div>
             </article>
-            <Table className={setColorForCardStatus("tourTable", tour.status)}>
+            <Table className={setColorForTourStatus("tourTable", tour.status)}>
               <tbody className="align-middle">
                 <tr>
                   <td
@@ -218,13 +217,13 @@ function TourDetailsPage({ tours, loadDataFromFirebase, ...props }) {
             </Table>
           </Card.Body>
         </Card>
-        {/* <div id="cardDetailsSectionRight">
-          <CardNotes
-            cardId={tour.id}
-            cardNotes={sortNotesByDate(_.values(tour.cardNotes))}
+        <div id="cardDetailsSectionRight">
+          <TourNotes
+            tourId={tour.id}
+            tourNotes={sortNotesByDate(_.values(tour.tourNotes))}
           />
-          <CardReminderContainer card={tour} />
-        </div> */}
+          {/* <CardReminderContainer card={tour} /> */}
+        </div>
       </div>
     </div>
   );

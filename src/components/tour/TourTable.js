@@ -4,7 +4,7 @@ import EmptyList from "../common/EmptyList";
 import Table from "react-bootstrap/Table";
 import { FaSort } from "react-icons/fa";
 import { useSortableData } from "../../hooks/sortData";
-import { formatDate, setColorForCardStatus, titleCase } from "../../helpers";
+import { formatDate, setColorForTourStatus, titleCase } from "../../helpers";
 import TourAddEditModal from "./TourAddEditModal";
 import ConfirmDeleteModal from "../common/ConfirmDeleteModal";
 import { WindowWidthContext } from "../App";
@@ -31,7 +31,7 @@ export default function TourTable({ data }) {
 
   function handleTrColorReset(e, card) {
     if (e.target.parentNode.tagName === "TR") {
-      e.target.parentNode.className = setColorForCardStatus(
+      e.target.parentNode.className = setColorForTourStatus(
         "tourTable",
         card.status
       );
@@ -83,7 +83,7 @@ export default function TourTable({ data }) {
           return (
             <tr
               key={d.id}
-              className={setColorForCardStatus("tourTable", d.status)}
+              className={setColorForTourStatus("tourTable", d.status)}
               onMouseEnter={handleTrColorOnHover}
               onMouseLeave={(e) => handleTrColorReset(e, d)}
               style={{ cursor: "pointer" }}

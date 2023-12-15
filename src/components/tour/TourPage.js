@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useEffect } from "react";
+import React, { useContext, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { loadDataFromFirebase } from "../../redux/actions/dataActions";
 import { loadAgentsFromFirebase } from "../../redux/actions/agentActions";
@@ -16,7 +16,6 @@ TO DO:
 
 const TourPage = () => {
   const windowWidth = useContext(WindowWidthContext);
-
   const dispatch = useDispatch();
   const { status, data: user } = useUser();
   const tours = useSelector((state) => state.data);

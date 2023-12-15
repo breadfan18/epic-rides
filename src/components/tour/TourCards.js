@@ -12,7 +12,7 @@ import TourAddEditModal from "./TourAddEditModal";
 import ConfirmDeleteModal from "../common/ConfirmDeleteModal";
 import { WindowWidthContext } from "../App";
 import CardText from "./CardText";
-import { setColorForCardStatus } from "../../helpers";
+import { setColorForTourStatus } from "../../helpers";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 import TourStatusIcon from "../common/TourStatusIcon";
 export default function TourCards({ data, showEditDelete, showUserName }) {
@@ -38,7 +38,7 @@ export default function TourCards({ data, showEditDelete, showUserName }) {
               style={{
                 padding: "10px",
                 fontSize: "15px",
-                backgroundColor: setColorForCardStatus("tourCard", d.status),
+                backgroundColor: setColorForTourStatus("tourCard", d.status),
               }}
             >
               <div

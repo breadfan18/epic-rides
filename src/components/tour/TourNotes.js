@@ -4,9 +4,9 @@ import Card from "react-bootstrap/Card";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import {
-  saveCardNoteToFirebase,
-  deleteCardNoteFromFirebase,
-} from "../../redux/actions/cardsActions";
+  saveTourNoteToFirebase,
+  deleteTourNoteFromFirebase,
+} from "../../redux/actions/dataActions";
 import { Spinner } from "../common/Spinner";
 import { formatDate } from "../../helpers";
 import { DELETE_COLOR_RED, NEW_NOTE } from "../../constants";
@@ -15,11 +15,11 @@ import { toast } from "react-toastify";
 import EmptyList from "../common/EmptyList";
 import { useUser } from "reactfire";
 
-function CardNotes({
-  cardId,
-  cardNotes,
-  saveCardNoteToFirebase,
-  deleteCardNoteFromFirebase,
+function TourNotes({
+  tourId,
+  tourNotes,
+  saveTourNoteToFirebase,
+  deleteTourNoteFromFirebase,
   loading,
 }) {
   const [note, setNote] = useState(NEW_NOTE);
@@ -34,20 +34,20 @@ function CardNotes({
 
   function handleSave(e) {
     e.preventDefault();
-    saveCardNoteToFirebase(note, cardId, user?.uid);
+    saveTourNoteToFirebase(note, tourId, user?.uid);
     toast.success("Note Added");
     setNote(NEW_NOTE);
   }
 
   function handleDelete(note) {
-    deleteCardNoteFromFirebase(note, cardId, user?.uid);
+    deleteTourNoteFromFirebase(note, tourId, user?.uid);
     toast.success("Note Deleted");
   }
 
   function handleSaveOnEnter(e) {
     if (e.keyCode === 13) {
       e.preventDefault();
-      saveCardNoteToFirebase(note, cardId, user?.uid);
+      saveTourNoteToFirebase(note, tourId, user?.uid);
       toast.success("Note Added");
       setNote(NEW_NOTE);
     }
@@ -57,9 +57,9 @@ function CardNotes({
     <Spinner />
   ) : (
     <Card className="text-center" style={{ boxShadow: `2px 0 10px gray` }}>
-      <Card.Header className="cardHeaders">Card Notes</Card.Header>
+      <Card.Header className="cardHeaders">Tour Notes</Card.Header>
       <Card.Body style={{ textAlign: "left" }}>
-        {cardNotes.length === 0 ? (
+        {tourNotes.length === 0 ? (
           <EmptyList dataType={"note"} />
         ) : (
           <Table size="sm">
@@ -71,7 +71,7 @@ function CardNotes({
               </tr>
             </thead>
             <tbody>
-              {cardNotes.map((note) => (
+              {tourNotes.map((note) => (
                 <tr key={note.id}>
                   <td style={{ minWidth: "80px" }}>{formatDate(note.date)}</td>
                   <td>{note.note}</td>
@@ -110,12 +110,12 @@ function CardNotes({
   );
 }
 
-CardNotes.propTypes = {
+TourNotes.propTypes = {
   loading: PropTypes.bool.isRequired,
-  saveCardNoteToFirebase: PropTypes.func.isRequired,
-  deleteCardNoteFromFirebase: PropTypes.func.isRequired,
-  cardId: PropTypes.object.isRequired,
-  cardNotes: PropTypes.object.isRequired,
+  saveTourNoteToFirebase: PropTypes.func.isRequired,
+  deleteTourNoteFromFirebase: PropTypes.func.isRequired,
+  tourId: PropTypes.object.isRequired,
+  tourNotes: PropTypes.object.isRequired,
 };
 
 function mapStateToProps(state) {
@@ -125,8 +125,8 @@ function mapStateToProps(state) {
 }
 
 const mapDispatchToProps = {
-  saveCardNoteToFirebase,
-  deleteCardNoteFromFirebase,
+  saveTourNoteToFirebase,
+  deleteTourNoteFromFirebase,
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(CardNotes);
+export default connect(mapStateToProps, mapDispatchToProps)(TourNotes);

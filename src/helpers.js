@@ -144,7 +144,7 @@ export function handleInquiriesList(inq) {
     .map((inq) => CREDIT_BUREAUS.find((i) => inq === i.name));
 }
 
-export function setColorForCardStatus(componentType, tourStatus) {
+export function setColorForTourStatus(componentType, tourStatus) {
   if (componentType === "tourTable") {
     return tourStatus === "CA"
       ? "table-danger"

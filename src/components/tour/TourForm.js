@@ -3,7 +3,6 @@ import PropTypes from "prop-types";
 import TextInput from "../common/TextInput";
 import SelectInput from "../common/SelectInput";
 import {
-  AGENTS,
   APP_COLOR_BLACK_OPACITY,
   APP_COLOR_EPIC_RED,
   STATUS_CODES,
@@ -13,7 +12,6 @@ import Form from "react-bootstrap/Form";
 import { titleCase } from "../../helpers";
 import { isEmpty } from "lodash";
 import NumberInput from "../common/NumberInput";
-import { AgentsDataContext } from "./TourPage";
 import { useSelector } from "react-redux";
 
 const TourForm = ({ tour, onSave, onChange, saving, errors = {} }) => {
