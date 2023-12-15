@@ -2,7 +2,7 @@ import React from "react";
 import { Button } from "react-bootstrap";
 import { BsTrash3 } from "react-icons/bs";
 import PropTypes from "prop-types";
-import { APP_COLOR_EPIC_RED } from "../../constants";
+import { APP_COLOR_EPIC_RED } from "../../constants/constants";
 
 export function DeleteButton({ onClick, disableBtn }) {
   return (

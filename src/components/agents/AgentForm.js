@@ -2,10 +2,13 @@ import React from "react";
 import PropTypes from "prop-types";
 import TextInput from "../common/TextInput";
 import SelectInput from "../common/SelectInput";
-import COUNTRY_CODES from "../../countryCodes";
+import COUNTRY_CODES from "../../constants/countryCodes";
 import { titleCase } from "../../helpers";
 import { isEmpty } from "lodash";
-import { APP_COLOR_BLACK_OPACITY, APP_COLOR_EPIC_RED } from "../../constants";
+import {
+  APP_COLOR_BLACK_OPACITY,
+  APP_COLOR_EPIC_RED,
+} from "../../constants/constants";
 
 const AgentForm = ({ agent, onSave, onChange, errors = {}, saving }) => {
   const buttonText = saving ? "Saving..." : agent.id === null ? "Add" : "Save";

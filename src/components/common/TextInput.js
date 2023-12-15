@@ -4,7 +4,7 @@ import {
   APP_COLOR_BLACK_OPACITY,
   APP_COLOR_EPIC_RED,
   CANCELLED_COLOR_RED,
-} from "../../constants";
+} from "../../constants/constants";
 
 const TextInput = ({
   name,

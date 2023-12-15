@@ -1,6 +1,9 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { APP_COLOR_EPIC_RED, CANCELLED_COLOR_RED } from "../../constants";
+import {
+  APP_COLOR_EPIC_RED,
+  CANCELLED_COLOR_RED,
+} from "../../constants/constants";
 
 const NumberInput = ({ name, label, onChange, placeholder, value, error }) => {
   let wrapperClass = "form-group";

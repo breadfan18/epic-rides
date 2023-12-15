@@ -6,7 +6,7 @@ import {
   APP_COLOR_BLACK_OPACITY,
   APP_COLOR_EPIC_RED,
   STATUS_CODES,
-} from "../../constants";
+} from "../../constants/constants";
 import DateInput from "../common/DateInput";
 import Form from "react-bootstrap/Form";
 import { titleCase } from "../../helpers";

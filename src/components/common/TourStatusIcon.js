@@ -8,7 +8,7 @@ import {
   APP_COLOR_EPIC_RED,
   DELETE_COLOR_RED,
   EDIT_COLOR_GREEN,
-} from "../../constants";
+} from "../../constants/constants";
 import PropTypes from "prop-types";
 
 export default function TourStatusIcon({ tourStatus, iconSize }) {

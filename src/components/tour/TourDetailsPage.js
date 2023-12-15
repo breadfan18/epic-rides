@@ -13,7 +13,7 @@ import {
   STATUS_CODES,
   APP_COLOR_BLACK_OPACITY,
   TOUR_DETAILS_IMAGES,
-} from "../../constants";
+} from "../../constants/constants";
 import { Card, Table } from "react-bootstrap";
 import {
   formatDate,

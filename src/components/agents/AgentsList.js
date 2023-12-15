@@ -4,7 +4,7 @@ import EmptyList from "../common/EmptyList";
 import Table from "react-bootstrap/Table";
 import ConfirmDeleteModal from "../common/ConfirmDeleteModal";
 import AgentAddEditModal from "./AgentAddEditModal";
-import { DELETE_MODAL_TYPES } from "../../constants";
+import { DELETE_MODAL_TYPES } from "../../constants/constants";
 import AgentTourDataMiniTable from "./AgentTourDataMiniTable";
 import AgentImg from "./AgentImg";
 

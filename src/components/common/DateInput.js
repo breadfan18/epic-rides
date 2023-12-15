@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import Form from "react-bootstrap/Form";
-import { CANCELLED_COLOR_RED } from "../../constants";
+import { CANCELLED_COLOR_RED } from "../../constants/constants";
 
 const DateInput = ({ name, label, onChange, value, error, disabled }) => {
   let wrapperClass = "form-group";

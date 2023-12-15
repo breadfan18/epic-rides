@@ -2,7 +2,7 @@ import React, { useEffect, useState, useRef, useContext } from "react";
 import { NavLink } from "react-router-dom";
 import Burger from "./Burger";
 import { WindowWidthContext } from "../App";
-import { APP_COLOR_EPIC_RED } from "../../constants";
+import { APP_COLOR_EPIC_RED } from "../../constants/constants";
 import UserProfileSection from "./UserProfileSection";
 
 const Header = ({ user }) => {

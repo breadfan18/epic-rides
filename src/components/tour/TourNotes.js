@@ -9,7 +9,7 @@ import {
 } from "../../redux/actions/dataActions";
 import { Spinner } from "../common/Spinner";
 import { formatDate } from "../../helpers";
-import { DELETE_COLOR_RED, NEW_NOTE } from "../../constants";
+import { DELETE_COLOR_RED, NEW_NOTE } from "../../constants/constants";
 import { AiFillDelete } from "react-icons/ai";
 import { toast } from "react-toastify";
 import EmptyList from "../common/EmptyList";

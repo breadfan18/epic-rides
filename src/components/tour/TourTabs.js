@@ -6,7 +6,7 @@ import TourTable from "./TourTable";
 import TourCards from "./TourCards";
 import { WindowWidthContext } from "../App";
 import _ from "lodash";
-import { YEARS } from "../../constants";
+import { YEARS } from "../../constants/constants";
 
 function TourTabs({ data }) {
   const windowWidth = useContext(WindowWidthContext);

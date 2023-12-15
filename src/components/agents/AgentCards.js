@@ -3,7 +3,7 @@ import { Card } from "react-bootstrap";
 import PropTypes from "prop-types";
 import ConfirmDeleteModal from "../common/ConfirmDeleteModal";
 import { WindowWidthContext } from "../App";
-import { DELETE_MODAL_TYPES } from "../../constants";
+import { DELETE_MODAL_TYPES } from "../../constants/constants";
 import AgentAddEditModal from "./AgentAddEditModal";
 import AgentTourDataMiniTable from "./AgentTourDataMiniTable";
 import AgentImg from "./AgentImg";

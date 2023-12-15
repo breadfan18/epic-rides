@@ -9,7 +9,7 @@ import TourAddEditModal from "./TourAddEditModal";
 import ConfirmDeleteModal from "../common/ConfirmDeleteModal";
 import { WindowWidthContext } from "../App";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
-import { ERN_DATA_KEYS, DELETE_MODAL_TYPES } from "../../constants";
+import { ERN_DATA_KEYS, DELETE_MODAL_TYPES } from "../../constants/constants";
 import TourStatusIcon from "../common/TourStatusIcon";
 
 export default function TourTable({ data }) {

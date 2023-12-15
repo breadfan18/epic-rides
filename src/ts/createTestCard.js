@@ -1,7 +1,7 @@
 import { uid } from "uid";
 import { slugify } from "../helpers";
 import { writeToFirebase } from "../tools/firebase";
-import { ISSUERS } from "../constants";
+import { ISSUERS } from "../constants/constants";
 
 // Random Date
 function getRandomDate(startDate, endDate) {

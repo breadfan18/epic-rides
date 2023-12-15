@@ -2,7 +2,7 @@ import fs from "fs-extra";
 import { stringify } from "csv-stringify";
 import { uid } from "uid";
 import _ from "lodash";
-import { PROGRAMS, ISSUERS, USERS } from "../constants";
+import { PROGRAMS, ISSUERS, USERS } from "../constants/constants";
 import { slugify } from "../helpers";
 
 function formatDate(dateStr) {

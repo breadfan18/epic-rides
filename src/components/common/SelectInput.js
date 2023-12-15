@@ -5,7 +5,7 @@ import {
   APP_COLOR_EPIC_RED,
   CANCELLED_COLOR_RED,
   DELETE_COLOR_RED,
-} from "../../constants";
+} from "../../constants/constants";
 
 const SelectInput = ({
   name,

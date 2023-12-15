@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { formatDate } from "../../helpers";
-import { ERN_DATA_KEYS } from "../../constants";
+import { ERN_DATA_KEYS } from "../../constants/constants";
 
 function CardText({ data, dataType }) {
   const setCardDataType = (data, dataType) => {

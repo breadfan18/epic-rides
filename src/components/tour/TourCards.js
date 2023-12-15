@@ -5,7 +5,7 @@ import {
   APP_COLOR_BLACK_OPACITY,
   DELETE_MODAL_TYPES,
   STATUS_CODES,
-} from "../../constants";
+} from "../../constants/constants";
 import PropTypes from "prop-types";
 import EmptyList from "../common/EmptyList";
 import TourAddEditModal from "./TourAddEditModal";

@@ -5,7 +5,7 @@ import {
   DELETE_COLOR_RED,
   EDIT_COLOR_GREEN,
   STATUS_CODES,
-} from "../../constants";
+} from "../../constants/constants";
 import { titleCase } from "../../helpers";
 
 export default function AgentTourDataMiniTable({ tours, layout }) {

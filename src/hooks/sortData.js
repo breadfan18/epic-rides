@@ -1,5 +1,5 @@
 import { useMemo, useState } from "react";
-import { ERN_DATA_KEYS, PROGRAMS } from "../constants";
+import { ERN_DATA_KEYS, PROGRAMS } from "../constants/constants";
 
 export const useSortableData = (data) => {
   const [sortConfig, setSortConfig] = useState({

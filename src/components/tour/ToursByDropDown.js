@@ -5,7 +5,7 @@ import { Form } from "react-bootstrap";
 import { useFilteredData } from "../../hooks/filterCards";
 import { useSelector } from "react-redux";
 import _ from "lodash";
-import { YEARS } from "../../constants";
+import { YEARS } from "../../constants/constants";
 
 function ToursByDropDown({ tours }) {
   // const storedUser = JSON.parse(localStorage.getItem("selectedUser"));

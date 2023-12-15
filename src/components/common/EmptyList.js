@@ -1,6 +1,9 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { APP_COLOR_BLACK_OPACITY, APP_COLOR_EPIC_RED } from "../../constants";
+import {
+  APP_COLOR_BLACK_OPACITY,
+  APP_COLOR_EPIC_RED,
+} from "../../constants/constants";
 
 const EmptyList = ({ dataType }) => {
   return (

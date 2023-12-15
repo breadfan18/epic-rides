@@ -4,7 +4,7 @@ import { GoSignOut } from "react-icons/go";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 import { userLogout } from "../../redux/actions/authActions";
 import { connect } from "react-redux";
-import { APP_COLOR_EPIC_RED } from "../../constants";
+import { APP_COLOR_EPIC_RED } from "../../constants/constants";
 
 function UserProfileSection({ user, userLogout, smallNav }) {
   const history = useHistory();

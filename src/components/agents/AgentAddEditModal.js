@@ -10,7 +10,7 @@ import { MdModeEditOutline } from "react-icons/md";
 import { useUser } from "reactfire";
 import AgentForm from "./AgentForm";
 import _ from "lodash";
-import COUNTRY_CODES from "../../countryCodes";
+import COUNTRY_CODES from "../../constants/countryCodes";
 import { fileNameGenerator } from "../../helpers";
 
 const newAgent = {
