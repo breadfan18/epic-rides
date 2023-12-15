@@ -60,15 +60,9 @@ export default function TourCards({ data }) {
               <CardText data={d} dataType={ERN_DATA_KEYS.agent} />
               <CardText data={d} dataType={ERN_DATA_KEYS.groupFitName} />
               <CardText data={d} dataType={ERN_DATA_KEYS.paxNum} />
-              {d.dateFrom !== "" &&
-                d.dateFrom !== null &&
-                d.dateFrom !== undefined && (
-                  <>
-                    <CardText data={d} dataType={ERN_DATA_KEYS.dateFrom} />
-                    <CardText data={d} dataType={ERN_DATA_KEYS.dateTo} />
-                    <CardText data={d} dataType={ERN_DATA_KEYS.numOfDays} />
-                  </>
-                )}
+              <CardText data={d} dataType={ERN_DATA_KEYS.dateFrom} />
+              <CardText data={d} dataType={ERN_DATA_KEYS.dateTo} />
+              <CardText data={d} dataType={ERN_DATA_KEYS.numOfDays} />
             </div>
           </section>
           <div className="editDeleteCard editDeleteOnCards">
