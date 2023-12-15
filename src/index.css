@@ -14,27 +14,35 @@ body {
   font-family: "Oswald", sans-serif;
 }
 
-.fiveTwentyFourContainer,
-.loyaltyContainer,
-.cardDetailsContainer,
-.cardHoldersContainer {
+.tourDetailsContainer,
+.agentsContainer {
   max-width: 1100px;
   margin: 0 auto;
 }
 
-.cardDetailsBody {
+.tourDetailsBody {
   display: flex;
   flex-wrap: wrap;
   font-size: clamp(0.6rem, 5vw, 1rem);
 }
 
-#cardDetailsSectionRight {
+#tourDetailsSectionRight {
   flex: 1;
 }
 
-#cardDetailsSectionRight .card {
+#tourDetailsSectionRight .card {
   margin-bottom: 1rem;
   flex: 1;
+}
+
+.copyFileNameIcon {
+  font-size: 2.4rem;
+  background-color: var(--black-opacity);
+  padding: 5px;
+  border-radius: 8px;
+  color: gray;
+  cursor: pointer;
+  margin-left: 5px;
 }
 
 .navContainer {
@@ -346,9 +354,9 @@ form {
   margin-left: 10px;
 }
 
-.cardDetailsFieldHeaders {
+.tourDetailsFieldHeaders {
   font-weight: bold;
-  font-size: clamp(0.9rem, 5vw, 1.2rem);
+  font-size: clamp(1rem, 4vw, 1.2rem);
 }
 
 .cardHeaders,

@@ -64,13 +64,10 @@ function TourDetailsPage({ tours, loadDataFromFirebase, ...props }) {
       .catch((err) => toast.error("Error copying file name"));
   };
 
-  const randomImg =
-    TOUR_DETAILS_IMAGES[Math.floor(Math.random() * TOUR_DETAILS_IMAGES.length)];
-
   return loading ? (
     <Spinner />
   ) : (
-    <div className="cardDetailsContainer">
+    <div className="tourDetailsContainer">
       <section className="sectionHeaders">
         <h2 style={{ marginBottom: 0 }}>Tour Details</h2>
         <div className="editDeleteCard">
@@ -82,7 +79,7 @@ function TourDetailsPage({ tours, loadDataFromFirebase, ...props }) {
           /> */}
         </div>
       </section>
-      <div className="cardDetailsBody">
+      <div className="tourDetailsBody">
         <Card
           style={{
             width: windowWidth > 800 ? "30rem" : windowWidth,
@@ -130,7 +127,7 @@ function TourDetailsPage({ tours, loadDataFromFirebase, ...props }) {
                 <tr>
                   <td
                     style={{ color: APP_COLOR_EPIC_RED }}
-                    className="cardDetailsFieldHeaders"
+                    className="tourDetailsFieldHeaders"
                   >
                     File Opened Date:
                   </td>
@@ -139,7 +136,7 @@ function TourDetailsPage({ tours, loadDataFromFirebase, ...props }) {
                 <tr>
                   <td
                     style={{ color: APP_COLOR_EPIC_RED }}
-                    className="cardDetailsFieldHeaders"
+                    className="tourDetailsFieldHeaders"
                   >
                     Group Name:
                   </td>
@@ -148,7 +145,7 @@ function TourDetailsPage({ tours, loadDataFromFirebase, ...props }) {
                 <tr>
                   <td
                     style={{ color: APP_COLOR_EPIC_RED }}
-                    className="cardDetailsFieldHeaders"
+                    className="tourDetailsFieldHeaders"
                   >
                     Number of Passengers:
                   </td>
@@ -157,7 +154,7 @@ function TourDetailsPage({ tours, loadDataFromFirebase, ...props }) {
                 <tr>
                   <td
                     style={{ color: APP_COLOR_EPIC_RED }}
-                    className="cardDetailsFieldHeaders"
+                    className="tourDetailsFieldHeaders"
                   >
                     Date From:
                   </td>
@@ -170,7 +167,7 @@ function TourDetailsPage({ tours, loadDataFromFirebase, ...props }) {
                 <tr>
                   <td
                     style={{ color: APP_COLOR_EPIC_RED }}
-                    className="cardDetailsFieldHeaders"
+                    className="tourDetailsFieldHeaders"
                   >
                     Date To:
                   </td>
@@ -183,7 +180,7 @@ function TourDetailsPage({ tours, loadDataFromFirebase, ...props }) {
                 <tr>
                   <td
                     style={{ color: APP_COLOR_EPIC_RED }}
-                    className="cardDetailsFieldHeaders"
+                    className="tourDetailsFieldHeaders"
                   >
                     Status:
                   </td>
@@ -196,7 +193,7 @@ function TourDetailsPage({ tours, loadDataFromFirebase, ...props }) {
                 <tr>
                   <td
                     style={{ color: APP_COLOR_EPIC_RED }}
-                    className="cardDetailsFieldHeaders"
+                    className="tourDetailsFieldHeaders"
                   >
                     File Name:
                   </td>
@@ -210,15 +207,7 @@ function TourDetailsPage({ tours, loadDataFromFirebase, ...props }) {
                     >
                       <p style={{ margin: 0 }}>{tour.fileName}</p>
                       <MdOutlineContentCopy
-                        style={{
-                          fontSize: "2.4rem",
-                          backgroundColor: APP_COLOR_BLACK_OPACITY,
-                          padding: "5px",
-                          borderRadius: "8px",
-                          color: "gray",
-                          cursor: "pointer",
-                          margin: "5px",
-                        }}
+                        className="copyFileNameIcon"
                         title="Copy File Name to clipboard"
                         onClick={() => copyFileNameToClipboard()}
                       />
@@ -229,7 +218,7 @@ function TourDetailsPage({ tours, loadDataFromFirebase, ...props }) {
             </Table>
           </Card.Body>
         </Card>
-        <div id="cardDetailsSectionRight">
+        <div id="tourDetailsSectionRight">
           <TourNotes
             tourId={tour.id}
             tourNotes={sortNotesByDate(_.values(tour.tourNotes))}

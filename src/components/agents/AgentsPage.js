@@ -37,7 +37,7 @@ const AgentsPage = () => {
   });
 
   return (
-    <div className="cardHoldersContainer">
+    <div className="agentsContainer">
       <section className="sectionHeaders">
         <h2 style={{ marginBottom: 0 }}>Agents</h2>
         <AgentAddEditModal />
