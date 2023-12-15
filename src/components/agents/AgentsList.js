@@ -10,7 +10,7 @@ import AgentImg from "./AgentImg";
 
 const AgentsList = ({ toursByAgent, agents }) => {
   return agents.length === 0 ? (
-    <EmptyList dataType={"card holders"} />
+    <EmptyList dataType={"agent"} />
   ) : (
     <Table size="sm">
       <thead>

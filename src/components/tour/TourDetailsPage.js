@@ -11,7 +11,6 @@ import {
   NEW_DATA,
   APP_COLOR_EPIC_RED,
   STATUS_CODES,
-  APP_COLOR_BLACK_OPACITY,
   TOUR_DETAILS_IMAGES,
 } from "../../constants/constants";
 import { Card, Table } from "react-bootstrap";

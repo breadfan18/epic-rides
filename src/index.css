@@ -285,12 +285,12 @@ div.alert-danger {
   font-weight: bold;
 }
 
-#cardCardContainer {
+#cardsContainer {
   display: flex;
   flex-wrap: wrap;
 }
 
-#cardCardContainer > * {
+#cardsContainer > * {
   margin: 7px;
 }
 

@@ -7,6 +7,7 @@ import { DELETE_MODAL_TYPES } from "../../constants/constants";
 import AgentAddEditModal from "./AgentAddEditModal";
 import AgentTourDataMiniTable from "./AgentTourDataMiniTable";
 import AgentImg from "./AgentImg";
+import EmptyList from "../common/EmptyList";
 
 export default function AgentCards({ agents, toursByAgent }) {
   const windowWidth = useContext(WindowWidthContext);
@@ -59,7 +60,11 @@ export default function AgentCards({ agents, toursByAgent }) {
       </Card>
     );
   });
-  return <div id="cardCardContainer">{allAgents}</div>;
+  return agents.length === 0 ? (
+    <EmptyList dataType={"agent"} />
+  ) : (
+    <div id="cardsContainer">{allAgents}</div>
+  );
 }
 
 AgentCards.propTypes = {

@@ -4,9 +4,17 @@ import { APP_COLOR_EPIC_RED } from "../../constants/constants";
 
 function HomePage() {
   return (
-    <div className="jumbotron">
+    <div className="loginContainer">
       <h2 className="sectionHeaders">Epic Rides Nepal</h2>
-      <p>File Register</p>
+      <p style={{ margin: "10px 5px" }}>
+        Welcome to Epic Rides Nepal Tour Manager. This application is designed
+        to seamlessly manage and streamline all Epic Ride tours, as well as all
+        affiliated agents.
+      </p>
+      <p style={{ margin: "10px 5px" }}>
+        Our eventual goal is to make sure that our cleints have a great time
+        when booking their tour with Epic Rides.
+      </p>
       <Link
         to="explanations"
         className="btn btn-lg"

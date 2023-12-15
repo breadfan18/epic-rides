@@ -3,8 +3,6 @@ import { Card } from "react-bootstrap";
 import {
   ERN_DATA_KEYS,
   APP_COLOR_BLACK_OPACITY,
-  DELETE_MODAL_TYPES,
-  STATUS_CODES,
 } from "../../constants/constants";
 import PropTypes from "prop-types";
 import EmptyList from "../common/EmptyList";
@@ -83,7 +81,7 @@ export default function TourCards({ data, showEditDelete, showUserName }) {
   return data.length === 0 ? (
     <EmptyList dataType={"tour"} />
   ) : (
-    <div id="cardCardContainer">{allTours}</div>
+    <div id="cardsContainer">{allTours}</div>
   );
 }
 
