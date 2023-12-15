@@ -12,11 +12,11 @@ import {
   APP_COLOR_LIGHT_BLUE,
   DELETE_MODAL_TYPES,
   STATUS_CODES,
+  APP_COLOR_BLACK_OPACITY,
+  APP_COLOR_LIGHT_GRAY,
 } from "../../constants";
 import { Card, Table } from "react-bootstrap";
-import ConfirmDeleteModal from "../common/ConfirmDeleteModal";
 import {
-  formatCurrency,
   formatDate,
   setColorForCardStatus,
   sortNotesByDate,
@@ -29,7 +29,8 @@ import TourStatusIcon from "../common/TourStatusIcon";
 // import { CardReminderContainer } from "./CardReminderContainer";
 import { useUser } from "reactfire";
 import TourAddEditModal from "./TourAddEditModal";
-
+import { MdOutlineContentCopy } from "react-icons/md";
+import { toast } from "react-toastify";
 function TourDetailsPage({ tours, loadDataFromFirebase, loading, ...props }) {
   const [tour, setTour] = useState({ ...props.tour });
   const windowWidth = useContext(WindowWidthContext);
@@ -43,6 +44,13 @@ function TourDetailsPage({ tours, loadDataFromFirebase, loading, ...props }) {
       setTour({ ...props.tour });
     }
   }, [props.tour, user]);
+
+  const copyFileNameToClipboard = () => {
+    navigator.clipboard
+      .writeText(tour.fileName)
+      .then(() => toast.info("File Name copied to clipboard"))
+      .catch((err) => toast.error("Error copying file name"));
+  };
 
   return loading ? (
     <Spinner />
@@ -168,6 +176,32 @@ function TourDetailsPage({ tours, loadDataFromFirebase, loading, ...props }) {
                     {STATUS_CODES.find(
                       (status) => status.code === props.tour.status
                     ).name || ""}
+                  </td>
+                </tr>
+                <tr>
+                  <td
+                    style={{ color: APP_COLOR_EPIC_RED }}
+                    className="cardDetailsFieldHeaders"
+                  >
+                    File Name:
+                  </td>
+                  <td>
+                    <div style={{ display: "flex", alignItems: "center" }}>
+                      <p style={{ margin: 0 }}>{tour.fileName}</p>
+                      <MdOutlineContentCopy
+                        style={{
+                          fontSize: "2.4rem",
+                          backgroundColor: APP_COLOR_BLACK_OPACITY,
+                          padding: "5px",
+                          borderRadius: "8px",
+                          color: "gray",
+                          cursor: "pointer",
+                          margin: "5px",
+                        }}
+                        title="Copy File Name to clipboard"
+                        onClick={() => copyFileNameToClipboard()}
+                      />
+                    </div>
                   </td>
                 </tr>
               </tbody>
