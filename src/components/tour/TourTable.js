@@ -48,14 +48,17 @@ export default function TourTable({ data }) {
             Status
             <FaSort onClick={() => requestSort(ERN_DATA_KEYS.status)} />
           </th>
-          <th className="tableHeader">Num</th>
+          <th className="tableHeader">
+            Num
+            <FaSort onClick={() => requestSort(ERN_DATA_KEYS.id)} />
+          </th>
           <th className="tableHeader">
             File Opened
             <FaSort onClick={() => requestSort(ERN_DATA_KEYS.fileOpenDate)} />
           </th>
           <th className="tableHeader">
             Agent
-            <FaSort onClick={() => requestSort(ERN_DATA_KEYS.agent.name)} />
+            <FaSort onClick={() => requestSort(ERN_DATA_KEYS.agent)} />
           </th>
           <th className="tableHeader">
             Tour Name{" "}
