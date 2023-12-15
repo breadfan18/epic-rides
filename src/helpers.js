@@ -62,6 +62,16 @@ export function sortCardsByDate(cards) {
     (a, b) => Date.parse(b.appDate) - Date.parse(a.appDate)
   );
 }
+export function sortToursByStatus(tours) {
+  const statusIndex = {
+    OP: 1,
+    HK: 2,
+    CA: 3,
+  };
+  return [...tours].sort(
+    (a, b) => statusIndex[a.status] - statusIndex[b.status]
+  );
+}
 
 export function sortNotesByDate(notes) {
   return notes.sort((a, b) => Date.parse(a.date) - Date.parse(b.date));

@@ -8,6 +8,7 @@ import ToursByDropDown from "./ToursByDropDown";
 import TourAddEditModal from "./TourAddEditModal";
 import { WindowWidthContext } from "../App";
 import { useUser } from "reactfire";
+import { sortToursByStatus } from "../../helpers";
 /* 
 TO DO:
 - Update the data models and the data table to properly display data in the respective year tabs
@@ -18,7 +19,7 @@ const TourPage = () => {
   const windowWidth = useContext(WindowWidthContext);
   const dispatch = useDispatch();
   const { status, data: user } = useUser();
-  const tours = useSelector((state) => state.data);
+  const tours = useSelector((state) => sortToursByStatus(state.data));
   const agents = useSelector((state) => state.agents);
   const loading = useSelector((state) => state.apiCallsInProgress > 0);
 
