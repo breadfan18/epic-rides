@@ -1,9 +1,10 @@
 import React, { useContext, useEffect, useState } from "react";
-import { connect } from "react-redux";
+import { connect, useDispatch, useSelector } from "react-redux";
 import {
   loadDataFromFirebase,
   saveDataToFirebase,
 } from "../../redux/actions/dataActions";
+import { loadAgentsFromFirebase } from "../../redux/actions/agentActions";
 import PropTypes from "prop-types";
 import { Spinner } from "../common/Spinner";
 import {
@@ -31,9 +32,14 @@ import { useUser } from "reactfire";
 import TourAddEditModal from "./TourAddEditModal";
 import { MdOutlineContentCopy } from "react-icons/md";
 import { toast } from "react-toastify";
-function TourDetailsPage({ tours, loadDataFromFirebase, loading, ...props }) {
+function TourDetailsPage({ tours, loadDataFromFirebase, ...props }) {
+  const dispatch = useDispatch();
   const [tour, setTour] = useState({ ...props.tour });
   const windowWidth = useContext(WindowWidthContext);
+  const agents = useSelector((state) => _.sortBy(state.agents));
+  const loading = useSelector(
+    (state) => state.apiCallsInProgress > 0 || state.data.length === 0
+  );
   const { status, data: user } = useUser();
 
   useEffect(() => {
@@ -42,6 +48,10 @@ function TourDetailsPage({ tours, loadDataFromFirebase, loading, ...props }) {
     } else {
       // Need to understand this logic..
       setTour({ ...props.tour });
+    }
+
+    if (agents.length === 0 && status !== "loading") {
+      dispatch(loadAgentsFromFirebase(user.uid));
     }
   }, [props.tour, user]);
 
@@ -59,7 +69,7 @@ function TourDetailsPage({ tours, loadDataFromFirebase, loading, ...props }) {
       <section className="sectionHeaders">
         <h2 style={{ marginBottom: 0 }}>Tour Details</h2>
         <div className="editDeleteCard">
-          <TourAddEditModal data={props.tour} />
+          <TourAddEditModal data={tour} />
           {/* <ConfirmDeleteModal
             data={tour}
             dataType={DELETE_MODAL_TYPES.tour}
@@ -221,9 +231,9 @@ function TourDetailsPage({ tours, loadDataFromFirebase, loading, ...props }) {
 }
 
 TourDetailsPage.propTypes = {
-  card: PropTypes.object.isRequired,
-  cards: PropTypes.array.isRequired,
-  loadCardsFromFirebase: PropTypes.func.isRequired,
+  tour: PropTypes.object.isRequired,
+  tours: PropTypes.array.isRequired,
+  loadDataFromFirebase: PropTypes.func.isRequired,
   loading: PropTypes.bool.isRequired,
 };
 
@@ -233,17 +243,12 @@ export function getTourById(tours, id) {
 
 function mapStateToProps(state, ownProps) {
   const id = ownProps.match.params.id;
-
-  console.log(id);
-
   const tour =
     id && state.data.length > 0 ? getTourById(state.data, id) : NEW_DATA;
 
-  console.log(tour);
   return {
     tour: tour,
     tours: state.data,
-    loading: state.apiCallsInProgress > 0 || state.data.length === 0,
   };
 }
 

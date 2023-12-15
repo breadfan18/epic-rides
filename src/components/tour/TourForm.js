@@ -14,9 +14,10 @@ import { titleCase } from "../../helpers";
 import { isEmpty } from "lodash";
 import NumberInput from "../common/NumberInput";
 import { AgentsDataContext } from "./TourPage";
+import { useSelector } from "react-redux";
 
 const TourForm = ({ tour, onSave, onChange, saving, errors = {} }) => {
-  const agentData = useContext(AgentsDataContext);
+  const agentData = useSelector((state) => state.agents);
   return (
     <>
       <Form onSubmit={onSave}>

@@ -8,7 +8,6 @@ import ToursByDropDown from "./ToursByDropDown";
 import TourAddEditModal from "./TourAddEditModal";
 import { WindowWidthContext } from "../App";
 import { useUser } from "reactfire";
-export const AgentsDataContext = createContext();
 /* 
 TO DO:
 - Update the data models and the data table to properly display data in the respective year tabs
@@ -37,20 +36,18 @@ const TourPage = () => {
 
   return (
     <div className="cardsContainer">
-      <AgentsDataContext.Provider value={agents}>
-        <section className="sectionHeaders">
-          <h2 style={{ marginBottom: 0 }}>Tours</h2>
-          <TourAddEditModal />
-        </section>
+      <section className="sectionHeaders">
+        <h2 style={{ marginBottom: 0 }}>Tours</h2>
+        <TourAddEditModal />
+      </section>
 
-        {loading ? (
-          <Spinner />
-        ) : windowWidth < 650 ? (
-          <ToursByDropDown tours={tours} />
-        ) : (
-          <TourTabs data={tours} />
-        )}
-      </AgentsDataContext.Provider>
+      {loading ? (
+        <Spinner />
+      ) : windowWidth < 650 ? (
+        <ToursByDropDown tours={tours} />
+      ) : (
+        <TourTabs data={tours} />
+      )}
     </div>
   );
 };
