@@ -1,12 +1,15 @@
 import React from "react";
-import { CARDHOLDER_STOCK_IMG } from "../../constants/constants";
+import {
+  APP_COLOR_EPIC_RED,
+  CARDHOLDER_STOCK_IMG,
+} from "../../constants/constants";
 
 export default function AgentImg({ img, heightAndWidth, imgOnCard }) {
   const baseStyles = {
     height: heightAndWidth,
     width: heightAndWidth,
     borderRadius: "50%",
-    border: "2px solid gray",
+    boxShadow: "0 0 15px " + APP_COLOR_EPIC_RED,
     objectFit: "cover",
   };
 
