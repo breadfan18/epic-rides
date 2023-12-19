@@ -38,3 +38,73 @@
   background-color: white;
   color: red;
 }
+
+#loginOr {
+  text-align: center;
+  font-size: 1.2rem;
+  color: var(--epic-red);
+}
+
+.userAndPwdForm {
+  display: flex;
+  flex-direction: column;
+}
+
+.userAndPwdForm svg {
+  align-self: center;
+  justify-self: center;
+}
+
+.login-form-group {
+  display: flex;
+  border: 1px solid var(--light-gray);
+  background-color: white;
+  padding-left: 10px;
+  border-radius: 5px;
+  margin-bottom: 10px;
+}
+
+.userAndPwdInput {
+  border: none;
+  border-radius: 5px;
+  padding: 10px;
+  min-width: 78%;
+}
+
+.loginLabels {
+  font-size: 1.9rem;
+  color: var(--epic-red);
+  padding-right: 10px;
+  border-right: 1px solid var(--light-gray);
+}
+
+.loginSubmit {
+  /* margin-top: 10px; */
+  padding: 10px;
+}
+
+#togglePwd {
+  margin-left: auto;
+  margin-right: 10px;
+  cursor: pointer;
+  color: var(--epic-red);
+  font-size: 1.3rem;
+}
+
+#loginFlowSelect {
+  display: flex;
+  justify-content: space-around;
+  border: 5px solid var(--epic-red);
+  /* padding: 10px; */
+  border-radius: 10px;
+}
+
+#loginFlowSelect div {
+  width: 100%;
+  padding: 10px;
+  cursor: pointer;
+}
+
+#loginFlowSelect div:nth-child(1) {
+  border-right: 5px solid var(--epic-red);
+}

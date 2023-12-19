@@ -1,5 +1,11 @@
 import { initializeApp } from "firebase/app";
-import { getAuth, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
+import {
+  getAuth,
+  GoogleAuthProvider,
+  signInWithPopup,
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+} from "firebase/auth";
 import { getDatabase, onValue, ref, remove, set } from "firebase/database";
 import {
   getStorage,
@@ -16,7 +22,7 @@ export const firebaseConfig = {
   projectId: "epic-rides-aa67e",
   storageBucket: "epic-rides-aa67e.appspot.com",
   messagingSenderId: "7456355664",
-  appId: "1:7456355664:web:a2f71ec2d7ceb53c1e6855"
+  appId: "1:7456355664:web:a2f71ec2d7ceb53c1e6855",
 };
 
 const app = initializeApp(firebaseConfig);
@@ -24,7 +30,7 @@ export const db = getDatabase(app);
 
 // DATABASE FUNCTIONS
 export function getFireBaseData(endpoint, dispatch, dispatchFunc, firebaseUid) {
-  onValue(ref(db, `/users/${firebaseUid}/${endpoint}`), (snap) => {
+  onValue(ref(db, `/allData/${endpoint}`), (snap) => {
     const allData = [];
     snap.forEach((data) => {
       const childData = data.val();
@@ -72,4 +78,24 @@ export const getFirebaseImgUrlForDataURL = async (cardholder, url) => {
   const snapshot = await uploadString(imgRef, url, "data_url");
   const scaledImg = await getDownloadURL(snapshot.ref);
   return scaledImg;
+};
+
+export const createAccount = async (auth, email, pwd) => {
+  try {
+    const userCreds = await createUserWithEmailAndPassword(auth, email, pwd);
+    console.log(userCreds);
+  } catch (err) {
+    console.log("foo");
+    console.log(err);
+  }
+};
+
+export const signInEmailPwd = async (auth, email, pwd) => {
+  try {
+    const userCreds = await signInWithEmailAndPassword(auth, email, pwd);
+    console.log(userCreds);
+  } catch (err) {
+    console.log("foo goo");
+    console.log(err);
+  }
 };

@@ -9,6 +9,7 @@ export default function PasswordInput({
   pwdType,
   togglePwdDisplay,
   showPwd,
+  placeholder,
 }) {
   return (
     <div className="login-form-group">
@@ -18,7 +19,7 @@ export default function PasswordInput({
         id="pwdField"
         className="userAndPwdInput"
         type={pwdType}
-        placeholder="Password"
+        placeholder={placeholder}
         value={pwd}
         onChange={onChange}
       />
