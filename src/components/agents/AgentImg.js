@@ -1,8 +1,5 @@
 import React from "react";
-import {
-  APP_COLOR_EPIC_RED,
-  CARDHOLDER_STOCK_IMG,
-} from "../../constants/constants";
+import { APP_COLOR_EPIC_RED, USER_STOCK_IMG } from "../../constants/constants";
 
 export default function AgentImg({ img, heightAndWidth, imgOnCard }) {
   const baseStyles = {
@@ -27,8 +24,8 @@ export default function AgentImg({ img, heightAndWidth, imgOnCard }) {
   return (
     <>
       <img
-        src={img || CARDHOLDER_STOCK_IMG}
-        onError={(e) => (e.target.src = CARDHOLDER_STOCK_IMG)}
+        src={img || USER_STOCK_IMG}
+        onError={(e) => (e.target.src = USER_STOCK_IMG)}
         alt="AA"
         style={{ ...finalStyles }}
         className={imgOnCard && "cardholderCardImg"}

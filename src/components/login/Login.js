@@ -4,7 +4,7 @@ import { AiOutlineUser } from "react-icons/ai";
 import { Button } from "react-bootstrap";
 import { auth, signInEmailPwd } from "../../tools/firebase";
 import SignUpForm from "./SignUpForm";
-import { APP_COLOR_EPIC_RED } from "../../constants/constants";
+import { APP_COLOR_EPIC_RED, EPIC_LOGO } from "../../constants/constants";
 import PasswordInput from "./PasswordInput";
 import UserInput from "./UserInput";
 
@@ -13,7 +13,7 @@ export default function Login({ windowWidth }) {
   const [pwdType, setPwdType] = useState("password");
   const [username, setUsername] = useState("");
   const [pwd, setPwd] = useState("");
-  const [signUp, setSignUp] = useState(true);
+  const [signUp, setSignUp] = useState(false);
 
   function togglePwdDisplay() {
     if (pwdType === "password") {
@@ -41,11 +41,7 @@ export default function Login({ windowWidth }) {
         id="loginForm"
         style={{ padding: windowWidth > 450 ? "2rem" : "1rem" }}
       >
-        <img
-          src="https://i.imgur.com/M0W3075.png"
-          alt=""
-          style={{ height: "7rem" }}
-        />
+        <img src={EPIC_LOGO} alt="" style={{ height: "7rem" }} />
         <h1>Tour Manager</h1>
         <section id="loginFlowSelect">
           <div
@@ -87,6 +83,7 @@ export default function Login({ windowWidth }) {
               pwdType={pwdType}
               togglePwdDisplay={togglePwdDisplay}
               showPwd={showPwd}
+              placeholder="Password"
             />
             <Button
               className="loginSubmit btn btn-success"

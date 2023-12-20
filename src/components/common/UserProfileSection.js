@@ -4,7 +4,7 @@ import { GoSignOut } from "react-icons/go";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 import { userLogout } from "../../redux/actions/authActions";
 import { connect } from "react-redux";
-import { APP_COLOR_EPIC_RED } from "../../constants/constants";
+import { APP_COLOR_EPIC_RED, USER_STOCK_IMG } from "../../constants/constants";
 
 function UserProfileSection({ user, userLogout, smallNav }) {
   const history = useHistory();
@@ -14,11 +14,12 @@ function UserProfileSection({ user, userLogout, smallNav }) {
     localStorage.removeItem("selectedUser");
     history.push("/signin");
   }
+
   return (
     <section id="userImg">
       <img
-        src={user.photoURL}
-        alt=""
+        src={user.photoURL || USER_STOCK_IMG}
+        alt={user.displayName}
         style={{
           borderRadius: "50%",
           height: smallNav ? "2.1rem" : "2.4rem",

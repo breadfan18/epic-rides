@@ -5,6 +5,7 @@ import {
   signInWithPopup,
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
+  updateProfile,
 } from "firebase/auth";
 import { getDatabase, onValue, ref, remove, set } from "firebase/database";
 import {
@@ -14,6 +15,7 @@ import {
   ref as storageRef,
   uploadString,
 } from "firebase/storage";
+import { USER_STOCK_IMG } from "../constants/constants";
 
 export const firebaseConfig = {
   apiKey: "AIzaSyCeGlbd_IUxNhGQaWChisz6naRXE5sMXnA",
@@ -27,6 +29,25 @@ export const firebaseConfig = {
 
 const app = initializeApp(firebaseConfig);
 export const db = getDatabase(app);
+
+export const createAccount = async (fbAuth, user) => {
+  try {
+    const userCreds = await createUserWithEmailAndPassword(
+      fbAuth,
+      user.email,
+      user.pwd
+    );
+
+    await updateProfile(userCreds.user, {
+      displayName: `${user.firstName} ${user.lastName}`,
+      photoURL: USER_STOCK_IMG,
+    });
+  } catch (err) {
+    console.log("foo");
+    console.log(err);
+    return err;
+  }
+};
 
 // DATABASE FUNCTIONS
 export function getFireBaseData(endpoint, dispatch, dispatchFunc, firebaseUid) {
@@ -80,22 +101,12 @@ export const getFirebaseImgUrlForDataURL = async (cardholder, url) => {
   return scaledImg;
 };
 
-export const createAccount = async (auth, email, pwd) => {
-  try {
-    const userCreds = await createUserWithEmailAndPassword(auth, email, pwd);
-    console.log(userCreds);
-  } catch (err) {
-    console.log("foo");
-    console.log(err);
-  }
-};
-
 export const signInEmailPwd = async (auth, email, pwd) => {
   try {
     const userCreds = await signInWithEmailAndPassword(auth, email, pwd);
     console.log(userCreds);
   } catch (err) {
-    console.log("foo goo");
+    console.log("Error signing in with Firebase!");
     console.log(err);
   }
 };

@@ -1,45 +1,63 @@
 import { Button } from "react-bootstrap";
-import React from "react";
+import React, { useState } from "react";
 import { auth, createAccount } from "../../tools/firebase";
 import UserInput from "./UserInput";
 import PasswordInput from "./PasswordInput";
 import { AiOutlineUser } from "react-icons/ai";
+import { APP_COLOR_EPIC_RED } from "../../constants/constants";
 
 export default function SignUpForm({
-  onChange,
   username,
   pwd,
   pwdType,
   togglePwdDisplay,
   showPwd,
 }) {
+  const NEW_USER = {
+    firstName: "",
+    lastName: "",
+    email: "",
+    pwd: "",
+    confirmPwd: "",
+  };
+
+  const [user, setUser] = useState(NEW_USER);
+
+  function handleChange(e) {
+    const { name, value } = e.target;
+    setUser((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
+  }
+
   return (
     <form action="" className="userAndPwdForm">
       <UserInput
         Icon={AiOutlineUser}
-        onChange={onChange}
+        onChange={handleChange}
         name="firstName"
         placeholder="First Name"
-        value={username}
+        value={user.firstName}
       />
       <UserInput
         Icon={AiOutlineUser}
-        onChange={onChange}
+        onChange={handleChange}
         name="lastName"
         placeholder="Last Name"
-        value={username}
+        value={user.lastName}
       />
       <UserInput
         Icon={AiOutlineUser}
-        onChange={onChange}
-        name="username"
+        onChange={handleChange}
+        name="email"
         placeholder="Email address"
-        value={username}
+        value={user.email}
       />
       <PasswordInput
         name="pwd"
-        onChange={onChange}
-        pwd={pwd}
+        onChange={handleChange}
+        pwd={user.pwd}
         pwdType={pwdType}
         togglePwdDisplay={togglePwdDisplay}
         showPwd={showPwd}
@@ -47,8 +65,8 @@ export default function SignUpForm({
       />
       <PasswordInput
         name="confirmPwd"
-        onChange={onChange}
-        pwd={pwd}
+        onChange={handleChange}
+        pwd={user.confirmPwd}
         pwdType={pwdType}
         togglePwdDisplay={togglePwdDisplay}
         showPwd={showPwd}
@@ -56,7 +74,7 @@ export default function SignUpForm({
       />
       <Button
         className="loginSubmit btn"
-        onClick={() => createAccount(auth, username, pwd)}
+        onClick={() => createAccount(auth, user)}
       >
         Sign Up
       </Button>
