@@ -41,9 +41,6 @@ function App() {
             <Route path="/tours" component={TourPage} />
             <Route path="/tour/:id" component={TourDetailsPage} />
             <Route path="/agents" component={AgentsPage} />
-            {/* <Route path="/loyalty-accounts" component={LoyaltyPage} /> */}
-            {/* <Route path="/loyalty/:id" component={ManageLoyaltyPage} /> */}
-            {/* <Route path="/loyalty" component={ManageLoyaltyPage} /> */}
             <Route component={PageNotFound} />
           </Switch>
           <ToastContainer autoClose={3000} hideProgressBar />

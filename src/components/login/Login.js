@@ -5,6 +5,16 @@ import SignUpForm from "./SignUpForm";
 import { APP_COLOR_EPIC_RED, EPIC_LOGO } from "../../constants/constants";
 import SignInForm from "./SignInForm";
 
+/* 
+NEXT STEPS:
+- Move all toggle pwd etc logic into PasswordInput component
+- Setup UI to show login errors
+- Add Photo import capability to Sign up form
+- Data validation for: Name fields, email field, Password requirements 
+- Setup Confirm Password Flow
+- Fix momentary error on login/signup redirect
+*/
+
 export default function Login({ windowWidth }) {
   const [showPwd, setShowPwd] = useState(false);
   const [pwdType, setPwdType] = useState("password");

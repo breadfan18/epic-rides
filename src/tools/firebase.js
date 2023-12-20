@@ -68,6 +68,7 @@ const signInEmailPwd = async (auth, email, pwd) => {
   try {
     const userCreds = await signInWithEmailAndPassword(auth, email, pwd);
     console.log(userCreds);
+    window.location = "/";
   } catch (err) {
     console.log("Error signing in with Firebase!");
     console.log(err);
@@ -86,6 +87,8 @@ const createAccount = async (fbAuth, user) => {
       displayName: `${user.firstName} ${user.lastName}`,
       photoURL: USER_STOCK_IMG,
     });
+
+    window.location = "/";
   } catch (err) {
     console.log("foo");
     console.log(err);
