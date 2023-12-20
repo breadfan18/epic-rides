@@ -7,6 +7,7 @@ import PasswordInput from "./PasswordInput";
 import { FaUserCircle } from "react-icons/fa";
 import { MdAlternateEmail } from "react-icons/md";
 import { NEW_USER } from "../../constants/constants";
+import { titleCase } from "../../helpers";
 
 export default function SignUpForm({ pwdType, togglePwdDisplay, showPwd }) {
   const [user, setUser] = useState(NEW_USER);
@@ -26,14 +27,14 @@ export default function SignUpForm({ pwdType, togglePwdDisplay, showPwd }) {
         onChange={handleChange}
         name="firstName"
         placeholder="First Name"
-        value={user.firstName}
+        value={titleCase(user.firstName)}
       />
       <UserInput
         Icon={FaUserCircle}
         onChange={handleChange}
         name="lastName"
         placeholder="Last Name"
-        value={user.lastName}
+        value={titleCase(user.lastName)}
       />
       <UserInput
         Icon={MdAlternateEmail}
@@ -62,7 +63,7 @@ export default function SignUpForm({ pwdType, togglePwdDisplay, showPwd }) {
       />
       <Button
         className="loginSubmit"
-        style={{ backgroundColor: "black", border: "1px solid black" }}
+        style={{ backgroundColor: "black", border: "5px solid black" }}
         onClick={() => createAccount(auth, user)}
       >
         Sign Up
