@@ -9,10 +9,13 @@ import PasswordInput from "./PasswordInput";
 import UserInput from "./UserInput";
 
 export default function Login({ windowWidth }) {
+  const NEW_CREDENTIALS = {
+    email: "",
+    pwd: "",
+  };
   const [showPwd, setShowPwd] = useState(false);
   const [pwdType, setPwdType] = useState("password");
-  const [username, setUsername] = useState("");
-  const [pwd, setPwd] = useState("");
+  const [userCreds, setUserCreds] = useState(NEW_CREDENTIALS);
   const [signUp, setSignUp] = useState(false);
 
   function togglePwdDisplay() {
@@ -27,7 +30,10 @@ export default function Login({ windowWidth }) {
 
   function handleChange(e) {
     const { name, value } = e.target;
-    name === "username" ? setUsername(value) : setPwd(value);
+    setUserCreds((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
   }
 
   const activeStyle = {
@@ -62,8 +68,6 @@ export default function Login({ windowWidth }) {
         {signUp ? (
           <SignUpForm
             onChange={handleChange}
-            username={username}
-            pwd={pwd}
             pwdType={pwdType}
             togglePwdDisplay={togglePwdDisplay}
             showPwd={showPwd}
@@ -73,13 +77,14 @@ export default function Login({ windowWidth }) {
             <UserInput
               Icon={AiOutlineUser}
               onChange={handleChange}
-              name="username"
+              name="email"
               placeholder="Email address"
-              value={username}
+              value={userCreds.email}
             />
             <PasswordInput
+              name="pwd"
               onChange={handleChange}
-              pwd={pwd}
+              pwd={userCreds.pwd}
               pwdType={pwdType}
               togglePwdDisplay={togglePwdDisplay}
               showPwd={showPwd}
@@ -87,7 +92,9 @@ export default function Login({ windowWidth }) {
             />
             <Button
               className="loginSubmit btn btn-success"
-              onClick={() => signInEmailPwd(auth, username, pwd)}
+              onClick={() =>
+                signInEmailPwd(auth, userCreds.email, userCreds.pwd)
+              }
             >
               Sign In
             </Button>

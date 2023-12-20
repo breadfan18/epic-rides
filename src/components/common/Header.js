@@ -2,7 +2,7 @@ import React, { useEffect, useState, useRef, useContext } from "react";
 import { NavLink } from "react-router-dom";
 import Burger from "./Burger";
 import { WindowWidthContext } from "../App";
-import { APP_COLOR_EPIC_RED } from "../../constants/constants";
+import { APP_COLOR_EPIC_RED, EPIC_LOGO } from "../../constants/constants";
 import UserProfileSection from "./UserProfileSection";
 
 const Header = ({ user }) => {
@@ -31,7 +31,7 @@ const Header = ({ user }) => {
       <div id="smallNavTopHeader">
         <Burger open={open} setOpen={setOpen} />
         <img
-          src="https://i.imgur.com/M0W3075.png"
+          src={EPIC_LOGO}
           alt=""
           style={{
             height: "2.6rem",
@@ -84,11 +84,7 @@ const Header = ({ user }) => {
     </main>
   ) : (
     <main className="navContainer">
-      <img
-        src="https://i.imgur.com/M0W3075.png"
-        alt=""
-        style={{ height: "5rem" }}
-      />
+      <img src={EPIC_LOGO} alt="" style={{ height: "5rem" }} />
       <nav className="navFull">
         <NavLink to="/" activeStyle={activeStyle} exact>
           Home

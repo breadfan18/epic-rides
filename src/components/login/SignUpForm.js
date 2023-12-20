@@ -4,15 +4,8 @@ import { auth, createAccount } from "../../tools/firebase";
 import UserInput from "./UserInput";
 import PasswordInput from "./PasswordInput";
 import { AiOutlineUser } from "react-icons/ai";
-import { APP_COLOR_EPIC_RED } from "../../constants/constants";
 
-export default function SignUpForm({
-  username,
-  pwd,
-  pwdType,
-  togglePwdDisplay,
-  showPwd,
-}) {
+export default function SignUpForm({ pwdType, togglePwdDisplay, showPwd }) {
   const NEW_USER = {
     firstName: "",
     lastName: "",
