@@ -3,17 +3,12 @@ import React, { useState } from "react";
 import { auth, createAccount } from "../../tools/firebase";
 import UserInput from "./UserInput";
 import PasswordInput from "./PasswordInput";
-import { AiOutlineUser } from "react-icons/ai";
+// import { FaUserCircle } from "react-icons/ai";
+import { FaUserCircle } from "react-icons/fa";
+import { MdAlternateEmail } from "react-icons/md";
+import { NEW_USER } from "../../constants/constants";
 
 export default function SignUpForm({ pwdType, togglePwdDisplay, showPwd }) {
-  const NEW_USER = {
-    firstName: "",
-    lastName: "",
-    email: "",
-    pwd: "",
-    confirmPwd: "",
-  };
-
   const [user, setUser] = useState(NEW_USER);
 
   function handleChange(e) {
@@ -27,21 +22,21 @@ export default function SignUpForm({ pwdType, togglePwdDisplay, showPwd }) {
   return (
     <form action="" className="userAndPwdForm">
       <UserInput
-        Icon={AiOutlineUser}
+        Icon={FaUserCircle}
         onChange={handleChange}
         name="firstName"
         placeholder="First Name"
         value={user.firstName}
       />
       <UserInput
-        Icon={AiOutlineUser}
+        Icon={FaUserCircle}
         onChange={handleChange}
         name="lastName"
         placeholder="Last Name"
         value={user.lastName}
       />
       <UserInput
-        Icon={AiOutlineUser}
+        Icon={MdAlternateEmail}
         onChange={handleChange}
         name="email"
         placeholder="Email address"
@@ -66,7 +61,8 @@ export default function SignUpForm({ pwdType, togglePwdDisplay, showPwd }) {
         placeholder="Confirm Password"
       />
       <Button
-        className="loginSubmit btn"
+        className="loginSubmit"
+        style={{ backgroundColor: "black", border: "1px solid black" }}
         onClick={() => createAccount(auth, user)}
       >
         Sign Up

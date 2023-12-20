@@ -61,6 +61,19 @@ export const NEW_DATA = {
   fileLocation: null,
 };
 
+export const NEW_USER = {
+  firstName: "",
+  lastName: "",
+  email: "",
+  pwd: "",
+  confirmPwd: "",
+};
+
+export const NEW_SIGN_IN_STATE = {
+  email: "",
+  pwd: "",
+};
+
 export const TOUR_DETAILS_IMAGES = [
   "https://i.imgur.com/6zoDtVD.png",
   "https://i.imgur.com/MI2XBOj.png",

@@ -9,7 +9,7 @@ export default function UserInput({
 }) {
   return (
     <div className="login-form-group">
-      <Icon className="loginLabels" />
+      <Icon className="loginLabels" style={{ color: value && "green" }} />
       <input
         name={name}
         className="userAndPwdInput"

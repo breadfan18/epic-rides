@@ -1,21 +1,22 @@
 import React, { useState } from "react";
 import "./Login.css";
 import { AiOutlineUser } from "react-icons/ai";
+import { MdAlternateEmail } from "react-icons/md";
 import { Button } from "react-bootstrap";
 import { auth, signInEmailPwd } from "../../tools/firebase";
 import SignUpForm from "./SignUpForm";
-import { APP_COLOR_EPIC_RED, EPIC_LOGO } from "../../constants/constants";
+import {
+  APP_COLOR_EPIC_RED,
+  EPIC_LOGO,
+  NEW_SIGN_IN_STATE,
+} from "../../constants/constants";
 import PasswordInput from "./PasswordInput";
 import UserInput from "./UserInput";
 
 export default function Login({ windowWidth }) {
-  const NEW_CREDENTIALS = {
-    email: "",
-    pwd: "",
-  };
   const [showPwd, setShowPwd] = useState(false);
   const [pwdType, setPwdType] = useState("password");
-  const [userCreds, setUserCreds] = useState(NEW_CREDENTIALS);
+  const [userCreds, setUserCreds] = useState(NEW_SIGN_IN_STATE);
   const [signUp, setSignUp] = useState(false);
 
   function togglePwdDisplay() {
@@ -75,7 +76,7 @@ export default function Login({ windowWidth }) {
         ) : (
           <form action="" className="userAndPwdForm">
             <UserInput
-              Icon={AiOutlineUser}
+              Icon={MdAlternateEmail}
               onChange={handleChange}
               name="email"
               placeholder="Email address"
@@ -91,7 +92,8 @@ export default function Login({ windowWidth }) {
               placeholder="Password"
             />
             <Button
-              className="loginSubmit btn btn-success"
+              className="loginSubmit"
+              style={{ backgroundColor: "black", border: "1px solid black" }}
               onClick={() =>
                 signInEmailPwd(auth, userCreds.email, userCreds.pwd)
               }

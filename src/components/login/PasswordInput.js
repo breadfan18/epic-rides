@@ -13,7 +13,10 @@ export default function PasswordInput({
 }) {
   return (
     <div className="login-form-group">
-      <AiFillLock className="loginLabels" />
+      <AiFillLock
+        className="loginLabels"
+        style={{ color: pwd && pwd.length > 3 && "green" }}
+      />
       <input
         name={name}
         id="pwdField"
