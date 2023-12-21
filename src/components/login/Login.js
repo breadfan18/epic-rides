@@ -11,7 +11,7 @@ NEXT STEPS:
 - Setup UI to show login errors - DONE
 - Data validation for: Name fields, email field, Password requirements  - DONE
 - Setup Confirm Password Flow - DONE
-- Password regex
+- Password regex - DONE
 - Add Photo import capability to Sign up form
 - Fix momentary error on login/signup redirect
 - Reduxify sign in calls

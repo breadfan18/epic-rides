@@ -86,7 +86,7 @@ const createAccount = async (user) => {
 
     await updateProfile(userCreds.user, {
       displayName: `${user.firstName} ${user.lastName}`,
-      photoURL: USER_STOCK_IMG,
+      photoURL: user.img || USER_STOCK_IMG,
     });
 
     window.location = "/";

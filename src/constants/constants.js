@@ -67,6 +67,7 @@ export const NEW_USER = {
   email: "",
   pwd: "",
   confirmPwd: "",
+  img: null,
 };
 
 export const NEW_SIGN_IN_STATE = {
@@ -190,5 +191,5 @@ export const DELETE_MODAL_TYPES = {
   agent: "agent",
 };
 
-export const USER_STOCK_IMG = "https://i.imgur.com/JFgA7EB.png";
+export const USER_STOCK_IMG = "https://i.imgur.com/iALkKsV.png";
 export const EPIC_LOGO = "https://i.imgur.com/M0W3075.png";

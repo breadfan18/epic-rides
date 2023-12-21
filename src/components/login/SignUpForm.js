@@ -1,6 +1,9 @@
 import { Button } from "react-bootstrap";
 import React, { useState } from "react";
-import { createAccount } from "../../tools/firebase";
+import {
+  createAccount,
+  getFirebaseImgUrlForDataURL,
+} from "../../tools/firebase";
 import UserInput from "./UserInput";
 import PasswordInput from "./PasswordInput";
 // import { FaUserCircle } from "react-icons/ai";
@@ -9,10 +12,14 @@ import { MdAlternateEmail } from "react-icons/md";
 import { NEW_USER } from "../../constants/constants";
 import { isPasswordValid, setLoginErrorText, titleCase } from "../../helpers";
 import Error from "../common/Error";
+import PhotoEditor from "./PhotoEditor";
+import UserPhoto from "./UserPhoto";
+import PhotoEditButton from "./PhotoEditButton";
 
 export default function SignUpForm() {
   const [user, setUser] = useState(NEW_USER);
   const [error, setError] = useState(null);
+  const [imgEditor, setImgEditor] = useState(null);
 
   function handleChange(e) {
     const { name, value } = e.target;
@@ -21,6 +28,14 @@ export default function SignUpForm() {
       [name]: value,
     }));
   }
+
+  const handleSavePhoto = async (editor) => {
+    if (editor) {
+      const canvas = editor.getImageScaledToCanvas();
+      const profilePhotoURL = canvas.toDataURL();
+      return await getFirebaseImgUrlForDataURL(user, profilePhotoURL);
+    }
+  };
 
   const handleSignup = async () => {
     if (user.firstName === "") {
@@ -46,6 +61,19 @@ export default function SignUpForm() {
   return (
     <form action="" className="userAndPwdForm">
       {error && <Error errorMessage={error} />}
+      <div style={{ display: "flex", justifyContent: "center" }}>
+        {user.img ? (
+          <PhotoEditor
+            image={user.img}
+            handleSave={handleSavePhoto}
+            setEditor={setImgEditor}
+          />
+        ) : (
+          <UserPhoto img={user.img} heightAndWidth="7rem" />
+        )}
+        {!user.img && <PhotoEditButton onChange={handleChange} />}
+      </div>
+      <hr />
       <UserInput
         Icon={FaUserCircle}
         onChange={handleChange}

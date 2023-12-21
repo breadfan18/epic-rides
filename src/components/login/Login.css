@@ -108,3 +108,39 @@
 #loginFlowSelect div:nth-child(1) {
   border-right: 5px solid var(--epic-red);
 }
+
+.image-upload {
+  position: absolute;
+  width: 2.1rem;
+  height: 2.1rem;
+  margin-right: -67px;
+  margin-top: 73px;
+}
+
+.editPhotoIcon {
+  width: 2.1rem;
+  height: 2.1rem;
+  background: white;
+  border-radius: 50%;
+  border: 2px solid gray;
+  padding: 2px;
+  color: var(--epic-red);
+  cursor: pointer;
+}
+
+.custom-file-input::-webkit-file-upload-button {
+  visibility: hidden;
+}
+
+.photoEditContainer {
+  display: flex;
+  flex-direction: column;
+  border: 2px solid gray;
+  border-radius: 0 0 10px 10px;
+}
+
+.photoEditZoomer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
