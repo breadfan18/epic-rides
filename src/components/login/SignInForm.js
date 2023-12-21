@@ -5,12 +5,7 @@ import { auth, signInEmailPwd } from "../../tools/firebase";
 import { Button } from "react-bootstrap";
 import { NEW_SIGN_IN_STATE } from "../../constants/constants";
 
-export default function SignInForm({
-  Icon,
-  pwdType,
-  showPwd,
-  togglePwdDisplay,
-}) {
+export default function SignInForm({ Icon }) {
   const [userCreds, setUserCreds] = useState(NEW_SIGN_IN_STATE);
 
   function handleChange(e) {
@@ -34,9 +29,6 @@ export default function SignInForm({
         name="pwd"
         onChange={handleChange}
         pwd={userCreds.pwd}
-        pwdType={pwdType}
-        togglePwdDisplay={togglePwdDisplay}
-        showPwd={showPwd}
         placeholder="Password"
       />
       <Button

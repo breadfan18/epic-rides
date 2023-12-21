@@ -1,16 +1,21 @@
-import React from "react";
+import React, { useState } from "react";
 import { AiFillLock } from "react-icons/ai";
 import { ImEyeBlocked, ImEye } from "react-icons/im";
 
-export default function PasswordInput({
-  name,
-  onChange,
-  pwd,
-  pwdType,
-  togglePwdDisplay,
-  showPwd,
-  placeholder,
-}) {
+export default function PasswordInput({ name, onChange, pwd, placeholder }) {
+  const [showPwd, setShowPwd] = useState(false);
+  const [pwdType, setPwdType] = useState("password");
+
+  function togglePwdDisplay() {
+    if (pwdType === "password") {
+      setPwdType("text");
+      setShowPwd(!showPwd);
+    } else {
+      setPwdType("password");
+      setShowPwd(!showPwd);
+    }
+  }
+
   return (
     <div className="login-form-group">
       <AiFillLock

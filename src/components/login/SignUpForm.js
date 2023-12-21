@@ -9,7 +9,7 @@ import { MdAlternateEmail } from "react-icons/md";
 import { NEW_USER } from "../../constants/constants";
 import { titleCase } from "../../helpers";
 
-export default function SignUpForm({ pwdType, togglePwdDisplay, showPwd }) {
+export default function SignUpForm() {
   const [user, setUser] = useState(NEW_USER);
 
   function handleChange(e) {
@@ -47,18 +47,12 @@ export default function SignUpForm({ pwdType, togglePwdDisplay, showPwd }) {
         name="pwd"
         onChange={handleChange}
         pwd={user.pwd}
-        pwdType={pwdType}
-        togglePwdDisplay={togglePwdDisplay}
-        showPwd={showPwd}
         placeholder="Password"
       />
       <PasswordInput
         name="confirmPwd"
         onChange={handleChange}
         pwd={user.confirmPwd}
-        pwdType={pwdType}
-        togglePwdDisplay={togglePwdDisplay}
-        showPwd={showPwd}
         placeholder="Confirm Password"
       />
       <Button

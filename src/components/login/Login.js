@@ -7,28 +7,17 @@ import SignInForm from "./SignInForm";
 
 /* 
 NEXT STEPS:
-- Move all toggle pwd etc logic into PasswordInput component
+- Move all toggle pwd etc logic into PasswordInput component - DONE
 - Setup UI to show login errors
 - Add Photo import capability to Sign up form
 - Data validation for: Name fields, email field, Password requirements 
 - Setup Confirm Password Flow
 - Fix momentary error on login/signup redirect
+- Reduxify sign in calls
 */
 
 export default function Login({ windowWidth }) {
-  const [showPwd, setShowPwd] = useState(false);
-  const [pwdType, setPwdType] = useState("password");
   const [signUp, setSignUp] = useState(false);
-
-  function togglePwdDisplay() {
-    if (pwdType === "password") {
-      setPwdType("text");
-      setShowPwd(!showPwd);
-    } else {
-      setPwdType("password");
-      setShowPwd(!showPwd);
-    }
-  }
 
   const activeStyle = {
     color: "white",
@@ -59,20 +48,7 @@ export default function Login({ windowWidth }) {
           </div>
         </section>
         <hr />
-        {signUp ? (
-          <SignUpForm
-            pwdType={pwdType}
-            togglePwdDisplay={togglePwdDisplay}
-            showPwd={showPwd}
-          />
-        ) : (
-          <SignInForm
-            Icon={MdAlternateEmail}
-            pwdType={pwdType}
-            showPwd={showPwd}
-            togglePwdDisplay={togglePwdDisplay}
-          />
-        )}
+        {signUp ? <SignUpForm /> : <SignInForm Icon={MdAlternateEmail} />}
       </section>
     </main>
   );
