@@ -60,6 +60,7 @@ export default function SignUpForm() {
         name="email"
         placeholder="Email address"
         value={user.email}
+        isEmail
       />
       <PasswordInput
         name="pwd"

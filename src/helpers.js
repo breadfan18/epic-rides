@@ -253,6 +253,8 @@ export function setLoginErrorText(errorCode) {
       return "Password Required";
     case "auth/weak-password":
       return "Password must be at least 6 characters";
+    case "auth/email-already-in-use":
+      return "Email address already registered";
     default:
       break;
   }
@@ -260,5 +262,5 @@ export function setLoginErrorText(errorCode) {
 
 export function emailPatternCheck(email) {
   const emailPattern = /^[\w-]+(\.[\w-]+)*@([\w-]+\.)+[a-zA-Z]{2,7}$/;
-  return emailPattern.test("example@email.com");
+  return emailPattern.test(email);
 }

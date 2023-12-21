@@ -33,6 +33,7 @@ export default function SignInForm({ Icon }) {
         name="email"
         placeholder="Email address"
         value={userCreds.email}
+        isEmail
       />
       <PasswordInput
         name="pwd"
