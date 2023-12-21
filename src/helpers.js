@@ -249,7 +249,16 @@ export function setLoginErrorText(errorCode) {
       return "Invalid email address";
     case "auth/invalid-login-credentials":
       return "Invalid login credentials";
+    case "auth/missing-password":
+      return "Password Required";
+    case "auth/weak-password":
+      return "Password must be at least 6 characters";
     default:
       break;
   }
+}
+
+export function emailPatternCheck(email) {
+  const emailPattern = /^[\w-]+(\.[\w-]+)*@([\w-]+\.)+[a-zA-Z]{2,7}$/;
+  return emailPattern.test("example@email.com");
 }

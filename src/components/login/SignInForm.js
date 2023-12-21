@@ -2,14 +2,9 @@ import React, { useState } from "react";
 import UserInput from "./UserInput";
 import Error from "../common/Error";
 import PasswordInput from "./PasswordInput";
-import { auth, signInEmailPwd } from "../../tools/firebase";
+import { signInEmailPwd } from "../../tools/firebase";
 import { Button } from "react-bootstrap";
-import {
-  APP_COLOR_BLACK_OPACITY,
-  APP_COLOR_EPIC_RED,
-  DELETE_COLOR_RED,
-  NEW_SIGN_IN_STATE,
-} from "../../constants/constants";
+import { NEW_SIGN_IN_STATE } from "../../constants/constants";
 import { setLoginErrorText } from "../../helpers";
 
 export default function SignInForm({ Icon }) {
@@ -25,7 +20,7 @@ export default function SignInForm({ Icon }) {
   };
 
   const handleSignIn = async () => {
-    const signInError = signInEmailPwd(userCreds.email, userCreds.pwd);
+    const signInError = await signInEmailPwd(userCreds.email, userCreds.pwd);
     if (signInError) setError(setLoginErrorText(await signInError));
   };
 

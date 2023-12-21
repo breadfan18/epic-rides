@@ -76,10 +76,10 @@ const signInEmailPwd = async (email, pwd) => {
   }
 };
 
-const createAccount = async (fbAuth, user) => {
+const createAccount = async (user) => {
   try {
     const userCreds = await createUserWithEmailAndPassword(
-      fbAuth,
+      auth,
       user.email,
       user.pwd
     );
@@ -91,9 +91,8 @@ const createAccount = async (fbAuth, user) => {
 
     window.location = "/";
   } catch (err) {
-    console.log("foo");
     console.log(err);
-    return err;
+    return err.code;
   }
 };
 

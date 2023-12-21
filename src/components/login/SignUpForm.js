@@ -1,16 +1,18 @@
 import { Button } from "react-bootstrap";
 import React, { useState } from "react";
-import { auth, createAccount } from "../../tools/firebase";
+import { createAccount } from "../../tools/firebase";
 import UserInput from "./UserInput";
 import PasswordInput from "./PasswordInput";
 // import { FaUserCircle } from "react-icons/ai";
 import { FaUserCircle } from "react-icons/fa";
 import { MdAlternateEmail } from "react-icons/md";
 import { NEW_USER } from "../../constants/constants";
-import { titleCase } from "../../helpers";
+import { setLoginErrorText, titleCase } from "../../helpers";
+import Error from "../common/Error";
 
 export default function SignUpForm() {
   const [user, setUser] = useState(NEW_USER);
+  const [error, setError] = useState(null);
 
   function handleChange(e) {
     const { name, value } = e.target;
@@ -20,8 +22,24 @@ export default function SignUpForm() {
     }));
   }
 
+  const handleSignup = async () => {
+    if (user.firstName === "") {
+      setError("First Name Required");
+    } else if (user.lastName === "") {
+      setError("Last Name Required");
+    } else if (user.pwd !== user.confirmPwd) {
+      setError("Password don't match");
+    } else {
+      const signUpError = await createAccount(user);
+      if (signUpError) {
+        setError(setLoginErrorText(await signUpError));
+      }
+    }
+  };
+
   return (
     <form action="" className="userAndPwdForm">
+      {error && <Error errorMessage={error} />}
       <UserInput
         Icon={FaUserCircle}
         onChange={handleChange}
@@ -58,7 +76,7 @@ export default function SignUpForm() {
       <Button
         className="loginSubmit"
         style={{ backgroundColor: "black", border: "5px solid black" }}
-        onClick={() => createAccount(auth, user)}
+        onClick={() => handleSignup()}
       >
         Sign Up
       </Button>

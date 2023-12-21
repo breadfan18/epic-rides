@@ -1,7 +1,6 @@
-function formatDate(dateStr) {
-  if (dateStr === undefined || dateStr === "") return "N/A";
-  const dateSplit = dateStr.split("-");
-  return `${dateSplit[1]}-${dateSplit[2]}-${dateSplit[0]}`;
+function emailPatternCheck(email) {
+  const emailPattern = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/g;
+  return emailPattern.test(email);
 }
 
-console.log(new Date().toISOString().split("T")[0]);
+console.log(emailPatternCheck("test@test.org"));
