@@ -1,5 +1,5 @@
 import React from "react";
-import { emailPatternCheck } from "../../helpers";
+import { isEmailAddressValid } from "../../helpers";
 
 export default function UserInput({
   Icon,
@@ -9,7 +9,7 @@ export default function UserInput({
   onChange,
   isEmail,
 }) {
-  const valueCompleted = isEmail ? emailPatternCheck(value) : value !== "";
+  const valueCompleted = isEmail ? isEmailAddressValid(value) : value !== "";
   return (
     <div className="login-form-group">
       <Icon

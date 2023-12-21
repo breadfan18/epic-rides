@@ -8,10 +8,11 @@ import SignInForm from "./SignInForm";
 /* 
 NEXT STEPS:
 - Move all toggle pwd etc logic into PasswordInput component - DONE
-- Setup UI to show login errors
+- Setup UI to show login errors - DONE
+- Data validation for: Name fields, email field, Password requirements  - DONE
+- Setup Confirm Password Flow - DONE
+- Password regex
 - Add Photo import capability to Sign up form
-- Data validation for: Name fields, email field, Password requirements 
-- Setup Confirm Password Flow
 - Fix momentary error on login/signup redirect
 - Reduxify sign in calls
 */

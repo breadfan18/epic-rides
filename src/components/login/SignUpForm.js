@@ -7,7 +7,7 @@ import PasswordInput from "./PasswordInput";
 import { FaUserCircle } from "react-icons/fa";
 import { MdAlternateEmail } from "react-icons/md";
 import { NEW_USER } from "../../constants/constants";
-import { setLoginErrorText, titleCase } from "../../helpers";
+import { isPasswordValid, setLoginErrorText, titleCase } from "../../helpers";
 import Error from "../common/Error";
 
 export default function SignUpForm() {
@@ -27,6 +27,12 @@ export default function SignUpForm() {
       setError("First Name Required");
     } else if (user.lastName === "") {
       setError("Last Name Required");
+    } else if (user.email === "") {
+      setError("Email address Required");
+    } else if (!isPasswordValid(user.pwd)) {
+      setError(
+        "Passwords must be at least 8 characters, include at least one CAPITAL letter and 1 Number"
+      );
     } else if (user.pwd !== user.confirmPwd) {
       setError("Password don't match");
     } else {

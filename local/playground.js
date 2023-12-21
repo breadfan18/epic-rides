@@ -1,6 +1,6 @@
-function emailPatternCheck(email) {
-  const emailPattern = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/g;
-  return emailPattern.test(email);
+function isPasswordValid(pwd) {
+  const passwordPattern = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d\S]{8,}$/;
+  return passwordPattern.test(pwd);
 }
 
-console.log(emailPatternCheck("test@test.org"));
+console.log(isPasswordValid("Test12356"));

@@ -260,7 +260,12 @@ export function setLoginErrorText(errorCode) {
   }
 }
 
-export function emailPatternCheck(email) {
+export function isEmailAddressValid(email) {
   const emailPattern = /^[\w-]+(\.[\w-]+)*@([\w-]+\.)+[a-zA-Z]{2,7}$/;
   return emailPattern.test(email);
+}
+
+export function isPasswordValid(pwd) {
+  const passwordPattern = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d\S]{8,}$/;
+  return passwordPattern.test(pwd);
 }

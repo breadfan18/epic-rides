@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { AiFillLock } from "react-icons/ai";
 import { ImEyeBlocked, ImEye } from "react-icons/im";
+import { isPasswordValid } from "../../helpers";
 
 export default function PasswordInput({ name, onChange, pwd, placeholder }) {
   const [showPwd, setShowPwd] = useState(false);
@@ -20,7 +21,7 @@ export default function PasswordInput({ name, onChange, pwd, placeholder }) {
     <div className="login-form-group">
       <AiFillLock
         className="loginLabels"
-        style={{ color: pwd && pwd.length > 3 && "green" }}
+        style={{ color: pwd && isPasswordValid(pwd) && "green" }}
       />
       <input
         name={name}
