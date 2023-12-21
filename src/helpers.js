@@ -242,3 +242,14 @@ export function fileNameGenerator(
     fileOpenDate: new Date().toISOString().split("T")[0],
   };
 }
+
+export function setLoginErrorText(errorCode) {
+  switch (errorCode) {
+    case "auth/invalid-email":
+      return "Invalid email address";
+    case "auth/invalid-login-credentials":
+      return "Invalid login credentials";
+    default:
+      break;
+  }
+}

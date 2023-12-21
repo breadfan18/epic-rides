@@ -5,27 +5,14 @@ import SelectInput from "../common/SelectInput";
 import COUNTRY_CODES from "../../constants/countryCodes";
 import { titleCase } from "../../helpers";
 import { isEmpty } from "lodash";
-import {
-  APP_COLOR_BLACK_OPACITY,
-  APP_COLOR_EPIC_RED,
-} from "../../constants/constants";
+import Error from "../common/Error";
 
 const AgentForm = ({ agent, onSave, onChange, errors = {}, saving }) => {
   const buttonText = saving ? "Saving..." : agent.id === null ? "Add" : "Save";
   return (
     <form onSubmit={onSave} style={{ margin: 0 }}>
       {!isEmpty(errors) && (
-        <div
-          className="alert"
-          role="alert"
-          style={{
-            backgroundColor: APP_COLOR_BLACK_OPACITY,
-            color: APP_COLOR_EPIC_RED,
-            border: `2px solid ${APP_COLOR_EPIC_RED}`,
-          }}
-        >
-          Please address the errors below
-        </div>
+        <Error errorMessage="Please address the errors below" />
       )}
       <TextInput
         name="name"

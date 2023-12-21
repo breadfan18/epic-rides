@@ -1,23 +1,37 @@
 import React, { useState } from "react";
 import UserInput from "./UserInput";
+import Error from "../common/Error";
 import PasswordInput from "./PasswordInput";
 import { auth, signInEmailPwd } from "../../tools/firebase";
 import { Button } from "react-bootstrap";
-import { NEW_SIGN_IN_STATE } from "../../constants/constants";
+import {
+  APP_COLOR_BLACK_OPACITY,
+  APP_COLOR_EPIC_RED,
+  DELETE_COLOR_RED,
+  NEW_SIGN_IN_STATE,
+} from "../../constants/constants";
+import { setLoginErrorText } from "../../helpers";
 
 export default function SignInForm({ Icon }) {
   const [userCreds, setUserCreds] = useState(NEW_SIGN_IN_STATE);
+  const [error, setError] = useState(null);
 
-  function handleChange(e) {
+  const handleChange = (e) => {
     const { name, value } = e.target;
     setUserCreds((prev) => ({
       ...prev,
       [name]: value,
     }));
-  }
+  };
+
+  const handleSignIn = async () => {
+    const signInError = signInEmailPwd(userCreds.email, userCreds.pwd);
+    if (signInError) setError(setLoginErrorText(await signInError));
+  };
 
   return (
     <form action="" className="userAndPwdForm">
+      {error && <Error errorMessage={error} />}
       <UserInput
         Icon={Icon}
         onChange={handleChange}
@@ -34,7 +48,7 @@ export default function SignInForm({ Icon }) {
       <Button
         className="loginSubmit"
         style={{ backgroundColor: "black", border: "5px solid black" }}
-        onClick={() => signInEmailPwd(auth, userCreds.email, userCreds.pwd)}
+        onClick={() => handleSignIn()}
       >
         Sign In
       </Button>

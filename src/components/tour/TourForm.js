@@ -2,17 +2,14 @@ import React from "react";
 import PropTypes from "prop-types";
 import TextInput from "../common/TextInput";
 import SelectInput from "../common/SelectInput";
-import {
-  APP_COLOR_BLACK_OPACITY,
-  APP_COLOR_EPIC_RED,
-  STATUS_CODES,
-} from "../../constants/constants";
+import { STATUS_CODES } from "../../constants/constants";
 import DateInput from "../common/DateInput";
 import Form from "react-bootstrap/Form";
 import { titleCase } from "../../helpers";
 import { isEmpty } from "lodash";
 import NumberInput from "../common/NumberInput";
 import { useSelector } from "react-redux";
+import Error from "../common/Error";
 
 const TourForm = ({ tour, onSave, onChange, saving, errors = {} }) => {
   const agentData = useSelector((state) => state.agents);
@@ -20,17 +17,7 @@ const TourForm = ({ tour, onSave, onChange, saving, errors = {} }) => {
     <>
       <Form onSubmit={onSave}>
         {!isEmpty(errors) && (
-          <div
-            className="alert"
-            role="alert"
-            style={{
-              backgroundColor: APP_COLOR_BLACK_OPACITY,
-              color: APP_COLOR_EPIC_RED,
-              border: `2px solid ${APP_COLOR_EPIC_RED}`,
-            }}
-          >
-            Please address the errors below
-          </div>
+          <Error errorMessage="Please address the errors below" />
         )}
         <SelectInput
           name="agent"

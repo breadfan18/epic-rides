@@ -64,14 +64,15 @@ const login = async (auth) => {
 
 const logout = (auth) => auth.signOut();
 
-const signInEmailPwd = async (auth, email, pwd) => {
+const signInEmailPwd = async (email, pwd) => {
   try {
     const userCreds = await signInWithEmailAndPassword(auth, email, pwd);
     console.log(userCreds);
     window.location = "/";
   } catch (err) {
     console.log("Error signing in with Firebase!");
-    console.log(err);
+    console.log(err.code);
+    return err.code;
   }
 };
 
