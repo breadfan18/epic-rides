@@ -13,7 +13,7 @@ NEXT STEPS:
 - Setup Confirm Password Flow - DONE
 - Password regex - DONE
 - Add Photo import capability to Sign up form - DONE
-- Signin on Enter key
+- Signin on Enter key - DONE
 - Fix momentary error on login/signup redirect
 - Reduxify sign in calls
 */

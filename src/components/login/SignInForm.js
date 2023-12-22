@@ -24,8 +24,16 @@ export default function SignInForm({ Icon }) {
     if (signInError) setError(setLoginErrorText(await signInError));
   };
 
+  const handleSaveOnEnter = async (e) => {
+    if (e.keyCode === 13) {
+      e.preventDefault();
+      const signInError = await signInEmailPwd(userCreds.email, userCreds.pwd);
+      if (signInError) setError(setLoginErrorText(await signInError));
+    }
+  };
+
   return (
-    <form action="" className="userAndPwdForm">
+    <form action="" className="userAndPwdForm" onKeyDown={handleSaveOnEnter}>
       {error && <Error errorMessage={error} />}
       <UserInput
         Icon={Icon}
