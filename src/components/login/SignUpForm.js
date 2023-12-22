@@ -50,8 +50,7 @@ export default function SignUpForm() {
     } else if (user.pwd !== user.confirmPwd) {
       setError("Password don't match");
     } else {
-      const scaledImgUrl = await handleSavePhoto(imgEditor);
-      const signUpError = await createAccount(user, scaledImgUrl);
+      const signUpError = await createAccount(user, handleSavePhoto, imgEditor);
       if (signUpError) {
         setError(setLoginErrorText(await signUpError));
       }

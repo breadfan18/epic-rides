@@ -76,7 +76,7 @@ const signInEmailPwd = async (email, pwd) => {
   }
 };
 
-const createAccount = async (user, img) => {
+const createAccount = async (user, handleImgCreation, imgEditor) => {
   try {
     const userCreds = await createUserWithEmailAndPassword(
       auth,
@@ -84,9 +84,10 @@ const createAccount = async (user, img) => {
       user.pwd
     );
 
+    const scaledImgUrl = await handleImgCreation(imgEditor);
     await updateProfile(userCreds.user, {
       displayName: `${user.firstName} ${user.lastName}`,
-      photoURL: img || USER_STOCK_IMG,
+      photoURL: scaledImgUrl || USER_STOCK_IMG,
     });
 
     window.location = "/";
