@@ -7,7 +7,7 @@ import TourForm from "./TourForm";
 import { toast } from "react-toastify";
 import PropTypes from "prop-types";
 import { MdModeEditOutline } from "react-icons/md";
-import { AGENTS, NEW_DATA } from "../../constants/constants";
+import { NEW_DATA, USER_STOCK_IMG } from "../../constants/constants";
 import { useUser } from "reactfire";
 import { fileNameGenerator, getDaysBetweenDates } from "../../helpers";
 
@@ -55,7 +55,15 @@ function TourAddEditModal({ data, setModalOpen }) {
       dataForModal.tourName
     );
 
-    const finalData = { ...dataForModal, numOfDays, ...file };
+    const metadata = {
+      createdBy: {
+        uid: user.uid,
+        displayName: user.displayName,
+        photoURL: user.photoURL || USER_STOCK_IMG,
+      },
+    };
+
+    const finalData = { ...dataForModal, numOfDays, ...file, metadata };
 
     dispatch(saveDataToFirebase(finalData, user?.uid, id));
     toast.success(

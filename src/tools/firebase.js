@@ -43,7 +43,7 @@ export function getFireBaseData(endpoint, dispatch, dispatchFunc, firebaseUid) {
 }
 
 export function writeToFirebase(endpoint, data, id, firebaseUid) {
-  set(ref(db, `/users/${firebaseUid}/${endpoint}/${id}`), {
+  set(ref(db, `/allData/${endpoint}/${id}`), {
     ...data,
     id,
   });
@@ -87,7 +87,7 @@ const createAccount = async (user, handleImgCreation, imgEditor) => {
     const scaledImgUrl = await handleImgCreation(imgEditor);
     await updateProfile(userCreds.user, {
       displayName: `${user.firstName} ${user.lastName}`,
-      photoURL: scaledImgUrl || USER_STOCK_IMG,
+      photoURL: scaledImgUrl || null,
     });
 
     window.location = "/";

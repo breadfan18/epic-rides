@@ -4,7 +4,11 @@ import { GoSignOut } from "react-icons/go";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 import { userLogout } from "../../redux/actions/authActions";
 import { connect } from "react-redux";
-import { APP_COLOR_EPIC_RED, USER_STOCK_IMG } from "../../constants/constants";
+import {
+  APP_COLOR_EPIC_RED,
+  USER_STOCK_IMG,
+  USER_STOCK_IMG_WHITE_BKGRD,
+} from "../../constants/constants";
 
 function UserProfileSection({ user, userLogout, smallNav }) {
   const history = useHistory();
@@ -15,10 +19,12 @@ function UserProfileSection({ user, userLogout, smallNav }) {
     history.push("/signin");
   }
 
+  const stockImg = smallNav ? USER_STOCK_IMG_WHITE_BKGRD : USER_STOCK_IMG;
+
   return (
     <section id="userImg">
       <img
-        src={user.photoURL || USER_STOCK_IMG}
+        src={user.photoURL || stockImg}
         alt={user.displayName}
         style={{
           borderRadius: "50%",

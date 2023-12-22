@@ -12,6 +12,8 @@ import {
   APP_COLOR_EPIC_RED,
   STATUS_CODES,
   TOUR_DETAILS_IMAGES,
+  USER_STOCK_IMG,
+  APP_COLOR_BLACK_OPACITY,
 } from "../../constants/constants";
 import { Card, Table } from "react-bootstrap";
 import {
@@ -210,6 +212,43 @@ function TourDetailsPage({ tours, loadDataFromFirebase, ...props }) {
                         title="Copy File Name to clipboard"
                         onClick={() => copyFileNameToClipboard()}
                       />
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td
+                    style={{ color: APP_COLOR_EPIC_RED }}
+                    className="tourDetailsFieldHeaders"
+                  >
+                    Created By:
+                  </td>
+                  <td>
+                    <div
+                      style={{
+                        display: "flex",
+                        alignItems: "center",
+                        justifyContent: "flex-start",
+                        backgroundColor: APP_COLOR_BLACK_OPACITY,
+                        padding: "10px",
+                        borderRadius: "10px",
+                      }}
+                    >
+                      <img
+                        src={
+                          tour.metadata?.createdBy?.photoURL || USER_STOCK_IMG
+                        }
+                        alt={user.displayName}
+                        style={{
+                          borderRadius: "50%",
+                          height: "3rem",
+                          boxShadow: "0 0 10px " + APP_COLOR_EPIC_RED,
+                        }}
+                        title={user.displayName}
+                      />
+                      <p style={{ margin: "0 0 0 15px" }}>
+                        {tour.metadata?.createdBy?.displayName ||
+                          "Anonymous User"}
+                      </p>
                     </div>
                   </td>
                 </tr>

@@ -12,7 +12,8 @@ NEXT STEPS:
 - Data validation for: Name fields, email field, Password requirements  - DONE
 - Setup Confirm Password Flow - DONE
 - Password regex - DONE
-- Add Photo import capability to Sign up form
+- Add Photo import capability to Sign up form - DONE
+- Signin on Enter key
 - Fix momentary error on login/signup redirect
 - Reduxify sign in calls
 */

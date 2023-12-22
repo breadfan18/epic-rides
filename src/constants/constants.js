@@ -192,4 +192,5 @@ export const DELETE_MODAL_TYPES = {
 };
 
 export const USER_STOCK_IMG = "https://i.imgur.com/iALkKsV.png";
+export const USER_STOCK_IMG_WHITE_BKGRD = "https://i.imgur.com/bUmgFm9.png";
 export const EPIC_LOGO = "https://i.imgur.com/M0W3075.png";
