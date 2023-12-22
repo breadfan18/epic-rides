@@ -14,7 +14,10 @@ NEXT STEPS:
 - Password regex - DONE
 - Add Photo import capability to Sign up form - DONE
 - Signin on Enter key - DONE
-- Close Image Editor
+- Handle createdBy and editedBy metadata - DONE
+- Signup - Full screen layout change to side by side
+- Allow to close Image Editor 
+- Add user's name in UserProfileSection
 - Fix momentary error on login/signup redirect
 */
 

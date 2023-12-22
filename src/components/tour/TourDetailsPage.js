@@ -30,6 +30,7 @@ import { useUser } from "reactfire";
 import TourAddEditModal from "./TourAddEditModal";
 import { MdOutlineContentCopy } from "react-icons/md";
 import { toast } from "react-toastify";
+import CreatedOrEditedBy from "./CreatedOrEditedBy";
 
 function TourDetailsPage({ tours, loadDataFromFirebase, ...props }) {
   const dispatch = useDispatch();
@@ -215,43 +216,40 @@ function TourDetailsPage({ tours, loadDataFromFirebase, ...props }) {
                     </div>
                   </td>
                 </tr>
-                <tr>
-                  <td
-                    style={{ color: APP_COLOR_EPIC_RED }}
-                    className="tourDetailsFieldHeaders"
-                  >
-                    Created By:
-                  </td>
-                  <td>
-                    <div
-                      style={{
-                        display: "flex",
-                        alignItems: "center",
-                        justifyContent: "flex-start",
-                        backgroundColor: APP_COLOR_BLACK_OPACITY,
-                        padding: "10px",
-                        borderRadius: "10px",
-                      }}
+                {tour.metadata?.createdBy && (
+                  <tr>
+                    <td
+                      style={{ color: APP_COLOR_EPIC_RED }}
+                      className="tourDetailsFieldHeaders"
                     >
-                      <img
-                        src={
-                          tour.metadata?.createdBy?.photoURL || USER_STOCK_IMG
-                        }
-                        alt={user.displayName}
-                        style={{
-                          borderRadius: "50%",
-                          height: "3rem",
-                          boxShadow: "0 0 10px " + APP_COLOR_EPIC_RED,
-                        }}
-                        title={user.displayName}
+                      Created By:
+                    </td>
+                    <td>
+                      <CreatedOrEditedBy
+                        tour={tour}
+                        user={user}
+                        action="created"
                       />
-                      <p style={{ margin: "0 0 0 15px" }}>
-                        {tour.metadata?.createdBy?.displayName ||
-                          "Anonymous User"}
-                      </p>
-                    </div>
-                  </td>
-                </tr>
+                    </td>
+                  </tr>
+                )}
+                {tour.metadata?.editedBy && (
+                  <tr>
+                    <td
+                      style={{ color: APP_COLOR_EPIC_RED }}
+                      className="tourDetailsFieldHeaders"
+                    >
+                      Last Edited By:
+                    </td>
+                    <td>
+                      <CreatedOrEditedBy
+                        tour={tour}
+                        user={user}
+                        action="edited"
+                      />
+                    </td>
+                  </tr>
+                )}
               </tbody>
             </Table>
           </Card.Body>

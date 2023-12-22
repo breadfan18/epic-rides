@@ -19,7 +19,6 @@ function TourAddEditModal({ data, setModalOpen }) {
   const allData = useSelector((state) => state.data);
   const dispatch = useDispatch();
   const agents = useSelector((state) => state.agents);
-
   const [show, setShow] = useState(false);
   const toggleShow = () => setShow(!show);
   const { data: user } = useUser();
@@ -34,6 +33,27 @@ function TourAddEditModal({ data, setModalOpen }) {
       ...prevData,
       [name]: name === "agent" ? agents.find((a) => a.code === value) : value,
     }));
+  }
+
+  function handleMetadata(data) {
+    if (data.id) {
+      return {
+        ...data.metadata,
+        editedBy: {
+          uid: user.uid,
+          displayName: user.displayName,
+          photoURL: user.photoURL || null,
+        },
+      };
+    } else {
+      return {
+        createdBy: {
+          uid: user.uid,
+          displayName: user.displayName,
+          photoURL: user.photoURL || null,
+        },
+      };
+    }
   }
 
   function handleSaveForFirebase(event) {
@@ -55,15 +75,14 @@ function TourAddEditModal({ data, setModalOpen }) {
       dataForModal.tourName
     );
 
-    const metadata = {
-      createdBy: {
-        uid: user.uid,
-        displayName: user.displayName,
-        photoURL: user.photoURL || USER_STOCK_IMG,
-      },
-    };
+    const metadata = handleMetadata(dataForModal);
 
-    const finalData = { ...dataForModal, numOfDays, ...file, metadata };
+    const finalData = {
+      ...dataForModal,
+      numOfDays,
+      ...file,
+      metadata,
+    };
 
     dispatch(saveDataToFirebase(finalData, user?.uid, id));
     toast.success(

@@ -49,8 +49,8 @@ export function writeToFirebase(endpoint, data, id) {
   });
 }
 
-export function deleteFromFirebase(endpoint, id, firebaseUid) {
-  remove(ref(db, `/${endpoint}/${id}`));
+export function deleteFromFirebase(endpoint, id) {
+  remove(ref(db, `/allData/${endpoint}/${id}`));
 }
 
 // AUTH FUNCTIONS

@@ -45,6 +45,15 @@ body {
   margin-left: 5px;
 }
 
+.tourDetailsCreatedOrEdited {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  background-color: var(--black-opacity);
+  padding: 10px;
+  border-radius: 10px;
+}
+
 .navContainer {
   /* background-color: var(--epic-red); */
   padding: 0;
