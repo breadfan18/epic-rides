@@ -9,7 +9,12 @@ import PasswordInput from "./PasswordInput";
 // import { FaUserCircle } from "react-icons/ai";
 import { FaUserCircle } from "react-icons/fa";
 import { MdAlternateEmail } from "react-icons/md";
-import { NEW_USER, USER_STOCK_IMG } from "../../constants/constants";
+import {
+  APP_COLOR_BLACK_OPACITY,
+  APP_COLOR_LIGHT_GRAY,
+  NEW_USER,
+  USER_STOCK_IMG,
+} from "../../constants/constants";
 import { isPasswordValid, setLoginErrorText, titleCase } from "../../helpers";
 import Error from "../common/Error";
 import PhotoEditor from "./PhotoEditor";
@@ -60,7 +65,17 @@ export default function SignUpForm() {
   return (
     <form action="" className="userAndPwdForm">
       {error && <Error errorMessage={error} />}
-      <div style={{ display: "flex", justifyContent: "center" }}>
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "center",
+          backgroundColor: "white",
+          padding: "5px",
+          borderRadius: "10px",
+          border: "1px solid " + APP_COLOR_LIGHT_GRAY,
+          marginBottom: "10px",
+        }}
+      >
         {user.imgFile ? (
           <PhotoEditor
             image={user.imgFile}
@@ -76,7 +91,7 @@ export default function SignUpForm() {
         )}
         {!user.imgFile && <PhotoEditButton onChange={handleChange} />}
       </div>
-      <hr />
+      {/* <hr /> */}
       <UserInput
         Icon={FaUserCircle}
         onChange={handleChange}

@@ -31,7 +31,7 @@ const app = initializeApp(firebaseConfig);
 export const db = getDatabase(app);
 
 // DATABASE FUNCTIONS
-export function getFireBaseData(endpoint, dispatch, dispatchFunc, firebaseUid) {
+export function getFireBaseData(endpoint, dispatch, dispatchFunc) {
   onValue(ref(db, `/allData/${endpoint}`), (snap) => {
     const allData = [];
     snap.forEach((data) => {
@@ -42,7 +42,7 @@ export function getFireBaseData(endpoint, dispatch, dispatchFunc, firebaseUid) {
   });
 }
 
-export function writeToFirebase(endpoint, data, id, firebaseUid) {
+export function writeToFirebase(endpoint, data, id) {
   set(ref(db, `/allData/${endpoint}/${id}`), {
     ...data,
     id,
@@ -50,7 +50,7 @@ export function writeToFirebase(endpoint, data, id, firebaseUid) {
 }
 
 export function deleteFromFirebase(endpoint, id, firebaseUid) {
-  remove(ref(db, `/users/${firebaseUid}/${endpoint}/${id}`));
+  remove(ref(db, `/${endpoint}/${id}`));
 }
 
 // AUTH FUNCTIONS
@@ -66,8 +66,7 @@ const logout = (auth) => auth.signOut();
 
 const signInEmailPwd = async (email, pwd) => {
   try {
-    const userCreds = await signInWithEmailAndPassword(auth, email, pwd);
-    console.log(userCreds);
+    await signInWithEmailAndPassword(auth, email, pwd);
     window.location = "/";
   } catch (err) {
     console.log("Error signing in with Firebase!");

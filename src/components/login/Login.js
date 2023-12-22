@@ -14,8 +14,8 @@ NEXT STEPS:
 - Password regex - DONE
 - Add Photo import capability to Sign up form - DONE
 - Signin on Enter key - DONE
+- Close Image Editor
 - Fix momentary error on login/signup redirect
-- Reduxify sign in calls
 */
 
 export default function Login({ windowWidth }) {
