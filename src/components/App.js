@@ -31,6 +31,8 @@ function App() {
 
   const { signedIn, user } = signinResult;
 
+  console.log(user);
+
   return signedIn === true ? (
     <>
       <WindowWidthContext.Provider value={windowWidth}>

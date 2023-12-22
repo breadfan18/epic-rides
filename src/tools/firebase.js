@@ -76,7 +76,7 @@ const signInEmailPwd = async (email, pwd) => {
   }
 };
 
-const createAccount = async (user) => {
+const createAccount = async (user, img) => {
   try {
     const userCreds = await createUserWithEmailAndPassword(
       auth,
@@ -86,7 +86,7 @@ const createAccount = async (user) => {
 
     await updateProfile(userCreds.user, {
       displayName: `${user.firstName} ${user.lastName}`,
-      photoURL: user.img || USER_STOCK_IMG,
+      photoURL: img || USER_STOCK_IMG,
     });
 
     window.location = "/";
@@ -107,8 +107,8 @@ export const getFirebaseImgUrl = async (cardholder) => {
   return await getDownloadURL(snapshot.ref);
 };
 
-export const getFirebaseImgUrlForDataURL = async (cardholder, url) => {
-  const imgRef = storageRef(storage, `images/${cardholder.imgFile?.name}`);
+export const getFirebaseImgUrlForDataURL = async (user, url) => {
+  const imgRef = storageRef(storage, `images/${user.imgFile?.name}`);
   const snapshot = await uploadString(imgRef, url, "data_url");
   const scaledImg = await getDownloadURL(snapshot.ref);
   return scaledImg;

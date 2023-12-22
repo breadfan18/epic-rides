@@ -21,10 +21,10 @@ export default function SignUpForm() {
   const [imgEditor, setImgEditor] = useState(null);
 
   function handleChange(e) {
-    const { name, value } = e.target;
+    const { name, value, files } = e.target;
     setUser((prev) => ({
       ...prev,
-      [name]: value,
+      [name]: name === "imgFile" ? files[0] : value,
     }));
   }
 
@@ -50,7 +50,8 @@ export default function SignUpForm() {
     } else if (user.pwd !== user.confirmPwd) {
       setError("Password don't match");
     } else {
-      const signUpError = await createAccount(user);
+      const scaledImgUrl = await handleSavePhoto(imgEditor);
+      const signUpError = await createAccount(user, scaledImgUrl);
       if (signUpError) {
         setError(setLoginErrorText(await signUpError));
       }
@@ -61,9 +62,9 @@ export default function SignUpForm() {
     <form action="" className="userAndPwdForm">
       {error && <Error errorMessage={error} />}
       <div style={{ display: "flex", justifyContent: "center" }}>
-        {user.img ? (
+        {user.imgFile ? (
           <PhotoEditor
-            image={user.img}
+            image={user.imgFile}
             handleSave={handleSavePhoto}
             setEditor={setImgEditor}
           />
@@ -74,7 +75,7 @@ export default function SignUpForm() {
             style={{ height: "7rem", width: "7rem" }}
           />
         )}
-        {!user.img && <PhotoEditButton onChange={handleChange} />}
+        {!user.imgFile && <PhotoEditButton onChange={handleChange} />}
       </div>
       <hr />
       <UserInput
