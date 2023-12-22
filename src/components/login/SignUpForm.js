@@ -9,11 +9,10 @@ import PasswordInput from "./PasswordInput";
 // import { FaUserCircle } from "react-icons/ai";
 import { FaUserCircle } from "react-icons/fa";
 import { MdAlternateEmail } from "react-icons/md";
-import { NEW_USER } from "../../constants/constants";
+import { NEW_USER, USER_STOCK_IMG } from "../../constants/constants";
 import { isPasswordValid, setLoginErrorText, titleCase } from "../../helpers";
 import Error from "../common/Error";
 import PhotoEditor from "./PhotoEditor";
-import UserPhoto from "./UserPhoto";
 import PhotoEditButton from "./PhotoEditButton";
 
 export default function SignUpForm() {
@@ -69,7 +68,11 @@ export default function SignUpForm() {
             setEditor={setImgEditor}
           />
         ) : (
-          <UserPhoto img={user.img} heightAndWidth="7rem" />
+          <img
+            src={USER_STOCK_IMG}
+            alt="user"
+            style={{ height: "7rem", width: "7rem" }}
+          />
         )}
         {!user.img && <PhotoEditButton onChange={handleChange} />}
       </div>
