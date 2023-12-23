@@ -15,9 +15,9 @@ NEXT STEPS:
 - Add Photo import capability to Sign up form - DONE
 - Signin on Enter key - DONE
 - Handle createdBy and editedBy metadata - DONE
-- Signup - Full screen layout change to side by side
-- Allow to close Image Editor 
 - Add user's name in UserProfileSection
+- Allow to close Image Editor 
+- Signup - Full screen layout change to side by side??
 - Fix momentary error on login/signup redirect
 */
 

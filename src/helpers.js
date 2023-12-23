@@ -218,28 +218,25 @@ export function sortNumberDesc(num1, num2) {
   return parsedNum2 - parsedNum1;
 }
 
-export function fileNameGenerator(
-  id,
-  agentCode,
-  dateFrom,
-  numOfDays,
-  tourName
-) {
-  if (dateFrom === "" || dateFrom === null || dateFrom === undefined)
+export function fileNameGenerator(id, data, numOfDays) {
+  if (
+    data.dateFrom === "" ||
+    data.dateFrom === null ||
+    data.dateFrom === undefined
+  )
     return {
       fileRef: "undated",
       fileName: "undated",
     };
   const fileRef =
-    dateFrom.substring(2, 7).replaceAll("-", "") +
+    data.dateFrom.substring(2, 7).replaceAll("-", "") +
     ("000" + id).slice(-3) +
-    agentCode;
-
-  const fileName = `${fileRef}_${numOfDays}_${tourName}`;
+    data.agent.code;
+  const fileName = `${fileRef}_${numOfDays}_${data.tourName}`;
   return {
     fileRef,
     fileName,
-    fileOpenDate: new Date().toISOString().split("T")[0],
+    fileOpenDate: data.fileOpenDate || new Date().toISOString().split("T")[0],
   };
 }
 

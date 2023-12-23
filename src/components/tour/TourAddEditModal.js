@@ -67,13 +67,7 @@ function TourAddEditModal({ data, setModalOpen }) {
 
     const id = dataForModal.id || allData.length + 1;
 
-    const file = fileNameGenerator(
-      id,
-      dataForModal.agent.code,
-      dataForModal.dateFrom,
-      numOfDays,
-      dataForModal.tourName
-    );
+    const file = fileNameGenerator(id, dataForModal, numOfDays);
 
     const metadata = handleMetadata(dataForModal);
 
