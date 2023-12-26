@@ -75,6 +75,8 @@ export const NEW_SIGN_IN_STATE = {
   pwd: "",
 };
 
+export const ERN_PASSCODE = "ERN%CNA24*";
+
 export const TOUR_DETAILS_IMAGES = [
   "https://i.imgur.com/6zoDtVD.png",
   "https://i.imgur.com/MI2XBOj.png",
