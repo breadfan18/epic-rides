@@ -12,8 +12,6 @@ import {
   APP_COLOR_EPIC_RED,
   STATUS_CODES,
   TOUR_DETAILS_IMAGES,
-  USER_STOCK_IMG,
-  APP_COLOR_BLACK_OPACITY,
 } from "../../constants/constants";
 import { Card, Table } from "react-bootstrap";
 import {
@@ -192,30 +190,32 @@ function TourDetailsPage({ tours, loadDataFromFirebase, ...props }) {
                     ).name || ""}
                   </td>
                 </tr>
-                <tr>
-                  <td
-                    style={{ color: APP_COLOR_EPIC_RED }}
-                    className="tourDetailsFieldHeaders"
-                  >
-                    File Name:
-                  </td>
-                  <td>
-                    <div
-                      style={{
-                        display: "flex",
-                        alignItems: "center",
-                        justifyContent: "space-between",
-                      }}
+                {tour.dateFrom !== "" && (
+                  <tr>
+                    <td
+                      style={{ color: APP_COLOR_EPIC_RED }}
+                      className="tourDetailsFieldHeaders"
                     >
-                      <p style={{ margin: 0 }}>{tour.fileName}</p>
-                      <MdOutlineContentCopy
-                        className="copyFileNameIcon"
-                        title="Copy File Name to clipboard"
-                        onClick={() => copyFileNameToClipboard()}
-                      />
-                    </div>
-                  </td>
-                </tr>
+                      File Name:
+                    </td>
+                    <td>
+                      <div
+                        style={{
+                          display: "flex",
+                          alignItems: "center",
+                          justifyContent: "space-between",
+                        }}
+                      >
+                        <p style={{ margin: 0 }}>{tour.fileName}</p>
+                        <MdOutlineContentCopy
+                          className="copyFileNameIcon"
+                          title="Copy File Name to clipboard"
+                          onClick={() => copyFileNameToClipboard()}
+                        />
+                      </div>
+                    </td>
+                  </tr>
+                )}
                 {tour.metadata?.createdBy && (
                   <tr>
                     <td

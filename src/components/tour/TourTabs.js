@@ -6,7 +6,6 @@ import TourTable from "./TourTable";
 import TourCards from "./TourCards";
 import { WindowWidthContext } from "../App";
 import _ from "lodash";
-import { YEARS } from "../../constants/constants";
 import { getYearsFromTours, sortNumbers } from "../../helpers";
 
 function TourTabs({ data }) {

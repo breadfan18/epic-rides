@@ -7,7 +7,7 @@ import TourForm from "./TourForm";
 import { toast } from "react-toastify";
 import PropTypes from "prop-types";
 import { MdModeEditOutline } from "react-icons/md";
-import { NEW_DATA, USER_STOCK_IMG } from "../../constants/constants";
+import { NEW_DATA } from "../../constants/constants";
 import { useUser } from "reactfire";
 import { fileNameGenerator, getDaysBetweenDates } from "../../helpers";
 
