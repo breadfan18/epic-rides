@@ -45,6 +45,10 @@ function TourTabs({ data }) {
     );
   });
 
+  const activeTab = yearsWithTours.includes(new Date().getFullYear().toString())
+    ? new Date().getFullYear()
+    : yearsWithTours[0];
+
   return (
     <>
       {/* <input
@@ -55,7 +59,7 @@ function TourTabs({ data }) {
         className="cardTabsFilterInput"
         style={{ width: filterWidth }}
       /> */}
-      <Tabs defaultActiveKey={new Date().getFullYear()} className="mb-3">
+      <Tabs defaultActiveKey={activeTab} className="mb-3">
         <Tab eventKey="all-data" title="All Tours">
           {windowWidth > 1000 ? (
             <TourTable
