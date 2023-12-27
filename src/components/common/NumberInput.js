@@ -33,7 +33,10 @@ const NumberInput = ({ name, label, onChange, placeholder, value, error }) => {
           </p>
         )}
       </label>
-      <div className="field" style={{ display: "flex" }}>
+      <div
+        className="field transparentPlaceholderField"
+        style={{ display: "flex" }}
+      >
         <input
           type="number"
           min="0"

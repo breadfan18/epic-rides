@@ -129,7 +129,7 @@ function TourDetailsPage({ tours, loadDataFromFirebase, ...props }) {
                     style={{ color: APP_COLOR_EPIC_RED }}
                     className="tourDetailsFieldHeaders"
                   >
-                    File Opened Date:
+                    File Opened:
                   </td>
                   <td>{formatDate(props.tour.fileOpenDate)}</td>
                 </tr>
@@ -147,7 +147,7 @@ function TourDetailsPage({ tours, loadDataFromFirebase, ...props }) {
                     style={{ color: APP_COLOR_EPIC_RED }}
                     className="tourDetailsFieldHeaders"
                   >
-                    Number of Passengers:
+                    Passengers:
                   </td>
                   <td>
                     {tour.paxNum === "N/A" ? "Not Confirmed" : tour.paxNum}

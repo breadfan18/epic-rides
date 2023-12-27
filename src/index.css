@@ -495,3 +495,7 @@ input[type="range"] {
 .smaller-table {
   font-size: 0.9rem;
 }
+
+.transparentPlaceholderField > input:focus::placeholder {
+  color: transparent;
+}

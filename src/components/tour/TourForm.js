@@ -54,6 +54,7 @@ const TourForm = ({ tour, onSave, onChange, saving, errors = {} }) => {
           value={tour.paxNum || ""}
           onChange={onChange}
           error={errors.paxNum}
+          placeholder="Leave empty if not confirmed"
         />
         <DateInput
           name="dateFrom"
@@ -61,7 +62,6 @@ const TourForm = ({ tour, onSave, onChange, saving, errors = {} }) => {
           onChange={onChange}
           value={tour.dateFrom}
           // error={errors.dateFrom}
-          // disabled={formDisabledCheck(card.annualFee)}
         />
         <DateInput
           name="dateTo"
@@ -69,7 +69,6 @@ const TourForm = ({ tour, onSave, onChange, saving, errors = {} }) => {
           onChange={onChange}
           value={tour.dateTo}
           // error={errors.dateTo}
-          // disabled={formDisabledCheck(card.annualFee)}
         />
         <SelectInput
           name="status"
