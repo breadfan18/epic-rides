@@ -68,10 +68,12 @@ function TourAddEditModal({ data, setModalOpen }) {
     const id = dataForModal.id || allData.length + 1;
     const file = fileNameGenerator(id, dataForModal, numOfDays);
     const metadata = handleMetadata(dataForModal);
+    const paxNum = dataForModal.paxNum || "N/A";
 
     const finalData = {
       ...dataForModal,
       numOfDays,
+      paxNum,
       ...file,
       metadata,
     };
