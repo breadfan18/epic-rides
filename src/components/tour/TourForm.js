@@ -17,7 +17,7 @@ const TourForm = ({ tour, onSave, onChange, saving, errors = {} }) => {
     <>
       <Form onSubmit={onSave}>
         {!isEmpty(errors) && (
-          <Error errorMessage="Please address the errors below" />
+          <Error errorMessage="Please fill out required fields" />
         )}
         <SelectInput
           name="agent"
@@ -30,6 +30,7 @@ const TourForm = ({ tour, onSave, onChange, saving, errors = {} }) => {
           }))}
           onChange={onChange}
           error={errors.agent}
+          requiredField
         />
         <TextInput
           name="tourName"
@@ -37,6 +38,7 @@ const TourForm = ({ tour, onSave, onChange, saving, errors = {} }) => {
           value={titleCase(tour.tourName) || ""}
           onChange={onChange}
           error={errors.tourName}
+          requiredField
         />
         <TextInput
           name="groupFitName"
@@ -44,6 +46,7 @@ const TourForm = ({ tour, onSave, onChange, saving, errors = {} }) => {
           value={titleCase(tour.groupFitName) || ""}
           onChange={onChange}
           error={errors.groupFitName}
+          requiredField
         />
         <NumberInput
           name="paxNum"
@@ -79,6 +82,7 @@ const TourForm = ({ tour, onSave, onChange, saving, errors = {} }) => {
           }))}
           onChange={onChange}
           error={errors.status}
+          requiredField
         />
         <hr />
         <button

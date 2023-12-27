@@ -4,7 +4,6 @@ import Form from "react-bootstrap/Form";
 import {
   APP_COLOR_EPIC_RED,
   CANCELLED_COLOR_RED,
-  DELETE_COLOR_RED,
 } from "../../constants/constants";
 
 const SelectInput = ({
@@ -17,6 +16,7 @@ const SelectInput = ({
   options,
   bkgrdColor,
   disableDefaultOption = true,
+  requiredField,
 }) => {
   return (
     <div className="form-group">
@@ -28,7 +28,7 @@ const SelectInput = ({
         }}
       >
         {label}
-        {error && (
+        {requiredField && (
           <p
             style={{
               margin: "0 10px 0 0",

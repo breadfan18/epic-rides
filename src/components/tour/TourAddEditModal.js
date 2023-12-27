@@ -119,7 +119,7 @@ function TourAddEditModal({ data, setModalOpen }) {
     if (!agent.name) errors.agent = "Required";
     if (!tourName) errors.tourName = "Required";
     if (!groupFitName) errors.groupFitName = "Required";
-    if (!paxNum) errors.paxNum = "Required";
+    // if (!paxNum) errors.paxNum = "Required";
     if (!status) errors.status = "Required";
     // if (!status) errors.dateFrom = "Status is required";
 

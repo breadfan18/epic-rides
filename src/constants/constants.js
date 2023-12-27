@@ -50,7 +50,7 @@ export const NEW_DATA = {
   },
   tourName: null,
   groupFitName: null,
-  paxNum: null,
+  paxNum: 0,
   dateFrom: "",
   dateTo: "",
   numOfDays: null,

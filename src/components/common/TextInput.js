@@ -15,6 +15,7 @@ const TextInput = ({
   error,
   isCurrency,
   length,
+  requiredField,
 }) => {
   let wrapperClass = "form-group";
   if (error && error.length > 0) {
@@ -31,7 +32,7 @@ const TextInput = ({
         }}
       >
         {label}
-        {error && (
+        {requiredField && (
           <p
             style={{
               margin: "0 10px 0 0",

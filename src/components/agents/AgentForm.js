@@ -12,7 +12,7 @@ const AgentForm = ({ agent, onSave, onChange, errors = {}, saving }) => {
   return (
     <form onSubmit={onSave} style={{ margin: 0 }}>
       {!isEmpty(errors) && (
-        <Error errorMessage="Please address the errors below" />
+        <Error errorMessage="Please fill out required fields" />
       )}
       <TextInput
         name="name"
@@ -20,14 +20,16 @@ const AgentForm = ({ agent, onSave, onChange, errors = {}, saving }) => {
         value={titleCase(agent.name) || ""}
         onChange={onChange}
         error={errors.name}
+        requiredField
       />
       <TextInput
         name="code"
-        label="Agent Code (3 characters max)"
+        label="Code (3 characters max)"
         value={agent.code || ""}
         onChange={onChange}
         error={errors.code}
         length={"3"}
+        requiredField
       />
       <SelectInput
         name="nationality"
@@ -40,6 +42,7 @@ const AgentForm = ({ agent, onSave, onChange, errors = {}, saving }) => {
         }))}
         onChange={onChange}
         error={errors.nationality}
+        requiredField
       />
       <hr />
       <button
