@@ -149,7 +149,9 @@ function TourDetailsPage({ tours, loadDataFromFirebase, ...props }) {
                   >
                     Number of Passengers:
                   </td>
-                  <td>{tour.paxNum}</td>
+                  <td>
+                    {tour.paxNum === "N/A" ? "Not Confirmed" : tour.paxNum}
+                  </td>
                 </tr>
                 <tr>
                   <td
@@ -161,7 +163,7 @@ function TourDetailsPage({ tours, loadDataFromFirebase, ...props }) {
                   <td>
                     {props.tour.dateFrom !== ""
                       ? formatDate(props.tour.dateFrom)
-                      : "N/A"}
+                      : "Not Confirmed"}
                   </td>
                 </tr>
                 <tr>
@@ -174,7 +176,7 @@ function TourDetailsPage({ tours, loadDataFromFirebase, ...props }) {
                   <td>
                     {props.tour.dateTo !== ""
                       ? formatDate(props.tour.dateTo)
-                      : "N/A"}
+                      : "Not Confirmed"}
                   </td>
                 </tr>
                 <tr>
