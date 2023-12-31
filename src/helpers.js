@@ -227,6 +227,7 @@ export function fileNameGenerator(id, data, numOfDays) {
     return {
       fileRef: "undated",
       fileName: "undated",
+      fileOpenDate: data.fileOpenDate || new Date().toISOString().split("T")[0],
     };
   const fileRef =
     data.dateFrom.substring(2, 7).replaceAll("-", "") +
