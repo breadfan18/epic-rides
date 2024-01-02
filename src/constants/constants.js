@@ -54,7 +54,7 @@ export const NEW_DATA = {
   dateFrom: "",
   dateTo: "",
   numOfDays: null,
-  status: null,
+  status: "OP",
   fileRef: null,
   fileName: null,
   remarks: null,
