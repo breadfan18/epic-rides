@@ -13,6 +13,8 @@ import Error from "../common/Error";
 
 const TourForm = ({ tour, onSave, onChange, saving, errors = {} }) => {
   const agentData = useSelector((state) => state.agents);
+  const showStatus = tour.paxNum && tour.dateFrom && tour.dateTo;
+
   return (
     <>
       <Form onSubmit={onSave}>
@@ -70,19 +72,21 @@ const TourForm = ({ tour, onSave, onChange, saving, errors = {} }) => {
           value={tour.dateTo}
           // error={errors.dateTo}
         />
-        <SelectInput
-          name="status"
-          label="Status"
-          value={tour.status || ""}
-          defaultOption="Select Status"
-          options={STATUS_CODES.map((status) => ({
-            value: status.code,
-            text: titleCase(status.name),
-          }))}
-          onChange={onChange}
-          error={errors.status}
-          requiredField
-        />
+        {showStatus && (
+          <SelectInput
+            name="status"
+            label="Status"
+            value={tour.status || ""}
+            defaultOption="Select Status"
+            options={STATUS_CODES.map((status) => ({
+              value: status.code,
+              text: titleCase(status.name),
+            }))}
+            onChange={onChange}
+            error={errors.status}
+            requiredField={showStatus}
+          />
+        )}
         <hr />
         <button
           type="submit"
