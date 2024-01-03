@@ -17,7 +17,7 @@ const TourForm = ({ tour, onSave, onChange, saving, errors = {} }) => {
     <>
       <Form onSubmit={onSave}>
         {!isEmpty(errors) && (
-          <Error errorMessage="Please fill out required fields" />
+          <Error errorMessage="Please correct the errors below" />
         )}
         <SelectInput
           name="agent"
@@ -68,7 +68,7 @@ const TourForm = ({ tour, onSave, onChange, saving, errors = {} }) => {
           label="End Date"
           onChange={onChange}
           value={tour.dateTo}
-          // error={errors.dateTo}
+          error={errors.dateTo}
         />
         <SelectInput
           name="status"
