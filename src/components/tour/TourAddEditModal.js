@@ -122,6 +122,8 @@ function TourAddEditModal({ data, setModalOpen }) {
     if (!tourName) errors.tourName = "Required";
     if (!groupFitName) errors.groupFitName = "Required";
     if (!status) errors.status = "Required";
+    if (dateFrom && !dateTo) errors.dateTo = "End Date is Required";
+    if (dateTo && !dateFrom) errors.dateFrom = "Start Date is Required";
     if (Date.parse(dateTo) < Date.parse(dateFrom))
       errors.dateTo = "End date must be AFTER Start Date";
     // if (!paxNum) errors.paxNum = "Required";
@@ -179,7 +181,7 @@ function TourAddEditModal({ data, setModalOpen }) {
 
 TourAddEditModal.propTypes = {
   data: PropTypes.object,
-  saveCardToFirebase: PropTypes.func.isRequired,
+  saveDataToFirebase: PropTypes.func,
   setModalOpen: PropTypes.func,
 };
 

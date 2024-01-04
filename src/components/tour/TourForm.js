@@ -61,7 +61,7 @@ const TourForm = ({ tour, onSave, onChange, saving, errors = {} }) => {
           label="Start Date"
           onChange={onChange}
           value={tour.dateFrom}
-          // error={errors.dateFrom}
+          error={errors.dateFrom}
         />
         <DateInput
           name="dateTo"
@@ -97,7 +97,7 @@ const TourForm = ({ tour, onSave, onChange, saving, errors = {} }) => {
 };
 
 TourForm.propTypes = {
-  card: PropTypes.object.isRequired,
+  tour: PropTypes.object.isRequired,
   errors: PropTypes.object,
   onSave: PropTypes.func.isRequired,
   onChange: PropTypes.func.isRequired,
