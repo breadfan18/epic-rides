@@ -46,10 +46,10 @@ export default function TourStatusIcon({ tourStatus, iconSize }) {
     }
   };
 
-  const foo = getComponent(tourStatus);
-  return foo;
+  const statusIcon = getComponent(tourStatus);
+  return statusIcon;
 }
 TourStatusIcon.propTypes = {
-  tourStatus: PropTypes.bool || undefined,
+  tourStatus: PropTypes.string || undefined,
   iconSize: PropTypes.string,
 };
