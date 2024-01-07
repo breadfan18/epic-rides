@@ -55,10 +55,6 @@ function TourTabs({ data }) {
       : "21vw";
 
   const yearlyTabs = [...yearsWithTours, "UNDATED"].map((year) => {
-    // const dataForYear = data.filter((d) =>
-    //   d.dateFrom === "" ? year === "UNDATED" : year === d.dateFrom.split("-")[0]
-    // );
-
     return (
       <Tab eventKey={year} title={year} key={year}>
         {windowWidth > 1000 ? (
