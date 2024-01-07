@@ -7,7 +7,7 @@ import TourCards from "./TourCards";
 import { WindowWidthContext } from "../App";
 import _ from "lodash";
 import { getYearsFromTours, sortNumbers } from "../../helpers";
-import { useFilteredData } from "../../hooks/filterTours";
+import { useFilteredData } from "../../hooks/filterData";
 
 function TourTabs({ data }) {
   const windowWidth = useContext(WindowWidthContext);
@@ -25,18 +25,18 @@ function TourTabs({ data }) {
       ? data.filter((tour) => !tour.dateFrom)
       : data.filter((tour) => tour.dateFrom.split("-")[0] === selectedTab);
 
-  const { filterTours, handleToursFilter, setToursFilter, toursFilter } =
-    useFilteredData(toursForSelectedYear);
+  const { filterData, handleDataFilter, setDataFilter, dataFilter } =
+    useFilteredData(toursForSelectedYear, "tourName");
 
   useEffect(() => {
-    if (toursFilter.query !== "") {
-      const filteredTours = filterTours(toursFilter.query);
-      setToursFilter({
-        query: toursFilter.query,
+    if (dataFilter.query !== "") {
+      const filteredTours = filterData(dataFilter.query);
+      setDataFilter({
+        query: dataFilter.query,
         tourList: filteredTours,
       });
     } else {
-      setToursFilter({
+      setDataFilter({
         query: "",
         tourList: [...toursForSelectedYear],
       });
@@ -59,13 +59,13 @@ function TourTabs({ data }) {
       <Tab eventKey={year} title={year} key={year}>
         {windowWidth > 1000 ? (
           <TourTable
-            data={toursFilter.tourList}
+            data={dataFilter.tourList}
             showEditDelete={true}
             showUser={false}
             showCompactTable={false}
           />
         ) : (
-          <TourCards data={toursFilter.tourList} showUserName={false} />
+          <TourCards data={dataFilter.tourList} showUserName={false} />
         )}
       </Tab>
     );
@@ -75,8 +75,8 @@ function TourTabs({ data }) {
     <>
       <input
         type="search"
-        value={toursFilter.query}
-        onChange={handleToursFilter}
+        value={dataFilter.query}
+        onChange={handleDataFilter}
         placeholder="Filter by tour name.."
         className="tourTabsFilterInput"
         style={{ width: filterWidth }}
@@ -89,14 +89,14 @@ function TourTabs({ data }) {
         <Tab eventKey="all-data" title="All Tours">
           {windowWidth > 1000 ? (
             <TourTable
-              data={toursFilter.tourList}
+              data={dataFilter.tourList}
               showEditDelete={true}
               showUser={true}
               showCompactTable={false}
             />
           ) : (
             <TourCards
-              data={toursFilter.tourList}
+              data={dataFilter.tourList}
               windowWidth={windowWidth}
               showUserName={true}
             />
