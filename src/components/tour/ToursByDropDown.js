@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import TourCards from "./TourCards";
 import PropTypes from "prop-types";
 import { Form } from "react-bootstrap";
-import { useFilteredData } from "../../hooks/filterCards";
+import { useFilteredData } from "../../hooks/filterTours";
 import { useSelector } from "react-redux";
 import _ from "lodash";
 import { getYearsFromTours, sortNumbers } from "../../helpers";
