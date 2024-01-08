@@ -46,10 +46,11 @@ function TourTabs({ tours }) {
   return (
     <>
       <Button
-        className="tourTabsFilterInput"
+        className="filterButton"
         onClick={() => setShowFilter(!showFilter)}
+        style={{ minWidth: "10rem" }}
       >
-        Show Filter
+        {showFilter ? "Hide Filters" : "Show Filters"}
       </Button>
       <Tabs
         defaultActiveKey={activeTab}
@@ -58,11 +59,7 @@ function TourTabs({ tours }) {
       >
         <Tab eventKey="all-tours" title="All Tours">
           {windowWidth > 1000 ? (
-            <TourTable
-              data={toursForSelectedYear}
-              showFilter={showFilter}
-              // setShowFilter={setShowFilter}
-            />
+            <TourTable data={toursForSelectedYear} showFilter={showFilter} />
           ) : (
             <TourCards
               data={toursForSelectedYear}

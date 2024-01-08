@@ -6,10 +6,9 @@ import { FaSort } from "react-icons/fa";
 import { useSortableData } from "../../hooks/sortData";
 import { formatDate, setColorForTourStatus, titleCase } from "../../helpers";
 import TourAddEditModal from "./TourAddEditModal";
-import ConfirmDeleteModal from "../common/ConfirmDeleteModal";
 import { WindowWidthContext } from "../App";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
-import { ERN_DATA_KEYS, DELETE_MODAL_TYPES } from "../../constants/constants";
+import { ERN_DATA_KEYS } from "../../constants/constants";
 import TourStatusIcon from "../common/TourStatusIcon";
 import Filters from "./Filters";
 import { useFilteredData } from "../../hooks/filterData";
@@ -17,7 +16,8 @@ import { useFilteredData } from "../../hooks/filterData";
 export default function TourTable({ data, showFilter }) {
   const windowWidth = useContext(WindowWidthContext);
 
-  console.log({ showFilter });
+  const { filterData, handleDataFilter, setDataFilter, dataFilter } =
+    useFilteredData(data);
 
   useEffect(() => {
     if (dataFilter.query !== "") {
@@ -36,9 +36,6 @@ export default function TourTable({ data, showFilter }) {
       });
     }
   }, [data]);
-
-  const { filterData, handleDataFilter, setDataFilter, dataFilter } =
-    useFilteredData(data);
 
   const { sortedData, requestSort } = useSortableData(dataFilter.tourList);
   const [modalOpen, setModalOpen] = useState(false);
