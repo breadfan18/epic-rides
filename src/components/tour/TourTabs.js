@@ -37,7 +37,7 @@ function TourTabs({ tours }) {
         {windowWidth > 1000 ? (
           <TourTable data={toursForSelectedYear} showFilter={showFilter} />
         ) : (
-          <TourCards data={toursForSelectedYear} showUserName={false} />
+          <TourCards data={toursForSelectedYear} showFilter={showFilter} />
         )}
       </Tab>
     );
@@ -61,11 +61,7 @@ function TourTabs({ tours }) {
           {windowWidth > 1000 ? (
             <TourTable data={toursForSelectedYear} showFilter={showFilter} />
           ) : (
-            <TourCards
-              data={toursForSelectedYear}
-              windowWidth={windowWidth}
-              showUserName={true}
-            />
+            <TourCards data={toursForSelectedYear} showFilter={showFilter} />
           )}
         </Tab>
         {yearlyTabs}

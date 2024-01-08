@@ -3,14 +3,15 @@ import TourCards from "./TourCards";
 import PropTypes from "prop-types";
 import { Form } from "react-bootstrap";
 import { useFilteredData } from "../../hooks/filterData";
-import { useSelector } from "react-redux";
 import _ from "lodash";
 import { getYearsFromTours, sortNumbers } from "../../helpers";
+import { Button } from "react-bootstrap";
 
 function ToursByDropDown({ tours }) {
   const [selectedYear, setSelectedYear] = useState(
     new Date().getFullYear().toString()
   );
+  const [showFilter, setShowFilter] = useState(false);
 
   const yearsWithTours = sortNumbers(getYearsFromTours(tours));
 
@@ -28,7 +29,6 @@ function ToursByDropDown({ tours }) {
   const { filterData, handleDataFilter, setDataFilter, dataFilter } =
     useFilteredData(toursForSelectedYear);
 
-  console.log(dataFilter);
   const handleYearChange = (event) =>
     setSelectedYear(event.target.value || "all-tours");
 
@@ -64,16 +64,20 @@ function ToursByDropDown({ tours }) {
             );
           })}
         </Form.Select>
-        <input
-          type="search"
-          value={dataFilter.query}
-          onChange={(e) => handleDataFilter(e, "tourName")}
-          placeholder="Filter by tour name.."
-          id="dataFilterInput"
-        />
+        <Button
+          className="filterButtonSmallScreen"
+          onClick={() => setShowFilter(!showFilter)}
+          style={{ minWidth: "10rem" }}
+        >
+          {showFilter ? "Hide Filters" : "Show Filters"}
+        </Button>
       </div>
       <hr />
-      <TourCards data={dataFilter.tourList} showUserName={showAllData} />
+      <TourCards
+        data={dataFilter.tourList}
+        showUserName={showAllData}
+        showFilter={showFilter}
+      />
     </div>
   );
 }
