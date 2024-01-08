@@ -8,7 +8,6 @@ import _ from "lodash";
 import { getYearsFromTours, sortNumbers } from "../../helpers";
 
 function ToursByDropDown({ tours }) {
-  // const storedUser = JSON.parse(localStorage.getItem("selectedUser"));
   const [selectedYear, setSelectedYear] = useState(
     new Date().getFullYear().toString()
   );
@@ -18,7 +17,7 @@ function ToursByDropDown({ tours }) {
   const showAllData =
     selectedYear === undefined || selectedYear === "all-tours";
 
-  const cardsForSelectedYear = showAllData
+  const toursForSelectedYear = showAllData
     ? tours
     : tours.filter((d) =>
         d.dateFrom === ""
@@ -26,15 +25,34 @@ function ToursByDropDown({ tours }) {
           : selectedYear === d.dateFrom.split("-")[0]
       );
 
-  const handleUserChange = (event) =>
+  const { filterData, handleDataFilter, setDataFilter, dataFilter } =
+    useFilteredData(toursForSelectedYear);
+
+  console.log(dataFilter);
+  const handleYearChange = (event) =>
     setSelectedYear(event.target.value || "all-tours");
+
+  useEffect(() => {
+    if (dataFilter.query !== "") {
+      const filteredTours = filterData(dataFilter.query, "tourName");
+      setDataFilter({
+        query: dataFilter.query,
+        tourList: filteredTours,
+      });
+    } else {
+      setDataFilter({
+        query: "",
+        tourList: [...toursForSelectedYear],
+      });
+    }
+  }, [tours, selectedYear]);
 
   return (
     <div className="cardsDropDownContainer">
       <div id="cardFilterContainer">
         <Form.Select
           id="cardFilterUserSelect"
-          onChange={handleUserChange}
+          onChange={handleYearChange}
           value={selectedYear}
         >
           <option value="">All Tours</option>
@@ -48,14 +66,14 @@ function ToursByDropDown({ tours }) {
         </Form.Select>
         <input
           type="search"
-          value=""
-          // onChange={handleCardsFilter}
+          value={dataFilter.query}
+          onChange={(e) => handleDataFilter(e, "tourName")}
           placeholder="Filter by tour name.."
-          id="cardFilterInput"
+          id="dataFilterInput"
         />
       </div>
       <hr />
-      <TourCards data={cardsForSelectedYear} showUserName={showAllData} />
+      <TourCards data={dataFilter.tourList} showUserName={showAllData} />
     </div>
   );
 }

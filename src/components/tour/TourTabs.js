@@ -8,6 +8,12 @@ import { WindowWidthContext } from "../App";
 import _ from "lodash";
 import { getYearsFromTours, sortNumbers } from "../../helpers";
 import { useFilteredData } from "../../hooks/filterData";
+import { ERN_DATA_KEYS } from "../../constants/constants";
+
+/* 
+- Make sure filter works in small screen (ToursByDropDown)
+- Working on creating separate input fields for separate filters
+*/
 
 function TourTabs({ data }) {
   const windowWidth = useContext(WindowWidthContext);
@@ -26,11 +32,14 @@ function TourTabs({ data }) {
       : data.filter((tour) => tour.dateFrom.split("-")[0] === selectedTab);
 
   const { filterData, handleDataFilter, setDataFilter, dataFilter } =
-    useFilteredData(toursForSelectedYear, "tourName");
+    useFilteredData(toursForSelectedYear, ERN_DATA_KEYS.tourName);
 
   useEffect(() => {
     if (dataFilter.query !== "") {
-      const filteredTours = filterData(dataFilter.query);
+      const filteredTours = filterData(
+        dataFilter.query,
+        ERN_DATA_KEYS.tourName
+      );
       setDataFilter({
         query: dataFilter.query,
         tourList: filteredTours,
@@ -76,7 +85,7 @@ function TourTabs({ data }) {
       <input
         type="search"
         value={dataFilter.query}
-        onChange={handleDataFilter}
+        onChange={(e) => handleDataFilter(e, ERN_DATA_KEYS.tourName)}
         placeholder="Filter by tour name.."
         className="tourTabsFilterInput"
         style={{ width: filterWidth }}
