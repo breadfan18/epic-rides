@@ -45,7 +45,7 @@ const TourPage = () => {
       ) : windowWidth < 650 ? (
         <ToursByDropDown tours={tours} />
       ) : (
-        <TourTabs data={tours} />
+        <TourTabs tours={tours} />
       )}
     </div>
   );
