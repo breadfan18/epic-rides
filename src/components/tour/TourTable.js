@@ -10,7 +10,7 @@ import { WindowWidthContext } from "../App";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 import { ERN_DATA_KEYS } from "../../constants/constants";
 import TourStatusIcon from "../common/TourStatusIcon";
-import Filters from "./Filters";
+import Filters from "./filters/Filters";
 import { useFilteredData } from "../../hooks/filterData";
 
 export default function TourTable({ data, showFilter }) {
@@ -66,7 +66,20 @@ export default function TourTable({ data, showFilter }) {
   ) : (
     <>
       {showFilter && (
-        <Filters dataFilter={dataFilter} handleDataFilter={handleDataFilter} />
+        <div>
+          <Filters
+            dataFilter={dataFilter}
+            handleDataFilter={handleDataFilter}
+            dataType={ERN_DATA_KEYS.tourName}
+          />{" "}
+          |{" "}
+          <Filters
+            dataFilter={dataFilter}
+            handleDataFilter={handleDataFilter}
+            dataType={ERN_DATA_KEYS.agent}
+          />{" "}
+          |{" "}
+        </div>
       )}
       <Table striped size="sm" className="smaller-table">
         <thead>

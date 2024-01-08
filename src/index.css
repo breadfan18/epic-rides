@@ -446,6 +446,11 @@ form {
   border: 1px solid black;
 }
 
+.btn:focus-visible {
+  background-color: var(--epic-red);
+  border: 1px solid black;
+}
+
 .tourTabsFilterInput {
   padding-left: 10px;
   border: 2px solid var(--light-gray);
