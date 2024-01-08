@@ -10,7 +10,7 @@ import { WindowWidthContext } from "../App";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 import { ERN_DATA_KEYS } from "../../constants/constants";
 import TourStatusIcon from "../common/TourStatusIcon";
-import Filters from "./filters/Filters";
+import Filters from "./Filters";
 import { useFilteredData } from "../../hooks/filterData";
 
 export default function TourTable({ data, showFilter }) {
