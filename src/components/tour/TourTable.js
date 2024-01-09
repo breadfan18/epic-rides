@@ -11,33 +11,20 @@ import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 import { ERN_DATA_KEYS } from "../../constants/constants";
 import TourStatusIcon from "../common/TourStatusIcon";
 import Filters from "./Filters";
-import { useFilteredData } from "../../hooks/filterData";
+import useTourFilter from "../../hooks/filterTours";
 
 export default function TourTable({ data, showFilter }) {
   const windowWidth = useContext(WindowWidthContext);
 
-  const { filterData, handleDataFilter, setDataFilter, dataFilter } =
-    useFilteredData(data);
+  const {
+    filteredData,
+    setTourNameFilter,
+    setAgentFilter,
+    resetFilters,
+    setStatusFilter,
+  } = useTourFilter(data);
 
-  useEffect(() => {
-    if (dataFilter.query !== "") {
-      const filteredTours = filterData(
-        dataFilter.query,
-        ERN_DATA_KEYS.tourName
-      );
-      setDataFilter({
-        query: dataFilter.query,
-        tourList: filteredTours,
-      });
-    } else {
-      setDataFilter({
-        query: "",
-        tourList: [...data],
-      });
-    }
-  }, [data]);
-
-  const { sortedData, requestSort } = useSortableData(dataFilter.tourList);
+  const { sortedData, requestSort } = useSortableData(filteredData);
   const [modalOpen, setModalOpen] = useState(false);
   const history = useHistory();
 
@@ -67,18 +54,61 @@ export default function TourTable({ data, showFilter }) {
     <>
       {showFilter && (
         <div>
-          <Filters
-            dataFilter={dataFilter}
-            handleDataFilter={handleDataFilter}
-            dataType={ERN_DATA_KEYS.tourName}
-          />{" "}
-          |{" "}
-          <Filters
-            dataFilter={dataFilter}
-            handleDataFilter={handleDataFilter}
-            dataType={ERN_DATA_KEYS.agent}
-          />{" "}
-          |{" "}
+          <input
+            type="text"
+            placeholder="Filter by tour name"
+            onChange={(e) => setTourNameFilter(e.target.value)}
+          />
+          <input
+            type="text"
+            placeholder="Filter by agent name"
+            onChange={(e) => setAgentFilter(e.target.value)}
+          />
+
+          <div>
+            <label>
+              <input
+                type="radio"
+                name="status"
+                value=""
+                onChange={() => setStatusFilter("")}
+                checked={data.status === ""}
+              />
+              All
+            </label>
+            <label>
+              <input
+                type="radio"
+                name="status"
+                value="OP"
+                onChange={() => setStatusFilter("OP")}
+                checked={data.status === "OP"}
+              />
+              Open
+            </label>
+            <label>
+              <input
+                type="radio"
+                name="status"
+                value="CL"
+                onChange={() => setStatusFilter("CA")}
+                checked={data.status === "CA"}
+              />
+              Cancelled
+            </label>
+            <label>
+              <input
+                type="radio"
+                name="status"
+                value="CL"
+                onChange={() => setStatusFilter("HK")}
+                checked={data.status === "HK"}
+              />
+              Confirmed
+            </label>
+          </div>
+
+          <button onClick={resetFilters}>Reset Filters</button>
         </div>
       )}
       <Table striped size="sm" className="smaller-table">
