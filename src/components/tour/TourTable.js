@@ -10,7 +10,7 @@ import { WindowWidthContext } from "../App";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 import { ERN_DATA_KEYS } from "../../constants/constants";
 import TourStatusIcon from "../common/TourStatusIcon";
-import Filters from "./Filters";
+import Filters from "./filters/Filters";
 import useTourFilter from "../../hooks/filterTours";
 
 export default function TourTable({ data, showFilter }) {
@@ -53,63 +53,12 @@ export default function TourTable({ data, showFilter }) {
   ) : (
     <>
       {showFilter && (
-        <div>
-          <input
-            type="text"
-            placeholder="Filter by tour name"
-            onChange={(e) => setTourNameFilter(e.target.value)}
-          />
-          <input
-            type="text"
-            placeholder="Filter by agent name"
-            onChange={(e) => setAgentFilter(e.target.value)}
-          />
-
-          <div>
-            <label>
-              <input
-                type="radio"
-                name="status"
-                value=""
-                onChange={() => setStatusFilter("")}
-                checked={data.status === ""}
-              />
-              All
-            </label>
-            <label>
-              <input
-                type="radio"
-                name="status"
-                value="OP"
-                onChange={() => setStatusFilter("OP")}
-                checked={data.status === "OP"}
-              />
-              Open
-            </label>
-            <label>
-              <input
-                type="radio"
-                name="status"
-                value="CL"
-                onChange={() => setStatusFilter("CA")}
-                checked={data.status === "CA"}
-              />
-              Cancelled
-            </label>
-            <label>
-              <input
-                type="radio"
-                name="status"
-                value="CL"
-                onChange={() => setStatusFilter("HK")}
-                checked={data.status === "HK"}
-              />
-              Confirmed
-            </label>
-          </div>
-
-          <button onClick={resetFilters}>Reset Filters</button>
-        </div>
+        <Filters
+          setTourNameFilter={setTourNameFilter}
+          setAgentFilter={setAgentFilter}
+          setStatusFilter={setStatusFilter}
+          resetFilters={resetFilters}
+        />
       )}
       <Table striped size="sm" className="smaller-table">
         <thead>

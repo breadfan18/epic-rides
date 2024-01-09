@@ -12,7 +12,7 @@ import CardText from "./CardText";
 import { setColorForTourStatus } from "../../helpers";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 import TourStatusIcon from "../common/TourStatusIcon";
-import Filters from "./Filters";
+import Filters from "./filters/Filters";
 import { useFilteredData } from "../../hooks/filterData";
 export default function TourCards({ data, showFilter }) {
   const windowWidth = useContext(WindowWidthContext);
