@@ -404,12 +404,12 @@ form {
 
 .filtersContainer {
   display: flex;
-  /* border: 2px solid var(--light-gray); */
   background-color: var(--black-opacity);
   padding: 5px;
   border-radius: 5px;
   align-items: center;
   flex-wrap: wrap;
+  font-size: 12px;
 }
 
 .filtersContainer * {
@@ -417,8 +417,7 @@ form {
 }
 
 .statusFilters {
-  height: 2.67rem;
-  border: 2px solid var(--light-gray);
+  height: 2rem;
   color: rgba(0, 0, 0, 0.7);
   background-color: white;
   border-radius: 5px;
@@ -499,8 +498,8 @@ form {
 
 .inputFilters {
   padding-left: 10px;
-  border: 2px solid var(--light-gray);
-  height: 2.67rem;
+  border: none;
+  height: 2rem;
   border-radius: 5px;
 }
 

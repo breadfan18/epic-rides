@@ -72,7 +72,10 @@ function Filters({
           />
         </div>
 
-        <Button onClick={resetFilters} style={{ backgroundColor: "black" }}>
+        <Button
+          onClick={resetFilters}
+          style={{ backgroundColor: "black", fontSize: "12px" }}
+        >
           Reset
         </Button>
       </div>
