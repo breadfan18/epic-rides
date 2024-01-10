@@ -1,35 +1,44 @@
 import { Button } from "react-bootstrap";
-import useTourFilter from "../../../hooks/filterTours";
 
 function Filters({
+  filters,
   setTourNameFilter,
   setAgentFilter,
   setStatusFilter,
+  setGroupNameFilter,
   resetFilters,
 }) {
   return (
     <div className="filtersContainer">
       <input
         type="text"
+        value={filters.agent || ""}
+        placeholder="Filter by agent name"
+        onChange={(e) => setAgentFilter(e.target.value)}
+        className="inputFilters"
+      />
+      <input
+        type="text"
+        value={filters?.tourName || ""}
         placeholder="Filter by tour name"
         onChange={(e) => setTourNameFilter(e.target.value)}
         className="inputFilters"
       />
       <input
         type="text"
-        placeholder="Filter by agent name"
-        onChange={(e) => setAgentFilter(e.target.value)}
+        value={filters?.groupName || ""}
+        placeholder="Filter by group name"
+        onChange={(e) => setGroupNameFilter(e.target.value)}
         className="inputFilters"
       />
-
       <div className="statusFilters">
         <label>
           <input
             type="radio"
             name="status"
-            value=""
+            value={filters.status}
             onChange={() => setStatusFilter("")}
-            // checked={data.status === ""}
+            // checked={filters.status === ""}
           />
           All
         </label>
@@ -37,9 +46,9 @@ function Filters({
           <input
             type="radio"
             name="status"
-            value="OP"
+            value={filters.status}
             onChange={() => setStatusFilter("OP")}
-            // checked={data.status === "OP"}
+            checked={filters.status === "OP"}
           />
           Open
         </label>
@@ -47,9 +56,9 @@ function Filters({
           <input
             type="radio"
             name="status"
-            value="CA"
+            value={filters.status}
             onChange={() => setStatusFilter("CA")}
-            // checked={data.status === "CA"}
+            checked={filters.status === "CA"}
           />
           Cancelled
         </label>
@@ -57,15 +66,17 @@ function Filters({
           <input
             type="radio"
             name="status"
-            value="HK"
+            value={filters.status}
             onChange={() => setStatusFilter("HK")}
-            // checked={data.status === "HK"}
+            checked={filters.status === "HK"}
           />
           Confirmed
         </label>
       </div>
 
-      <Button onClick={resetFilters}>Reset Filters</Button>
+      <Button onClick={resetFilters} style={{ backgroundColor: "black" }}>
+        Reset
+      </Button>
     </div>
   );
 }

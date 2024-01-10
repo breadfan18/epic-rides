@@ -1,4 +1,4 @@
-import { useState, useMemo, useEffect } from "react";
+import { useState, useMemo } from "react";
 
 const useTourFilter = (initialData) => {
   const data = [...initialData];
@@ -6,7 +6,10 @@ const useTourFilter = (initialData) => {
     tourName: "",
     agent: "",
     status: "",
+    groupName: "",
   });
+
+  console.log(filters);
 
   const applyFilters = (tour) => {
     return Object.entries(filters).every(([property, value]) => {
@@ -15,6 +18,8 @@ const useTourFilter = (initialData) => {
           ? tour.agent.name
           : property === "status"
           ? tour.status
+          : property === "groupName"
+          ? tour.groupFitName
           : tour[property];
       return itemValue.toLowerCase().includes(value.toLowerCase());
     });
@@ -34,14 +39,17 @@ const useTourFilter = (initialData) => {
       tourName: "",
       agent: "",
       status: "",
+      groupName: "",
     });
   };
 
   return {
     filteredData,
+    filters,
     setTourNameFilter: (value) => setFilter("tourName", value),
     setAgentFilter: (value) => setFilter("agent", value),
     setStatusFilter: (value) => setFilter("status", value),
+    setGroupNameFilter: (value) => setFilter("groupName", value),
     resetFilters,
   };
 };

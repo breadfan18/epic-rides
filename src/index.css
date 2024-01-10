@@ -419,11 +419,16 @@ form {
 .statusFilters {
   height: 2.67rem;
   border: 2px solid var(--light-gray);
+  color: rgba(0, 0, 0, 0.7);
   background-color: white;
   border-radius: 5px;
   display: flex;
   align-items: center;
   padding: 0 5px;
+}
+
+.filtersContainer button {
+  margin-left: auto;
 }
 
 #cardFilterContainer {

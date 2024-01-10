@@ -17,11 +17,13 @@ export default function TourTable({ data, showFilter }) {
   const windowWidth = useContext(WindowWidthContext);
 
   const {
+    filters,
     filteredData,
     setTourNameFilter,
     setAgentFilter,
     resetFilters,
     setStatusFilter,
+    setGroupNameFilter,
   } = useTourFilter(data);
 
   const { sortedData, requestSort } = useSortableData(filteredData);
@@ -54,9 +56,11 @@ export default function TourTable({ data, showFilter }) {
     <>
       {showFilter && (
         <Filters
+          filters={filters}
           setTourNameFilter={setTourNameFilter}
           setAgentFilter={setAgentFilter}
           setStatusFilter={setStatusFilter}
+          setGroupNameFilter={setGroupNameFilter}
           resetFilters={resetFilters}
         />
       )}
@@ -132,11 +136,6 @@ export default function TourTable({ data, showFilter }) {
                 <td>{d.numOfDays === "" ? "N/A" : d.numOfDays}</td>
                 <td className="editDeleteCard">
                   <TourAddEditModal data={d} setModalOpen={setModalOpen} />
-                  {/* <ConfirmDeleteModal
-                  data={d}
-                  dataType="tour"
-                  setModalOpen={setModalOpen}
-                /> */}
                 </td>
               </tr>
             );
