@@ -9,6 +9,8 @@ function Filters({
   setGroupNameFilter,
   resetFilters,
 }) {
+  console.log(filters.status);
+
   return (
     <>
       <div className="filtersContainer">
@@ -41,13 +43,13 @@ function Filters({
             value={filters.status}
             onChange={() => setStatusFilter("")}
             className="radioFilters"
-            // checked={filters.status === "OP"}
+            // checked={filters.status === ""}
           />
           <Form.Check
             label="Open"
             type="radio"
             name="status"
-            value={filters.status}
+            // value={filters.status}
             onChange={() => setStatusFilter("OP")}
             checked={filters.status === "OP"}
             className="radioFilters"
@@ -56,7 +58,7 @@ function Filters({
             label="Confirmed"
             type="radio"
             name="status"
-            value={filters.status}
+            // value={filters.status}
             onChange={() => setStatusFilter("HK")}
             checked={filters.status === "HK"}
             className="radioFilters"
@@ -65,7 +67,7 @@ function Filters({
             label="Cancelled"
             type="radio"
             name="status"
-            value={filters.status}
+            // value={filters.status}
             onChange={() => setStatusFilter("CA")}
             checked={filters.status === "CA"}
             className="radioFilters"
