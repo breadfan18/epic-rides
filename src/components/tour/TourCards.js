@@ -14,38 +14,28 @@ import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 import TourStatusIcon from "../common/TourStatusIcon";
 import Filters from "./filters/Filters";
 import { useFilteredData } from "../../hooks/filterData";
+import useTourFilter from "../../hooks/filterTours";
 export default function TourCards({ data, showFilter }) {
   const windowWidth = useContext(WindowWidthContext);
   const cardWidth = windowWidth < 650 ? windowWidth : "18rem";
   const history = useHistory();
 
-  const { filterData, handleDataFilter, setDataFilter, dataFilter } =
-    useFilteredData(data);
-
-  useEffect(() => {
-    if (dataFilter.query !== "") {
-      const filteredTours = filterData(
-        dataFilter.query,
-        ERN_DATA_KEYS.tourName
-      );
-      setDataFilter({
-        query: dataFilter.query,
-        tourList: filteredTours,
-      });
-    } else {
-      setDataFilter({
-        query: "",
-        tourList: [...data],
-      });
-    }
-  }, [data]);
+  const {
+    filters,
+    filteredData,
+    setTourNameFilter,
+    setAgentFilter,
+    resetFilters,
+    setStatusFilter,
+    setGroupNameFilter,
+  } = useTourFilter(data);
 
   const routeChange = (tour) => {
     let path = `/tour/${tour.id}`;
     history.push(path);
   };
 
-  const allTours = dataFilter.tourList.map((d) => {
+  const allTours = filteredData.map((d) => {
     return (
       <Card style={{ width: cardWidth }} key={d.id} className="cardCard">
         <Card.Body style={{ padding: "0" }}>
@@ -100,7 +90,14 @@ export default function TourCards({ data, showFilter }) {
   ) : (
     <>
       {showFilter && (
-        <Filters dataFilter={dataFilter} handleDataFilter={handleDataFilter} />
+        <Filters
+          filters={filters}
+          setTourNameFilter={setTourNameFilter}
+          setAgentFilter={setAgentFilter}
+          setStatusFilter={setStatusFilter}
+          setGroupNameFilter={setGroupNameFilter}
+          resetFilters={resetFilters}
+        />
       )}
       <div id="cardsContainer">{allTours}</div>
     </>
