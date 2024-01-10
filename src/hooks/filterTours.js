@@ -9,8 +9,6 @@ const useTourFilter = (initialData) => {
     groupName: "",
   });
 
-  console.log(filters);
-
   const applyFilters = (tour) => {
     return Object.entries(filters).every(([property, value]) => {
       const itemValue =

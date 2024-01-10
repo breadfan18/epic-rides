@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useState } from "react";
 import PropTypes from "prop-types";
 import EmptyList from "../common/EmptyList";
 import Table from "react-bootstrap/Table";

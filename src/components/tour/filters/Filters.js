@@ -1,4 +1,5 @@
 import { Button } from "react-bootstrap";
+import Form from "react-bootstrap/Form";
 
 function Filters({
   filters,
@@ -32,46 +33,42 @@ function Filters({
         className="inputFilters"
       />
       <div className="statusFilters">
-        <label>
-          <input
-            type="radio"
-            name="status"
-            value={filters.status}
-            onChange={() => setStatusFilter("")}
-            // checked={filters.status === ""}
-          />
-          All
-        </label>
-        <label>
-          <input
-            type="radio"
-            name="status"
-            value={filters.status}
-            onChange={() => setStatusFilter("OP")}
-            checked={filters.status === "OP"}
-          />
-          Open
-        </label>
-        <label>
-          <input
-            type="radio"
-            name="status"
-            value={filters.status}
-            onChange={() => setStatusFilter("CA")}
-            checked={filters.status === "CA"}
-          />
-          Cancelled
-        </label>
-        <label>
-          <input
-            type="radio"
-            name="status"
-            value={filters.status}
-            onChange={() => setStatusFilter("HK")}
-            checked={filters.status === "HK"}
-          />
-          Confirmed
-        </label>
+        <Form.Check
+          label="All"
+          type="radio"
+          name="status"
+          value={filters.status}
+          onChange={() => setStatusFilter("")}
+          className="radioFilters"
+          // checked={filters.status === "OP"}
+        />
+        <Form.Check
+          label="Open"
+          type="radio"
+          name="status"
+          value={filters.status}
+          onChange={() => setStatusFilter("OP")}
+          checked={filters.status === "OP"}
+          className="radioFilters"
+        />
+        <Form.Check
+          label="Confirmed"
+          type="radio"
+          name="status"
+          value={filters.status}
+          onChange={() => setStatusFilter("HK")}
+          checked={filters.status === "HK"}
+          className="radioFilters"
+        />
+        <Form.Check
+          label="Cancelled"
+          type="radio"
+          name="status"
+          value={filters.status}
+          onChange={() => setStatusFilter("CA")}
+          checked={filters.status === "CA"}
+          className="radioFilters"
+        />
       </div>
 
       <Button onClick={resetFilters} style={{ backgroundColor: "black" }}>

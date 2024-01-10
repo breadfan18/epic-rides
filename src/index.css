@@ -404,7 +404,7 @@ form {
 
 .filtersContainer {
   display: flex;
-  border: 2px solid var(--epic-red);
+  /* border: 2px solid var(--light-gray); */
   background-color: var(--black-opacity);
   padding: 5px;
   border-radius: 5px;
@@ -429,6 +429,17 @@ form {
 
 .filtersContainer button {
   margin-left: auto;
+}
+
+.radioFilters {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.form-check-input:checked {
+  background-color: var(--epic-red);
+  border-color: var(--epic-red);
 }
 
 #cardFilterContainer {
