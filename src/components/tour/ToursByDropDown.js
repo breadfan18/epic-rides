@@ -1,8 +1,7 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import TourCards from "./TourCards";
 import PropTypes from "prop-types";
 import { Form } from "react-bootstrap";
-import { useFilteredData } from "../../hooks/filterData";
 import _ from "lodash";
 import { getYearsFromTours, sortNumbers } from "../../helpers";
 import { Button } from "react-bootstrap";
@@ -26,26 +25,8 @@ function ToursByDropDown({ tours }) {
           : selectedYear === d.dateFrom.split("-")[0]
       );
 
-  const { filterData, handleDataFilter, setDataFilter, dataFilter } =
-    useFilteredData(toursForSelectedYear);
-
   const handleYearChange = (event) =>
     setSelectedYear(event.target.value || "all-tours");
-
-  useEffect(() => {
-    if (dataFilter.query !== "") {
-      const filteredTours = filterData(dataFilter.query, "tourName");
-      setDataFilter({
-        query: dataFilter.query,
-        tourList: filteredTours,
-      });
-    } else {
-      setDataFilter({
-        query: "",
-        tourList: [...toursForSelectedYear],
-      });
-    }
-  }, [tours, selectedYear]);
 
   return (
     <div className="cardsDropDownContainer">
@@ -74,7 +55,7 @@ function ToursByDropDown({ tours }) {
       </div>
       <hr />
       <TourCards
-        data={dataFilter.tourList}
+        data={toursForSelectedYear}
         showUserName={showAllData}
         showFilter={showFilter}
       />
