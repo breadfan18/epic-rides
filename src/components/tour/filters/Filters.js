@@ -1,5 +1,7 @@
+import { useContext, useEffect } from "react";
 import { Button } from "react-bootstrap";
 import Form from "react-bootstrap/Form";
+import { WindowWidthContext } from "../../App";
 
 function Filters({
   filters,
@@ -9,11 +11,21 @@ function Filters({
   setGroupNameFilter,
   resetFilters,
 }) {
-  console.log(filters.status);
+  const windowWidth = useContext(WindowWidthContext);
+  /* 
+  Here's what's happening
+  - If i DONT click All in the status filters before switching to another tab, then status field
+  doest not get checked (until i click twice)
+
+  IF I click All, and then switch tabs, everything works properly. 
+  */
 
   return (
     <>
-      <div className="filtersContainer">
+      <div
+        className="filtersContainer"
+        style={windowWidth < 772 ? { display: "grid" } : null}
+      >
         <input
           type="text"
           value={filters.agent || ""}
@@ -76,7 +88,11 @@ function Filters({
 
         <Button
           onClick={resetFilters}
-          style={{ backgroundColor: "black", fontSize: "12px" }}
+          style={{
+            backgroundColor: "black",
+            fontSize: "12px",
+            width: windowWidth < 772 ? "100%" : null,
+          }}
         >
           Reset
         </Button>

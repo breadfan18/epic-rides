@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useState } from "react";
 import PropTypes from "prop-types";
 import EmptyList from "../common/EmptyList";
 import Table from "react-bootstrap/Table";
@@ -6,7 +6,6 @@ import { FaSort } from "react-icons/fa";
 import { useSortableData } from "../../hooks/sortData";
 import { formatDate, setColorForTourStatus, titleCase } from "../../helpers";
 import TourAddEditModal from "./TourAddEditModal";
-import { WindowWidthContext } from "../App";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 import { ERN_DATA_KEYS } from "../../constants/constants";
 import TourStatusIcon from "../common/TourStatusIcon";
@@ -14,8 +13,6 @@ import Filters from "./filters/Filters";
 import useTourFilter from "../../hooks/filterTours";
 
 export default function TourTable({ data, showFilter }) {
-  const windowWidth = useContext(WindowWidthContext);
-
   const {
     filters,
     filteredData,
