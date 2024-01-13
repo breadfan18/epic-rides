@@ -9,21 +9,9 @@ import TourAddEditModal from "./TourAddEditModal";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 import { ERN_DATA_KEYS } from "../../constants/constants";
 import TourStatusIcon from "../common/TourStatusIcon";
-import Filters from "./filters/Filters";
-import useTourFilter from "../../hooks/filterTours";
 
-export default function TourTable({ data, showFilter }) {
-  const {
-    filters,
-    filteredData,
-    setTourNameFilter,
-    setAgentFilter,
-    resetFilters,
-    setStatusFilter,
-    setGroupNameFilter,
-  } = useTourFilter(data);
-
-  const { sortedData, requestSort } = useSortableData(filteredData);
+export default function TourTable({ data }) {
+  const { sortedData, requestSort } = useSortableData(data);
   const [modalOpen, setModalOpen] = useState(false);
   const history = useHistory();
 
@@ -51,16 +39,6 @@ export default function TourTable({ data, showFilter }) {
     <EmptyList dataType={"tour"} />
   ) : (
     <>
-      {showFilter && (
-        <Filters
-          filters={filters}
-          setTourNameFilter={setTourNameFilter}
-          setAgentFilter={setAgentFilter}
-          setStatusFilter={setStatusFilter}
-          setGroupNameFilter={setGroupNameFilter}
-          resetFilters={resetFilters}
-        />
-      )}
       <Table striped size="sm" className="smaller-table">
         <thead>
           <tr>

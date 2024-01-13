@@ -2,6 +2,7 @@ import { useContext, useEffect } from "react";
 import { Button } from "react-bootstrap";
 import Form from "react-bootstrap/Form";
 import { WindowWidthContext } from "../../App";
+import { APP_COLOR_EPIC_RED } from "../../../constants/constants";
 
 function Filters({
   filters,
@@ -22,6 +23,8 @@ function Filters({
 
   return (
     <>
+      <hr />
+
       <div
         className="filtersContainer"
         style={windowWidth < 772 ? { display: "grid" } : null}
@@ -61,7 +64,7 @@ function Filters({
             label="Open"
             type="radio"
             name="status"
-            // value={filters.status}
+            value={filters.status}
             onChange={() => setStatusFilter("OP")}
             checked={filters.status === "OP"}
             className="radioFilters"
@@ -70,7 +73,7 @@ function Filters({
             label="Confirmed"
             type="radio"
             name="status"
-            // value={filters.status}
+            value={filters.status}
             onChange={() => setStatusFilter("HK")}
             checked={filters.status === "HK"}
             className="radioFilters"
@@ -79,9 +82,9 @@ function Filters({
             label="Cancelled"
             type="radio"
             name="status"
-            // value={filters.status}
+            value={filters.status}
             onChange={() => setStatusFilter("CA")}
-            checked={filters.status === "CA"}
+            // checked={filters.status === "CA"}
             className="radioFilters"
           />
         </div>
@@ -91,7 +94,7 @@ function Filters({
           style={{
             backgroundColor: "black",
             fontSize: "12px",
-            width: windowWidth < 772 ? "100%" : null,
+            width: windowWidth < 772 ? "98%" : null,
           }}
         >
           Reset

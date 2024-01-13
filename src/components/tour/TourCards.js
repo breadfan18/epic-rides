@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext } from "react";
 import { Card } from "react-bootstrap";
 import {
   ERN_DATA_KEYS,
@@ -12,29 +12,17 @@ import CardText from "./CardText";
 import { setColorForTourStatus } from "../../helpers";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 import TourStatusIcon from "../common/TourStatusIcon";
-import Filters from "./filters/Filters";
-import useTourFilter from "../../hooks/filterTours";
 export default function TourCards({ data, showFilter }) {
   const windowWidth = useContext(WindowWidthContext);
   const cardWidth = windowWidth < 650 ? windowWidth : "18rem";
   const history = useHistory();
-
-  const {
-    filters,
-    filteredData,
-    setTourNameFilter,
-    setAgentFilter,
-    resetFilters,
-    setStatusFilter,
-    setGroupNameFilter,
-  } = useTourFilter(data);
 
   const routeChange = (tour) => {
     let path = `/tour/${tour.id}`;
     history.push(path);
   };
 
-  const allTours = filteredData.map((d) => {
+  const allTours = data.map((d) => {
     return (
       <Card style={{ width: cardWidth }} key={d.id} className="cardCard">
         <Card.Body style={{ padding: "0" }}>
@@ -78,7 +66,6 @@ export default function TourCards({ data, showFilter }) {
           </section>
           <div className="editDeleteCard editDeleteOnCards">
             <TourAddEditModal data={d} />
-            {/* <ConfirmDeleteModal data={d} dataType={DELETE_MODAL_TYPES.tour} /> */}
           </div>
         </Card.Body>
       </Card>
@@ -87,19 +74,7 @@ export default function TourCards({ data, showFilter }) {
   return data.length === 0 ? (
     <EmptyList dataType={"tour"} />
   ) : (
-    <>
-      {showFilter && (
-        <Filters
-          filters={filters}
-          setTourNameFilter={setTourNameFilter}
-          setAgentFilter={setAgentFilter}
-          setStatusFilter={setStatusFilter}
-          setGroupNameFilter={setGroupNameFilter}
-          resetFilters={resetFilters}
-        />
-      )}
-      <div id="cardsContainer">{allTours}</div>
-    </>
+    <div id="cardsContainer">{allTours}</div>
   );
 }
 

@@ -404,12 +404,13 @@ form {
 
 .filtersContainer {
   display: flex;
-  background-color: var(--black-opacity);
+  background-color: rgba(0, 0, 0, 0.27);
   padding: 5px;
   border-radius: 5px;
   align-items: center;
   flex-wrap: wrap;
   font-size: 12px;
+  margin-bottom: 15px;
 }
 
 .filtersContainer * {

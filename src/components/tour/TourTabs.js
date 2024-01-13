@@ -8,11 +8,8 @@ import { WindowWidthContext } from "../App";
 import _ from "lodash";
 import { getYearsFromTours, sortNumbers } from "../../helpers";
 import { Button } from "react-bootstrap";
-
-/* 
-- Make sure filter works in small screen (ToursByDropDown) - DONE
-- Working on creating separate input fields for separate filters
-*/
+import Filters from "./filters/Filters";
+import useTourFilter from "../../hooks/filterTours";
 
 function TourTabs({ tours }) {
   const windowWidth = useContext(WindowWidthContext);
@@ -24,20 +21,32 @@ function TourTabs({ tours }) {
   const handleSelectTab = (tabKey) => setSelectedTab(tabKey.toString());
   const [showFilter, setShowFilter] = useState(false);
 
+  const {
+    filters,
+    filteredData,
+    setTourNameFilter,
+    setAgentFilter,
+    resetFilters,
+    setStatusFilter,
+    setGroupNameFilter,
+  } = useTourFilter(tours);
+
   const toursForSelectedYear =
     selectedTab === "all-tours"
-      ? tours
+      ? filteredData
       : selectedTab === "UNDATED"
-      ? tours.filter((tour) => !tour.dateFrom)
-      : tours.filter((tour) => tour.dateFrom.split("-")[0] === selectedTab);
+      ? filteredData.filter((tour) => !tour.dateFrom)
+      : filteredData.filter(
+          (tour) => tour.dateFrom.split("-")[0] === selectedTab
+        );
 
   const yearlyTabs = [...yearsWithTours, "UNDATED"].map((year) => {
     return (
       <Tab eventKey={year} title={year} key={year}>
         {windowWidth > 1000 ? (
-          <TourTable data={toursForSelectedYear} showFilter={showFilter} />
+          <TourTable data={toursForSelectedYear} />
         ) : (
-          <TourCards data={toursForSelectedYear} showFilter={showFilter} />
+          <TourCards data={toursForSelectedYear} />
         )}
       </Tab>
     );
@@ -45,6 +54,16 @@ function TourTabs({ tours }) {
 
   return (
     <>
+      {showFilter && (
+        <Filters
+          filters={filters}
+          setTourNameFilter={setTourNameFilter}
+          setAgentFilter={setAgentFilter}
+          setStatusFilter={setStatusFilter}
+          setGroupNameFilter={setGroupNameFilter}
+          resetFilters={resetFilters}
+        />
+      )}
       <Button
         className="filterButton"
         onClick={() => setShowFilter(!showFilter)}
@@ -59,9 +78,9 @@ function TourTabs({ tours }) {
       >
         <Tab eventKey="all-tours" title="All Tours">
           {windowWidth > 1000 ? (
-            <TourTable data={toursForSelectedYear} showFilter={showFilter} />
+            <TourTable data={toursForSelectedYear} />
           ) : (
-            <TourCards data={toursForSelectedYear} showFilter={showFilter} />
+            <TourCards data={toursForSelectedYear} />
           )}
         </Tab>
         {yearlyTabs}

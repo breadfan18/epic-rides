@@ -5,12 +5,23 @@ import { Form } from "react-bootstrap";
 import _ from "lodash";
 import { getYearsFromTours, sortNumbers } from "../../helpers";
 import { Button } from "react-bootstrap";
+import useTourFilter from "../../hooks/filterTours";
+import Filters from "./filters/Filters";
 
 function ToursByDropDown({ tours }) {
   const [selectedYear, setSelectedYear] = useState(
     new Date().getFullYear().toString()
   );
   const [showFilter, setShowFilter] = useState(false);
+  const {
+    filters,
+    filteredData,
+    setTourNameFilter,
+    setAgentFilter,
+    resetFilters,
+    setStatusFilter,
+    setGroupNameFilter,
+  } = useTourFilter(tours);
 
   const yearsWithTours = sortNumbers(getYearsFromTours(tours));
 
@@ -18,8 +29,8 @@ function ToursByDropDown({ tours }) {
     selectedYear === undefined || selectedYear === "all-tours";
 
   const toursForSelectedYear = showAllData
-    ? tours
-    : tours.filter((d) =>
+    ? filteredData
+    : filteredData.filter((d) =>
         d.dateFrom === ""
           ? selectedYear === "UNDATED"
           : selectedYear === d.dateFrom.split("-")[0]
@@ -30,6 +41,16 @@ function ToursByDropDown({ tours }) {
 
   return (
     <div className="cardsDropDownContainer">
+      {showFilter && (
+        <Filters
+          filters={filters}
+          setTourNameFilter={setTourNameFilter}
+          setAgentFilter={setAgentFilter}
+          setStatusFilter={setStatusFilter}
+          setGroupNameFilter={setGroupNameFilter}
+          resetFilters={resetFilters}
+        />
+      )}
       <div id="cardFilterContainer">
         <Form.Select
           id="cardFilterUserSelect"
