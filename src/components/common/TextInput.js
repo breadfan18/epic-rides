@@ -74,18 +74,6 @@ const TextInput = ({
           // minLength={length}
         />
       </div>
-      {/* {error && (
-        <div
-          className="alert"
-          role="alert"
-          style={{
-            backgroundColor: APP_COLOR_BLACK_OPACITY,
-            color: APP_COLOR_EPIC_RED,
-          }}
-        >
-          <p style={{ marginBottom: "0" }}>{error}</p>
-        </div>
-      )} */}
     </div>
   );
 };

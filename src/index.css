@@ -402,33 +402,106 @@ form {
   background-color: var(--black-opacity);
 }
 
+.filtersContainer {
+  display: flex;
+  background-color: rgba(0, 0, 0, 0.27);
+  padding: 5px;
+  border-radius: 5px;
+  align-items: center;
+  flex-wrap: wrap;
+  font-size: 12px;
+  margin-bottom: 15px;
+}
+
+.filtersContainer * {
+  margin: 5px;
+}
+
+.statusFilters {
+  height: 2rem;
+  color: rgba(0, 0, 0, 0.7);
+  background-color: white;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  padding: 0 5px;
+}
+
+.filtersContainer button {
+  margin-left: auto;
+}
+
+.radioFilters {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.form-check-input:checked {
+  background-color: var(--epic-red);
+  border-color: var(--epic-red);
+}
+
 #cardFilterContainer {
   display: flex;
-  border: 1px solid var(--light-gray);
   border-radius: 10px;
 }
 
 #cardFilterUserSelect {
-  width: clamp(9rem, 11rem, 20rem);
   padding: 10px;
   background-color: var(--light-gray);
   border-radius: 10px 0 0 10px;
   color: var(--epic-red);
 }
 
-#cardFilterInput {
+#dataFilterInput {
   border: none;
   flex: 1;
   border-radius: 0 10px 10px 0;
   padding-left: 10px;
 }
 
-.cardTabsFilterInput {
+.filterButton {
   padding-left: 10px;
+  color: white;
+  background-color: var(--epic-red);
   border: 2px solid var(--light-gray);
   float: right;
   height: 2.67rem;
   border-radius: 10px 10px 10px 0;
+}
+
+.filterButtonSmallScreen {
+  padding-left: 10px;
+  color: white;
+  background-color: var(--epic-red);
+  border: none;
+  flex: 1;
+  border-radius: 0 10px 10px 0;
+  padding-left: 10px;
+}
+
+.btn,
+.btn-primary {
+  background-color: var(--epic-red);
+  border: 1px solid var(--epic-red);
+}
+
+.btn-primary:hover {
+  background-color: black;
+  border: 1px solid black;
+}
+
+.btn:focus-visible {
+  background-color: var(--epic-red);
+  border: 1px solid black;
+}
+
+.inputFilters {
+  padding-left: 10px;
+  border: none;
+  height: 2rem;
+  border-radius: 5px;
 }
 
 input[type="search"]::-webkit-search-cancel-button {

@@ -7,13 +7,12 @@ import {
 import PropTypes from "prop-types";
 import EmptyList from "../common/EmptyList";
 import TourAddEditModal from "./TourAddEditModal";
-import ConfirmDeleteModal from "../common/ConfirmDeleteModal";
 import { WindowWidthContext } from "../App";
 import CardText from "./CardText";
 import { setColorForTourStatus } from "../../helpers";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 import TourStatusIcon from "../common/TourStatusIcon";
-export default function TourCards({ data }) {
+export default function TourCards({ data, showFilter }) {
   const windowWidth = useContext(WindowWidthContext);
   const cardWidth = windowWidth < 650 ? windowWidth : "18rem";
   const history = useHistory();
@@ -67,7 +66,6 @@ export default function TourCards({ data }) {
           </section>
           <div className="editDeleteCard editDeleteOnCards">
             <TourAddEditModal data={d} />
-            {/* <ConfirmDeleteModal data={d} dataType={DELETE_MODAL_TYPES.tour} /> */}
           </div>
         </Card.Body>
       </Card>

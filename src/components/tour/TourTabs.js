@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import Tab from "react-bootstrap/Tab";
 import Tabs from "react-bootstrap/Tabs";
 import PropTypes from "prop-types";
@@ -7,72 +7,80 @@ import TourCards from "./TourCards";
 import { WindowWidthContext } from "../App";
 import _ from "lodash";
 import { getYearsFromTours, sortNumbers } from "../../helpers";
+import { Button } from "react-bootstrap";
+import Filters from "./filters/Filters";
+import useTourFilter from "../../hooks/filterTours";
 
-function TourTabs({ data }) {
+function TourTabs({ tours }) {
   const windowWidth = useContext(WindowWidthContext);
+  const yearsWithTours = sortNumbers(getYearsFromTours(tours));
+  const activeTab = yearsWithTours.includes(new Date().getFullYear().toString())
+    ? new Date().getFullYear().toString()
+    : yearsWithTours[0];
+  const [selectedTab, setSelectedTab] = useState(activeTab);
+  const handleSelectTab = (tabKey) => setSelectedTab(tabKey.toString());
+  const [showFilter, setShowFilter] = useState(false);
 
-  const filterWidth =
-    windowWidth >= 750
-      ? "32vw"
-      : windowWidth < 750 && windowWidth >= 727
-      ? "30vw"
-      : windowWidth < 727 && windowWidth >= 680
-      ? "25vw"
-      : windowWidth < 680 && windowWidth >= 661
-      ? "23vw"
-      : "21vw";
+  const {
+    filters,
+    filteredData,
+    setTourNameFilter,
+    setAgentFilter,
+    resetFilters,
+    setStatusFilter,
+    setGroupNameFilter,
+  } = useTourFilter(tours);
 
-  const yearsWithTours = sortNumbers(getYearsFromTours(data));
+  const toursForSelectedYear =
+    selectedTab === "all-tours"
+      ? filteredData
+      : selectedTab === "UNDATED"
+      ? filteredData.filter((tour) => !tour.dateFrom)
+      : filteredData.filter(
+          (tour) => tour.dateFrom.split("-")[0] === selectedTab
+        );
 
   const yearlyTabs = [...yearsWithTours, "UNDATED"].map((year) => {
-    const dataForYear = data.filter((d) =>
-      d.dateFrom === "" ? year === "UNDATED" : year === d.dateFrom.split("-")[0]
-    );
     return (
       <Tab eventKey={year} title={year} key={year}>
         {windowWidth > 1000 ? (
-          <TourTable
-            data={dataForYear}
-            showEditDelete={true}
-            showUser={false}
-            showCompactTable={false}
-          />
+          <TourTable data={toursForSelectedYear} />
         ) : (
-          <TourCards data={dataForYear} showUserName={false} />
+          <TourCards data={toursForSelectedYear} />
         )}
       </Tab>
     );
   });
 
-  const activeTab = yearsWithTours.includes(new Date().getFullYear().toString())
-    ? new Date().getFullYear()
-    : yearsWithTours[0];
-
   return (
     <>
-      {/* <input
-        type="search"
-        value={cardsFilter.query}
-        onChange={handleCardsFilter}
-        placeholder="Filter by card name.."
-        className="cardTabsFilterInput"
-        style={{ width: filterWidth }}
-      /> */}
-      <Tabs defaultActiveKey={activeTab} className="mb-3">
-        <Tab eventKey="all-data" title="All Tours">
+      {showFilter && (
+        <Filters
+          filters={filters}
+          setTourNameFilter={setTourNameFilter}
+          setAgentFilter={setAgentFilter}
+          setStatusFilter={setStatusFilter}
+          setGroupNameFilter={setGroupNameFilter}
+          resetFilters={resetFilters}
+        />
+      )}
+      <Button
+        className="filterButton"
+        onClick={() => setShowFilter(!showFilter)}
+        style={{ minWidth: "10rem" }}
+      >
+        {showFilter ? "Hide Filters" : "Show Filters"}
+      </Button>
+      <Tabs
+        defaultActiveKey={activeTab}
+        className="mb-3"
+        onSelect={handleSelectTab}
+      >
+        <Tab eventKey="all-tours" title="All Tours">
           {windowWidth > 1000 ? (
-            <TourTable
-              data={data}
-              showEditDelete={true}
-              showUser={true}
-              showCompactTable={false}
-            />
+            <TourTable data={toursForSelectedYear} />
           ) : (
-            <TourCards
-              data={data}
-              windowWidth={windowWidth}
-              showUserName={true}
-            />
+            <TourCards data={toursForSelectedYear} />
           )}
         </Tab>
         {yearlyTabs}
