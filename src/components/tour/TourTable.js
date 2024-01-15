@@ -9,6 +9,7 @@ import TourAddEditModal from "./TourAddEditModal";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 import { ERN_DATA_KEYS } from "../../constants/constants";
 import TourStatusIcon from "../common/TourStatusIcon";
+import ConfirmTourModal from "./ConfirmTourModal";
 
 export default function TourTable({ data }) {
   const { sortedData, requestSort } = useSortableData(data);
@@ -111,6 +112,7 @@ export default function TourTable({ data }) {
                 <td>{d.numOfDays === "" ? "N/A" : d.numOfDays}</td>
                 <td className="editDeleteCard">
                   <TourAddEditModal data={d} setModalOpen={setModalOpen} />
+                  <ConfirmTourModal data={d} setModalOpen={setModalOpen} />
                 </td>
               </tr>
             );
