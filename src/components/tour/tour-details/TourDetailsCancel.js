@@ -1,10 +1,7 @@
 import React from "react";
-import Button from "react-bootstrap/Button";
-import { useDispatch } from "react-redux";
-import { saveDataToFirebase } from "../../../redux/actions/dataActions";
+import CancelTourModal from "../CancelTourModal";
 
 export default function TourDetailsCancel({ tour }) {
-  const dispatch = useDispatch();
   return (
     <div className="tourDetailsConfirmCancel">
       <p>
@@ -15,18 +12,7 @@ export default function TourDetailsCancel({ tour }) {
         open status. If the client inquires about this tour again, please create
         a new tour record.
       </p>
-      <Button
-        onClick={() =>
-          dispatch(saveDataToFirebase({ ...tour, status: "CA" }, tour.id))
-        }
-        style={{
-          backgroundColor: "black",
-          border: "none",
-          height: "3.5rem",
-        }}
-      >
-        Cancel Tour
-      </Button>
+      <CancelTourModal data={tour} />
     </div>
   );
 }
