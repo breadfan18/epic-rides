@@ -58,7 +58,13 @@ function CancelTourModal({ data, setModalOpen, redirect }) {
         <Modal.Header className="modalHeader" closeButton>
           <Modal.Title>Cancel Tour</Modal.Title>
         </Modal.Header>
-        <Modal.Body>Are you sure you want to cancel this tour?</Modal.Body>
+        <Modal.Body>
+          If the client inquires about this tour again, you will have to create
+          a new tour record.
+          <br />
+          <br />
+          Are you sure you want to cancel this tour?
+        </Modal.Body>
         <Modal.Footer>
           <Button
             variant="secondary"

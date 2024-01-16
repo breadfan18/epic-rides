@@ -5,12 +5,8 @@ export default function TourDetailsCancel({ tour }) {
   return (
     <div className="tourDetailsConfirmCancel">
       <p>
-        If this tour record is obsolete, you can cancel it.
-        <br />
-        <br />
-        Once the tour is cancelled, it cannot be modified or changed back into
-        open status. If the client inquires about this tour again, please create
-        a new tour record.
+        If this tour record is obsolete, you can cancel it. Please keep in mind
+        that a canceled tour cannot be reopened
       </p>
       <CancelTourModal data={tour} />
     </div>
