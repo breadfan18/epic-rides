@@ -67,7 +67,7 @@ export default function TourCards({ data, showFilter }) {
           </section>
           <div className="editDeleteCard editDeleteOnCards">
             <TourAddEditModal data={d} />
-            <ConfirmTourModal data={d} />
+            <ConfirmTourModal data={d} buttonStyle="round" />
           </div>
         </Card.Body>
       </Card>

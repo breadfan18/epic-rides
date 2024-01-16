@@ -112,7 +112,11 @@ export default function TourTable({ data }) {
                 <td>{d.numOfDays === "" ? "N/A" : d.numOfDays}</td>
                 <td className="editDeleteCard">
                   <TourAddEditModal data={d} setModalOpen={setModalOpen} />
-                  <ConfirmTourModal data={d} setModalOpen={setModalOpen} />
+                  <ConfirmTourModal
+                    data={d}
+                    setModalOpen={setModalOpen}
+                    buttonStyle="round"
+                  />
                 </td>
               </tr>
             );

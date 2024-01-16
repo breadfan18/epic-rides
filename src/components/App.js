@@ -10,7 +10,7 @@ import Login from "./login/Login";
 import { Spinner } from "./common/Spinner";
 import { useSigninCheck } from "reactfire";
 import AgentsPage from "./agents/AgentsPage";
-import TourDetailsPage from "./tour/TourDetailsPage";
+import TourDetailsPage from "./tour/tour-details/TourDetailsPage";
 export const WindowWidthContext = createContext();
 
 function App() {

@@ -3,32 +3,32 @@ import { connect, useDispatch, useSelector } from "react-redux";
 import {
   loadDataFromFirebase,
   saveDataToFirebase,
-} from "../../redux/actions/dataActions";
-import { loadAgentsFromFirebase } from "../../redux/actions/agentActions";
+} from "../../../redux/actions/dataActions";
+import { loadAgentsFromFirebase } from "../../../redux/actions/agentActions";
 import PropTypes from "prop-types";
-import { Spinner } from "../common/Spinner";
+import { Spinner } from "../../common/Spinner";
 import {
   NEW_DATA,
   APP_COLOR_EPIC_RED,
   STATUS_CODES,
   TOUR_DETAILS_IMAGES,
-} from "../../constants/constants";
+} from "../../../constants/constants";
 import { Card, Table } from "react-bootstrap";
 import {
   formatDate,
   setColorForTourStatus,
   sortNotesByDate,
-} from "../../helpers";
-import TourNotes from "./TourNotes";
-import { WindowWidthContext } from "../App";
+} from "../../../helpers";
+import TourNotes from "../TourNotes";
+import { WindowWidthContext } from "../../App";
 import _ from "lodash";
-import TourStatusIcon from "../common/TourStatusIcon";
-// import { CardReminderContainer } from "./CardReminderContainer";
+import TourStatusIcon from "../../common/TourStatusIcon";
 import { useUser } from "reactfire";
-import TourAddEditModal from "./TourAddEditModal";
+import TourAddEditModal from "../TourAddEditModal";
 import { MdOutlineContentCopy } from "react-icons/md";
 import { toast } from "react-toastify";
-import CreatedOrEditedBy from "./CreatedOrEditedBy";
+import CreatedOrEditedBy from "../CreatedOrEditedBy";
+import TourDetailsConfirmCancel from "./TourDetailsConfirmCancel";
 
 function TourDetailsPage({ tours, loadDataFromFirebase, ...props }) {
   const dispatch = useDispatch();
@@ -261,7 +261,7 @@ function TourDetailsPage({ tours, loadDataFromFirebase, ...props }) {
             tourId={tour.id}
             tourNotes={sortNotesByDate(_.values(tour.tourNotes))}
           />
-          {/* <CardReminderContainer card={tour} /> */}
+          <TourDetailsConfirmCancel tour={props.tour} />
         </div>
       </div>
     </div>

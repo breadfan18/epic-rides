@@ -78,7 +78,7 @@ function TourAddEditModal({ data, setModalOpen }) {
       metadata,
     };
 
-    dispatch(saveDataToFirebase(finalData, user?.uid, id));
+    dispatch(saveDataToFirebase(finalData, id));
     toast.success(
       dataForModal.id === null ? "Record Created" : "Record Updated"
     );

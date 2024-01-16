@@ -9,7 +9,13 @@ import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 import { EDIT_COLOR_GREEN } from "../../constants/constants";
 import { FaCheck } from "react-icons/fa";
 
-function ConfirmTourModal({ data, setModalOpen, redirect }) {
+function ConfirmTourModal({
+  data,
+  setModalOpen,
+  redirect,
+  buttonStyle,
+  buttonColor,
+}) {
   const [show, setShow] = useState(false);
   const toggleShow = () => setShow(!show);
   const history = useHistory();
@@ -22,11 +28,7 @@ function ConfirmTourModal({ data, setModalOpen, redirect }) {
     data.status === "HK";
 
   function handleConfirm(data) {
-    const foo = {
-      ...data,
-      status: "HK",
-    };
-    dispatch(saveDataToFirebase(foo, foo.id));
+    dispatch(saveDataToFirebase({ ...data, status: "HK" }, data.id));
     toast.success("Tour Confirmed");
     if (redirect) history.push("/tours");
 
@@ -56,11 +58,15 @@ function ConfirmTourModal({ data, setModalOpen, redirect }) {
     <>
       <Button
         onClick={handleConfirmButtonClick}
-        className="rounded-circle"
+        className={buttonStyle === "round" ? "rounded-circle" : ""}
         disabled={buttonDisabled}
-        style={{ backgroundColor: EDIT_COLOR_GREEN, border: "none" }}
+        style={{
+          backgroundColor: buttonColor || EDIT_COLOR_GREEN,
+          border: "none",
+          height: buttonStyle === "round" ? null : "3.5rem",
+        }}
       >
-        <FaCheck />
+        {buttonStyle === "round" ? <FaCheck /> : "Confirm Tour"}
       </Button>
       <Modal show={show} onHide={toggleModal} centered>
         <Modal.Header className="modalHeader" closeButton>
