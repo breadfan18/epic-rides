@@ -12,8 +12,8 @@ export default function TourDetailsConfirmCancel({ tour }) {
           <>
             <b>TOUR CANCELLED</b>
             <p>
-              If the client reaches out again regarding this tour, please create
-              a new tour record.
+              A cancelled tour cannot be modified. If the client reaches out
+              again regarding this tour, please create a new tour record.
             </p>
           </>
         ) : tour.status !== "HK" && tour.status !== "CA" ? (

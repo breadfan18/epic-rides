@@ -2,7 +2,6 @@ import React from "react";
 import PropTypes from "prop-types";
 import TextInput from "../common/TextInput";
 import SelectInput from "../common/SelectInput";
-import { STATUS_CODES } from "../../constants/constants";
 import DateInput from "../common/DateInput";
 import Form from "react-bootstrap/Form";
 import { titleCase } from "../../helpers";
@@ -13,7 +12,6 @@ import Error from "../common/Error";
 
 const TourForm = ({ tour, onSave, onChange, saving, errors = {} }) => {
   const agentData = useSelector((state) => state.agents);
-  const showStatus = tour.paxNum && tour.dateFrom && tour.dateTo;
 
   return (
     <>
@@ -72,21 +70,6 @@ const TourForm = ({ tour, onSave, onChange, saving, errors = {} }) => {
           value={tour.dateTo}
           // error={errors.dateTo}
         />
-        {showStatus && (
-          <SelectInput
-            name="status"
-            label="Status"
-            value={tour.status || ""}
-            defaultOption="Select Status"
-            options={STATUS_CODES.map((status) => ({
-              value: status.code,
-              text: titleCase(status.name),
-            }))}
-            onChange={onChange}
-            error={errors.status}
-            requiredField={showStatus}
-          />
-        )}
         <hr />
         <button
           type="submit"

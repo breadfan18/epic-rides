@@ -82,7 +82,7 @@ export default function TourTable({ data }) {
               <FaSort onClick={() => requestSort(ERN_DATA_KEYS.numOfDays)} />
             </th>
             <>
-              <th></th>
+              <th> Edit | Confirm</th>
             </>
           </tr>
         </thead>

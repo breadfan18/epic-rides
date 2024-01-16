@@ -6,7 +6,10 @@ import { saveDataToFirebase } from "../../redux/actions/dataActions";
 import { toast } from "react-toastify";
 import PropTypes from "prop-types";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
-import { EDIT_COLOR_GREEN } from "../../constants/constants";
+import {
+  APP_COLOR_EPIC_RED,
+  EDIT_COLOR_GREEN,
+} from "../../constants/constants";
 import { FaCheck } from "react-icons/fa";
 
 function ConfirmTourModal({
@@ -25,7 +28,8 @@ function ConfirmTourModal({
     data.paxNum === "N/A" ||
     data.dateFrom === "" ||
     data.dateTo === "" ||
-    data.status === "HK";
+    data.status === "HK" ||
+    data.status === "CA";
 
   function handleConfirm(data) {
     dispatch(saveDataToFirebase({ ...data, status: "HK" }, data.id));
@@ -61,10 +65,11 @@ function ConfirmTourModal({
         className={buttonStyle === "round" ? "rounded-circle" : ""}
         disabled={buttonDisabled}
         style={{
-          backgroundColor: buttonColor || EDIT_COLOR_GREEN,
+          backgroundColor: APP_COLOR_EPIC_RED,
           border: "none",
           height: buttonStyle === "round" ? null : "3.5rem",
         }}
+        title="Confirm Tour"
       >
         {buttonStyle === "round" ? <FaCheck /> : "Confirm Tour"}
       </Button>

@@ -136,6 +136,8 @@ function TourAddEditModal({ data, setModalOpen }) {
           style={{ border: "none", backgroundColor: "black" }}
           onClick={handleEditButtonClick}
           className="rounded-circle"
+          disabled={data.status === "CA"}
+          title="Edit Tour"
         >
           <MdModeEditOutline />
         </Button>
@@ -144,6 +146,7 @@ function TourAddEditModal({ data, setModalOpen }) {
           variant="primary"
           onClick={clearDataState}
           className="addButton"
+          title="Add New Tour"
         >
           Add Tour
         </Button>
