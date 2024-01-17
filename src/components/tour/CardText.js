@@ -69,7 +69,7 @@ function CardText({ data, dataType }) {
 }
 
 CardText.propTypes = {
-  card: PropTypes.object.isRequired,
+  data: PropTypes.object.isRequired,
   dataType: PropTypes.string.isRequired,
 };
 

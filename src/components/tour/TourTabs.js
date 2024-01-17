@@ -90,7 +90,7 @@ function TourTabs({ tours }) {
 }
 
 TourTabs.propTypes = {
-  cards: PropTypes.array.isRequired,
+  data: PropTypes.array.isRequired,
 };
 
 export default TourTabs;

@@ -17,7 +17,7 @@ const TourForm = ({ tour, onSave, onChange, saving, errors = {} }) => {
     <>
       <Form onSubmit={onSave}>
         {!isEmpty(errors) && (
-          <Error errorMessage="Please fill out required fields" />
+          <Error errorMessage="Please correct the errors below" />
         )}
         <SelectInput
           name="agent"
@@ -61,14 +61,14 @@ const TourForm = ({ tour, onSave, onChange, saving, errors = {} }) => {
           label="Start Date"
           onChange={onChange}
           value={tour.dateFrom}
-          // error={errors.dateFrom}
+          error={errors.dateFrom}
         />
         <DateInput
           name="dateTo"
           label="End Date"
           onChange={onChange}
           value={tour.dateTo}
-          // error={errors.dateTo}
+          error={errors.dateTo}
         />
         <hr />
         <button
@@ -84,7 +84,7 @@ const TourForm = ({ tour, onSave, onChange, saving, errors = {} }) => {
 };
 
 TourForm.propTypes = {
-  card: PropTypes.object.isRequired,
+  tour: PropTypes.object.isRequired,
   errors: PropTypes.object,
   onSave: PropTypes.func.isRequired,
   onChange: PropTypes.func.isRequired,

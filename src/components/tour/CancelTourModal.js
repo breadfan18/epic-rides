@@ -9,6 +9,8 @@ import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 import { EDIT_COLOR_GREEN } from "../../constants/constants";
 
 function CancelTourModal({ data, setModalOpen, redirect }) {
+  console.log(data);
+
   const [show, setShow] = useState(false);
   const toggleShow = () => setShow(!show);
   const history = useHistory();

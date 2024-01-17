@@ -175,6 +175,27 @@ function TourDetailsPage({ tours, loadDataFromFirebase, ...props }) {
                       : "Not Confirmed"}
                   </td>
                 </tr>
+                {tour.numOfDays !== "" && (
+                  <tr>
+                    <td
+                      style={{ color: APP_COLOR_EPIC_RED }}
+                      className="tourDetailsFieldHeaders"
+                    >
+                      Number of Days:
+                    </td>
+                    <td>
+                      <div
+                        style={{
+                          display: "flex",
+                          alignItems: "center",
+                          justifyContent: "space-between",
+                        }}
+                      >
+                        <p style={{ margin: 0 }}>{tour.numOfDays}</p>
+                      </div>
+                    </td>
+                  </tr>
+                )}
                 <tr>
                   <td
                     style={{ color: APP_COLOR_EPIC_RED }}
