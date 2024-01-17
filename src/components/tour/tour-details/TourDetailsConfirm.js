@@ -15,7 +15,7 @@ export default function TourDetailsConfirm({ tour }) {
     tour.status === "HK";
 
   return (
-    <div className="tourDetailsConfirmCancel" style={{ marginRight: "10px" }}>
+    <div className="tourDetailsConfirmCancel">
       <p>
         {tourNotReady
           ? "The following fields are REQUIRED before a tour can be confirmed. Please edit tour with the required data to enable tour confirmation"
