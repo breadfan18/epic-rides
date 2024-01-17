@@ -1,0 +1,65 @@
+/******************************************
+/* LAYOUT                   
+/*******************************************/
+
+/* Center the bike-container */
+#bike-container {
+  width: 960px;
+  margin: auto;
+  text-align: center;
+  margin: 20px;
+}
+header,
+footer {
+  padding: 20px;
+}
+#bike-container img {
+  width: 60px;
+  height: 60px;
+  filter: invert(5%) sepia(69%) saturate(6411%) hue-rotate(21deg)
+    brightness(88%) contrast(98%);
+}
+
+/******************************************
+  /* ANIMATION STYLES                   
+  /*******************************************/
+@-webkit-keyframes spin-me {
+  0% {
+    -webkit-transform: rotateZ(0deg);
+    transform: rotateZ(0deg);
+  }
+  100% {
+    -webkit-transform: rotateZ(360deg);
+    transform: rotateZ(360deg);
+  }
+}
+
+@keyframes spin-me {
+  0% {
+    -webkit-transform: rotateZ(0deg);
+    transform: rotateZ(0deg);
+  }
+  100% {
+    -webkit-transform: rotateZ(360deg);
+    transform: rotateZ(360deg);
+  }
+}
+
+.thing-to-spin {
+  /*animation-name*/
+  -webkit-animation-name: spin-me;
+  animation-name: spin-me;
+  /*animation-iteration-count*/
+  -webkit-animation-iteration-count: infinite;
+  animation-iteration-count: infinite;
+  /*animation-duration*/
+  -webkit-animation-duration: 1s;
+  animation-duration: 1s;
+  /*animation-timing-function*/
+  -webkit-animation-timing-function: ease-in-out;
+  animation-timing-function: ease-in-out;
+
+  /* Shorthand */
+  /*  -webkit-animation: spin-me 500ms linear infinite;
+    animation: spin-me 500ms linear infinite;*/
+}
