@@ -114,15 +114,12 @@ function TourAddEditModal({ data, setModalOpen }) {
   const [errors, setErrors] = useState({});
 
   function formIsValid() {
-    const { agent, tourName, groupFitName, paxNum, dateFrom, dateTo, status } =
-      dataForModal;
+    const { agent, tourName, groupFitName } = dataForModal;
     const errors = {};
-    const statusRequired = paxNum && dateFrom && dateTo;
 
     if (!agent.name) errors.agent = "Required";
     if (!tourName) errors.tourName = "Required";
     if (!groupFitName) errors.groupFitName = "Required";
-    if (statusRequired && !status) errors.status = "Required";
 
     setErrors(errors);
     // Form is valid if the errors objects has no properties
