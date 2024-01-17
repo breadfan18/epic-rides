@@ -4,8 +4,6 @@ import TourDetailsConfirm from "./TourDetailsConfirm";
 import TourDetailsCancel from "./TourDetailsCancel";
 
 export default function TourDetailsConfirmCancel({ tour }) {
-  console.log("Confirm Cancel", tour);
-
   return (
     <Card className="text-center" style={{ boxShadow: `2px 0 10px gray` }}>
       <Card.Header className="cardHeaders">Update Tour Status</Card.Header>

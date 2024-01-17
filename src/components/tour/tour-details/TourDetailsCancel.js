@@ -2,7 +2,6 @@ import React from "react";
 import CancelTourModal from "../CancelTourModal";
 
 export default function TourDetailsCancel({ tour }) {
-  console.log("tour details cancel", tour);
   return (
     <div className="tourDetailsConfirmCancel">
       <p>
