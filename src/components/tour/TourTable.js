@@ -40,7 +40,7 @@ export default function TourTable({ data }) {
     <EmptyList dataType={"tour"} />
   ) : (
     <>
-      <Table striped size="sm" className="smaller-table">
+      <Table size="sm" className="smaller-table">
         <thead>
           <tr>
             <th className="tableHeader">

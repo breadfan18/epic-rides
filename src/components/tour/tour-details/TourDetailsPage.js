@@ -72,16 +72,12 @@ function TourDetailsPage({ tours, loadDataFromFirebase, ...props }) {
         <h2 style={{ marginBottom: 0 }}>Tour Details</h2>
         <div className="editDeleteCard">
           <TourAddEditModal data={tour} />
-          {/* <ConfirmDeleteModal
-            data={tour}
-            dataType={DELETE_MODAL_TYPES.tour}
-            redirect={true}
-          /> */}
         </div>
       </section>
       <div className="tourDetailsBody">
         <Card
           style={{
+            alignSelf: "flex-start",
             width: windowWidth > 800 ? "30rem" : windowWidth,
             backgroundColor: setColorForTourStatus("tourCard", tour.status),
             marginRight: windowWidth > 800 ? "15px" : null,
