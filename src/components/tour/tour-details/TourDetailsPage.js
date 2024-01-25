@@ -3,33 +3,33 @@ import { connect, useDispatch, useSelector } from "react-redux";
 import {
   loadDataFromFirebase,
   saveDataToFirebase,
-} from "../../redux/actions/dataActions";
-import { loadAgentsFromFirebase } from "../../redux/actions/agentActions";
+} from "../../../redux/actions/dataActions";
+import { loadAgentsFromFirebase } from "../../../redux/actions/agentActions";
 import PropTypes from "prop-types";
-import { Spinner } from "../common/Spinner";
+import { Spinner } from "../../common/Spinner";
 import {
   NEW_DATA,
   APP_COLOR_EPIC_RED,
   STATUS_CODES,
   TOUR_DETAILS_IMAGES,
-} from "../../constants/constants";
+} from "../../../constants/constants";
 import { Card, Table } from "react-bootstrap";
 import {
   formatDate,
   setColorForTourStatus,
   sortNotesByDate,
-} from "../../helpers";
-import TourNotes from "./TourNotes";
-import { WindowWidthContext } from "../App";
+} from "../../../helpers";
+import TourNotes from "../TourNotes";
+import { WindowWidthContext } from "../../App";
 import _ from "lodash";
-import TourStatusIcon from "../common/TourStatusIcon";
-// import { CardReminderContainer } from "./CardReminderContainer";
+import TourStatusIcon from "../../common/TourStatusIcon";
 import { useUser } from "reactfire";
-import TourAddEditModal from "./TourAddEditModal";
+import TourAddEditModal from "../TourAddEditModal";
 import { MdOutlineContentCopy } from "react-icons/md";
 import { toast } from "react-toastify";
-import CreatedOrEditedBy from "./CreatedOrEditedBy";
-import { TourDetailsFileUpload } from "./TourDetailsFileUpload";
+import CreatedOrEditedBy from "../CreatedOrEditedBy";
+import { TourDetailsFileUpload } from "../TourDetailsFileUpload";
+import TourDetailsConfirmCancel from "./TourDetailsConfirmCancel";
 
 function TourDetailsPage({ tours, loadDataFromFirebase, ...props }) {
   const dispatch = useDispatch();
@@ -73,16 +73,12 @@ function TourDetailsPage({ tours, loadDataFromFirebase, ...props }) {
         <h2 style={{ marginBottom: 0 }}>Tour Details</h2>
         <div className="editDeleteCard">
           <TourAddEditModal data={tour} />
-          {/* <ConfirmDeleteModal
-            data={tour}
-            dataType={DELETE_MODAL_TYPES.tour}
-            redirect={true}
-          /> */}
         </div>
       </section>
       <div className="tourDetailsBody">
         <Card
           style={{
+            alignSelf: "flex-start",
             width: windowWidth > 800 ? "30rem" : windowWidth,
             backgroundColor: setColorForTourStatus("tourCard", tour.status),
             marginRight: windowWidth > 800 ? "15px" : null,
@@ -180,6 +176,27 @@ function TourDetailsPage({ tours, loadDataFromFirebase, ...props }) {
                       : "Not Confirmed"}
                   </td>
                 </tr>
+                {tour.numOfDays !== "" && (
+                  <tr>
+                    <td
+                      style={{ color: APP_COLOR_EPIC_RED }}
+                      className="tourDetailsFieldHeaders"
+                    >
+                      Number of Days:
+                    </td>
+                    <td>
+                      <div
+                        style={{
+                          display: "flex",
+                          alignItems: "center",
+                          justifyContent: "space-between",
+                        }}
+                      >
+                        <p style={{ margin: 0 }}>{tour.numOfDays}</p>
+                      </div>
+                    </td>
+                  </tr>
+                )}
                 <tr>
                   <td
                     style={{ color: APP_COLOR_EPIC_RED }}
@@ -263,6 +280,7 @@ function TourDetailsPage({ tours, loadDataFromFirebase, ...props }) {
             tourNotes={sortNotesByDate(_.values(tour.tourNotes))}
           />
           <TourDetailsFileUpload tour={tour} />
+          <TourDetailsConfirmCancel tour={props.tour} />
         </div>
       </div>
     </div>

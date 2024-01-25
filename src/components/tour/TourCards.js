@@ -12,6 +12,7 @@ import CardText from "./CardText";
 import { setColorForTourStatus } from "../../helpers";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 import TourStatusIcon from "../common/TourStatusIcon";
+import ConfirmTourModal from "./ConfirmTourModal";
 export default function TourCards({ data, showFilter }) {
   const windowWidth = useContext(WindowWidthContext);
   const cardWidth = windowWidth < 650 ? windowWidth : "18rem";
@@ -66,6 +67,7 @@ export default function TourCards({ data, showFilter }) {
           </section>
           <div className="editDeleteCard editDeleteOnCards">
             <TourAddEditModal data={d} />
+            <ConfirmTourModal data={d} buttonStyle="round" />
           </div>
         </Card.Body>
       </Card>

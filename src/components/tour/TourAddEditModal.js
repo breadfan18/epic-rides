@@ -78,7 +78,7 @@ function TourAddEditModal({ data, setModalOpen }) {
       metadata,
     };
 
-    dispatch(saveDataToFirebase(finalData, user?.uid, id));
+    dispatch(saveDataToFirebase(finalData, id));
     toast.success(
       dataForModal.id === null ? "Record Created" : "Record Updated"
     );
@@ -114,16 +114,16 @@ function TourAddEditModal({ data, setModalOpen }) {
   const [errors, setErrors] = useState({});
 
   function formIsValid() {
-    const { agent, tourName, groupFitName, paxNum, dateFrom, dateTo, status } =
-      dataForModal;
+    const { agent, tourName, groupFitName, dateFrom, dateTo } = dataForModal;
     const errors = {};
 
     if (!agent.name) errors.agent = "Required";
     if (!tourName) errors.tourName = "Required";
     if (!groupFitName) errors.groupFitName = "Required";
-    // if (!paxNum) errors.paxNum = "Required";
-    if (!status) errors.status = "Required";
-    // if (!status) errors.dateFrom = "Status is required";
+    if (dateFrom && !dateTo) errors.dateTo = "End Date is Required";
+    if (dateTo && !dateFrom) errors.dateFrom = "Start Date is Required";
+    if (Date.parse(dateTo) < Date.parse(dateFrom))
+      errors.dateTo = "End date must be AFTER Start Date";
 
     setErrors(errors);
     // Form is valid if the errors objects has no properties
@@ -136,7 +136,10 @@ function TourAddEditModal({ data, setModalOpen }) {
         <Button
           style={{ border: "none", backgroundColor: "black" }}
           onClick={handleEditButtonClick}
+          cp
           className="rounded-circle"
+          disabled={data.status === "CA"}
+          title="Edit Tour"
         >
           <MdModeEditOutline />
         </Button>
@@ -145,6 +148,7 @@ function TourAddEditModal({ data, setModalOpen }) {
           variant="primary"
           onClick={clearDataState}
           className="addButton"
+          title="Add New Tour"
         >
           Add Tour
         </Button>
@@ -177,7 +181,7 @@ function TourAddEditModal({ data, setModalOpen }) {
 
 TourAddEditModal.propTypes = {
   data: PropTypes.object,
-  saveCardToFirebase: PropTypes.func.isRequired,
+  saveDataToFirebase: PropTypes.func,
   setModalOpen: PropTypes.func,
 };
 

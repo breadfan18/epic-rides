@@ -13,13 +13,6 @@ function Filters({
   resetFilters,
 }) {
   const windowWidth = useContext(WindowWidthContext);
-  /* 
-  Here's what's happening
-  - If i DONT click All in the status filters before switching to another tab, then status field
-  doest not get checked (until i click twice)
-
-  IF I click All, and then switch tabs, everything works properly. 
-  */
 
   return (
     <>
@@ -84,7 +77,7 @@ function Filters({
             name="status"
             value={filters.status}
             onChange={() => setStatusFilter("CA")}
-            // checked={filters.status === "CA"}
+            checked={filters.status === "CA"}
             className="radioFilters"
           />
         </div>

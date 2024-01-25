@@ -35,6 +35,11 @@ body {
   flex: 1;
 }
 
+.tourDetailsConfirmCancel {
+  display: flex;
+  flex-direction: column;
+}
+
 .copyFileNameIcon {
   font-size: 2.4rem;
   background-color: var(--black-opacity);

@@ -2,7 +2,6 @@ import React from "react";
 import PropTypes from "prop-types";
 import TextInput from "../common/TextInput";
 import SelectInput from "../common/SelectInput";
-import { STATUS_CODES } from "../../constants/constants";
 import DateInput from "../common/DateInput";
 import Form from "react-bootstrap/Form";
 import { titleCase } from "../../helpers";
@@ -13,11 +12,12 @@ import Error from "../common/Error";
 
 const TourForm = ({ tour, onSave, onChange, saving, errors = {} }) => {
   const agentData = useSelector((state) => state.agents);
+
   return (
     <>
       <Form onSubmit={onSave}>
         {!isEmpty(errors) && (
-          <Error errorMessage="Please fill out required fields" />
+          <Error errorMessage="Please correct the errors below" />
         )}
         <SelectInput
           name="agent"
@@ -61,27 +61,14 @@ const TourForm = ({ tour, onSave, onChange, saving, errors = {} }) => {
           label="Start Date"
           onChange={onChange}
           value={tour.dateFrom}
-          // error={errors.dateFrom}
+          error={errors.dateFrom}
         />
         <DateInput
           name="dateTo"
           label="End Date"
           onChange={onChange}
           value={tour.dateTo}
-          // error={errors.dateTo}
-        />
-        <SelectInput
-          name="status"
-          label="Status"
-          value={tour.status || ""}
-          defaultOption="Select Status"
-          options={STATUS_CODES.map((status) => ({
-            value: status.code,
-            text: titleCase(status.name),
-          }))}
-          onChange={onChange}
-          error={errors.status}
-          requiredField
+          error={errors.dateTo}
         />
         <hr />
         <button
@@ -97,7 +84,7 @@ const TourForm = ({ tour, onSave, onChange, saving, errors = {} }) => {
 };
 
 TourForm.propTypes = {
-  card: PropTypes.object.isRequired,
+  tour: PropTypes.object.isRequired,
   errors: PropTypes.object,
   onSave: PropTypes.func.isRequired,
   onChange: PropTypes.func.isRequired,
