@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { APP_COLOR_EPIC_RED } from "../../constants/constants";
+import FileUploader from "../common/FileUploader";
 
 function HomePage() {
   return (
@@ -22,6 +23,7 @@ function HomePage() {
       >
         Learn more
       </Link>
+      <FileUploader />
     </div>
   );
 }

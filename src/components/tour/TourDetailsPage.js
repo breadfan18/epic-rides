@@ -29,6 +29,7 @@ import TourAddEditModal from "./TourAddEditModal";
 import { MdOutlineContentCopy } from "react-icons/md";
 import { toast } from "react-toastify";
 import CreatedOrEditedBy from "./CreatedOrEditedBy";
+import { TourDetailsFileUpload } from "./TourDetailsFileUpload";
 
 function TourDetailsPage({ tours, loadDataFromFirebase, ...props }) {
   const dispatch = useDispatch();
@@ -261,7 +262,7 @@ function TourDetailsPage({ tours, loadDataFromFirebase, ...props }) {
             tourId={tour.id}
             tourNotes={sortNotesByDate(_.values(tour.tourNotes))}
           />
-          {/* <CardReminderContainer card={tour} /> */}
+          <TourDetailsFileUpload tour={tour} />
         </div>
       </div>
     </div>
