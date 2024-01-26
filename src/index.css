@@ -40,16 +40,6 @@ body {
   flex-direction: column;
 }
 
-.copyFileNameIcon {
-  font-size: 2.4rem;
-  background-color: var(--black-opacity);
-  padding: 5px;
-  border-radius: 8px;
-  color: gray;
-  cursor: pointer;
-  margin-left: 5px;
-}
-
 .tourDetailsCreatedOrEdited {
   display: flex;
   align-items: center;
@@ -588,4 +578,15 @@ input[type="range"] {
   width: 2.5rem;
   padding: 3px;
   cursor: pointer;
+}
+
+.copyFileNameIcon {
+  font-size: 2.4rem;
+  background-color: var(--black-opacity);
+  padding: 5px;
+  border-radius: 8px;
+  color: gray;
+  cursor: pointer;
+  margin-left: 5px;
+  width: 2.5rem;
 }

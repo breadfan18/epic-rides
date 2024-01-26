@@ -30,6 +30,7 @@ import { toast } from "react-toastify";
 import CreatedOrEditedBy from "../CreatedOrEditedBy";
 import { TourFileUploadCard } from "./TourFileUpload";
 import TourDetailsConfirmCancel from "./TourDetailsConfirmCancel";
+import FileUploader from "../../common/FileUploader";
 
 function TourDetailsPage({ tours, loadDataFromFirebase, ...props }) {
   const dispatch = useDispatch();
@@ -219,6 +220,20 @@ function TourDetailsPage({ tours, loadDataFromFirebase, ...props }) {
                       File Name:
                     </td>
                     <td>
+                      {tour.fileLocation ? (
+                        <a
+                          href={tour.fileLocation}
+                          style={{
+                            color: APP_COLOR_EPIC_RED,
+                            textAlign: "center",
+                          }}
+                        >
+                          {tour.fileName}
+                        </a>
+                      ) : (
+                        <p style={{ margin: 0 }}>{tour.fileName}</p>
+                      )}
+                      <hr style={{ margin: "5px" }} />
                       <div
                         style={{
                           display: "flex",
@@ -226,15 +241,13 @@ function TourDetailsPage({ tours, loadDataFromFirebase, ...props }) {
                           justifyContent: "space-between",
                         }}
                       >
-                        {
-                          tour.fileLocation ? 
-                          <a href={tour.fileLocation} style={{color: APP_COLOR_EPIC_RED}}>{tour.fileName}</a> :
-                          <p style={{ margin: 0 }}>{tour.fileName}</p>}
                         <MdOutlineContentCopy
                           className="copyFileNameIcon"
                           title="Copy File Name to clipboard"
                           onClick={() => copyFileNameToClipboard()}
                         />
+                        <FileUploader tour={tour} />
+                        <FileUploader tour={tour} />
                       </div>
                     </td>
                   </tr>
