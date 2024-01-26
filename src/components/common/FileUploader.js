@@ -1,50 +1,53 @@
-import React, { useState } from 'react'
-import {getStorageFileUrl } from '../../tools/firebase';
-import { Button } from 'react-bootstrap';
+import React, { useRef } from 'react';
+import { MdFileUpload } from "react-icons/md";
+import { EDIT_COLOR_GREEN } from '../../constants/constants';
+import { getStorageFileUrl } from '../../tools/firebase';
+import { useDispatch } from 'react-redux';
+import { saveDataToFirebase } from '../../redux/actions/dataActions';
+import { toast } from "react-toastify";
 
-const FileUploader = () => {
-  const [file, setFile] = useState(null);
-  const [uploading, setUploading] = useState(false);
-  const [downloadURL, setDownloadURL] = useState(null);
+const FileUploadToFirebase = ({tour}) => {
+  const fileInputRef = useRef()
+  const dispatch = useDispatch()
 
-  const handleFileChange = (e) => {
+  const handleFileChange = async (e) => {
     const selectedFile = e.target.files[0];
-    setFile(selectedFile);
-  };
 
-  const handleUpload = async () => {
-    if (!file) {
-      alert('Please select a file');
+    if (!selectedFile) {
       return;
     }
 
-    setUploading(true);
-
     try {
-      const downloadURL = await getStorageFileUrl('tour-files', file.name, file);
-      setDownloadURL(downloadURL);
-
-      alert('File uploaded successfully!');
+      const downloadURL = await getStorageFileUrl('tour-files', tour.fileName, selectedFile)
+      if(downloadURL) {
+        try {
+          dispatch(saveDataToFirebase({...tour, fileLocation: downloadURL}, tour.id))
+          toast.success('File Uploaded')
+        } catch (error) {
+          toast.error('Error saving tour.')
+        }
+      }
     } catch (error) {
       console.error('Error uploading file:', error.message);
-      alert('Error uploading file. Please try again.');
-    } finally {
-      setUploading(false);
-    }
+      toast.error('Error uploading file. Please try again.');
+    } 
   };
 
   return (
     <div>
-      <input type="file" onChange={handleFileChange} />
-      <Button onClick={handleUpload} disabled={uploading}>
-        {uploading ? 'Uploading...' : 'Upload File'}
-      </Button>
-
-      {downloadURL && (
-          <a href={downloadURL}>File Location</a>
-      )}
+      <label htmlFor="fileInput" className="fileInputLabel">
+        <MdFileUpload size={20} color={EDIT_COLOR_GREEN}/> 
+        <small style={{fontSize: '10px'}}>Upload</small>
+      </label>
+      <input
+        type="file"
+        id="fileInput"
+        style={{ display: 'none' }}
+        onChange={handleFileChange}
+        ref={(ref) => (fileInputRef.current = ref)}
+      />
     </div>
   );
 };
 
-export default FileUploader;
+export default FileUploadToFirebase;

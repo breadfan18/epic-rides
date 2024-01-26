@@ -577,3 +577,15 @@ input[type="range"] {
 .transparentPlaceholderField > input:focus::placeholder {
   color: transparent;
 }
+
+.fileInputLabel {
+  display: flex;
+  flex-direction: column;
+  background-color: var(--black-opacity);
+  justify-content: center;
+  align-items: center;
+  border-radius: 10px;
+  width: 2.5rem;
+  padding: 3px;
+  cursor: pointer;
+}

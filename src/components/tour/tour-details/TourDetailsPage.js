@@ -226,7 +226,10 @@ function TourDetailsPage({ tours, loadDataFromFirebase, ...props }) {
                           justifyContent: "space-between",
                         }}
                       >
-                        <p style={{ margin: 0 }}>{tour.fileName}</p>
+                        {
+                          tour.fileLocation ? 
+                          <a href={tour.fileLocation} style={{color: APP_COLOR_EPIC_RED}}>{tour.fileName}</a> :
+                          <p style={{ margin: 0 }}>{tour.fileName}</p>}
                         <MdOutlineContentCopy
                           className="copyFileNameIcon"
                           title="Copy File Name to clipboard"
