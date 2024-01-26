@@ -1,9 +1,9 @@
 import React from "react";
 import Card from "react-bootstrap/Card";
 import PropTypes from "prop-types";
-import FileUploader from "../common/FileUploader";
+import FileUploader from "../../common/FileUploader";
 
-export function TourDetailsFileUpload({ tour }) {
+export function TourFileUploadCard({ tour }) {
 
   return (
     <Card className="text-center" style={{ boxShadow: `2px 0 10px gray` }}>
@@ -19,6 +19,6 @@ export function TourDetailsFileUpload({ tour }) {
   );
 }
 
-TourDetailsFileUpload.propTypes = {
+TourFileUploadCard.propTypes = {
   card: PropTypes.object.isRequired,
 };
