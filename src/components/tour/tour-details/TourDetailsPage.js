@@ -12,7 +12,6 @@ import {
   APP_COLOR_EPIC_RED,
   STATUS_CODES,
   TOUR_DETAILS_IMAGES,
-  APP_COLOR_BLACK_OPACITY,
 } from "../../../constants/constants";
 import { Card, Table } from "react-bootstrap";
 import {
@@ -32,6 +31,13 @@ import TourDetailsConfirmCancel from "./TourDetailsConfirmCancel";
 import TourFileUploader from "./TourFileUploader";
 import TourFileDownloader from "./TourFileDownloader";
 import TourFileNameCopier from "./TourFileNameCopier";
+
+/* 
+
+- Disable download button when file is not there - DONE
+- Fix the issue with the file name extension on download.. 
+
+*/
 
 function TourDetailsPage({ tours, loadDataFromFirebase, ...props }) {
   const dispatch = useDispatch();
@@ -240,7 +246,10 @@ function TourDetailsPage({ tours, loadDataFromFirebase, ...props }) {
                           copyFileNameFunc={copyFileNameToClipboard}
                         />
                         <TourFileUploader tour={tour} />
-                        <TourFileDownloader tour={tour} />
+                        <TourFileDownloader
+                          tour={tour}
+                          disabled={!tour.fileLocation}
+                        />
                       </div>
                     </td>
                   </tr>
