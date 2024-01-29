@@ -28,9 +28,9 @@ import TourAddEditModal from "../TourAddEditModal";
 import { MdOutlineContentCopy } from "react-icons/md";
 import { toast } from "react-toastify";
 import CreatedOrEditedBy from "../CreatedOrEditedBy";
-import { TourFileUploadCard } from "./TourFileUpload";
 import TourDetailsConfirmCancel from "./TourDetailsConfirmCancel";
-import FileUploader from "../../common/FileUploader";
+import FileUploader from "./TourFileUploader";
+import TourFileDownloader from "./TourFileDownloader";
 
 function TourDetailsPage({ tours, loadDataFromFirebase, ...props }) {
   const dispatch = useDispatch();
@@ -247,7 +247,7 @@ function TourDetailsPage({ tours, loadDataFromFirebase, ...props }) {
                           onClick={() => copyFileNameToClipboard()}
                         />
                         <FileUploader tour={tour} />
-                        <FileUploader tour={tour} />
+                        <TourFileDownloader tour={tour} />
                       </div>
                     </td>
                   </tr>
@@ -295,7 +295,6 @@ function TourDetailsPage({ tours, loadDataFromFirebase, ...props }) {
             tourId={tour.id}
             tourNotes={sortNotesByDate(_.values(tour.tourNotes))}
           />
-          <TourFileUploadCard tour={tour} />
           <TourDetailsConfirmCancel tour={props.tour} />
         </div>
       </div>

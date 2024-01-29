@@ -1,17 +1,18 @@
-import React, { useRef } from "react";
+import React from "react";
 import { MdFileUpload } from "react-icons/md";
-import { EDIT_COLOR_GREEN } from "../../constants/constants";
-import { getStorageFileUrl } from "../../tools/firebase";
+import { DELETE_COLOR_RED } from "../../../constants/constants";
+import { getStorageFileUrl } from "../../../tools/firebase";
 import { useDispatch } from "react-redux";
-import { saveDataToFirebase } from "../../redux/actions/dataActions";
+import { saveDataToFirebase } from "../../../redux/actions/dataActions";
 import { toast } from "react-toastify";
 
 const FileUploader = ({ tour }) => {
-  const fileInputRef = useRef();
   const dispatch = useDispatch();
 
   const handleFileChange = async (e) => {
     const selectedFile = e.target.files[0];
+
+    console.log(selectedFile);
 
     if (!selectedFile) {
       return;
@@ -42,15 +43,14 @@ const FileUploader = ({ tour }) => {
   return (
     <div>
       <label htmlFor="fileInput" className="fileInputLabel">
-        <MdFileUpload size={20} color={EDIT_COLOR_GREEN} />
-        <small style={{ fontSize: "10px" }}>Upload</small>
+        <MdFileUpload size={20} color={DELETE_COLOR_RED} />
+        <small>Upload</small>
       </label>
       <input
         type="file"
         id="fileInput"
         style={{ display: "none" }}
         onChange={handleFileChange}
-        ref={(ref) => (fileInputRef.current = ref)}
       />
     </div>
   );
