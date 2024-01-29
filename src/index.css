@@ -571,22 +571,18 @@ input[type="range"] {
 .fileInputLabel {
   display: flex;
   flex-direction: column;
-  background-color: var(--black-opacity);
   justify-content: center;
   align-items: center;
   border-radius: 10px;
-  width: 2.5rem;
-  padding: 3px;
+  padding: 5px;
   cursor: pointer;
 }
 
-.copyFileNameIcon {
-  font-size: 2.4rem;
+#fileNameOptions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
   background-color: var(--black-opacity);
-  padding: 5px;
-  border-radius: 8px;
-  color: gray;
-  cursor: pointer;
-  margin-left: 5px;
-  width: 2.5rem;
+  border-radius: 5px;
+  padding: 3px 10px;
 }

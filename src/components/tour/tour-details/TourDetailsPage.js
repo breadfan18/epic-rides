@@ -12,6 +12,7 @@ import {
   APP_COLOR_EPIC_RED,
   STATUS_CODES,
   TOUR_DETAILS_IMAGES,
+  APP_COLOR_BLACK_OPACITY,
 } from "../../../constants/constants";
 import { Card, Table } from "react-bootstrap";
 import {
@@ -25,12 +26,12 @@ import _ from "lodash";
 import TourStatusIcon from "../../common/TourStatusIcon";
 import { useUser } from "reactfire";
 import TourAddEditModal from "../TourAddEditModal";
-import { MdOutlineContentCopy } from "react-icons/md";
 import { toast } from "react-toastify";
 import CreatedOrEditedBy from "../CreatedOrEditedBy";
 import TourDetailsConfirmCancel from "./TourDetailsConfirmCancel";
-import FileUploader from "./TourFileUploader";
+import TourFileUploader from "./TourFileUploader";
 import TourFileDownloader from "./TourFileDownloader";
+import TourFileNameCopier from "./TourFileNameCopier";
 
 function TourDetailsPage({ tours, loadDataFromFirebase, ...props }) {
   const dispatch = useDispatch();
@@ -234,19 +235,11 @@ function TourDetailsPage({ tours, loadDataFromFirebase, ...props }) {
                         <p style={{ margin: 0 }}>{tour.fileName}</p>
                       )}
                       <hr style={{ margin: "5px" }} />
-                      <div
-                        style={{
-                          display: "flex",
-                          alignItems: "center",
-                          justifyContent: "space-between",
-                        }}
-                      >
-                        <MdOutlineContentCopy
-                          className="copyFileNameIcon"
-                          title="Copy File Name to clipboard"
-                          onClick={() => copyFileNameToClipboard()}
+                      <div id="fileNameOptions">
+                        <TourFileNameCopier
+                          copyFileNameFunc={copyFileNameToClipboard}
                         />
-                        <FileUploader tour={tour} />
+                        <TourFileUploader tour={tour} />
                         <TourFileDownloader tour={tour} />
                       </div>
                     </td>
