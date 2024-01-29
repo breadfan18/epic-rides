@@ -227,19 +227,7 @@ function TourDetailsPage({ tours, loadDataFromFirebase, ...props }) {
                       File Name:
                     </td>
                     <td>
-                      {tour.fileLocation ? (
-                        <a
-                          href={tour.fileLocation}
-                          style={{
-                            color: APP_COLOR_EPIC_RED,
-                            textAlign: "center",
-                          }}
-                        >
-                          {tour.fileName}
-                        </a>
-                      ) : (
-                        <p style={{ margin: 0 }}>{tour.fileName}</p>
-                      )}
+                      <p style={{ margin: 0 }}>{tour.fileName}</p>
                       <hr style={{ margin: "5px" }} />
                       <div id="fileNameOptions">
                         <TourFileNameCopier

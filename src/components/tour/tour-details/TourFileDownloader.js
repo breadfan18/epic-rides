@@ -3,7 +3,6 @@ import { MdFileDownload } from "react-icons/md";
 import { EDIT_COLOR_GREEN } from "../../../constants/constants";
 
 export default function TourFileDownloader({ tour, disabled }) {
-  console.log(disabled);
   return (
     <div>
       <a
