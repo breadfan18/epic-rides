@@ -5,14 +5,13 @@ import { getStorageFileUrl } from "../../../tools/firebase";
 import { useDispatch } from "react-redux";
 import { saveDataToFirebase } from "../../../redux/actions/dataActions";
 import { toast } from "react-toastify";
+import { getFileNameExtension } from "../../../helpers";
 
 const TourFileUploader = ({ tour }) => {
   const dispatch = useDispatch();
 
   const handleFileChange = async (e) => {
     const selectedFile = e.target.files[0];
-
-    console.log(selectedFile);
 
     if (!selectedFile) {
       return;
@@ -21,7 +20,7 @@ const TourFileUploader = ({ tour }) => {
     try {
       const downloadURL = await getStorageFileUrl(
         "tour-files",
-        tour.fileName,
+        tour.fileName + "." + getFileNameExtension(selectedFile.name),
         selectedFile
       );
       if (downloadURL) {

@@ -1,6 +1,6 @@
-function isPasswordValid(pwd) {
-  const passwordPattern = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d\S]{8,}$/;
-  return passwordPattern.test(pwd);
+function getFileNameExtension(fileName) {
+  const arrSplitByDot = fileName.split('.')
+
 }
 
-console.log(isPasswordValid("Test12356"));
+console.log(getFileNameExtension("Samay_Bird.thda.y_In.vite_Card.docx"));

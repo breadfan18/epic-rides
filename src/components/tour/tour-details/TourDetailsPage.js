@@ -35,8 +35,10 @@ import TourFileNameCopier from "./TourFileNameCopier";
 /* 
 
 - Disable download button when file is not there - DONE
-- Fix the issue with the file name extension on download.. 
-
+- Fix the issue with the file name extension on download.. DONE
+- Disabled download button still clickable on iOS
+- Disable upload button/input for cancelled tours
+s
 */
 
 function TourDetailsPage({ tours, loadDataFromFirebase, ...props }) {
@@ -227,8 +229,8 @@ function TourDetailsPage({ tours, loadDataFromFirebase, ...props }) {
                       File Name:
                     </td>
                     <td>
-                      <p style={{ margin: 0 }}>{tour.fileName}</p>
-                      <hr style={{ margin: "5px" }} />
+                      <p style={{ margin: "0 0 8px 3px" }}>{tour.fileName}</p>
+
                       <div id="fileNameOptions">
                         <TourFileNameCopier
                           copyFileNameFunc={copyFileNameToClipboard}
