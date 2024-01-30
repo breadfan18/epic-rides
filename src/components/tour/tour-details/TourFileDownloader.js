@@ -10,14 +10,16 @@ export default function TourFileDownloader({ tour, disabled }) {
         style={{ textDecoration: "none" }}
         className={disabled ? "downloadAnchor" : null}
       >
-        <label className="fileInputLabel">
+        <label
+          className="fileInputLabel"
+          style={{ cursor: disabled ? null : "pointer" }}
+        >
           <MdFileDownload
             size={20}
             color={disabled ? "gray" : EDIT_COLOR_GREEN}
           />
           <small
             style={{ fontSize: "10px", color: disabled ? "gray" : "black" }}
-            className={disabled ? "foo" : null}
           >
             Download
           </small>

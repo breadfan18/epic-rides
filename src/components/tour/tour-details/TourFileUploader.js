@@ -7,7 +7,7 @@ import { saveDataToFirebase } from "../../../redux/actions/dataActions";
 import { toast } from "react-toastify";
 import { getFileNameExtension } from "../../../helpers";
 
-const TourFileUploader = ({ tour }) => {
+const TourFileUploader = ({ tour, disabled }) => {
   const dispatch = useDispatch();
 
   const handleFileChange = async (e) => {
@@ -41,15 +41,22 @@ const TourFileUploader = ({ tour }) => {
 
   return (
     <div>
-      <label htmlFor="fileInput" className="fileInputLabel">
-        <MdFileUpload size={20} color={DELETE_COLOR_RED} />
-        <small style={{ fontSize: "10px" }}>Upload</small>
+      <label
+        htmlFor="fileInput"
+        className="fileInputLabel"
+        style={{ cursor: disabled ? null : "pointer" }}
+      >
+        <MdFileUpload size={20} color={disabled ? "gray" : DELETE_COLOR_RED} />
+        <small style={{ fontSize: "10px", color: disabled ? "gray" : "black" }}>
+          Upload
+        </small>
       </label>
       <input
         type="file"
         id="fileInput"
         style={{ display: "none" }}
         onChange={handleFileChange}
+        disabled={disabled}
       />
     </div>
   );

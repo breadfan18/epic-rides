@@ -32,16 +32,6 @@ import TourFileUploader from "./TourFileUploader";
 import TourFileDownloader from "./TourFileDownloader";
 import TourFileNameCopier from "./TourFileNameCopier";
 
-/* 
-
-- Disable download button when file is not there - DONE
-- Fix the issue with the file name extension on download.. DONE
-
-- Disabled download button still clickable on iOS
-- Disable upload button/input for cancelled tours
-s
-*/
-
 function TourDetailsPage({ tours, loadDataFromFirebase, ...props }) {
   const dispatch = useDispatch();
   const [tour, setTour] = useState({ ...props.tour });
@@ -236,7 +226,10 @@ function TourDetailsPage({ tours, loadDataFromFirebase, ...props }) {
                         <TourFileNameCopier
                           copyFileNameFunc={copyFileNameToClipboard}
                         />
-                        <TourFileUploader tour={tour} />
+                        <TourFileUploader
+                          tour={tour}
+                          disabled={tour.status === "CA"}
+                        />
                         <TourFileDownloader
                           tour={tour}
                           disabled={!tour.fileLocation}
