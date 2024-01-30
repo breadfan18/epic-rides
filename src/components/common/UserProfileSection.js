@@ -22,7 +22,7 @@ function UserProfileSection({ user, userLogout, smallNav }) {
   const stockImg = smallNav ? USER_STOCK_IMG_WHITE_BKGRD : USER_STOCK_IMG;
 
   return (
-    <section id="userImg">
+    <section id="userImg" style={{ marginRight: smallNav ? null : "10px" }}>
       <img
         src={user.photoURL || stockImg}
         alt={user.displayName}

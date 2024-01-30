@@ -70,7 +70,7 @@ body {
 
 .smallNavContainer {
   background-color: var(--epic-red);
-  padding: 0;
+  padding: 5px 0;
   margin-bottom: 10px;
   min-height: 3rem;
   position: sticky;
@@ -82,7 +82,6 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 5px 0;
 }
 
 .navFull {
@@ -149,11 +148,9 @@ body {
 
 #userImg {
   color: white;
-  padding-right: 5px;
   background-color: var(--black-opacity);
-  padding: 10px;
+  padding: 3px;
   border-radius: 10px;
-  margin-right: 10px;
 }
 
 #userDisplayName {
