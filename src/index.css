@@ -60,7 +60,6 @@ body {
 }
 
 .navContainer {
-  /* background-color: var(--epic-red); */
   padding: 0;
   margin-bottom: 10px;
   min-height: 3rem;
@@ -74,6 +73,9 @@ body {
   padding: 0;
   margin-bottom: 10px;
   min-height: 3rem;
+  position: sticky;
+  top: 0;
+  z-index: 100;
 }
 
 #smallNavTopHeader {
