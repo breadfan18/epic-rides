@@ -590,4 +590,5 @@ input[type="range"] {
 .downloadAnchor {
   pointer-events: none;
   cursor: default;
+  display: block;
 }

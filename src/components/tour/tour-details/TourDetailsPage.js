@@ -36,6 +36,7 @@ import TourFileNameCopier from "./TourFileNameCopier";
 
 - Disable download button when file is not there - DONE
 - Fix the issue with the file name extension on download.. DONE
+
 - Disabled download button still clickable on iOS
 - Disable upload button/input for cancelled tours
 s
