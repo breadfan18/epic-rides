@@ -28,7 +28,7 @@ const TourFileUploader = ({ tour, disabled }) => {
           dispatch(
             saveDataToFirebase({ ...tour, fileLocation: downloadURL }, tour.id)
           );
-          toast.success("File Uploaded");
+          toast.info("File Uploaded");
         } catch (error) {
           toast.error("Error saving tour.");
         }
