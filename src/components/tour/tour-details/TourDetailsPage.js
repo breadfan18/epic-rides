@@ -217,11 +217,10 @@ function TourDetailsPage({ tours, loadDataFromFirebase, ...props }) {
                       style={{ color: APP_COLOR_EPIC_RED }}
                       className="tourDetailsFieldHeaders"
                     >
-                      File Name:
+                      File:
                     </td>
                     <td>
-                      <p style={{ margin: "0 0 8px 3px" }}>{tour.fileName}</p>
-
+                      {/* <p style={{ margin: "0 0 8px 3px" }}>{tour.fileName}</p> */}
                       <div id="fileNameOptions">
                         <TourFileNameCopier
                           copyFileNameFunc={copyFileNameToClipboard}
