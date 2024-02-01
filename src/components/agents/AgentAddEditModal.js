@@ -76,7 +76,7 @@ function AgentAddEditModal({ agent, disableBtn }) {
       nationCode: agentForModal.nationCode,
     };
 
-    dispatch(saveAgentToFirebase(finalAgent, user?.uid));
+    dispatch(saveAgentToFirebase(finalAgent));
 
     const shouldUpdateTourData =
       (agentForModal?.id !== null && agent?.name !== agentForModal.name) ||
@@ -103,7 +103,7 @@ function AgentAddEditModal({ agent, disableBtn }) {
               code: finalAgent.code,
             },
           };
-          dispatch(saveDataToFirebase(updatedTour, user?.uid, tour.id));
+          dispatch(saveDataToFirebase(updatedTour, tour.id));
         });
       }
     }
