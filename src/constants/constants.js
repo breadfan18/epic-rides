@@ -1,4 +1,10 @@
 // New Constants
+
+export const DIRECT_CLIENTS = {
+  name: "Direct Client",
+  code: "DIR",
+};
+
 export const AGENTS = [
   {
     name: "Direct Clients",

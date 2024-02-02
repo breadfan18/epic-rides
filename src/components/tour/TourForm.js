@@ -1,7 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
 import TextInput from "../common/TextInput";
-import SelectInput from "../common/SelectInput";
 import DateInput from "../common/DateInput";
 import Form from "react-bootstrap/Form";
 import { titleCase } from "../../helpers";
@@ -9,6 +8,8 @@ import { isEmpty } from "lodash";
 import NumberInput from "../common/NumberInput";
 import { useSelector } from "react-redux";
 import Error from "../common/Error";
+import { DIRECT_CLIENTS } from "../../constants/constants";
+import SelectInputOptGroups from "../common/SelectInputOptGroups";
 
 const TourForm = ({ tour, onSave, onChange, saving, errors = {} }) => {
   const agentData = useSelector((state) => state.agents);
@@ -19,12 +20,12 @@ const TourForm = ({ tour, onSave, onChange, saving, errors = {} }) => {
         {!isEmpty(errors) && (
           <Error errorMessage="Please correct the errors below" />
         )}
-        <SelectInput
+        <SelectInputOptGroups
           name="agent"
-          label="Agent"
+          label="Agent or Client"
           value={tour.agent?.code || ""}
-          defaultOption="Select Agent"
-          options={agentData.map((agent) => ({
+          defaultOption="Select Agent or Client"
+          options={[DIRECT_CLIENTS, ...agentData].map((agent) => ({
             value: agent.code,
             text: titleCase(agent.name),
           }))}

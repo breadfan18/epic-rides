@@ -7,7 +7,7 @@ import TourForm from "./TourForm";
 import { toast } from "react-toastify";
 import PropTypes from "prop-types";
 import { MdModeEditOutline } from "react-icons/md";
-import { NEW_DATA } from "../../constants/constants";
+import { DIRECT_CLIENTS, NEW_DATA } from "../../constants/constants";
 import { useUser } from "reactfire";
 import { fileNameGenerator, getDaysBetweenDates } from "../../helpers";
 
@@ -18,7 +18,7 @@ function TourAddEditModal({ data, setModalOpen }) {
 
   const allData = useSelector((state) => state.data);
   const dispatch = useDispatch();
-  const agents = useSelector((state) => state.agents);
+  const agents = useSelector((state) => [DIRECT_CLIENTS, ...state.agents]);
   const [show, setShow] = useState(false);
   const toggleShow = () => setShow(!show);
   const { data: user } = useUser();
