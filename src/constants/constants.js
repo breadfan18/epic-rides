@@ -3,6 +3,8 @@
 export const DIRECT_CLIENTS = {
   name: "Direct Client",
   code: "DIR",
+  nationCode: null,
+  nationality: null,
 };
 
 export const AGENTS = [

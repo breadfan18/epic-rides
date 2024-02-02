@@ -10,6 +10,7 @@ import { MdModeEditOutline } from "react-icons/md";
 import { DIRECT_CLIENTS, NEW_DATA } from "../../constants/constants";
 import { useUser } from "reactfire";
 import { fileNameGenerator, getDaysBetweenDates } from "../../helpers";
+import COUNTRY_CODES from "../../constants/countryCodes";
 
 function TourAddEditModal({ data, setModalOpen }) {
   const [dataForModal, setDataForModal] = useState(
@@ -29,10 +30,26 @@ function TourAddEditModal({ data, setModalOpen }) {
     if (value !== "" || value !== null) {
       delete errors[name];
     }
-    setDataForModal((prevData) => ({
-      ...prevData,
-      [name]: name === "agent" ? agents.find((a) => a.code === value) : value,
-    }));
+
+    if (name.includes(".")) {
+      setDataForModal((prevData) => {
+        const [parentField, childField] = name.split(".");
+        return {
+          ...prevData,
+          [parentField]: {
+            ...prevData[parentField],
+            [childField]: value,
+            nationality: COUNTRY_CODES.find((country) => country.code === value)
+              .name,
+          },
+        };
+      });
+    } else {
+      setDataForModal((prevData) => ({
+        ...prevData,
+        [name]: name === "agent" ? agents.find((a) => a.code === value) : value,
+      }));
+    }
   }
 
   function handleMetadata(data) {

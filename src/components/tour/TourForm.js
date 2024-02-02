@@ -10,6 +10,8 @@ import { useSelector } from "react-redux";
 import Error from "../common/Error";
 import { DIRECT_CLIENTS } from "../../constants/constants";
 import SelectInputOptGroups from "../common/SelectInputOptGroups";
+import SelectInput from "../common/SelectInput";
+import COUNTRY_CODES from "../../constants/countryCodes";
 
 const TourForm = ({ tour, onSave, onChange, saving, errors = {} }) => {
   const agentData = useSelector((state) => state.agents);
@@ -33,6 +35,21 @@ const TourForm = ({ tour, onSave, onChange, saving, errors = {} }) => {
           error={errors.agent}
           requiredField
         />
+        {tour.agent.code === "DIR" && (
+          <SelectInput
+            name="agent.nationCode"
+            label="Agent Nationality"
+            value={tour.agent.nationCode || ""}
+            defaultOption="Select Nationality"
+            options={COUNTRY_CODES.map((country) => ({
+              value: country.code,
+              text: titleCase(country.name),
+            }))}
+            onChange={onChange}
+            error={errors.nationality}
+            requiredField
+          />
+        )}
         <TextInput
           name="tourName"
           label="Tour Name"
