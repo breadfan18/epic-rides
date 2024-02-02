@@ -98,10 +98,7 @@ function AgentAddEditModal({ agent, disableBtn }) {
           const updatedTour = {
             ...tour,
             ...updatedFileInfo,
-            agent: {
-              name: finalAgent.name,
-              code: finalAgent.code,
-            },
+            agent: finalAgent,
           };
           dispatch(saveDataToFirebase(updatedTour, tour.id));
         });
