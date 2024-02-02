@@ -106,7 +106,9 @@ function AgentAddEditModal({ agent, disableBtn }) {
     }
 
     toast.success(
-      agentForModal?.id === null ? "Agent Created" : "Agent Updated"
+      agentForModal?.id === null
+        ? "Agent Created"
+        : "Agent Info Updated. Tours for this agent updated with new agent data"
     );
     toggleShow();
     setSaving(false);
