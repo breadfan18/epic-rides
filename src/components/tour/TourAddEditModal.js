@@ -133,8 +133,11 @@ function TourAddEditModal({ data, setModalOpen }) {
   function formIsValid() {
     const { agent, tourName, groupFitName, dateFrom, dateTo } = dataForModal;
     const errors = {};
+    const { nationality } = agent;
 
     if (!agent.name) errors.agent = "Required";
+    if (agent.code === "DIR" && !nationality)
+      errors.clientNationality = "Required";
     if (!tourName) errors.tourName = "Required";
     if (!groupFitName) errors.groupFitName = "Required";
     if (dateFrom && !dateTo) errors.dateTo = "End Date is Required";

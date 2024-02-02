@@ -29,6 +29,7 @@ import { MdOutlineContentCopy } from "react-icons/md";
 import { toast } from "react-toastify";
 import CreatedOrEditedBy from "../CreatedOrEditedBy";
 import TourDetailsConfirmCancel from "./TourDetailsConfirmCancel";
+import AgentImg from "../../agents/AgentImg";
 
 function TourDetailsPage({ tours, loadDataFromFirebase, ...props }) {
   const dispatch = useDispatch();
@@ -63,6 +64,8 @@ function TourDetailsPage({ tours, loadDataFromFirebase, ...props }) {
       .then(() => toast.info("File Name copied to clipboard"))
       .catch((err) => toast.error("Error copying file name"));
   };
+
+  console.log(tour.agent.nationCode);
 
   return loading ? (
     <Spinner />
@@ -108,7 +111,13 @@ function TourDetailsPage({ tours, loadDataFromFirebase, ...props }) {
                   {tour.tourName}
                 </Card.Title>
                 <Card.Title style={{ fontSize: "clamp(0.7rem, 4vw, 1rem)" }}>
-                  {tour.agent.name}
+                  <div className="agentImgContainer">
+                    <AgentImg
+                      img={`../flags/${tour.agent.nationCode}.svg`}
+                      heightAndWidth="2rem"
+                    />
+                    <p style={{ margin: "0 0 0 5px" }}>{tour.agent.name}</p>
+                  </div>
                 </Card.Title>
               </div>
               <div>

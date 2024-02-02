@@ -10,6 +10,7 @@ import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 import { ERN_DATA_KEYS } from "../../constants/constants";
 import TourStatusIcon from "../common/TourStatusIcon";
 import ConfirmTourModal from "./ConfirmTourModal";
+import AgentImg from "../agents/AgentImg";
 
 export default function TourTable({ data }) {
   const { sortedData, requestSort } = useSortableData(data);
@@ -56,7 +57,7 @@ export default function TourTable({ data }) {
               <FaSort onClick={() => requestSort(ERN_DATA_KEYS.fileOpenDate)} />
             </th>
             <th className="tableHeader">
-              Agent
+              Agent | Client
               <FaSort onClick={() => requestSort(ERN_DATA_KEYS.agent)} />
             </th>
             <th className="tableHeader">
@@ -96,14 +97,21 @@ export default function TourTable({ data }) {
                 onMouseLeave={(e) => handleTrColorReset(e, d)}
                 style={{ cursor: "pointer" }}
                 onClick={() => routeChange(d)}
-                // className={d.status === "CA" ? "table-danger" : ""}
               >
                 <td>
                   <TourStatusIcon tourStatus={d.status} iconSize="1.5rem" />
                 </td>
                 <td>{("000" + d.id).slice(-3)}</td>
                 <td>{formatDate(d.fileOpenDate)}</td>
-                <td>{d.agent.name}</td>
+                <td>
+                  <div className="agentImgContainer">
+                    <AgentImg
+                      img={`flags/${d.agent.nationCode}.svg`}
+                      heightAndWidth="1.5rem"
+                    />
+                    <p style={{ margin: "0 0 0 5px" }}>{d.agent.name}</p>
+                  </div>
+                </td>
                 <td>{titleCase(d.tourName)}</td>
                 <td>{titleCase(d.groupFitName)}</td>
                 <td>{d.paxNum}</td>

@@ -38,7 +38,7 @@ const TourForm = ({ tour, onSave, onChange, saving, errors = {} }) => {
         {tour.agent.code === "DIR" && (
           <SelectInput
             name="agent.nationCode"
-            label="Agent Nationality"
+            label="Client Nationality"
             value={tour.agent.nationCode || ""}
             defaultOption="Select Nationality"
             options={COUNTRY_CODES.map((country) => ({
@@ -46,7 +46,7 @@ const TourForm = ({ tour, onSave, onChange, saving, errors = {} }) => {
               text: titleCase(country.name),
             }))}
             onChange={onChange}
-            error={errors.nationality}
+            error={errors.clientNationality}
             requiredField
           />
         )}
@@ -94,7 +94,7 @@ const TourForm = ({ tour, onSave, onChange, saving, errors = {} }) => {
           disabled={saving}
           className="btn btn-primary addButton"
         >
-          {tour.id === null ? "Add Data" : "Save Data"}
+          {tour.id === null ? "Add Tour" : "Save Tour"}
         </button>
       </Form>
     </>
