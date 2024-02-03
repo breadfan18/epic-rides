@@ -1,4 +1,12 @@
 // New Constants
+
+export const DIRECT_CLIENTS = {
+  name: "Direct Client",
+  code: "DIR",
+  nationCode: null,
+  nationality: null,
+};
+
 export const AGENTS = [
   {
     name: "Direct Clients",
@@ -196,3 +204,4 @@ export const DELETE_MODAL_TYPES = {
 export const USER_STOCK_IMG = "https://i.imgur.com/iALkKsV.png";
 export const USER_STOCK_IMG_WHITE_BKGRD = "https://i.imgur.com/bUmgFm9.png";
 export const EPIC_LOGO = "https://i.imgur.com/M0W3075.png";
+export const AGENT_STOCK_IMG = "https://i.imgur.com/aex0YDW.png";

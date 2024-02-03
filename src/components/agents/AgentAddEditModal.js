@@ -76,7 +76,7 @@ function AgentAddEditModal({ agent, disableBtn }) {
       nationCode: agentForModal.nationCode,
     };
 
-    dispatch(saveAgentToFirebase(finalAgent, user?.uid));
+    dispatch(saveAgentToFirebase(finalAgent));
 
     const shouldUpdateTourData =
       (agentForModal?.id !== null && agent?.name !== agentForModal.name) ||
@@ -98,18 +98,17 @@ function AgentAddEditModal({ agent, disableBtn }) {
           const updatedTour = {
             ...tour,
             ...updatedFileInfo,
-            agent: {
-              name: finalAgent.name,
-              code: finalAgent.code,
-            },
+            agent: finalAgent,
           };
-          dispatch(saveDataToFirebase(updatedTour, user?.uid, tour.id));
+          dispatch(saveDataToFirebase(updatedTour, tour.id));
         });
       }
     }
 
     toast.success(
-      agentForModal?.id === null ? "Agent Created" : "Agent Updated"
+      agentForModal?.id === null
+        ? "Agent Created"
+        : "Agent Info Updated. Tours for this agent updated with new agent data"
     );
     toggleShow();
     setSaving(false);

@@ -7,9 +7,10 @@ import TourForm from "./TourForm";
 import { toast } from "react-toastify";
 import PropTypes from "prop-types";
 import { MdModeEditOutline } from "react-icons/md";
-import { NEW_DATA } from "../../constants/constants";
+import { DIRECT_CLIENTS, NEW_DATA } from "../../constants/constants";
 import { useUser } from "reactfire";
 import { fileNameGenerator, getDaysBetweenDates } from "../../helpers";
+import COUNTRY_CODES from "../../constants/countryCodes";
 
 function TourAddEditModal({ data, setModalOpen }) {
   const [dataForModal, setDataForModal] = useState(
@@ -18,7 +19,7 @@ function TourAddEditModal({ data, setModalOpen }) {
 
   const allData = useSelector((state) => state.data);
   const dispatch = useDispatch();
-  const agents = useSelector((state) => state.agents);
+  const agents = useSelector((state) => [DIRECT_CLIENTS, ...state.agents]);
   const [show, setShow] = useState(false);
   const toggleShow = () => setShow(!show);
   const { data: user } = useUser();
@@ -29,10 +30,26 @@ function TourAddEditModal({ data, setModalOpen }) {
     if (value !== "" || value !== null) {
       delete errors[name];
     }
-    setDataForModal((prevData) => ({
-      ...prevData,
-      [name]: name === "agent" ? agents.find((a) => a.code === value) : value,
-    }));
+
+    if (name.includes(".")) {
+      setDataForModal((prevData) => {
+        const [parentField, childField] = name.split(".");
+        return {
+          ...prevData,
+          [parentField]: {
+            ...prevData[parentField],
+            [childField]: value,
+            nationality: COUNTRY_CODES.find((country) => country.code === value)
+              .name,
+          },
+        };
+      });
+    } else {
+      setDataForModal((prevData) => ({
+        ...prevData,
+        [name]: name === "agent" ? agents.find((a) => a.code === value) : value,
+      }));
+    }
   }
 
   function handleMetadata(data) {
@@ -116,8 +133,11 @@ function TourAddEditModal({ data, setModalOpen }) {
   function formIsValid() {
     const { agent, tourName, groupFitName, dateFrom, dateTo } = dataForModal;
     const errors = {};
+    const { nationality } = agent;
 
     if (!agent.name) errors.agent = "Required";
+    if (agent.code === "DIR" && !nationality)
+      errors.clientNationality = "Required";
     if (!tourName) errors.tourName = "Required";
     if (!groupFitName) errors.groupFitName = "Required";
     if (dateFrom && !dateTo) errors.dateTo = "End Date is Required";

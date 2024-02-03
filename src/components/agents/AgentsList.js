@@ -32,6 +32,8 @@ const AgentsList = ({ toursByAgent, agents }) => {
                 <AgentImg
                   img={`flags/${agent.nationCode}.svg`}
                   heightAndWidth="4rem"
+                  showShadow
+                  isOnAgentPage
                 />
               </td>
               <td>{agent.name}</td>

@@ -35,7 +35,7 @@ export function loadAgentsFromFirebase(firebaseUid) {
   };
 }
 
-export function saveAgentToFirebase(agent, firebaseUid) {
+export function saveAgentToFirebase(agent) {
   return (dispatch) => {
     /*
       BUG: dispatching beginApiCall twice here..This is a workaround for the followinsg issue:
@@ -47,7 +47,7 @@ export function saveAgentToFirebase(agent, firebaseUid) {
     dispatch(beginApiCall());
     const agentId = agent.id === null ? `${agent.code}_${uid()}` : agent.id;
 
-    writeToFirebase("agents", agent, agentId, firebaseUid);
+    writeToFirebase("agents", agent, agentId);
     dispatch(createDataSuccess(agent));
   };
 }

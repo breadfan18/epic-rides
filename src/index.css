@@ -20,6 +20,12 @@ body {
   margin: 0 auto;
 }
 
+.agentImgContainer {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
 .tourDetailsBody {
   display: flex;
   flex-wrap: wrap;

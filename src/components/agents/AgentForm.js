@@ -17,7 +17,7 @@ const AgentForm = ({ agent, onSave, onChange, errors = {}, saving }) => {
       <TextInput
         name="name"
         label="Agent Name"
-        value={titleCase(agent.name) || ""}
+        value={agent.name || ""}
         onChange={onChange}
         error={errors.name}
         requiredField

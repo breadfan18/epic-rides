@@ -32,6 +32,8 @@ export default function AgentCards({ agents, toursByAgent }) {
                 img={`flags/${agent.nationCode}.svg`}
                 heightAndWidth="6rem"
                 imgOnCard={true}
+                showShadow
+                isOnAgentPage
               />
             </Card.Title>
           </div>
