@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import Tab from "react-bootstrap/Tab";
 import Tabs from "react-bootstrap/Tabs";
 import PropTypes from "prop-types";
@@ -14,9 +14,9 @@ import useTourFilter from "../../hooks/filterTours";
 function TourTabs({ tours }) {
   const windowWidth = useContext(WindowWidthContext);
   const yearsWithTours = sortNumbers(getYearsFromTours(tours));
-  const activeTab = yearsWithTours.includes(new Date().getFullYear().toString())
-    ? new Date().getFullYear().toString()
-    : yearsWithTours[0];
+  const tourDetailsTab = JSON.parse(localStorage.getItem("clickedTab"));
+
+  const activeTab = tourDetailsTab ? tourDetailsTab : "all-tours";
   const [selectedTab, setSelectedTab] = useState(activeTab);
   const handleSelectTab = (tabKey) => setSelectedTab(tabKey.toString());
   const [showFilter, setShowFilter] = useState(false);
@@ -30,6 +30,18 @@ function TourTabs({ tours }) {
     setStatusFilter,
     setGroupNameFilter,
   } = useTourFilter(tours);
+
+  useEffect(() => {
+    const removeItemOnRefresh = () => {
+      localStorage.removeItem("clickedTab");
+    };
+    // This is to remove clickedTab from localStorage on a page refresh
+    window.onbeforeunload = removeItemOnRefresh;
+    // Clean up the event handler when the component unmounts
+    return () => {
+      window.onbeforeunload = null;
+    };
+  }, []);
 
   const toursForSelectedYear =
     selectedTab === "all-tours"

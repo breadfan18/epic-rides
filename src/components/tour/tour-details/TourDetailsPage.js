@@ -41,6 +41,13 @@ function TourDetailsPage({ tours, loadDataFromFirebase, ...props }) {
   );
   const { status, data: user } = useUser();
 
+  localStorage.setItem(
+    "clickedTab",
+    JSON.stringify(
+      tour.dateFrom === "" ? "UNDATED" : tour.dateFrom.split("-")[0]
+    )
+  );
+
   const [tourDetailsBannerImg, setImg] = useState(
     TOUR_DETAILS_IMAGES[Math.floor(Math.random() * TOUR_DETAILS_IMAGES.length)]
   );
@@ -64,8 +71,6 @@ function TourDetailsPage({ tours, loadDataFromFirebase, ...props }) {
       .then(() => toast.info("File Name copied to clipboard"))
       .catch((err) => toast.error("Error copying file name"));
   };
-
-  console.log(tour.agent.nationCode);
 
   return loading ? (
     <Spinner />
