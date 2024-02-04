@@ -15,7 +15,6 @@ function UserProfileSection({ user, userLogout, smallNav }) {
 
   function handleSignOut() {
     userLogout(auth);
-    localStorage.removeItem("selectedUser");
     history.push("/signin");
   }
 

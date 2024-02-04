@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import TourCards from "./TourCards";
 import PropTypes from "prop-types";
 import { Form } from "react-bootstrap";
@@ -7,11 +7,16 @@ import { getYearsFromTours, sortNumbers } from "../../helpers";
 import { Button } from "react-bootstrap";
 import useTourFilter from "../../hooks/filterTours";
 import Filters from "./filters/Filters";
+import { useDispatch, useSelector } from "react-redux";
+import { saveActiveTab } from "../../redux/actions/dataActions";
 
 function ToursByDropDown({ tours }) {
-  const [selectedYear, setSelectedYear] = useState(
-    new Date().getFullYear().toString()
-  );
+  const dispatch = useDispatch();
+  const activeTab = useSelector((state) => state.activeTab);
+  const [selectedYear, setSelectedYear] = useState(activeTab || "all-tours");
+
+  useEffect(() => dispatch(saveActiveTab(selectedYear)), [selectedYear]);
+
   const [showFilter, setShowFilter] = useState(false);
   const {
     filters,

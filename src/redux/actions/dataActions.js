@@ -39,7 +39,7 @@ function deleteDataNotesSuccess(cardNote) {
   return { type: DELETE_CARD_NOTES_SUCCESS, cardNote };
 }
 
-export function setActiveTab(activeTab) {
+function setActiveTabSuccess(activeTab) {
   return { type: SET_ACTIVE_TAB_SUCCESS, activeTab };
 }
 
@@ -102,3 +102,6 @@ export function deleteTourNoteFromFirebase(note, tourId, firebaseUid) {
     dispatch(deleteDataNotesSuccess(note));
   };
 }
+
+export const saveActiveTab = (activeTab) => (dispatch) =>
+  dispatch(setActiveTabSuccess(activeTab));

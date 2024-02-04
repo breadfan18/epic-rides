@@ -10,20 +10,19 @@ import { getYearsFromTours, sortNumbers } from "../../helpers";
 import { Button } from "react-bootstrap";
 import Filters from "./filters/Filters";
 import useTourFilter from "../../hooks/filterTours";
-import { setActiveTab } from "../../redux/actions/dataActions";
-import { useDispatch } from "react-redux";
+import { saveActiveTab } from "../../redux/actions/dataActions";
+import { useDispatch, useSelector } from "react-redux";
 
 function TourTabs({ tours }) {
   const windowWidth = useContext(WindowWidthContext);
   const yearsWithTours = sortNumbers(getYearsFromTours(tours));
-
-  const tourDetailsTab = JSON.parse(localStorage.getItem("clickedTab"));
-  const activeTab = tourDetailsTab || "all-tours";
   const dispatch = useDispatch();
-
-  const [selectedTab, setSelectedTab] = useState(activeTab);
+  const activeTab = useSelector((state) => state.activeTab);
+  const [selectedTab, setSelectedTab] = useState(activeTab || "all-tours");
   const handleSelectTab = (tabKey) => setSelectedTab(tabKey.toString());
   const [showFilter, setShowFilter] = useState(false);
+
+  useEffect(() => dispatch(saveActiveTab(selectedTab)), [selectedTab]);
 
   const {
     filters,
@@ -34,23 +33,6 @@ function TourTabs({ tours }) {
     setStatusFilter,
     setGroupNameFilter,
   } = useTourFilter(tours);
-
-  useEffect(() => {
-    /* 
-      I AM HERE. NOW I NEED TO USE THE activeTab from redux to set the active tab
-    */
-    dispatch(setActiveTab(activeTab));
-
-    const removeItemOnRefresh = () => {
-      localStorage.removeItem("clickedTab");
-    };
-    // This is to remove clickedTab from localStorage on a page refresh
-    window.onbeforeunload = removeItemOnRefresh;
-    // Clean up the event handler when the component unmounts
-    return () => {
-      window.onbeforeunload = null;
-    };
-  }, [activeTab]);
 
   const toursForSelectedYear =
     selectedTab === "all-tours"
@@ -93,7 +75,7 @@ function TourTabs({ tours }) {
         {showFilter ? "Hide Filters" : "Show Filters"}
       </Button>
       <Tabs
-        defaultActiveKey={activeTab}
+        defaultActiveKey={selectedTab}
         className="mb-3"
         onSelect={handleSelectTab}
       >

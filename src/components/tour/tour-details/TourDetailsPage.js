@@ -67,20 +67,11 @@ function TourDetailsPage({ tours, loadDataFromFirebase, ...props }) {
       .catch((err) => toast.error("Error copying file name"));
   };
 
-  const navigateBackToClickedToursTab = () => {
-    localStorage.setItem(
-      "clickedTab",
-      JSON.stringify(
-        tour.dateFrom === "" ? "UNDATED" : tour.dateFrom.split("-")[0]
-      )
-    );
-  };
-
   return loading ? (
     <Spinner />
   ) : (
     <div className="tourDetailsContainer">
-      <div onClick={navigateBackToClickedToursTab}>
+      <div>
         <Link to="/tours" className="tourDetailsBackToToursLink">
           <IoChevronBackCircle
             style={{ color: APP_COLOR_EPIC_RED, fontSize: "2rem" }}

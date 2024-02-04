@@ -1,7 +1,10 @@
 import React, { useContext, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { loadAgentsFromFirebase } from "../../redux/actions/agentActions";
-import { loadDataFromFirebase } from "../../redux/actions/dataActions";
+import {
+  loadDataFromFirebase,
+  saveActiveTab,
+} from "../../redux/actions/dataActions";
 import { useUser } from "reactfire";
 import AgentsList from "./AgentsList";
 import { Spinner } from "../common/Spinner";
@@ -19,6 +22,8 @@ const AgentsPage = () => {
   const tours = useSelector((state) => state.data);
 
   useEffect(() => {
+    dispatch(saveActiveTab(""));
+    // Setting activeTab to null so that tours active tab will be set to all-tours
     if (agents.length === 0 && status !== "loading") {
       dispatch(loadAgentsFromFirebase(user.uid));
     }
