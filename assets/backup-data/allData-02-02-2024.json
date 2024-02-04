@@ -83,12 +83,12 @@
           "nationality": "Denmark"
         },
         "code": "ODD",
-        "dateFrom": "2023-10-21",
+        "dateFrom": "2023-10-20",
         "dateTo": "2023-10-24",
         "fileLocation": "",
-        "fileName": "undated",
+        "fileName": "2310001ODD_5_Splendor of the Himalayas",
         "fileOpenDate": "2024-02-02",
-        "fileRef": "undated",
+        "fileRef": "2310001ODD",
         "groupFitName": "Group John",
         "id": 1,
         "metadata": {
@@ -101,7 +101,7 @@
         "name": "Foo Danes",
         "nationCode": "DK",
         "nationality": "Denmark",
-        "numOfDays": 4,
+        "numOfDays": 5,
         "paxNum": "15",
         "remarks": "",
         "status": "HK",
@@ -130,9 +130,9 @@
         "dateFrom": "2023-10-21",
         "dateTo": "2023-10-27",
         "fileLocation": "",
-        "fileName": "undated",
+        "fileName": "2310002DAV_7_Around Annapurna_RAMANA III",
         "fileOpenDate": "2024-02-02",
-        "fileRef": "undated",
+        "fileRef": "2310002DAV",
         "groupFitName": "Epic Group",
         "id": 2,
         "metadata": {
@@ -143,7 +143,7 @@
           }
         },
         "numOfDays": 7,
-        "paxNum": "15",
+        "paxNum": "17",
         "remarks": "",
         "status": "OP",
         "tourName": "Around Annapurna_RAMANA III"
@@ -195,12 +195,12 @@
           "nationality": "Denmark"
         },
         "code": "ODD",
-        "dateFrom": "2024-01-18",
+        "dateFrom": "2024-01-17",
         "dateTo": "2024-01-18",
-        "fileLocation": "https://firebasestorage.googleapis.com/v0/b/epic-rides-aa67e.appspot.com/o/tour-files%2F2401004DIR_1_The%20Legend's%20Path.docx?alt=media&token=d2441a26-f1ae-498f-b371-b507ec6147ae",
-        "fileName": "undated",
+        "fileLocation": "https://firebasestorage.googleapis.com/v0/b/epic-rides-aa67e.appspot.com/o/tour-files%2Fundated.xlsx?alt=media&token=0561d801-b469-46e5-983c-5d537f26c6b5",
+        "fileName": "2401004ODD_2_The Legend's Path",
         "fileOpenDate": "2024-02-02",
-        "fileRef": "undated",
+        "fileRef": "2401004ODD",
         "groupFitName": "Epic Group",
         "id": 4,
         "metadata": {
@@ -213,7 +213,7 @@
         "name": "Foo Danes",
         "nationCode": "DK",
         "nationality": "Denmark",
-        "numOfDays": 1,
+        "numOfDays": 2,
         "paxNum": 10,
         "remarks": "",
         "status": "HK",
@@ -268,12 +268,12 @@
           "nationCode": "AU",
           "nationality": "Australia"
         },
-        "dateFrom": "2024-09-15",
+        "dateFrom": "2024-09-16",
         "dateTo": "2024-09-27",
         "fileLocation": "",
-        "fileName": "undated",
+        "fileName": "2409006DAV_12_Mystical Montage",
         "fileOpenDate": "2024-02-02",
-        "fileRef": "undated",
+        "fileRef": "2409006DAV",
         "groupFitName": "Epic Group",
         "id": 6,
         "metadata": {
@@ -283,7 +283,7 @@
             "uid": "b1SGkt35koVLsQaPHooXteqeYxx1"
           }
         },
-        "numOfDays": 13,
+        "numOfDays": 12,
         "paxNum": 10,
         "remarks": "",
         "status": "HK",
@@ -326,12 +326,12 @@
           "nationCode": "AU",
           "nationality": "Australia"
         },
-        "dateFrom": "2025-6-10",
-        "dateTo": "2025-6-10",
+        "dateFrom": "2025-06-10",
+        "dateTo": "2025-06-10",
         "fileLocation": "",
-        "fileName": "undated",
+        "fileName": "2506008DAV_1_On the trails of Tenzing_Mr. Mark",
         "fileOpenDate": "2024-02-02",
-        "fileRef": "undated",
+        "fileRef": "2506008DAV",
         "groupFitName": "Epic Group",
         "id": 8,
         "metadata": {
@@ -397,12 +397,12 @@
           "nationality": "Denmark"
         },
         "code": "ODD",
-        "dateFrom": "2024-01-27",
+        "dateFrom": "2024-01-28",
         "dateTo": "2024-02-07",
         "fileLocation": "",
-        "fileName": "undated",
+        "fileName": "2401010ODD_11_Happy Feet",
         "fileOpenDate": "2024-02-02",
-        "fileRef": "undated",
+        "fileRef": "2401010ODD",
         "groupFitName": "Epic Group",
         "id": 10,
         "metadata": {
@@ -415,7 +415,7 @@
         "name": "Foo Danes",
         "nationCode": "DK",
         "nationality": "Denmark",
-        "numOfDays": 12,
+        "numOfDays": 11,
         "paxNum": 2,
         "remarks": "",
         "status": "HK",
@@ -458,12 +458,12 @@
           "nationCode": "AU",
           "nationality": "Australia"
         },
-        "dateFrom": "2024-05-15",
+        "dateFrom": "2024-05-14",
         "dateTo": "2024-05-20",
         "fileLocation": "",
-        "fileName": "undated",
+        "fileName": "2405012DAV_7_Nepal Extravaganza",
         "fileOpenDate": "2024-02-02",
-        "fileRef": "undated",
+        "fileRef": "2405012DAV",
         "groupFitName": "Epic Group",
         "id": 12,
         "metadata": {
@@ -473,7 +473,7 @@
             "uid": "b1SGkt35koVLsQaPHooXteqeYxx1"
           }
         },
-        "numOfDays": 6,
+        "numOfDays": 7,
         "paxNum": 15,
         "remarks": "",
         "status": "HK",
@@ -635,10 +635,10 @@
           "nationCode": "US",
           "nationality": "United States"
         },
-        "dateFrom": "2023-12-29",
+        "dateFrom": "2023-12-30",
         "dateTo": "2024-01-06",
-        "fileName": "2312018SUP_9_My Dream Trip",
-        "fileOpenDate": "2024-02-01",
+        "fileName": "2312018SUP_8_My Dream Trip",
+        "fileOpenDate": "2024-02-02",
         "fileRef": "2312018SUP",
         "groupFitName": "Birendra's Gang",
         "id": 18,
@@ -653,7 +653,7 @@
             "uid": "b1SGkt35koVLsQaPHooXteqeYxx1"
           }
         },
-        "numOfDays": 9,
+        "numOfDays": 8,
         "paxNum": "0",
         "status": "OP",
         "tourName": "My Dream Trip"
@@ -724,20 +724,25 @@
           "nationCode": "AU",
           "nationality": "Australia"
         },
-        "dateFrom": "2023-12-31",
-        "dateTo": "",
-        "fileName": "undated",
+        "dateFrom": "2023-12-30",
+        "dateTo": "2024-02-04",
+        "fileName": "2312021DAV_37_Round Annapurna",
         "fileOpenDate": "2024-02-02",
-        "fileRef": "undated",
+        "fileRef": "2312021DAV",
         "groupFitName": "Xyz",
         "id": 21,
         "metadata": {
           "createdBy": {
             "displayName": "Birendra Thapw",
             "uid": "NdbihNJRp3XxumVBcFxYROerROd2"
+          },
+          "editedBy": {
+            "displayName": "Anshu  PanshU",
+            "photoURL": "https://firebasestorage.googleapis.com/v0/b/epic-rides-aa67e.appspot.com/o/images%2FAnShU-089.jpg?alt=media&token=0248ee92-8360-4bc0-9ed9-e6af0223ab0c",
+            "uid": "b1SGkt35koVLsQaPHooXteqeYxx1"
           }
         },
-        "numOfDays": "",
+        "numOfDays": 37,
         "paxNum": "N/A",
         "status": "OP",
         "tourName": "Round Annapurna"
@@ -808,10 +813,10 @@
           "nationCode": "US",
           "nationality": "United States"
         },
-        "dateFrom": "2023-11-02",
+        "dateFrom": "2023-11-01",
         "dateTo": "2024-01-24",
-        "fileName": "2311024SUP_84_Soup",
-        "fileOpenDate": "2024-01-17",
+        "fileName": "2311024SUP_85_Soup",
+        "fileOpenDate": "2024-02-02",
         "fileRef": "2311024SUP",
         "groupFitName": "Arsenal",
         "id": 24,
@@ -822,12 +827,12 @@
             "uid": "QJBWbRCoPcVHRV3TYwwdX4eBZof1"
           },
           "editedBy": {
-            "displayName": "Poo Ma",
-            "photoURL": "https://firebasestorage.googleapis.com/v0/b/epic-rides-aa67e.appspot.com/o/images%2FDSC08808.JPG?alt=media&token=aa921b8f-0f18-490d-bd43-8b56c16a40e8",
-            "uid": "QJBWbRCoPcVHRV3TYwwdX4eBZof1"
+            "displayName": "Anshu  PanshU",
+            "photoURL": "https://firebasestorage.googleapis.com/v0/b/epic-rides-aa67e.appspot.com/o/images%2FAnShU-089.jpg?alt=media&token=0248ee92-8360-4bc0-9ed9-e6af0223ab0c",
+            "uid": "b1SGkt35koVLsQaPHooXteqeYxx1"
           }
         },
-        "numOfDays": 84,
+        "numOfDays": 85,
         "paxNum": "12",
         "status": "HK",
         "tourName": "Soup"
@@ -841,12 +846,12 @@
           "nationality": "Denmark"
         },
         "code": "ODD",
-        "dateFrom": "2024-03-21",
+        "dateFrom": "2024-03-20",
         "dateTo": "2024-03-28",
         "fileLocation": "https://firebasestorage.googleapis.com/v0/b/epic-rides-aa67e.appspot.com/o/tour-files%2F2403025DIR_8_Wonder%20Tour.pdf?alt=media&token=53d481ed-9fa9-4ec3-9047-0f21fceb1e48",
-        "fileName": "undated",
+        "fileName": "2403025ODD_9_Wonder Tour",
         "fileOpenDate": "2024-02-02",
-        "fileRef": "undated",
+        "fileRef": "2403025ODD",
         "groupFitName": "This Is Me Again",
         "id": 25,
         "metadata": {
@@ -863,7 +868,7 @@
         "name": "Foo Danes",
         "nationCode": "DK",
         "nationality": "Denmark",
-        "numOfDays": 8,
+        "numOfDays": 9,
         "paxNum": "N/A",
         "status": "OP",
         "tourName": "Wonder Tour"
@@ -893,6 +898,58 @@
         "paxNum": "11",
         "status": "OP",
         "tourName": "Direct Client Test Tour"
+      },
+      {
+        "agent": {
+          "code": "DIR",
+          "name": "Direct Client",
+          "nationCode": "AQ",
+          "nationality": "Antarctica"
+        },
+        "dateFrom": "2024-02-17",
+        "dateTo": "2024-02-21",
+        "fileName": "2402027DIR_5_The Penguin Delight",
+        "fileOpenDate": "2024-02-02",
+        "fileRef": "2402027DIR",
+        "groupFitName": "Happy Feet",
+        "id": 27,
+        "metadata": {
+          "createdBy": {
+            "displayName": "Anshu  PanshU",
+            "photoURL": "https://firebasestorage.googleapis.com/v0/b/epic-rides-aa67e.appspot.com/o/images%2FAnShU-089.jpg?alt=media&token=0248ee92-8360-4bc0-9ed9-e6af0223ab0c",
+            "uid": "b1SGkt35koVLsQaPHooXteqeYxx1"
+          }
+        },
+        "numOfDays": 5,
+        "paxNum": "200",
+        "status": "OP",
+        "tourName": "The Penguin Delight"
+      },
+      {
+        "agent": {
+          "code": "DIR",
+          "name": "Direct Client",
+          "nationCode": "AM",
+          "nationality": "Armenia"
+        },
+        "dateFrom": "",
+        "dateTo": "",
+        "fileName": "undated",
+        "fileOpenDate": "2024-02-03",
+        "fileRef": "undated",
+        "groupFitName": "Annies Fanatics",
+        "id": 28,
+        "metadata": {
+          "createdBy": {
+            "displayName": "Anshu  PanshU",
+            "photoURL": "https://firebasestorage.googleapis.com/v0/b/epic-rides-aa67e.appspot.com/o/images%2FAnShU-089.jpg?alt=media&token=0248ee92-8360-4bc0-9ed9-e6af0223ab0c",
+            "uid": "b1SGkt35koVLsQaPHooXteqeYxx1"
+          }
+        },
+        "numOfDays": "",
+        "paxNum": "N/A",
+        "status": "OP",
+        "tourName": "BtbT"
       }
     ]
   }
