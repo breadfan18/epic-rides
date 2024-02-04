@@ -5,6 +5,7 @@ import {
   DELETE_DATA_SUCCESS,
   LOAD_DATA_SUCCESS,
   UPDATE_DATA_SUCCESS,
+  SET_ACTIVE_TAB_SUCCESS,
 } from "./actionTypes";
 import { apiCallError, beginApiCall } from "./apiStatusActions";
 import {
@@ -36,6 +37,10 @@ function createDataNotesSuccess(cardNote) {
 
 function deleteDataNotesSuccess(cardNote) {
   return { type: DELETE_CARD_NOTES_SUCCESS, cardNote };
+}
+
+export function setActiveTab(activeTab) {
+  return { type: SET_ACTIVE_TAB_SUCCESS, activeTab };
 }
 
 export function loadDataFromFirebase(firebaseUid) {

@@ -10,6 +10,8 @@ import { getYearsFromTours, sortNumbers } from "../../helpers";
 import { Button } from "react-bootstrap";
 import Filters from "./filters/Filters";
 import useTourFilter from "../../hooks/filterTours";
+import { setActiveTab } from "../../redux/actions/dataActions";
+import { useDispatch } from "react-redux";
 
 function TourTabs({ tours }) {
   const windowWidth = useContext(WindowWidthContext);
@@ -17,6 +19,7 @@ function TourTabs({ tours }) {
 
   const tourDetailsTab = JSON.parse(localStorage.getItem("clickedTab"));
   const activeTab = tourDetailsTab || "all-tours";
+  const dispatch = useDispatch();
 
   const [selectedTab, setSelectedTab] = useState(activeTab);
   const handleSelectTab = (tabKey) => setSelectedTab(tabKey.toString());
@@ -33,6 +36,11 @@ function TourTabs({ tours }) {
   } = useTourFilter(tours);
 
   useEffect(() => {
+    /* 
+      I AM HERE. NOW I NEED TO USE THE activeTab from redux to set the active tab
+    */
+    dispatch(setActiveTab(activeTab));
+
     const removeItemOnRefresh = () => {
       localStorage.removeItem("clickedTab");
     };
@@ -42,7 +50,7 @@ function TourTabs({ tours }) {
     return () => {
       window.onbeforeunload = null;
     };
-  }, []);
+  }, [activeTab]);
 
   const toursForSelectedYear =
     selectedTab === "all-tours"

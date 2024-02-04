@@ -2,12 +2,14 @@ import { combineReducers } from "redux";
 import data from "./dataReducer";
 import agents from "./agentsReducer";
 import apiCallsInProgress from "./apiStatusReducer";
+import activeTab from "./activeTabReducer";
 import { USER_LOGOUT_SUCCESS } from "../actions/actionTypes";
 
 const appReducer = combineReducers({
   data,
   agents,
   apiCallsInProgress,
+  activeTab,
 });
 
 const rootReducer = (state, action) => {
