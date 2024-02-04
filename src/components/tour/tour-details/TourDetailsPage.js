@@ -30,6 +30,8 @@ import { toast } from "react-toastify";
 import CreatedOrEditedBy from "../CreatedOrEditedBy";
 import TourDetailsConfirmCancel from "./TourDetailsConfirmCancel";
 import AgentImg from "../../agents/AgentImg";
+import { Link } from "react-router-dom";
+import { IoChevronBackCircle } from "react-icons/io5";
 
 function TourDetailsPage({ tours, loadDataFromFirebase, ...props }) {
   const dispatch = useDispatch();
@@ -40,13 +42,6 @@ function TourDetailsPage({ tours, loadDataFromFirebase, ...props }) {
     (state) => state.apiCallsInProgress > 0 || state.data.length === 0
   );
   const { status, data: user } = useUser();
-
-  localStorage.setItem(
-    "clickedTab",
-    JSON.stringify(
-      tour.dateFrom === "" ? "UNDATED" : tour.dateFrom.split("-")[0]
-    )
-  );
 
   const [tourDetailsBannerImg, setImg] = useState(
     TOUR_DETAILS_IMAGES[Math.floor(Math.random() * TOUR_DETAILS_IMAGES.length)]
@@ -72,10 +67,29 @@ function TourDetailsPage({ tours, loadDataFromFirebase, ...props }) {
       .catch((err) => toast.error("Error copying file name"));
   };
 
+  const navigateBackToClickedToursTab = () => {
+    localStorage.setItem(
+      "clickedTab",
+      JSON.stringify(
+        tour.dateFrom === "" ? "UNDATED" : tour.dateFrom.split("-")[0]
+      )
+    );
+  };
+
   return loading ? (
     <Spinner />
   ) : (
     <div className="tourDetailsContainer">
+      <div onClick={navigateBackToClickedToursTab}>
+        <Link to="/tours" className="tourDetailsBackToToursLink">
+          <IoChevronBackCircle
+            style={{ color: APP_COLOR_EPIC_RED, fontSize: "2rem" }}
+          />
+          <p style={{ margin: "0 5px", color: APP_COLOR_EPIC_RED }}>
+            Back to Tours
+          </p>
+        </Link>
+      </div>
       <section className="sectionHeaders">
         <h2 style={{ marginBottom: 0 }}>Tour Details</h2>
         <div className="editDeleteCard">

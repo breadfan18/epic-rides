@@ -14,9 +14,10 @@ import useTourFilter from "../../hooks/filterTours";
 function TourTabs({ tours }) {
   const windowWidth = useContext(WindowWidthContext);
   const yearsWithTours = sortNumbers(getYearsFromTours(tours));
-  const tourDetailsTab = JSON.parse(localStorage.getItem("clickedTab"));
 
-  const activeTab = tourDetailsTab ? tourDetailsTab : "all-tours";
+  const tourDetailsTab = JSON.parse(localStorage.getItem("clickedTab"));
+  const activeTab = tourDetailsTab || "all-tours";
+
   const [selectedTab, setSelectedTab] = useState(activeTab);
   const handleSelectTab = (tabKey) => setSelectedTab(tabKey.toString());
   const [showFilter, setShowFilter] = useState(false);

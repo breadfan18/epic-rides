@@ -26,6 +26,14 @@ body {
   justify-content: flex-start;
 }
 
+.tourDetailsBackToToursLink {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  width: 8rem;
+  margin-bottom: 5px;
+}
+
 .tourDetailsBody {
   display: flex;
   flex-wrap: wrap;
