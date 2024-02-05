@@ -25,10 +25,12 @@ import _ from "lodash";
 import TourStatusIcon from "../../common/TourStatusIcon";
 import { useUser } from "reactfire";
 import TourAddEditModal from "../TourAddEditModal";
-import { MdOutlineContentCopy } from "react-icons/md";
 import { toast } from "react-toastify";
 import CreatedOrEditedBy from "../CreatedOrEditedBy";
 import TourDetailsConfirmCancel from "./TourDetailsConfirmCancel";
+import TourFileUploader from "./TourFileUploader";
+import TourFileDownloader from "./TourFileDownloader";
+import TourFileNameCopier from "./TourFileNameCopier";
 import AgentImg from "../../agents/AgentImg";
 import { Link } from "react-router-dom";
 import { IoChevronBackCircle } from "react-icons/io5";
@@ -236,18 +238,20 @@ function TourDetailsPage({ tours, loadDataFromFirebase, ...props }) {
                     File Name:
                   </td>
                   <td>
-                    <div
-                      style={{
-                        display: "flex",
-                        alignItems: "center",
-                        justifyContent: "space-between",
-                      }}
-                    >
-                      <p style={{ margin: 0 }}>{tour.fileName}</p>
-                      <MdOutlineContentCopy
-                        className="copyFileNameIcon"
-                        title="Copy File Name to clipboard"
-                        onClick={() => copyFileNameToClipboard()}
+                    <p style={{ margin: "0 0 8px 3px" }}>{tour.fileName}</p>
+                    <div id="fileNameOptions">
+                      <TourFileNameCopier
+                        copyFileNameFunc={copyFileNameToClipboard}
+                      />
+                      <TourFileUploader
+                        tour={tour}
+                        disabled
+                        // disabled={tour.status === "CA"}
+                      />
+                      <TourFileDownloader
+                        tour={tour}
+                        disabled
+                        // disabled={!tour.fileLocation}
                       />
                     </div>
                   </td>

@@ -260,3 +260,8 @@ export function isPasswordValid(pwd) {
   const passwordPattern = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d\S]{8,}$/;
   return passwordPattern.test(pwd);
 }
+
+export function getFileNameExtension(fileName) {
+  const arrSplitByDot = fileName.split(".");
+  return arrSplitByDot[arrSplitByDot.length - 1];
+}

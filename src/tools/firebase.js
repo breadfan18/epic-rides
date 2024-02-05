@@ -101,9 +101,9 @@ export { login, logout, auth, signInEmailPwd, createAccount };
 // STORAGE FUNCTIONS
 export const storage = getStorage(app);
 
-export const getFirebaseImgUrl = async (cardholder) => {
-  const imgRef = storageRef(storage, `images/${cardholder.imgFile?.name}`);
-  const snapshot = await uploadBytes(imgRef, cardholder.imgFile);
+export const getStorageFileUrl = async (endpoint, fileName, file) => {
+  const imgRef = storageRef(storage, `${endpoint}/${fileName}`);
+  const snapshot = await uploadBytes(imgRef, file);
   return await getDownloadURL(snapshot.ref);
 };
 
