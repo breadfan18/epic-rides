@@ -12,11 +12,7 @@ import { saveActiveTab } from "../../redux/actions/dataActions";
 
 function ToursByDropDown({ tours }) {
   const dispatch = useDispatch();
-  const activeTab = useSelector((state) => state.activeTab);
-  const [selectedYear, setSelectedYear] = useState(activeTab || "all-tours");
-
-  useEffect(() => dispatch(saveActiveTab(selectedYear)), [selectedYear]);
-
+  const activeTab = useSelector((state) => state.activeTab || "all-tours");
   const [showFilter, setShowFilter] = useState(false);
   const {
     filters,
@@ -29,20 +25,18 @@ function ToursByDropDown({ tours }) {
   } = useTourFilter(tours);
 
   const yearsWithTours = sortNumbers(getYearsFromTours(tours));
-
-  const showAllData =
-    selectedYear === undefined || selectedYear === "all-tours";
+  const showAllData = activeTab === undefined || activeTab === "all-tours";
 
   const toursForSelectedYear = showAllData
     ? filteredData
     : filteredData.filter((d) =>
         d.dateFrom === ""
-          ? selectedYear === "UNDATED"
-          : selectedYear === d.dateFrom.split("-")[0]
+          ? activeTab === "UNDATED"
+          : activeTab === d.dateFrom.split("-")[0]
       );
 
   const handleYearChange = (event) =>
-    setSelectedYear(event.target.value || "all-tours");
+    dispatch(saveActiveTab(event.target.value));
 
   return (
     <div className="cardsDropDownContainer">
@@ -60,7 +54,7 @@ function ToursByDropDown({ tours }) {
         <Form.Select
           id="cardFilterUserSelect"
           onChange={handleYearChange}
-          value={selectedYear}
+          value={activeTab}
         >
           <option value="">All Tours</option>
           {[...yearsWithTours, "UNDATED"].map((year) => {
