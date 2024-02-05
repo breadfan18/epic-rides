@@ -87,14 +87,12 @@ function AgentAddEditModal({ agent, disableBtn }) {
 
       if (toursForThisAgent) {
         toursForThisAgent.forEach((tour) => {
-          const { id, dateFrom, numOfDays, tourName } = tour;
           const updatedFileInfo = fileNameGenerator(
-            id,
-            finalAgent.code,
-            dateFrom,
-            numOfDays,
-            tourName
+            tour.id,
+            tour,
+            finalAgent.code
           );
+
           const updatedTour = {
             ...tour,
             ...updatedFileInfo,

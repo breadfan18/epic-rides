@@ -83,7 +83,7 @@ function TourAddEditModal({ data, setModalOpen }) {
     );
 
     const id = dataForModal.id || allData.length + 1;
-    const file = fileNameGenerator(id, dataForModal, numOfDays);
+    const file = fileNameGenerator(id, dataForModal, dataForModal.agent.code);
     const metadata = handleMetadata(dataForModal);
     const paxNum = dataForModal.paxNum || "N/A";
 
