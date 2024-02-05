@@ -98,13 +98,14 @@ function TourAddEditModal({ data, setModalOpen }) {
       metadata,
     };
 
-    dispatch(saveDataToFirebase(finalData, id));
+    !dataForModal.id &&
+      dispatch(
+        saveActiveTab(
+          finalData.dateFrom ? finalData.dateFrom.split("-")[0] : "UNDATED"
+        )
+      );
 
-    dispatch(
-      saveActiveTab(
-        finalData.dateFrom ? finalData.dateFrom.split("-")[0] : "UNDATED"
-      )
-    );
+    dispatch(saveDataToFirebase(finalData, id));
     toast.success(
       dataForModal.id === null ? "Record Created" : "Record Updated"
     );
