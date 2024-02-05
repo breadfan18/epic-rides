@@ -11,7 +11,7 @@ import { useUser } from "reactfire";
 import AgentForm from "./AgentForm";
 import _ from "lodash";
 import COUNTRY_CODES from "../../constants/countryCodes";
-import { fileNameGenerator } from "../../helpers";
+import { fileDataGenerator } from "../../helpers";
 
 const newAgent = {
   id: null,
@@ -87,7 +87,7 @@ function AgentAddEditModal({ agent, disableBtn }) {
 
       if (toursForThisAgent) {
         toursForThisAgent.forEach((tour) => {
-          const updatedFileInfo = fileNameGenerator(
+          const updatedFileInfo = fileDataGenerator(
             tour.id,
             tour,
             finalAgent.code

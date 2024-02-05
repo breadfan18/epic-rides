@@ -218,7 +218,7 @@ export function sortNumberDesc(num1, num2) {
   return parsedNum2 - parsedNum1;
 }
 
-export function fileNameGenerator(id, data, agentCode) {
+export function fileDataGenerator(id, data, agentCode) {
   const fileOpenDate =
     data.fileOpenDate || new Date().toISOString().split("T")[0];
 
