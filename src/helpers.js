@@ -227,7 +227,6 @@ export function fileNameGenerator(id, data, agentCode) {
   ).slice(-3)}${agentCode}`;
 
   const fileName = `${fileRef}_${slugify(data.tourName)}`;
-  console.log(fileName);
   return {
     fileRef,
     fileName,
