@@ -2,14 +2,17 @@ import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
-import { saveDataToFirebase } from "../../redux/actions/dataActions";
+import {
+  saveActiveTab,
+  saveDataToFirebase,
+} from "../../redux/actions/dataActions";
 import TourForm from "./TourForm";
 import { toast } from "react-toastify";
 import PropTypes from "prop-types";
 import { MdModeEditOutline } from "react-icons/md";
 import { DIRECT_CLIENTS, NEW_DATA } from "../../constants/constants";
 import { useUser } from "reactfire";
-import { fileNameGenerator, getDaysBetweenDates } from "../../helpers";
+import { fileDataGenerator, getDaysBetweenDates } from "../../helpers";
 import COUNTRY_CODES from "../../constants/countryCodes";
 
 function TourAddEditModal({ data, setModalOpen }) {
@@ -83,7 +86,7 @@ function TourAddEditModal({ data, setModalOpen }) {
     );
 
     const id = dataForModal.id || allData.length + 1;
-    const file = fileNameGenerator(id, dataForModal, dataForModal.agent.code);
+    const file = fileDataGenerator(id, dataForModal, dataForModal.agent.code);
     const metadata = handleMetadata(dataForModal);
     const paxNum = dataForModal.paxNum || "N/A";
 
@@ -96,6 +99,12 @@ function TourAddEditModal({ data, setModalOpen }) {
     };
 
     dispatch(saveDataToFirebase(finalData, id));
+
+    dispatch(
+      saveActiveTab(
+        finalData.dateFrom ? finalData.dateFrom.split("-")[0] : "UNDATED"
+      )
+    );
     toast.success(
       dataForModal.id === null ? "Record Created" : "Record Updated"
     );

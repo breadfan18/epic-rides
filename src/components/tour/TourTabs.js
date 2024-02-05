@@ -17,12 +17,9 @@ function TourTabs({ tours }) {
   const windowWidth = useContext(WindowWidthContext);
   const yearsWithTours = sortNumbers(getYearsFromTours(tours));
   const dispatch = useDispatch();
-  const activeTab = useSelector((state) => state.activeTab);
-  const [selectedTab, setSelectedTab] = useState(activeTab || "all-tours");
-  const handleSelectTab = (tabKey) => setSelectedTab(tabKey.toString());
+  const activeTab = useSelector((state) => state.activeTab || "all-tours");
+  const handleSelectTab = (tabKey) => dispatch(saveActiveTab(tabKey));
   const [showFilter, setShowFilter] = useState(false);
-
-  useEffect(() => dispatch(saveActiveTab(selectedTab)), [selectedTab]);
 
   const {
     filters,
@@ -35,12 +32,10 @@ function TourTabs({ tours }) {
   } = useTourFilter(tours);
 
   const toursForSelectedYear =
-    selectedTab === "all-tours"
-      ? filteredData
-      : selectedTab === "UNDATED"
+    activeTab === "UNDATED"
       ? filteredData.filter((tour) => !tour.dateFrom)
       : filteredData.filter(
-          (tour) => tour.dateFrom.split("-")[0] === selectedTab
+          (tour) => tour.dateFrom.split("-")[0] === activeTab
         );
 
   const yearlyTabs = [...yearsWithTours, "UNDATED"].map((year) => {
@@ -74,16 +69,12 @@ function TourTabs({ tours }) {
       >
         {showFilter ? "Hide Filters" : "Show Filters"}
       </Button>
-      <Tabs
-        defaultActiveKey={selectedTab}
-        className="mb-3"
-        onSelect={handleSelectTab}
-      >
+      <Tabs activeKey={activeTab} className="mb-3" onSelect={handleSelectTab}>
         <Tab eventKey="all-tours" title="All Tours">
           {windowWidth > 1000 ? (
-            <TourTable data={toursForSelectedYear} />
+            <TourTable data={filteredData} />
           ) : (
-            <TourCards data={toursForSelectedYear} />
+            <TourCards data={filteredData} />
           )}
         </Tab>
         {yearlyTabs}
