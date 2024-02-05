@@ -228,32 +228,30 @@ function TourDetailsPage({ tours, loadDataFromFirebase, ...props }) {
                     ).name || ""}
                   </td>
                 </tr>
-                {tour.dateFrom !== "" && (
-                  <tr>
-                    <td
-                      style={{ color: APP_COLOR_EPIC_RED }}
-                      className="tourDetailsFieldHeaders"
+                <tr>
+                  <td
+                    style={{ color: APP_COLOR_EPIC_RED }}
+                    className="tourDetailsFieldHeaders"
+                  >
+                    File Name:
+                  </td>
+                  <td>
+                    <div
+                      style={{
+                        display: "flex",
+                        alignItems: "center",
+                        justifyContent: "space-between",
+                      }}
                     >
-                      File Name:
-                    </td>
-                    <td>
-                      <div
-                        style={{
-                          display: "flex",
-                          alignItems: "center",
-                          justifyContent: "space-between",
-                        }}
-                      >
-                        <p style={{ margin: 0 }}>{tour.fileName}</p>
-                        <MdOutlineContentCopy
-                          className="copyFileNameIcon"
-                          title="Copy File Name to clipboard"
-                          onClick={() => copyFileNameToClipboard()}
-                        />
-                      </div>
-                    </td>
-                  </tr>
-                )}
+                      <p style={{ margin: 0 }}>{tour.fileName}</p>
+                      <MdOutlineContentCopy
+                        className="copyFileNameIcon"
+                        title="Copy File Name to clipboard"
+                        onClick={() => copyFileNameToClipboard()}
+                      />
+                    </div>
+                  </td>
+                </tr>
                 {tour.metadata?.createdBy && (
                   <tr>
                     <td
