@@ -55,32 +55,18 @@ const Header = ({ user }) => {
             Home
           </NavLink>
           <NavLink
-            to="/tours"
-            activeStyle={activeStyleSmall}
-            onClick={() => setOpen(false)}
-          >
-            Tours
-          </NavLink>
-          <NavLink
-            to="/explanations"
-            activeStyle={activeStyleSmall}
-            onClick={() => setOpen(false)}
-          >
-            Explanations
-          </NavLink>
-          <NavLink
-            to="/lists"
-            activeStyle={activeStyleSmall}
-            onClick={() => setOpen(false)}
-          >
-            Lists
-          </NavLink>
-          <NavLink
             to="/agents"
             activeStyle={activeStyleSmall}
             onClick={() => setOpen(false)}
           >
             Agents
+          </NavLink>
+          <NavLink
+            to="/tours"
+            activeStyle={activeStyleSmall}
+            onClick={() => setOpen(false)}
+          >
+            Tours
           </NavLink>
         </nav>
       )}
@@ -92,21 +78,15 @@ const Header = ({ user }) => {
         <NavLink to="/" activeStyle={activeStyle} exact>
           Home
         </NavLink>
+        <NavLink to="/agents" activeStyle={activeStyle}>
+          Agents
+        </NavLink>
         <NavLink
           to="/tours"
           activeStyle={activeStyle}
           onClick={() => dispatch(saveActiveTab(""))}
         >
           Tours
-        </NavLink>
-        <NavLink to="/explanations" activeStyle={activeStyle}>
-          Explanations
-        </NavLink>
-        <NavLink to="/lists" activeStyle={activeStyle}>
-          Lists
-        </NavLink>
-        <NavLink to="/agents" activeStyle={activeStyle}>
-          Agents
         </NavLink>
       </nav>
       <UserProfileSection user={user} />
