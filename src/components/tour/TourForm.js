@@ -38,9 +38,9 @@ const TourForm = ({ tour, onSave, onChange, saving, errors = {} }) => {
         {tour.agent.code === "DIR" && (
           <SelectInput
             name="agent.nationCode"
-            label="Client Nationality"
+            label="Client Country"
             value={tour.agent.nationCode || ""}
-            defaultOption="Select Nationality"
+            defaultOption="Select Country"
             options={COUNTRY_CODES.map((country) => ({
               value: country.code,
               text: titleCase(country.name),

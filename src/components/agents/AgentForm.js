@@ -33,9 +33,9 @@ const AgentForm = ({ agent, onSave, onChange, errors = {}, saving }) => {
       />
       <SelectInput
         name="nationality"
-        label="Agent Nationality"
+        label="Agent Country"
         value={agent.nationCode || ""}
-        defaultOption="Select Nationality"
+        defaultOption="Select Country"
         options={COUNTRY_CODES.map((country) => ({
           value: country.code,
           text: titleCase(country.name),

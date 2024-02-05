@@ -18,7 +18,7 @@ const AgentsList = ({ toursByAgent, agents }) => {
           <th className="tableHeader"></th>
           <th className="tableHeader">Agent Name</th>
           <th className="tableHeader">Agent Code</th>
-          <th className="tableHeader">Nationality</th>
+          <th className="tableHeader">Country</th>
           <th className="tableHeader">Agent Tours</th>
           <th className="tableHeader"></th>
         </tr>

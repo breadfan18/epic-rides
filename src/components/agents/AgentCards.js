@@ -41,6 +41,9 @@ export default function AgentCards({ agents, toursByAgent }) {
             <h6 id="cardholderCardName">
               {agent.name} ({agent.code})
             </h6>
+            <small style={{ textAlign: "center", marginBottom: "15px" }}>
+              {agent.nationality}
+            </small>
             <article style={{ textAlign: "center" }}>
               <b>Agent Tours</b>
               <div>
