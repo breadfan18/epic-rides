@@ -4,6 +4,7 @@ import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import {
   saveActiveTab,
+  saveActiveTour,
   saveDataToFirebase,
 } from "../../redux/actions/dataActions";
 import TourForm from "./TourForm";
@@ -14,6 +15,7 @@ import { DIRECT_CLIENTS, NEW_DATA } from "../../constants/constants";
 import { useUser } from "reactfire";
 import { fileDataGenerator, getDaysBetweenDates } from "../../helpers";
 import COUNTRY_CODES from "../../constants/countryCodes";
+import _ from "lodash";
 
 function TourAddEditModal({ data, setModalOpen }) {
   const [dataForModal, setDataForModal] = useState(
@@ -26,6 +28,7 @@ function TourAddEditModal({ data, setModalOpen }) {
   const [show, setShow] = useState(false);
   const toggleShow = () => setShow(!show);
   const { data: user } = useUser();
+  const activeTab = useSelector((state) => state.activeTab);
 
   function handleChange(event) {
     const { name, value } = event.target;
@@ -98,7 +101,13 @@ function TourAddEditModal({ data, setModalOpen }) {
       metadata,
     };
 
-    !dataForModal.id &&
+    const shouldDispatchActiveTab =
+      !dataForModal.id ||
+      (dataForModal.id &&
+        !_.isEqual(data, finalData) &&
+        activeTab !== "all-tours");
+
+    shouldDispatchActiveTab &&
       dispatch(
         saveActiveTab(
           finalData.dateFrom ? finalData.dateFrom.split("-")[0] : "UNDATED"
@@ -106,6 +115,7 @@ function TourAddEditModal({ data, setModalOpen }) {
       );
 
     dispatch(saveDataToFirebase(finalData, id));
+    dispatch(saveActiveTour(id));
     toast.success(
       dataForModal.id === null ? "Record Created" : "Record Updated"
     );

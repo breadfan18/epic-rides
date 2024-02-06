@@ -10,16 +10,30 @@ import { getYearsFromTours, sortNumbers } from "../../helpers";
 import { Button } from "react-bootstrap";
 import Filters from "./filters/Filters";
 import useTourFilter from "../../hooks/filterTours";
-import { saveActiveTab } from "../../redux/actions/dataActions";
+import { saveActiveTab, saveActiveTour } from "../../redux/actions/dataActions";
 import { useDispatch, useSelector } from "react-redux";
 
 function TourTabs({ tours }) {
   const windowWidth = useContext(WindowWidthContext);
   const yearsWithTours = sortNumbers(getYearsFromTours(tours));
   const dispatch = useDispatch();
-  const activeTab = useSelector((state) => state.activeTab || "all-tours");
+  const activeTab = useSelector((state) => state.activeTab);
   const handleSelectTab = (tabKey) => dispatch(saveActiveTab(tabKey));
   const [showFilter, setShowFilter] = useState(false);
+  const activeTour = useSelector((state) => state.activeTour);
+
+  useEffect(() => !activeTab && dispatch(saveActiveTab("all-tours")), []);
+
+  useEffect(() => {
+    const activeTourElement = document.getElementById("activeTourTr");
+
+    if (activeTourElement) {
+      setTimeout(() => {
+        activeTourElement.removeAttribute("id");
+        dispatch(saveActiveTour(null));
+      }, 3000);
+    }
+  }, [activeTour, dispatch]);
 
   const {
     filters,
