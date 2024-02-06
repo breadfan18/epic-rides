@@ -40,3 +40,4 @@ export const USER_LOGOUT_SUCCESS = "USER_LOGOUT";
 
 // Active Tab Actions
 export const SET_ACTIVE_TAB_SUCCESS = "SET_ACTIVE_TAB";
+export const SET_ACTIVE_TOUR_SUCCESS = "SET_ACTIVE_TOUR";

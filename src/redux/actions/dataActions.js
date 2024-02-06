@@ -6,6 +6,7 @@ import {
   LOAD_DATA_SUCCESS,
   UPDATE_DATA_SUCCESS,
   SET_ACTIVE_TAB_SUCCESS,
+  SET_ACTIVE_TOUR_SUCCESS,
 } from "./actionTypes";
 import { apiCallError, beginApiCall } from "./apiStatusActions";
 import {
@@ -41,6 +42,9 @@ function deleteDataNotesSuccess(cardNote) {
 
 function setActiveTabSuccess(activeTab) {
   return { type: SET_ACTIVE_TAB_SUCCESS, activeTab };
+}
+function setActiveTourSuccess(activeTour) {
+  return { type: SET_ACTIVE_TOUR_SUCCESS, activeTour };
 }
 
 export function loadDataFromFirebase(firebaseUid) {
@@ -105,3 +109,6 @@ export function deleteTourNoteFromFirebase(note, tourId, firebaseUid) {
 
 export const saveActiveTab = (activeTab) => (dispatch) =>
   dispatch(setActiveTabSuccess(activeTab));
+
+export const saveActiveTour = (activeTour) => (dispatch) =>
+  dispatch(setActiveTourSuccess(activeTour));
