@@ -16,10 +16,10 @@ export default function cardsReducer(state = initialState.data, action) {
       because Firebase real time database adds new data immediately..
       so it's already available in state */
       return state;
-    case UPDATE_DATA_SUCCESS:
-      return state.map((card) =>
-        card.id === action.card.id ? action.card : card
-      );
+    // case UPDATE_DATA_SUCCESS:
+    //   return state.map((card) =>
+    //     card.id === action.card.id ? action.card : card
+    //   );
     case DELETE_DATA_SUCCESS:
       return state.filter((card) => card.id !== action.data.id);
     default:

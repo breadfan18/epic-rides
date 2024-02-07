@@ -22,6 +22,13 @@ function TourTabs({ tours }) {
   const [showFilter, setShowFilter] = useState(false);
   const activeTour = useSelector((state) => state.activeTour);
 
+  /* 
+  BUG!! 
+  - After editing a tour, the edits dont seem to show on the edit form unless refreshed
+  - This seems to only be the case for date fields 
+  - This is only true if the edit switched the date, so the data switched from one tab to another
+  */
+
   useEffect(() => !activeTab && dispatch(saveActiveTab("all-tours")), []);
 
   useEffect(() => {
