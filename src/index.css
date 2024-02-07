@@ -605,3 +605,7 @@ input[type="range"] {
   cursor: default;
   display: block;
 }
+
+#paxRangeCheck {
+  margin-right: 5px;
+}

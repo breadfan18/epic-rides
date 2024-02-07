@@ -5,13 +5,13 @@ import DateInput from "../common/DateInput";
 import Form from "react-bootstrap/Form";
 import { titleCase } from "../../helpers";
 import { isEmpty } from "lodash";
-import NumberInput from "../common/NumberInput";
 import { useSelector } from "react-redux";
 import Error from "../common/Error";
 import { DIRECT_CLIENTS } from "../../constants/constants";
 import SelectInputOptGroups from "../common/SelectInputOptGroups";
 import SelectInput from "../common/SelectInput";
 import COUNTRY_CODES from "../../constants/countryCodes";
+import PaxRangeInput from "../common/PaxRangeInput";
 
 const TourForm = ({ tour, onSave, onChange, saving, errors = {} }) => {
   const agentData = useSelector((state) => state.agents);
@@ -66,7 +66,7 @@ const TourForm = ({ tour, onSave, onChange, saving, errors = {} }) => {
           error={errors.groupFitName}
           requiredField
         />
-        <NumberInput
+        <PaxRangeInput
           name="paxNum"
           label="Number of Passengers"
           value={tour.paxNum || ""}
