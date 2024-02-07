@@ -47,10 +47,10 @@ function setActiveTourSuccess(activeTour) {
   return { type: SET_ACTIVE_TOUR_SUCCESS, activeTour };
 }
 
-export function loadDataFromFirebase(firebaseUid) {
+export function loadDataFromFirebase() {
   return (dispatch) => {
     dispatch(beginApiCall());
-    getFireBaseData("data", dispatch, loadDataSuccess, firebaseUid);
+    getFireBaseData("data", dispatch, loadDataSuccess);
   };
 }
 
