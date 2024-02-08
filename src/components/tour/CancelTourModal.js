@@ -2,10 +2,14 @@ import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
-import { saveDataToFirebase } from "../../redux/actions/dataActions";
+import {
+  saveDataToFirebase,
+  saveTourNoteToFirebase,
+} from "../../redux/actions/dataActions";
 import { toast } from "react-toastify";
 import PropTypes from "prop-types";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
+import { useUser } from "reactfire";
 import { EDIT_COLOR_GREEN } from "../../constants/constants";
 
 function CancelTourModal({ data, setModalOpen, redirect }) {
@@ -13,10 +17,16 @@ function CancelTourModal({ data, setModalOpen, redirect }) {
   const toggleShow = () => setShow(!show);
   const history = useHistory();
   const dispatch = useDispatch();
+  const { data: user } = useUser();
 
   function handleCancel(data) {
+    const cancelNote = {
+      note: "Tour Cancelled by " + user.displayName,
+      date: new Date().toISOString().split("T")[0],
+    };
     dispatch(saveDataToFirebase({ ...data, status: "CA" }, data.id));
-    toast.success("Tour Confirmed");
+    dispatch(saveTourNoteToFirebase(cancelNote, data.id));
+    toast.error("Tour Cancelled");
     if (redirect) history.push("/tours");
 
     toggleModal();

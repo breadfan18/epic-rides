@@ -81,7 +81,7 @@ export function deleteDataFromFirebase(data, firebaseUid) {
   };
 }
 
-export function saveTourNoteToFirebase(note, tourId, firebaseUid) {
+export function saveTourNoteToFirebase(note, tourId) {
   return (dispatch) => {
     /*
       BUG: dispatching beginApiCall twice here..This is a workaround for the followinsg issue:
@@ -92,7 +92,7 @@ export function saveTourNoteToFirebase(note, tourId, firebaseUid) {
     dispatch(beginApiCall());
     dispatch(beginApiCall());
     const uuid = note.id === null || note.id === undefined ? uid() : note.id;
-    writeToFirebase(`data/${tourId}/tourNotes`, note, uuid, firebaseUid);
+    writeToFirebase(`data/${tourId}/tourNotes`, note, uuid);
     dispatch(createDataNotesSuccess(note));
   };
 }
