@@ -22,7 +22,6 @@ import {
 import TourNotes from "../TourNotes";
 import { WindowWidthContext } from "../../App";
 import _ from "lodash";
-import TourStatusIcon from "../../common/TourStatusIcon";
 import { useUser } from "reactfire";
 import TourAddEditModal from "../TourAddEditModal";
 import { toast } from "react-toastify";
@@ -34,6 +33,7 @@ import TourFileNameCopier from "./TourFileNameCopier";
 import AgentImg from "../../agents/AgentImg";
 import { Link } from "react-router-dom";
 import { IoChevronBackCircle } from "react-icons/io5";
+import TourStatusImg from "../../common/TourStatusImg";
 
 function TourDetailsPage({ tours, loadDataFromFirebase, ...props }) {
   const dispatch = useDispatch();
@@ -132,12 +132,11 @@ function TourDetailsPage({ tours, loadDataFromFirebase, ...props }) {
                   </div>
                 </Card.Title>
               </div>
-              <div>
-                <TourStatusIcon
+              <TourStatusImg tourStatus={tour.status} />
+              {/* <TourStatusIcon
                   tourStatus={tour.status}
                   iconSize="clamp(1.5rem, 10vw, 3rem)"
-                />
-              </div>
+                /> */}
             </article>
             <Table className={setColorForTourStatus("tourTable", tour.status)}>
               <tbody className="align-middle">
