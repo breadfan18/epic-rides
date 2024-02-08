@@ -291,3 +291,51 @@ export function handleSetClient(setData, name, value) {
     }
   });
 }
+
+function handleTourMetadata(data, user) {
+  if (data.id) {
+    return {
+      ...data.metadata,
+      editedBy: {
+        uid: user.uid,
+        displayName: user.displayName,
+        photoURL: user.photoURL || null,
+      },
+    };
+  } else {
+    return {
+      createdBy: {
+        uid: user.uid,
+        displayName: user.displayName,
+        photoURL: user.photoURL || null,
+      },
+    };
+  }
+}
+
+export function finalizeTourData(dataForModal, allData, user, id) {
+  const numOfDays = getDaysBetweenDates(
+    dataForModal.dateFrom,
+    dataForModal.dateTo
+  );
+
+  const file = fileDataGenerator(id, dataForModal, dataForModal.agent.code);
+  const metadata = handleTourMetadata(dataForModal, user);
+  const paxNum = dataForModal.paxNum || "N/A";
+  const agent =
+    dataForModal.agent.code === "DIR"
+      ? {
+          ...dataForModal.agent,
+          name: `DIR - ${dataForModal.agent.name}`,
+        }
+      : dataForModal.agent;
+
+  return {
+    ...dataForModal,
+    agent,
+    numOfDays,
+    paxNum,
+    ...file,
+    metadata,
+  };
+}

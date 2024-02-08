@@ -12,11 +12,7 @@ import PropTypes from "prop-types";
 import { MdModeEditOutline } from "react-icons/md";
 import { DIRECT_CLIENTS, NEW_DATA } from "../../constants/constants";
 import { useUser } from "reactfire";
-import {
-  fileDataGenerator,
-  getDaysBetweenDates,
-  handleSetClient,
-} from "../../helpers";
+import { finalizeTourData, handleSetClient } from "../../helpers";
 
 function TourAddEditModal({ data, setModalOpen }) {
   const [dataForModal, setDataForModal] = useState(
@@ -49,64 +45,17 @@ function TourAddEditModal({ data, setModalOpen }) {
     }
   }
 
-  function handleMetadata(data) {
-    if (data.id) {
-      return {
-        ...data.metadata,
-        editedBy: {
-          uid: user.uid,
-          displayName: user.displayName,
-          photoURL: user.photoURL || null,
-        },
-      };
-    } else {
-      return {
-        createdBy: {
-          uid: user.uid,
-          displayName: user.displayName,
-          photoURL: user.photoURL || null,
-        },
-      };
-    }
-  }
-
   function handleSaveForFirebase(event) {
     event.preventDefault();
     if (!formIsValid()) return;
-
-    const numOfDays = getDaysBetweenDates(
-      dataForModal.dateFrom,
-      dataForModal.dateTo
-    );
-
     const id = dataForModal.id || allData.length + 1;
-    const file = fileDataGenerator(id, dataForModal, dataForModal.agent.code);
-    const metadata = handleMetadata(dataForModal);
-    const paxNum = dataForModal.paxNum || "N/A";
-    const agent =
-      dataForModal.agent.code === "DIR"
-        ? {
-            ...dataForModal.agent,
-            name: `DIR - ${dataForModal.agent.name}`,
-          }
-        : dataForModal.agent;
-
-    const finalData = {
-      ...dataForModal,
-      agent,
-      numOfDays,
-      paxNum,
-      ...file,
-      metadata,
-    };
-
+    const finalData = finalizeTourData(dataForModal, allData, user, id);
     !dataForModal.id &&
       dispatch(
         saveActiveTab(
           finalData.dateFrom ? finalData.dateFrom.split("-")[0] : "UNDATED"
         )
       );
-
     dispatch(saveDataToFirebase(finalData, id));
     toast.success(
       dataForModal.id === null ? "Record Created" : "Record Updated"
