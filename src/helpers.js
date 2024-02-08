@@ -323,7 +323,7 @@ export function finalizeTourData(dataForModal, allData, user, id) {
   const metadata = handleTourMetadata(dataForModal, user);
   const paxNum = dataForModal.paxNum || "N/A";
   const agent =
-    dataForModal.agent.code === "DIR"
+    !dataForModal.id && dataForModal.agent.code === "DIR"
       ? {
           ...dataForModal.agent,
           name: `DIR - ${dataForModal.agent.name}`,
