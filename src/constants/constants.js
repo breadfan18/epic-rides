@@ -1,7 +1,7 @@
 // New Constants
 
 export const DIRECT_CLIENTS = {
-  name: "Direct Client",
+  name: null,
   code: "DIR",
   nationCode: null,
   nationality: null,

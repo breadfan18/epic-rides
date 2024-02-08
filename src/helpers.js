@@ -3,6 +3,7 @@ import {
   CARD_COLOR_DOWNGRADED,
   CREDIT_BUREAUS,
 } from "./constants/constants";
+import COUNTRY_CODES from "./constants/countryCodes";
 
 export const pipe =
   (...fns) =>
@@ -264,4 +265,29 @@ export function isPasswordValid(pwd) {
 export function getFileNameExtension(fileName) {
   const arrSplitByDot = fileName.split(".");
   return arrSplitByDot[arrSplitByDot.length - 1];
+}
+
+export function handleSetClient(setData, name, value) {
+  setData((prevData) => {
+    const [parentField, childField] = name.split(".");
+    if (childField === "nationCode") {
+      return {
+        ...prevData,
+        [parentField]: {
+          ...prevData[parentField],
+          [childField]: value,
+          nationality: COUNTRY_CODES.find((country) => country.code === value)
+            .name,
+        },
+      };
+    } else {
+      return {
+        ...prevData,
+        [parentField]: {
+          ...prevData[parentField],
+          [childField]: value,
+        },
+      };
+    }
+  });
 }

@@ -29,26 +29,38 @@ const TourForm = ({ tour, onSave, onChange, saving, errors = {} }) => {
           defaultOption="Select Agent or Client"
           options={[DIRECT_CLIENTS, ...agentData].map((agent) => ({
             value: agent.code,
-            text: titleCase(agent.name),
+            text: titleCase(
+              agent.code === "DIR" ? "Direct Client" : agent.name
+            ),
           }))}
           onChange={onChange}
           error={errors.agent}
           requiredField
         />
         {tour.agent.code === "DIR" && (
-          <SelectInput
-            name="agent.nationCode"
-            label="Client Country"
-            value={tour.agent.nationCode || ""}
-            defaultOption="Select Country"
-            options={COUNTRY_CODES.map((country) => ({
-              value: country.code,
-              text: titleCase(country.name),
-            }))}
-            onChange={onChange}
-            error={errors.clientNationality}
-            requiredField
-          />
+          <>
+            <TextInput
+              name="agent.name"
+              label="Client Name"
+              value={titleCase(tour.agent.name) || ""}
+              onChange={onChange}
+              error={errors.clientName}
+              requiredField
+            />
+            <SelectInput
+              name="agent.nationCode"
+              label="Client Country"
+              value={tour.agent.nationCode || ""}
+              defaultOption="Select Country"
+              options={COUNTRY_CODES.map((country) => ({
+                value: country.code,
+                text: titleCase(country.name),
+              }))}
+              onChange={onChange}
+              error={errors.clientNationality}
+              requiredField
+            />
+          </>
         )}
         <TextInput
           name="tourName"

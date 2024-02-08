@@ -12,8 +12,11 @@ import PropTypes from "prop-types";
 import { MdModeEditOutline } from "react-icons/md";
 import { DIRECT_CLIENTS, NEW_DATA } from "../../constants/constants";
 import { useUser } from "reactfire";
-import { fileDataGenerator, getDaysBetweenDates } from "../../helpers";
-import COUNTRY_CODES from "../../constants/countryCodes";
+import {
+  fileDataGenerator,
+  getDaysBetweenDates,
+  handleSetClient,
+} from "../../helpers";
 
 function TourAddEditModal({ data, setModalOpen }) {
   const [dataForModal, setDataForModal] = useState(
@@ -35,18 +38,7 @@ function TourAddEditModal({ data, setModalOpen }) {
     }
 
     if (name.includes(".")) {
-      setDataForModal((prevData) => {
-        const [parentField, childField] = name.split(".");
-        return {
-          ...prevData,
-          [parentField]: {
-            ...prevData[parentField],
-            [childField]: value,
-            nationality: COUNTRY_CODES.find((country) => country.code === value)
-              .name,
-          },
-        };
-      });
+      handleSetClient(setDataForModal, name, value);
     } else {
       setDataForModal((prevData) => ({
         ...prevData,
@@ -89,9 +81,17 @@ function TourAddEditModal({ data, setModalOpen }) {
     const file = fileDataGenerator(id, dataForModal, dataForModal.agent.code);
     const metadata = handleMetadata(dataForModal);
     const paxNum = dataForModal.paxNum || "N/A";
+    const agent =
+      dataForModal.agent.code === "DIR"
+        ? {
+            ...dataForModal.agent,
+            name: `DIR - ${dataForModal.agent.name}`,
+          }
+        : dataForModal.agent;
 
     const finalData = {
       ...dataForModal,
+      agent,
       numOfDays,
       paxNum,
       ...file,
