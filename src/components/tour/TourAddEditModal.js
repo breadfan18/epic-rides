@@ -34,7 +34,9 @@ function TourAddEditModal({ data, setModalOpen }) {
     const { name, value } = event.target;
 
     if (value !== "" || value !== null) {
-      delete errors[name];
+      if (name === "agent.name") delete errors.clientName;
+      else if (name === "agent.nationCode") delete errors.clientNationality;
+      else delete errors[name];
     }
 
     if (name.includes(".")) {
@@ -143,11 +145,11 @@ function TourAddEditModal({ data, setModalOpen }) {
   function formIsValid() {
     const { agent, tourName, groupFitName, dateFrom, dateTo } = dataForModal;
     const errors = {};
-    const { nationality } = agent;
+    const { nationality, name, code } = agent;
 
-    if (!agent.name) errors.agent = "Required";
-    if (agent.code === "DIR" && !nationality)
-      errors.clientNationality = "Required";
+    if (!code) errors.agent = "Required";
+    if (code === "DIR" && !nationality) errors.clientNationality = "Required";
+    if (code === "DIR" && !name) errors.clientName = "Required";
     if (!tourName) errors.tourName = "Required";
     if (!groupFitName) errors.groupFitName = "Required";
     if (dateFrom && !dateTo) errors.dateTo = "End Date is Required";
