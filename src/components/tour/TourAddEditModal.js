@@ -16,6 +16,7 @@ import { useUser } from "reactfire";
 import { fileDataGenerator, getDaysBetweenDates } from "../../helpers";
 import COUNTRY_CODES from "../../constants/countryCodes";
 import _ from "lodash";
+import { finalizeTourData, handleSetClient } from "../../helpers";
 
 function TourAddEditModal({ data, setModalOpen }) {
   const [dataForModal, setDataForModal] = useState(
@@ -34,22 +35,13 @@ function TourAddEditModal({ data, setModalOpen }) {
     const { name, value } = event.target;
 
     if (value !== "" || value !== null) {
-      delete errors[name];
+      if (name === "agent.name") delete errors.clientName;
+      else if (name === "agent.nationCode") delete errors.clientNationality;
+      else delete errors[name];
     }
 
     if (name.includes(".")) {
-      setDataForModal((prevData) => {
-        const [parentField, childField] = name.split(".");
-        return {
-          ...prevData,
-          [parentField]: {
-            ...prevData[parentField],
-            [childField]: value,
-            nationality: COUNTRY_CODES.find((country) => country.code === value)
-              .name,
-          },
-        };
-      });
+      handleSetClient(setDataForModal, name, value);
     } else {
       setDataForModal((prevData) => ({
         ...prevData,
@@ -58,48 +50,11 @@ function TourAddEditModal({ data, setModalOpen }) {
     }
   }
 
-  function handleMetadata(data) {
-    if (data.id) {
-      return {
-        ...data.metadata,
-        editedBy: {
-          uid: user.uid,
-          displayName: user.displayName,
-          photoURL: user.photoURL || null,
-        },
-      };
-    } else {
-      return {
-        createdBy: {
-          uid: user.uid,
-          displayName: user.displayName,
-          photoURL: user.photoURL || null,
-        },
-      };
-    }
-  }
-
   function handleSaveForFirebase(event) {
     event.preventDefault();
     if (!formIsValid()) return;
-
-    const numOfDays = getDaysBetweenDates(
-      dataForModal.dateFrom,
-      dataForModal.dateTo
-    );
-
     const id = dataForModal.id || allData.length + 1;
-    const file = fileDataGenerator(id, dataForModal, dataForModal.agent.code);
-    const metadata = handleMetadata(dataForModal);
-    const paxNum = dataForModal.paxNum || "N/A";
-
-    const finalData = {
-      ...dataForModal,
-      numOfDays,
-      paxNum,
-      ...file,
-      metadata,
-    };
+    const finalData = finalizeTourData(dataForModal, allData, user, id);
 
     const shouldDispatchActiveTab =
       !dataForModal.id ||
@@ -153,11 +108,11 @@ function TourAddEditModal({ data, setModalOpen }) {
   function formIsValid() {
     const { agent, tourName, groupFitName, dateFrom, dateTo } = dataForModal;
     const errors = {};
-    const { nationality } = agent;
+    const { nationality, name, code } = agent;
 
-    if (!agent.name) errors.agent = "Required";
-    if (agent.code === "DIR" && !nationality)
-      errors.clientNationality = "Required";
+    if (!code) errors.agent = "Required";
+    if (code === "DIR" && !nationality) errors.clientNationality = "Required";
+    if (code === "DIR" && !name) errors.clientName = "Required";
     if (!tourName) errors.tourName = "Required";
     if (!groupFitName) errors.groupFitName = "Required";
     if (dateFrom && !dateTo) errors.dateTo = "End Date is Required";
