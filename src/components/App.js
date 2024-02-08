@@ -11,6 +11,7 @@ import { Spinner } from "./common/Spinner";
 import { useSigninCheck } from "reactfire";
 import AgentsPage from "./agents/AgentsPage";
 import TourDetailsPage from "./tour/tour-details/TourDetailsPage";
+import Footer from "./common/Footer";
 export const WindowWidthContext = createContext();
 
 function App() {
@@ -35,7 +36,7 @@ function App() {
     <>
       <WindowWidthContext.Provider value={windowWidth}>
         <Header user={user} />
-        <div className="container-fluid">
+        <div className="container-fluid" style={{ marginBottom: "50px" }}>
           <Switch>
             <Route exact path="/" component={HomePage} />
             <Route path="/tours" component={TourPage} />
@@ -45,6 +46,7 @@ function App() {
           </Switch>
           <ToastContainer autoClose={3000} hideProgressBar />
         </div>
+        {/* <Footer /> */}
       </WindowWidthContext.Provider>
     </>
   ) : (

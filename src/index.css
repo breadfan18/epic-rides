@@ -605,3 +605,16 @@ input[type="range"] {
   cursor: default;
   display: block;
 }
+
+footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background-color: #f0f0f0;
+  color: var(--epic-red);
+  margin-top: 10px;
+  padding: 5px;
+  text-align: center;
+  font-size: 12px;
+}
