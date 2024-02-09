@@ -1,9 +1,10 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import {
   saveActiveTab,
+  saveActiveTour,
   saveDataToFirebase,
 } from "../../redux/actions/dataActions";
 import TourForm from "./TourForm";
@@ -12,6 +13,7 @@ import PropTypes from "prop-types";
 import { MdModeEditOutline } from "react-icons/md";
 import { DIRECT_CLIENTS, NEW_DATA } from "../../constants/constants";
 import { useUser } from "reactfire";
+import _ from "lodash";
 import { finalizeTourData, handleSetClient } from "../../helpers";
 
 function TourAddEditModal({ data, setModalOpen }) {
@@ -25,6 +27,11 @@ function TourAddEditModal({ data, setModalOpen }) {
   const [show, setShow] = useState(false);
   const toggleShow = () => setShow(!show);
   const { data: user } = useUser();
+  const activeTab = useSelector((state) => state.activeTab);
+
+  useEffect(() => {
+    setDataForModal(data ? { ...data } : NEW_DATA);
+  }, [data]);
 
   function handleChange(event) {
     const { name, value } = event.target;
@@ -50,13 +57,23 @@ function TourAddEditModal({ data, setModalOpen }) {
     if (!formIsValid()) return;
     const id = dataForModal.id || allData.length + 1;
     const finalData = finalizeTourData(dataForModal, allData, user, id);
-    !dataForModal.id &&
+
+    const shouldDispatchActiveTab =
+      !dataForModal.id ||
+      (dataForModal.id &&
+        !_.isEqual(data, finalData) &&
+        activeTab !== "all-tours");
+
+    shouldDispatchActiveTab &&
       dispatch(
         saveActiveTab(
           finalData.dateFrom ? finalData.dateFrom.split("-")[0] : "UNDATED"
         )
       );
+
     dispatch(saveDataToFirebase(finalData, id));
+    dispatch(saveActiveTour(id));
+
     toast.success(
       dataForModal.id === null ? "Record Created" : "Record Updated"
     );

@@ -11,11 +11,13 @@ import { ERN_DATA_KEYS } from "../../constants/constants";
 import TourStatusIcon from "../common/TourStatusIcon";
 import ConfirmTourModal from "./ConfirmTourModal";
 import AgentImg from "../agents/AgentImg";
+import { useSelector } from "react-redux";
 
 export default function TourTable({ data }) {
   const { sortedData, requestSort } = useSortableData(data);
   const [modalOpen, setModalOpen] = useState(false);
   const history = useHistory();
+  const activeTour = useSelector((state) => state.activeTour);
 
   const routeChange = (tour) => {
     let path = `/tour/${tour.id}`;
@@ -97,6 +99,7 @@ export default function TourTable({ data }) {
                 onMouseLeave={(e) => handleTrColorReset(e, d)}
                 style={{ cursor: "pointer" }}
                 onClick={() => routeChange(d)}
+                id={d.id === activeTour ? "activeTourTr" : null}
               >
                 <td>
                   <TourStatusIcon tourStatus={d.status} iconSize="1.5rem" />

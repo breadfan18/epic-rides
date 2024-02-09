@@ -133,10 +133,6 @@ function TourDetailsPage({ tours, loadDataFromFirebase, ...props }) {
                 </Card.Title>
               </div>
               <TourStatusImg tourStatus={tour.status} />
-              {/* <TourStatusIcon
-                  tourStatus={tour.status}
-                  iconSize="clamp(1.5rem, 10vw, 3rem)"
-                /> */}
             </article>
             <Table className={setColorForTourStatus("tourTable", tour.status)}>
               <tbody className="align-middle">

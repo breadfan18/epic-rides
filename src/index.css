@@ -606,6 +606,16 @@ input[type="range"] {
   display: block;
 }
 
+.table {
+  --bs-table-color: none;
+}
+
+#activeTourTr {
+  font-weight: bold;
+  border: 5px solid green;
+  border-radius: 10px;
+}
+
 footer {
   position: fixed;
   bottom: 0;
