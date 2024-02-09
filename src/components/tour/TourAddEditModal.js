@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
@@ -13,8 +13,6 @@ import PropTypes from "prop-types";
 import { MdModeEditOutline } from "react-icons/md";
 import { DIRECT_CLIENTS, NEW_DATA } from "../../constants/constants";
 import { useUser } from "reactfire";
-import { fileDataGenerator, getDaysBetweenDates } from "../../helpers";
-import COUNTRY_CODES from "../../constants/countryCodes";
 import _ from "lodash";
 import { finalizeTourData, handleSetClient } from "../../helpers";
 
@@ -30,6 +28,10 @@ function TourAddEditModal({ data, setModalOpen }) {
   const toggleShow = () => setShow(!show);
   const { data: user } = useUser();
   const activeTab = useSelector((state) => state.activeTab);
+
+  useEffect(() => {
+    setDataForModal(data ? { ...data } : NEW_DATA);
+  }, [data]);
 
   function handleChange(event) {
     const { name, value } = event.target;
@@ -71,6 +73,7 @@ function TourAddEditModal({ data, setModalOpen }) {
 
     dispatch(saveDataToFirebase(finalData, id));
     dispatch(saveActiveTour(id));
+
     toast.success(
       dataForModal.id === null ? "Record Created" : "Record Updated"
     );
