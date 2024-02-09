@@ -15,7 +15,6 @@ import {
   ref as storageRef,
   uploadString,
 } from "firebase/storage";
-import { USER_STOCK_IMG } from "../constants/constants";
 
 export const firebaseConfig = {
   apiKey: "AIzaSyCeGlbd_IUxNhGQaWChisz6naRXE5sMXnA",
@@ -27,7 +26,19 @@ export const firebaseConfig = {
   appId: "1:7456355664:web:a2f71ec2d7ceb53c1e6855",
 };
 
-const app = initializeApp(firebaseConfig);
+export const firebaseTestConfig = {
+  apiKey: "AIzaSyALCARTsTD2eZbzZSJTqYjnD62oHVM3CZI",
+  authDomain: "epic-rides-test.firebaseapp.com",
+  databaseURL: "https://epic-rides-test-default-rtdb.firebaseio.com",
+  projectId: "epic-rides-test",
+  storageBucket: "epic-rides-test.appspot.com",
+  messagingSenderId: "782353857514",
+  appId: "1:782353857514:web:29872867433de923021093",
+};
+
+export const isTest = process.env.REACT_APP_ENV_TEST === "test";
+
+const app = initializeApp(isTest ? firebaseTestConfig : firebaseConfig);
 export const db = getDatabase(app);
 
 // DATABASE FUNCTIONS
