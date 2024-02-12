@@ -4,6 +4,8 @@ const initialState = {
   apiCallsInProgress: 0,
   activeTab: "",
   activeTour: null,
+  tourDateFrom: '',
+  tourDateTo: ''
 };
 
 export default initialState;

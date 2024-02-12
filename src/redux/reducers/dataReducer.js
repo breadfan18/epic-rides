@@ -3,6 +3,8 @@ import {
   DELETE_DATA_SUCCESS,
   LOAD_DATA_SUCCESS,
   SET_ACTIVE_TOUR_SUCCESS,
+  SET_TOUR_DATE_FROM,
+  SET_TOUR_DATE_TO,
   UPDATE_DATA_SUCCESS,
 } from "../actions/actionTypes";
 import initialState from "./initialState";
@@ -31,6 +33,24 @@ export function activeTourReducer(state = initialState.activeTour, action) {
   switch (action.type) {
     case SET_ACTIVE_TOUR_SUCCESS:
       return action.activeTour;
+    default:
+      return state;
+  }
+}
+
+export function tourDateFromReducer(state = initialState.tourDateFrom, action) {
+  switch (action.type) {
+    case SET_TOUR_DATE_FROM:
+      return action.dateFrom;
+    default:
+      return state;
+  }
+}
+
+export function tourDateToReducer(state = initialState.tourDateTo, action) {
+  switch (action.type) {
+    case SET_TOUR_DATE_TO:
+      return action.tourDateTo;
     default:
       return state;
   }

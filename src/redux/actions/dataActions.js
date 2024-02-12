@@ -7,6 +7,8 @@ import {
   UPDATE_DATA_SUCCESS,
   SET_ACTIVE_TAB_SUCCESS,
   SET_ACTIVE_TOUR_SUCCESS,
+  SET_TOUR_DATE_FROM,
+  SET_TOUR_DATE_TO,
 } from "./actionTypes";
 import { apiCallError, beginApiCall } from "./apiStatusActions";
 import {
@@ -43,8 +45,17 @@ function deleteDataNotesSuccess(cardNote) {
 function setActiveTabSuccess(activeTab) {
   return { type: SET_ACTIVE_TAB_SUCCESS, activeTab };
 }
+
 function setActiveTourSuccess(activeTour) {
   return { type: SET_ACTIVE_TOUR_SUCCESS, activeTour };
+}
+
+function setDateFromSuccess(dateFrom) {
+  return { type: SET_TOUR_DATE_FROM, dateFrom };
+}
+
+function setDateToSuccess(dateTo) {
+  return { type: SET_TOUR_DATE_TO, dateTo };
 }
 
 export function loadDataFromFirebase() {
@@ -112,3 +123,9 @@ export const saveActiveTab = (activeTab) => (dispatch) =>
 
 export const saveActiveTour = (activeTour) => (dispatch) =>
   dispatch(setActiveTourSuccess(activeTour));
+
+export const setTourDateFrom = (dateFrom) => (dispatch) =>
+  dispatch(setDateFromSuccess(dateFrom));
+
+export const setTourDateTo = (dateTo) => (dispatch) =>
+  dispatch(setDateToSuccess(dateTo));
