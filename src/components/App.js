@@ -11,15 +11,14 @@ import { Spinner } from "./common/Spinner";
 import { useSigninCheck } from "reactfire";
 import AgentsPage from "./agents/AgentsPage";
 import TourDetailsPage from "./tour/tour-details/TourDetailsPage";
-import Footer from "./common/Footer";
 import { useHistory } from "react-router-dom";
-import ScrollToTop from "./ScrollToTop";
+// import Footer from "./common/Footer";
+// import ScrollToTop from "./ScrollToTop";
 export const WindowWidthContext = createContext();
 
 function App() {
   const { status, data: signinResult } = useSigninCheck();
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
-  const history = useHistory();
   useEffect(() => {
     window.addEventListener("resize", () => setWindowWidth(window.innerWidth));
 
