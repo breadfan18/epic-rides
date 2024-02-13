@@ -194,6 +194,25 @@ body {
   border-radius: 0 0 10px 10px;
 }
 
+.dateInputField {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.dateInputField input {
+  border-radius: 0 0 0 10px;
+  /* align-items: center; */
+}
+
+.dateInputField svg {
+  color: white;
+  background-color: var(--epic-red);
+  width: 2.5rem;
+  cursor: pointer;
+  /* flex: 1; */
+}
+
 .form-group {
   padding: 10px 0;
 }

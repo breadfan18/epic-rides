@@ -6,6 +6,8 @@ import {
   saveActiveTab,
   saveActiveTour,
   saveDataToFirebase,
+  setTourDateFrom,
+  setTourDateTo,
 } from "../../redux/actions/dataActions";
 import TourForm from "./TourForm";
 import { toast } from "react-toastify";
@@ -28,6 +30,8 @@ function TourAddEditModal({ data, setModalOpen }) {
   const toggleShow = () => setShow(!show);
   const { data: user } = useUser();
   const activeTab = useSelector((state) => state.activeTab);
+  const dateFrom = useSelector((state) => state.tourDateFrom);
+  const dateTo = useSelector((state) => state.tourDateTo);
 
   useEffect(() => {
     setDataForModal(data ? { ...data } : NEW_DATA);
@@ -44,6 +48,10 @@ function TourAddEditModal({ data, setModalOpen }) {
 
     if (name.includes(".")) {
       handleSetClient(setDataForModal, name, value);
+    } else if (name.includes("date")) {
+      dispatch(
+        name === "dateFrom" ? setTourDateFrom(value) : setTourDateTo(value)
+      );
     } else {
       setDataForModal((prevData) => ({
         ...prevData,
@@ -56,7 +64,14 @@ function TourAddEditModal({ data, setModalOpen }) {
     event.preventDefault();
     if (!formIsValid()) return;
     const id = dataForModal.id || allData.length + 1;
-    const finalData = finalizeTourData(dataForModal, allData, user, id);
+    const finalData = finalizeTourData(
+      dataForModal,
+      allData,
+      user,
+      dateFrom,
+      dateTo,
+      id
+    );
 
     const shouldDispatchActiveTab =
       !dataForModal.id ||
@@ -82,6 +97,8 @@ function TourAddEditModal({ data, setModalOpen }) {
 
   function clearDataState() {
     setDataForModal(NEW_DATA);
+    dispatch(setTourDateFrom(""));
+    dispatch(setTourDateTo(""));
     setErrors({});
     toggleShow();
   }
@@ -109,7 +126,7 @@ function TourAddEditModal({ data, setModalOpen }) {
   const [errors, setErrors] = useState({});
 
   function formIsValid() {
-    const { agent, tourName, groupFitName, dateFrom, dateTo } = dataForModal;
+    const { agent, tourName, groupFitName } = dataForModal;
     const errors = {};
     const { nationality, name, code } = agent;
 

@@ -313,12 +313,15 @@ function handleTourMetadata(data, user) {
   }
 }
 
-export function finalizeTourData(dataForModal, allData, user, id) {
-  const numOfDays = getDaysBetweenDates(
-    dataForModal.dateFrom,
-    dataForModal.dateTo
-  );
-
+export function finalizeTourData(
+  dataForModal,
+  allData,
+  user,
+  dateFrom,
+  dateTo,
+  id
+) {
+  const numOfDays = getDaysBetweenDates(dateFrom, dateTo);
   const file = fileDataGenerator(id, dataForModal, dataForModal.agent.code);
   const metadata = handleTourMetadata(dataForModal, user);
   const paxNum = dataForModal.paxNum || "N/A";
@@ -332,6 +335,8 @@ export function finalizeTourData(dataForModal, allData, user, id) {
 
   return {
     ...dataForModal,
+    dateFrom,
+    dateTo,
     agent,
     numOfDays,
     paxNum,

@@ -54,8 +54,8 @@ function setDateFromSuccess(dateFrom) {
   return { type: SET_TOUR_DATE_FROM, dateFrom };
 }
 
-function setDateToSuccess(dateTo) {
-  return { type: SET_TOUR_DATE_TO, dateTo };
+function setDateToSuccess(tourDateTo) {
+  return { type: SET_TOUR_DATE_TO, tourDateTo };
 }
 
 export function loadDataFromFirebase() {
@@ -127,5 +127,5 @@ export const saveActiveTour = (activeTour) => (dispatch) =>
 export const setTourDateFrom = (dateFrom) => (dispatch) =>
   dispatch(setDateFromSuccess(dateFrom));
 
-export const setTourDateTo = (dateTo) => (dispatch) =>
-  dispatch(setDateToSuccess(dateTo));
+export const setTourDateTo = (tourDateTo) => (dispatch) =>
+  dispatch(setDateToSuccess(tourDateTo));

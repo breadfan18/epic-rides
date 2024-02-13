@@ -5,8 +5,19 @@ import {
   APP_COLOR_EPIC_RED,
   CANCELLED_COLOR_RED,
 } from "../../constants/constants";
+import { MdCancel } from "react-icons/md";
+import { useDispatch } from "react-redux";
 
-const DateInput = ({ name, label, onChange, value, error, disabled }) => {
+const DateInput = ({
+  name,
+  label,
+  onChange,
+  value,
+  error,
+  disabled,
+  funcToDispatch,
+}) => {
+  const dispatch = useDispatch();
   let wrapperClass = "form-group";
   if (error && error.length > 0) {
     wrapperClass += " has-error";
@@ -34,13 +45,16 @@ const DateInput = ({ name, label, onChange, value, error, disabled }) => {
           </p>
         )}
       </label>
-      <div className="field">
+      <div className="field dateInputField">
         <Form.Control
           type="date"
           name={name}
           value={value}
           onChange={onChange}
           disabled={disabled}
+        />
+        <MdCancel
+          onClick={() => value !== "" && dispatch(funcToDispatch(""))}
         />
       </div>
     </div>

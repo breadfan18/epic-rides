@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import PropTypes from "prop-types";
 import TextInput from "../common/TextInput";
 import DateInput from "../common/DateInput";
@@ -6,15 +6,27 @@ import Form from "react-bootstrap/Form";
 import { titleCase } from "../../helpers";
 import { isEmpty } from "lodash";
 import NumberInput from "../common/NumberInput";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import Error from "../common/Error";
 import { DIRECT_CLIENTS } from "../../constants/constants";
 import SelectInputOptGroups from "../common/SelectInputOptGroups";
 import SelectInput from "../common/SelectInput";
 import COUNTRY_CODES from "../../constants/countryCodes";
+import {
+  setTourDateFrom,
+  setTourDateTo,
+} from "../../redux/actions/dataActions";
 
 const TourForm = ({ tour, onSave, onChange, saving, errors = {} }) => {
   const agentData = useSelector((state) => state.agents);
+  const dispatch = useDispatch();
+  const dateFrom = useSelector((state) => state.tourDateFrom);
+  const dateTo = useSelector((state) => state.tourDateTo);
+
+  useEffect(() => {
+    dispatch(setTourDateFrom(tour?.dateFrom || ""));
+    dispatch(setTourDateTo(tour?.dateTo || ""));
+  }, []);
 
   return (
     <>
@@ -90,15 +102,17 @@ const TourForm = ({ tour, onSave, onChange, saving, errors = {} }) => {
           name="dateFrom"
           label="Start Date"
           onChange={onChange}
-          value={tour.dateFrom}
+          value={dateFrom}
           error={errors.dateFrom}
+          funcToDispatch={setTourDateFrom}
         />
         <DateInput
           name="dateTo"
           label="End Date"
           onChange={onChange}
-          value={tour.dateTo}
+          value={dateTo}
           error={errors.dateTo}
+          funcToDispatch={setTourDateTo}
         />
         <hr />
         <button
