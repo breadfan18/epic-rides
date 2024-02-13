@@ -12,11 +12,14 @@ import { useSigninCheck } from "reactfire";
 import AgentsPage from "./agents/AgentsPage";
 import TourDetailsPage from "./tour/tour-details/TourDetailsPage";
 import Footer from "./common/Footer";
+import { useHistory } from "react-router-dom";
+import ScrollToTop from "./ScrollToTop";
 export const WindowWidthContext = createContext();
 
 function App() {
   const { status, data: signinResult } = useSigninCheck();
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+  const history = useHistory();
   useEffect(() => {
     window.addEventListener("resize", () => setWindowWidth(window.innerWidth));
 
@@ -37,13 +40,15 @@ function App() {
       <WindowWidthContext.Provider value={windowWidth}>
         <Header user={user} />
         <div className="container-fluid" style={{ marginBottom: "50px" }}>
-          <Switch>
-            <Route exact path="/" component={HomePage} />
-            <Route path="/tours" component={TourPage} />
-            <Route path="/tour/:id" component={TourDetailsPage} />
-            <Route path="/agents" component={AgentsPage} />
-            <Route component={PageNotFound} />
-          </Switch>
+          <ScrollToTop>
+            <Switch>
+              <Route exact path="/" component={HomePage} />
+              <Route path="/tours" component={TourPage} />
+              <Route path="/tour/:id" component={TourDetailsPage} />
+              <Route path="/agents" component={AgentsPage} />
+              <Route component={PageNotFound} />
+            </Switch>
+          </ScrollToTop>
           <ToastContainer autoClose={3000} hideProgressBar />
         </div>
         {/* <Footer /> */}
