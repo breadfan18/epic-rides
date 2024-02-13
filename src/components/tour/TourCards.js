@@ -3,6 +3,7 @@ import { Card } from "react-bootstrap";
 import {
   ERN_DATA_KEYS,
   APP_COLOR_BLACK_OPACITY,
+  APP_COLOR_EPIC_RED,
 } from "../../constants/constants";
 import PropTypes from "prop-types";
 import EmptyList from "../common/EmptyList";
@@ -42,7 +43,9 @@ export default function TourCards({ data, showFilter }) {
             <Card.Title
               style={{
                 padding: "10px",
-                fontSize: "15px",
+                fontSize: "16px",
+                fontWeight: "bold",
+                color: APP_COLOR_EPIC_RED,
                 backgroundColor: setColorForTourStatus("tourCard", d.status),
                 margin: 0,
               }}
@@ -51,7 +54,7 @@ export default function TourCards({ data, showFilter }) {
                 style={{
                   display: "flex",
                   justifyContent: "space-between",
-                  alignContent: "center",
+                  alignItems: "center",
                 }}
               >
                 <p style={{ margin: 0 }}>{d.tourName}</p>

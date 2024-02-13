@@ -208,7 +208,6 @@ body {
   color: white;
   background-color: var(--epic-red);
   width: 2.3rem;
-  cursor: pointer;
   border-radius: 0 0 10px 0;
   display: flex;
   justify-content: center;
