@@ -40,15 +40,13 @@ function App() {
       <WindowWidthContext.Provider value={windowWidth}>
         <Header user={user} />
         <div className="container-fluid" style={{ marginBottom: "50px" }}>
-          <ScrollToTop>
-            <Switch>
-              <Route exact path="/" component={HomePage} />
-              <Route path="/tours" component={TourPage} />
-              <Route path="/tour/:id" component={TourDetailsPage} />
-              <Route path="/agents" component={AgentsPage} />
-              <Route component={PageNotFound} />
-            </Switch>
-          </ScrollToTop>
+          <Switch>
+            <Route exact path="/" component={HomePage} />
+            <Route path="/tours" component={TourPage} />
+            <Route path="/tour/:id" component={TourDetailsPage} />
+            <Route path="/agents" component={AgentsPage} />
+            <Route component={PageNotFound} />
+          </Switch>
           <ToastContainer autoClose={3000} hideProgressBar />
         </div>
         {/* <Footer /> */}
