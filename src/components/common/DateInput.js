@@ -53,9 +53,12 @@ const DateInput = ({
           onChange={onChange}
           disabled={disabled}
         />
-        <MdCancel
-          onClick={() => value !== "" && dispatch(funcToDispatch(""))}
-        />
+        <div>
+          <MdCancel
+            onClick={() => value !== "" && dispatch(funcToDispatch(""))}
+            style={{ fontSize: "1.2rem" }}
+          />
+        </div>
       </div>
     </div>
   );
