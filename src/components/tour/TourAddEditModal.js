@@ -97,8 +97,6 @@ function TourAddEditModal({ data, setModalOpen }) {
 
   function clearDataState() {
     setDataForModal(NEW_DATA);
-    dispatch(setTourDateFrom(""));
-    dispatch(setTourDateTo(""));
     setErrors({});
     toggleShow();
   }
