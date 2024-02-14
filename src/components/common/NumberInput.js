@@ -1,11 +1,16 @@
 import React from "react";
 import PropTypes from "prop-types";
-import {
-  APP_COLOR_EPIC_RED,
-  CANCELLED_COLOR_RED,
-} from "../../constants/constants";
+import { DELETE_COLOR_RED } from "../../constants/constants";
 
-const NumberInput = ({ name, label, onChange, placeholder, value, error }) => {
+const NumberInput = ({
+  name,
+  label,
+  onChange,
+  placeholder,
+  value,
+  error,
+  requiredField,
+}) => {
   let wrapperClass = "form-group";
   if (error && error.length > 0) {
     wrapperClass += " has-error";
@@ -13,28 +18,8 @@ const NumberInput = ({ name, label, onChange, placeholder, value, error }) => {
 
   return (
     <div className={wrapperClass}>
-      <label
-        htmlFor={name}
-        className="inputLabels"
-        style={{
-          backgroundColor: error ? CANCELLED_COLOR_RED : "",
-        }}
-      >
-        {label}
-        {error && (
-          <p
-            style={{
-              margin: "0 10px 0 0",
-              color: APP_COLOR_EPIC_RED,
-              fontSize: "0.8rem",
-            }}
-          >
-            Required
-          </p>
-        )}
-      </label>
       <div
-        className="field transparentPlaceholderField"
+        className="input-container transparentPlaceholderField"
         style={{ display: "flex" }}
       >
         <input
@@ -43,11 +28,15 @@ const NumberInput = ({ name, label, onChange, placeholder, value, error }) => {
           inputmode="numeric"
           pattern="[0-9]*"
           name={name}
-          className="form-control"
           placeholder={placeholder}
           value={value}
           onChange={onChange}
+          style={{ border: error ? `2px solid ${DELETE_COLOR_RED}` : null }}
         />
+        <label className="inputLabels" htmlFor={name}>
+          {label}
+          {requiredField && <p className="requiredField">Required</p>}
+        </label>
       </div>
     </div>
   );

@@ -1,10 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import {
-  APP_COLOR_BLACK_OPACITY,
-  APP_COLOR_EPIC_RED,
-  CANCELLED_COLOR_RED,
-} from "../../constants/constants";
+import { DELETE_COLOR_RED } from "../../constants/constants";
 
 const TextInput = ({
   name,
@@ -13,7 +9,6 @@ const TextInput = ({
   placeholder,
   value,
   error,
-  isCurrency,
   length,
   requiredField,
 }) => {
@@ -23,56 +18,24 @@ const TextInput = ({
   }
 
   return (
-    <div className={wrapperClass}>
-      <label
-        htmlFor={name}
-        className="inputLabels"
-        style={{
-          backgroundColor: error ? CANCELLED_COLOR_RED : "",
-        }}
-      >
-        {label}
-        {requiredField && (
-          <p
-            style={{
-              margin: "0 10px 0 0",
-              color: APP_COLOR_EPIC_RED,
-              fontSize: "0.8rem",
-            }}
-          >
-            Required
-          </p>
-        )}
-      </label>
-      <div className="field" style={{ display: "flex" }}>
-        {isCurrency && (
-          <p
-            style={{
-              padding: "0 10px",
-              backgroundColor: APP_COLOR_BLACK_OPACITY,
-              marginBottom: 0,
-              borderRadius: "0 0 0 10px",
-              display: "flex",
-              alignItems: "center",
-            }}
-          >
-            $
-          </p>
-        )}
+    <div>
+      <div className="input-container" style={{ display: "flex" }}>
         <input
           type="text"
           name={name}
-          className="form-control"
           placeholder={placeholder}
           value={value}
           onChange={onChange}
           style={{
-            // borderRadius: fieldBorderRadius,
-            paddingLeft: isCurrency ? "5px" : "12px",
+            paddingLeft: "12px",
+            border: error ? `2px solid ${DELETE_COLOR_RED}` : null,
           }}
           maxLength={length}
-          // minLength={length}
         />
+        <label className="inputLabels" htmlFor={name}>
+          {label}
+          {requiredField && <p className="requiredField">Required</p>}
+        </label>
       </div>
     </div>
   );

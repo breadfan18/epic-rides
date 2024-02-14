@@ -114,7 +114,6 @@ const TourForm = ({ tour, onSave, onChange, saving, errors = {} }) => {
           error={errors.dateTo}
           funcToDispatch={setTourDateTo}
         />
-        <hr />
         <button
           type="submit"
           disabled={saving}

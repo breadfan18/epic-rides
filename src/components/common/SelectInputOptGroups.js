@@ -1,10 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import Form from "react-bootstrap/Form";
-import {
-  APP_COLOR_EPIC_RED,
-  CANCELLED_COLOR_RED,
-} from "../../constants/constants";
+import { DELETE_COLOR_RED } from "../../constants/constants";
 
 const SelectInputOptGroups = ({
   name,
@@ -19,34 +16,17 @@ const SelectInputOptGroups = ({
   requiredField,
 }) => {
   return (
-    <div className="form-group">
-      <label
-        htmlFor={name}
-        className="inputLabels"
-        style={{
-          backgroundColor: error ? CANCELLED_COLOR_RED : "",
-        }}
-      >
-        {label}
-        {requiredField && (
-          <p
-            style={{
-              margin: "0 10px 0 0",
-              fontSize: "0.8rem",
-              color: APP_COLOR_EPIC_RED,
-            }}
-          >
-            Required
-          </p>
-        )}
-      </label>
+    <div className="input-container">
       <Form.Select
         aria-label={defaultOption}
         name={name}
         value={value}
         onChange={onChange}
         className="form-control"
-        style={{ backgroundColor: `${bkgrdColor}` }}
+        style={{
+          backgroundColor: `${bkgrdColor}`,
+          border: error ? `2px solid ${DELETE_COLOR_RED}` : null,
+        }}
       >
         <option value="" disabled={disableDefaultOption}>
           {defaultOption}
@@ -64,6 +44,10 @@ const SelectInputOptGroups = ({
           })}
         </optgroup>
       </Form.Select>
+      <label htmlFor={name} className="inputLabels">
+        {label}
+        {requiredField && <p className="requiredField">Required</p>}
+      </label>
     </div>
   );
 };

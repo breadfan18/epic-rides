@@ -157,7 +157,7 @@ function AgentAddEditModal({ agent, disableBtn }) {
         </Button>
       )}
 
-      <Modal show={show} onHide={toggleShow} centered size="sm">
+      <Modal show={show} onHide={toggleShow} centered>
         <Modal.Header className="modalHeader" closeButton>
           <Modal.Title>{agentForModal.id ? "Edit" : "Add"} Agent</Modal.Title>
         </Modal.Header>

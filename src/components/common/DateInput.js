@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import Form from "react-bootstrap/Form";
 import {
   APP_COLOR_EPIC_RED,
-  CANCELLED_COLOR_RED,
+  DELETE_COLOR_RED,
 } from "../../constants/constants";
 import { MdCancel } from "react-icons/md";
 import { useDispatch } from "react-redux";
@@ -25,18 +25,21 @@ const DateInput = ({
 
   return (
     <div className={wrapperClass}>
-      <label
-        htmlFor={name}
-        className="inputLabels"
-        style={{
-          backgroundColor: error ? CANCELLED_COLOR_RED : "",
-        }}
-      >
-        {label}
+      <div className="input-container">
+        <Form.Control
+          type="date"
+          name={name}
+          value={value}
+          onChange={onChange}
+          disabled={disabled}
+          style={{
+            border: error ? `2px solid ${DELETE_COLOR_RED}` : null,
+          }}
+        />
         {error && (
           <p
             style={{
-              margin: "0 10px 0 0",
+              margin: 0,
               fontSize: "0.8rem",
               color: APP_COLOR_EPIC_RED,
             }}
@@ -44,21 +47,15 @@ const DateInput = ({
             {error}
           </p>
         )}
-      </label>
-      <div className="field dateInputField">
-        <Form.Control
-          type="date"
-          name={name}
-          value={value}
-          onChange={onChange}
-          disabled={disabled}
-        />
-        <div>
+        {/* <div>
           <MdCancel
             onClick={() => value !== "" && dispatch(funcToDispatch(""))}
             style={{ fontSize: "1.2rem" }}
           />
-        </div>
+        </div> */}
+        <label htmlFor={name} className="inputLabels">
+          {label}
+        </label>
       </div>
     </div>
   );
