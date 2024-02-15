@@ -13,7 +13,7 @@ export default function Error({ errorMessage }) {
         color: DELETE_COLOR_RED,
         border: `2px solid ${APP_COLOR_EPIC_RED}`,
         padding: "5px 10px",
-        marginBottom: "10px",
+        marginBottom: "25px",
         borderRadius: "5px",
       }}
     >
