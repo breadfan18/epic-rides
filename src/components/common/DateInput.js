@@ -23,21 +23,41 @@ const DateInput = ({
   const absoluteLeftValue = useRequiredLabelPosition(isAgentField);
   const dispatch = useDispatch();
   return (
-    <div className="input-container">
-      <Form.Control
-        type="date"
-        name={name}
-        value={value}
-        onChange={onChange}
-        disabled={disabled}
+    <>
+      <div
+        className="input-container dateInputContainer"
         style={{
           border: error ? `2px solid ${DELETE_COLOR_RED}` : null,
         }}
-      />
+      >
+        <Form.Control
+          type="date"
+          name={name}
+          value={value}
+          onChange={onChange}
+          disabled={disabled}
+        />
+        <div
+          style={{ display: "flex", alignItems: "center", marginRight: "10px" }}
+        >
+          <MdCancel
+            onClick={() => value !== "" && dispatch(funcToDispatch(""))}
+            style={{ fontSize: "1.2rem", color: APP_COLOR_EPIC_RED }}
+          />
+        </div>
+        <label htmlFor={name} className="inputLabels">
+          {label}
+          {requiredField && (
+            <p className="requiredField" style={{ left: absoluteLeftValue }}>
+              Required
+            </p>
+          )}
+        </label>
+      </div>
       {error && (
         <p
           style={{
-            margin: 0,
+            margin: "0 1px",
             fontSize: "0.8rem",
             color: APP_COLOR_EPIC_RED,
           }}
@@ -45,21 +65,7 @@ const DateInput = ({
           {error}
         </p>
       )}
-      {/* <div>
-          <MdCancel
-            onClick={() => value !== "" && dispatch(funcToDispatch(""))}
-            style={{ fontSize: "1.2rem" }}
-          />
-        </div> */}
-      <label htmlFor={name} className="inputLabels">
-        {label}
-        {requiredField && (
-          <p className="requiredField" style={{ left: absoluteLeftValue }}>
-            Required
-          </p>
-        )}
-      </label>
-    </div>
+    </>
   );
 };
 
