@@ -1,6 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { DELETE_COLOR_RED } from "../../constants/constants";
+import { useRequiredLabelPosition } from "../../hooks/useRequiredLabelPosition";
 
 const NumberInput = ({
   name,
@@ -10,34 +11,34 @@ const NumberInput = ({
   value,
   error,
   requiredField,
+  isAgentField,
 }) => {
-  let wrapperClass = "form-group";
-  if (error && error.length > 0) {
-    wrapperClass += " has-error";
-  }
+  const absoluteLeftValue = useRequiredLabelPosition(isAgentField);
 
   return (
-    <div className={wrapperClass}>
-      <div
-        className="input-container transparentPlaceholderField"
-        style={{ display: "flex" }}
-      >
-        <input
-          type="number"
-          min="0"
-          inputmode="numeric"
-          pattern="[0-9]*"
-          name={name}
-          placeholder={placeholder}
-          value={value}
-          onChange={onChange}
-          style={{ border: error ? `2px solid ${DELETE_COLOR_RED}` : null }}
-        />
-        <label className="inputLabels" htmlFor={name}>
-          {label}
-          {requiredField && <p className="requiredField">Required</p>}
-        </label>
-      </div>
+    <div
+      className="input-container transparentPlaceholderField"
+      style={{ display: "flex" }}
+    >
+      <input
+        type="number"
+        min="0"
+        inputmode="numeric"
+        pattern="[0-9]*"
+        name={name}
+        placeholder={placeholder}
+        value={value}
+        onChange={onChange}
+        style={{ border: error ? `2px solid ${DELETE_COLOR_RED}` : null }}
+      />
+      <label className="inputLabels" htmlFor={name}>
+        {label}
+        {requiredField && (
+          <p className="requiredField" style={{ left: absoluteLeftValue }}>
+            Required
+          </p>
+        )}
+      </label>
     </div>
   );
 };

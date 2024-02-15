@@ -1,6 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { DELETE_COLOR_RED } from "../../constants/constants";
+import { useRequiredLabelPosition } from "../../hooks/useRequiredLabelPosition";
 
 const TextInput = ({
   name,
@@ -11,32 +12,33 @@ const TextInput = ({
   error,
   length,
   requiredField,
+  windowWidth,
+  isAgentField,
 }) => {
-  let wrapperClass = "form-group";
-  if (error && error.length > 0) {
-    wrapperClass += " has-error";
-  }
+  const absoluteLeftValue = useRequiredLabelPosition(isAgentField);
 
   return (
-    <div>
-      <div className="input-container" style={{ display: "flex" }}>
-        <input
-          type="text"
-          name={name}
-          placeholder={placeholder}
-          value={value}
-          onChange={onChange}
-          style={{
-            paddingLeft: "12px",
-            border: error ? `2px solid ${DELETE_COLOR_RED}` : null,
-          }}
-          maxLength={length}
-        />
-        <label className="inputLabels" htmlFor={name}>
-          {label}
-          {requiredField && <p className="requiredField">Required</p>}
-        </label>
-      </div>
+    <div className="input-container" style={{ display: "flex" }}>
+      <input
+        type="text"
+        name={name}
+        placeholder={placeholder}
+        value={value}
+        onChange={onChange}
+        style={{
+          paddingLeft: "12px",
+          border: error ? `2px solid ${DELETE_COLOR_RED}` : null,
+        }}
+        maxLength={length}
+      />
+      <label className="inputLabels" htmlFor={name}>
+        {label}
+        {requiredField && (
+          <p className="requiredField" style={{ left: absoluteLeftValue }}>
+            Required
+          </p>
+        )}
+      </label>
     </div>
   );
 };

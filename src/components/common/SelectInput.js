@@ -1,11 +1,8 @@
 import React from "react";
 import PropTypes from "prop-types";
 import Form from "react-bootstrap/Form";
-import {
-  APP_COLOR_EPIC_RED,
-  CANCELLED_COLOR_RED,
-  DELETE_COLOR_RED,
-} from "../../constants/constants";
+import { DELETE_COLOR_RED } from "../../constants/constants";
+import { useRequiredLabelPosition } from "../../hooks/useRequiredLabelPosition";
 
 const SelectInput = ({
   name,
@@ -18,7 +15,10 @@ const SelectInput = ({
   bkgrdColor,
   disableDefaultOption = true,
   requiredField,
+  isAgentField,
 }) => {
+  const absoluteLeftValue = useRequiredLabelPosition(isAgentField);
+
   return (
     <div className="input-container">
       <Form.Select
@@ -46,7 +46,11 @@ const SelectInput = ({
       </Form.Select>
       <label className="inputLabels" htmlFor={name}>
         {label}
-        {requiredField && <p className="requiredField">Required</p>}
+        {requiredField && (
+          <p className="requiredField" style={{ left: absoluteLeftValue }}>
+            Required
+          </p>
+        )}
       </label>
     </div>
   );

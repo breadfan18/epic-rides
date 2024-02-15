@@ -7,6 +7,7 @@ import {
 } from "../../constants/constants";
 import { MdCancel } from "react-icons/md";
 import { useDispatch } from "react-redux";
+import { useRequiredLabelPosition } from "../../hooks/useRequiredLabelPosition";
 
 const DateInput = ({
   name,
@@ -16,47 +17,48 @@ const DateInput = ({
   error,
   disabled,
   funcToDispatch,
+  requiredField,
+  isAgentField,
 }) => {
+  const absoluteLeftValue = useRequiredLabelPosition(isAgentField);
   const dispatch = useDispatch();
-  let wrapperClass = "form-group";
-  if (error && error.length > 0) {
-    wrapperClass += " has-error";
-  }
-
   return (
-    <div className={wrapperClass}>
-      <div className="input-container">
-        <Form.Control
-          type="date"
-          name={name}
-          value={value}
-          onChange={onChange}
-          disabled={disabled}
+    <div className="input-container">
+      <Form.Control
+        type="date"
+        name={name}
+        value={value}
+        onChange={onChange}
+        disabled={disabled}
+        style={{
+          border: error ? `2px solid ${DELETE_COLOR_RED}` : null,
+        }}
+      />
+      {error && (
+        <p
           style={{
-            border: error ? `2px solid ${DELETE_COLOR_RED}` : null,
+            margin: 0,
+            fontSize: "0.8rem",
+            color: APP_COLOR_EPIC_RED,
           }}
-        />
-        {error && (
-          <p
-            style={{
-              margin: 0,
-              fontSize: "0.8rem",
-              color: APP_COLOR_EPIC_RED,
-            }}
-          >
-            {error}
-          </p>
-        )}
-        {/* <div>
+        >
+          {error}
+        </p>
+      )}
+      {/* <div>
           <MdCancel
             onClick={() => value !== "" && dispatch(funcToDispatch(""))}
             style={{ fontSize: "1.2rem" }}
           />
         </div> */}
-        <label htmlFor={name} className="inputLabels">
-          {label}
-        </label>
-      </div>
+      <label htmlFor={name} className="inputLabels">
+        {label}
+        {requiredField && (
+          <p className="requiredField" style={{ left: absoluteLeftValue }}>
+            Required
+          </p>
+        )}
+      </label>
     </div>
   );
 };

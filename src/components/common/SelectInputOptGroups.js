@@ -2,6 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import Form from "react-bootstrap/Form";
 import { DELETE_COLOR_RED } from "../../constants/constants";
+import { useRequiredLabelPosition } from "../../hooks/useRequiredLabelPosition";
 
 const SelectInputOptGroups = ({
   name,
@@ -14,7 +15,10 @@ const SelectInputOptGroups = ({
   bkgrdColor,
   disableDefaultOption = true,
   requiredField,
+  isAgentField,
 }) => {
+  const absoluteLeftValue = useRequiredLabelPosition(isAgentField);
+
   return (
     <div className="input-container">
       <Form.Select
@@ -46,7 +50,11 @@ const SelectInputOptGroups = ({
       </Form.Select>
       <label htmlFor={name} className="inputLabels">
         {label}
-        {requiredField && <p className="requiredField">Required</p>}
+        {requiredField && (
+          <p className="requiredField" style={{ left: absoluteLeftValue }}>
+            Required
+          </p>
+        )}
       </label>
     </div>
   );
