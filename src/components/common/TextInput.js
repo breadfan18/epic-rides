@@ -14,11 +14,15 @@ const TextInput = ({
   requiredField,
   windowWidth,
   isAgentField,
+  isFirstFieldInForm,
 }) => {
   const absoluteLeftValue = useRequiredLabelPosition(isAgentField);
 
   return (
-    <div className="input-container" style={{ display: "flex" }}>
+    <div
+      className="input-container"
+      style={{ display: "flex", marginTop: isFirstFieldInForm ? "15px" : null }}
+    >
       <input
         type="text"
         name={name}

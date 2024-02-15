@@ -16,11 +16,15 @@ const SelectInputOptGroups = ({
   disableDefaultOption = true,
   requiredField,
   isAgentField,
+  isFirstFieldInForm,
 }) => {
   const absoluteLeftValue = useRequiredLabelPosition(isAgentField);
 
   return (
-    <div className="input-container">
+    <div
+      className="input-container"
+      style={{ marginTop: isFirstFieldInForm ? "15px" : null }}
+    >
       <Form.Select
         aria-label={defaultOption}
         name={name}

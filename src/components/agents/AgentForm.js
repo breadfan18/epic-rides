@@ -22,6 +22,7 @@ const AgentForm = ({ agent, onSave, onChange, errors = {}, saving }) => {
         error={errors.name}
         requiredField
         isAgentField
+        isFirstFieldInForm
       />
       <TextInput
         name="code"

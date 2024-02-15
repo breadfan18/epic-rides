@@ -48,6 +48,7 @@ const TourForm = ({ tour, onSave, onChange, saving, errors = {} }) => {
           onChange={onChange}
           error={errors.agent}
           requiredField
+          isFirstFieldInForm
         />
         {tour.agent.code === "DIR" && (
           <>
