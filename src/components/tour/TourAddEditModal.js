@@ -1,10 +1,13 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import {
   saveActiveTab,
+  saveActiveTour,
   saveDataToFirebase,
+  setTourDateFrom,
+  setTourDateTo,
 } from "../../redux/actions/dataActions";
 import TourForm from "./TourForm";
 import { toast } from "react-toastify";
@@ -12,8 +15,8 @@ import PropTypes from "prop-types";
 import { MdModeEditOutline } from "react-icons/md";
 import { DIRECT_CLIENTS, NEW_DATA } from "../../constants/constants";
 import { useUser } from "reactfire";
-import { fileDataGenerator, getDaysBetweenDates } from "../../helpers";
-import COUNTRY_CODES from "../../constants/countryCodes";
+import _ from "lodash";
+import { finalizeTourData, handleSetClient } from "../../helpers";
 
 function TourAddEditModal({ data, setModalOpen }) {
   const [dataForModal, setDataForModal] = useState(
@@ -26,27 +29,29 @@ function TourAddEditModal({ data, setModalOpen }) {
   const [show, setShow] = useState(false);
   const toggleShow = () => setShow(!show);
   const { data: user } = useUser();
+  const activeTab = useSelector((state) => state.activeTab);
+  const dateFrom = useSelector((state) => state.tourDateFrom);
+  const dateTo = useSelector((state) => state.tourDateTo);
+
+  useEffect(() => {
+    setDataForModal(data ? { ...data } : NEW_DATA);
+  }, [data]);
 
   function handleChange(event) {
     const { name, value } = event.target;
 
     if (value !== "" || value !== null) {
-      delete errors[name];
+      if (name === "agent.name") delete errors.clientName;
+      else if (name === "agent.nationCode") delete errors.clientNationality;
+      else delete errors[name];
     }
 
     if (name.includes(".")) {
-      setDataForModal((prevData) => {
-        const [parentField, childField] = name.split(".");
-        return {
-          ...prevData,
-          [parentField]: {
-            ...prevData[parentField],
-            [childField]: value,
-            nationality: COUNTRY_CODES.find((country) => country.code === value)
-              .name,
-          },
-        };
-      });
+      handleSetClient(setDataForModal, name, value);
+    } else if (name.includes("date")) {
+      dispatch(
+        name === "dateFrom" ? setTourDateFrom(value) : setTourDateTo(value)
+      );
     } else {
       setDataForModal((prevData) => ({
         ...prevData,
@@ -55,50 +60,26 @@ function TourAddEditModal({ data, setModalOpen }) {
     }
   }
 
-  function handleMetadata(data) {
-    if (data.id) {
-      return {
-        ...data.metadata,
-        editedBy: {
-          uid: user.uid,
-          displayName: user.displayName,
-          photoURL: user.photoURL || null,
-        },
-      };
-    } else {
-      return {
-        createdBy: {
-          uid: user.uid,
-          displayName: user.displayName,
-          photoURL: user.photoURL || null,
-        },
-      };
-    }
-  }
-
   function handleSaveForFirebase(event) {
     event.preventDefault();
     if (!formIsValid()) return;
-
-    const numOfDays = getDaysBetweenDates(
-      dataForModal.dateFrom,
-      dataForModal.dateTo
+    const id = dataForModal.id || allData.length + 1;
+    const finalData = finalizeTourData(
+      dataForModal,
+      allData,
+      user,
+      dateFrom,
+      dateTo,
+      id
     );
 
-    const id = dataForModal.id || allData.length + 1;
-    const file = fileDataGenerator(id, dataForModal, dataForModal.agent.code);
-    const metadata = handleMetadata(dataForModal);
-    const paxNum = dataForModal.paxNum || "N/A";
+    const shouldDispatchActiveTab =
+      !dataForModal.id ||
+      (dataForModal.id &&
+        !_.isEqual(data, finalData) &&
+        activeTab !== "all-tours");
 
-    const finalData = {
-      ...dataForModal,
-      numOfDays,
-      paxNum,
-      ...file,
-      metadata,
-    };
-
-    !dataForModal.id &&
+    shouldDispatchActiveTab &&
       dispatch(
         saveActiveTab(
           finalData.dateFrom ? finalData.dateFrom.split("-")[0] : "UNDATED"
@@ -106,6 +87,8 @@ function TourAddEditModal({ data, setModalOpen }) {
       );
 
     dispatch(saveDataToFirebase(finalData, id));
+    dispatch(saveActiveTour(id));
+
     toast.success(
       dataForModal.id === null ? "Record Created" : "Record Updated"
     );
@@ -141,13 +124,13 @@ function TourAddEditModal({ data, setModalOpen }) {
   const [errors, setErrors] = useState({});
 
   function formIsValid() {
-    const { agent, tourName, groupFitName, dateFrom, dateTo } = dataForModal;
+    const { agent, tourName, groupFitName } = dataForModal;
     const errors = {};
-    const { nationality } = agent;
+    const { nationality, name, code } = agent;
 
-    if (!agent.name) errors.agent = "Required";
-    if (agent.code === "DIR" && !nationality)
-      errors.clientNationality = "Required";
+    if (!code) errors.agent = "Required";
+    if (code === "DIR" && !nationality) errors.clientNationality = "Required";
+    if (code === "DIR" && !name) errors.clientName = "Required";
     if (!tourName) errors.tourName = "Required";
     if (!groupFitName) errors.groupFitName = "Required";
     if (dateFrom && !dateTo) errors.dateTo = "End Date is Required";

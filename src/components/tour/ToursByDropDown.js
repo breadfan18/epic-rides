@@ -8,11 +8,12 @@ import { Button } from "react-bootstrap";
 import useTourFilter from "../../hooks/filterTours";
 import Filters from "./filters/Filters";
 import { useDispatch, useSelector } from "react-redux";
-import { saveActiveTab } from "../../redux/actions/dataActions";
+import { saveActiveTab, saveActiveTour } from "../../redux/actions/dataActions";
 
 function ToursByDropDown({ tours }) {
   const dispatch = useDispatch();
-  const activeTab = useSelector((state) => state.activeTab || "all-tours");
+  const activeTab = useSelector((state) => state.activeTab);
+  const activeTour = useSelector((state) => state.activeTour);
   const [showFilter, setShowFilter] = useState(false);
   const {
     filters,
@@ -24,8 +25,21 @@ function ToursByDropDown({ tours }) {
     setGroupNameFilter,
   } = useTourFilter(tours);
 
+  useEffect(() => !activeTab && dispatch(saveActiveTab("all-tours")), []);
+
+  useEffect(() => {
+    const activeTourElement = document.getElementById("activeTourTr");
+
+    if (activeTourElement) {
+      setTimeout(() => {
+        activeTourElement.removeAttribute("id");
+        dispatch(saveActiveTour(null));
+      }, 3000);
+    }
+  }, [activeTour, dispatch]);
+
   const yearsWithTours = sortNumbers(getYearsFromTours(tours));
-  const showAllData = activeTab === undefined || activeTab === "all-tours";
+  const showAllData = activeTab === "all-tours";
 
   const toursForSelectedYear = showAllData
     ? filteredData
@@ -56,7 +70,7 @@ function ToursByDropDown({ tours }) {
           onChange={handleYearChange}
           value={activeTab}
         >
-          <option value="">All Tours</option>
+          <option value="all-tours">All Tours</option>
           {[...yearsWithTours, "UNDATED"].map((year) => {
             return (
               <option key={year} value={year}>

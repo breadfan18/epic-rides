@@ -161,6 +161,7 @@ body {
   height: 100%;
   margin: 0;
 }
+
 .sectionHeaders {
   display: flex;
   justify-content: space-between;
@@ -172,16 +173,65 @@ body {
   margin-bottom: 1rem;
 }
 
-.inputLabels {
-  background-color: var(--black-opacity);
-  padding: 5px 5px 5px 10px;
+.input-container {
+  position: relative;
+  margin: 30px 0;
+}
+
+.input-container input,
+.input-container select {
   width: 100%;
-  border-radius: 10px 10px 0 0;
-  color: black;
-  font-weight: bold;
+  padding: 15px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  outline: none;
+  transition: border-color 0.3s;
+}
+
+.dateInputContainer {
   display: flex;
-  justify-content: space-between;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  margin: 30px 0 0 0;
   align-items: center;
+}
+
+.dateInputContainer input {
+  border: none;
+  padding-right: 5px;
+}
+
+.inputLabels {
+  position: absolute;
+  top: -13px;
+  left: 9px;
+  background-color: white;
+  padding: 0 5px;
+  color: var(--epic-red);
+}
+
+.requiredField {
+  margin: 0 10px 0 0;
+  color: rgb(69, 15, 1);
+  font-size: 0.8rem;
+  position: absolute;
+  top: 4px;
+  background-color: white;
+  padding: 0 5px;
+}
+
+#paxRangeCheck {
+  /* margin-right: 5px; */
+  margin: 0 10px 0 0;
+  color: rgb(69, 15, 1);
+  font-size: 0.8rem;
+  position: absolute;
+  top: 4px;
+  background-color: white;
+  padding: 0 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .cardsDropDownContainer .labels {
@@ -189,13 +239,24 @@ body {
   color: var(--epic-red);
 }
 
-.field input,
-.form-group select {
-  border-radius: 0 0 10px 10px;
+.dateInputField {
+  display: flex;
+  align-items: stretch;
+  justify-content: center;
 }
 
-.form-group {
-  padding: 10px 0;
+.dateInputField input {
+  border-radius: 0 0 0 10px;
+}
+
+.dateInputField div {
+  color: white;
+  background-color: var(--epic-red);
+  width: 2.3rem;
+  border-radius: 0 0 10px 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .radioField {
@@ -606,6 +667,25 @@ input[type="range"] {
   display: block;
 }
 
-#paxRangeCheck {
-  margin-right: 5px;
+.table {
+  --bs-table-color: none;
+}
+
+#activeTourTr {
+  font-weight: bold;
+  border: 5px solid green;
+  border-radius: 10px;
+}
+
+footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background-color: #f0f0f0;
+  color: var(--epic-red);
+  margin-top: 10px;
+  padding: 5px;
+  text-align: center;
+  font-size: 12px;
 }

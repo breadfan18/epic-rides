@@ -21,6 +21,8 @@ const AgentForm = ({ agent, onSave, onChange, errors = {}, saving }) => {
         onChange={onChange}
         error={errors.name}
         requiredField
+        isAgentField
+        isFirstFieldInForm
       />
       <TextInput
         name="code"
@@ -30,6 +32,7 @@ const AgentForm = ({ agent, onSave, onChange, errors = {}, saving }) => {
         error={errors.code}
         length={"3"}
         requiredField
+        isAgentField
       />
       <SelectInput
         name="nationality"
@@ -43,6 +46,7 @@ const AgentForm = ({ agent, onSave, onChange, errors = {}, saving }) => {
         onChange={onChange}
         error={errors.nationality}
         requiredField
+        isAgentField
       />
       <hr />
       <button

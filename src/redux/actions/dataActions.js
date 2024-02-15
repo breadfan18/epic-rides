@@ -6,6 +6,9 @@ import {
   LOAD_DATA_SUCCESS,
   UPDATE_DATA_SUCCESS,
   SET_ACTIVE_TAB_SUCCESS,
+  SET_ACTIVE_TOUR_SUCCESS,
+  SET_TOUR_DATE_FROM,
+  SET_TOUR_DATE_TO,
 } from "./actionTypes";
 import { apiCallError, beginApiCall } from "./apiStatusActions";
 import {
@@ -43,10 +46,22 @@ function setActiveTabSuccess(activeTab) {
   return { type: SET_ACTIVE_TAB_SUCCESS, activeTab };
 }
 
-export function loadDataFromFirebase(firebaseUid) {
+function setActiveTourSuccess(activeTour) {
+  return { type: SET_ACTIVE_TOUR_SUCCESS, activeTour };
+}
+
+function setDateFromSuccess(dateFrom) {
+  return { type: SET_TOUR_DATE_FROM, dateFrom };
+}
+
+function setDateToSuccess(tourDateTo) {
+  return { type: SET_TOUR_DATE_TO, tourDateTo };
+}
+
+export function loadDataFromFirebase() {
   return (dispatch) => {
     dispatch(beginApiCall());
-    getFireBaseData("data", dispatch, loadDataSuccess, firebaseUid);
+    getFireBaseData("data", dispatch, loadDataSuccess);
   };
 }
 
@@ -77,7 +92,7 @@ export function deleteDataFromFirebase(data, firebaseUid) {
   };
 }
 
-export function saveTourNoteToFirebase(note, tourId, firebaseUid) {
+export function saveTourNoteToFirebase(note, tourId) {
   return (dispatch) => {
     /*
       BUG: dispatching beginApiCall twice here..This is a workaround for the followinsg issue:
@@ -88,7 +103,7 @@ export function saveTourNoteToFirebase(note, tourId, firebaseUid) {
     dispatch(beginApiCall());
     dispatch(beginApiCall());
     const uuid = note.id === null || note.id === undefined ? uid() : note.id;
-    writeToFirebase(`data/${tourId}/tourNotes`, note, uuid, firebaseUid);
+    writeToFirebase(`data/${tourId}/tourNotes`, note, uuid);
     dispatch(createDataNotesSuccess(note));
   };
 }
@@ -105,3 +120,12 @@ export function deleteTourNoteFromFirebase(note, tourId, firebaseUid) {
 
 export const saveActiveTab = (activeTab) => (dispatch) =>
   dispatch(setActiveTabSuccess(activeTab));
+
+export const saveActiveTour = (activeTour) => (dispatch) =>
+  dispatch(setActiveTourSuccess(activeTour));
+
+export const setTourDateFrom = (dateFrom) => (dispatch) =>
+  dispatch(setDateFromSuccess(dateFrom));
+
+export const setTourDateTo = (tourDateTo) => (dispatch) =>
+  dispatch(setDateToSuccess(tourDateTo));

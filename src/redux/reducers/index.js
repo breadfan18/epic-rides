@@ -1,5 +1,10 @@
 import { combineReducers } from "redux";
-import data from "./dataReducer";
+import data, {
+  activeTourReducer as activeTour,
+  tourDateFromReducer as tourDateFrom,
+  tourDateToReducer as tourDateTo,
+} from "./dataReducer";
+// import activeTour from "./activeTourReducer";
 import agents from "./agentsReducer";
 import apiCallsInProgress from "./apiStatusReducer";
 import activeTab from "./activeTabReducer";
@@ -10,6 +15,9 @@ const appReducer = combineReducers({
   agents,
   apiCallsInProgress,
   activeTab,
+  activeTour,
+  tourDateFrom,
+  tourDateTo,
 });
 
 const rootReducer = (state, action) => {

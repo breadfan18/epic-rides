@@ -2,7 +2,10 @@ import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
-import { saveDataToFirebase } from "../../redux/actions/dataActions";
+import {
+  saveDataToFirebase,
+  saveTourNoteToFirebase,
+} from "../../redux/actions/dataActions";
 import { toast } from "react-toastify";
 import PropTypes from "prop-types";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
@@ -11,7 +14,7 @@ import {
   EDIT_COLOR_GREEN,
 } from "../../constants/constants";
 import { FaCheck } from "react-icons/fa";
-
+import { useUser } from "reactfire";
 function ConfirmTourModal({
   data,
   setModalOpen,
@@ -23,6 +26,7 @@ function ConfirmTourModal({
   const toggleShow = () => setShow(!show);
   const history = useHistory();
   const dispatch = useDispatch();
+  const { data: user } = useUser();
 
   const buttonDisabled =
     data.paxNum === "N/A" ||
@@ -31,8 +35,15 @@ function ConfirmTourModal({
     data.status === "HK" ||
     data.status === "CA";
 
+  const confirmNote = {
+    note: "Tour Confirmed by " + user.displayName,
+    date: new Date().toISOString().split("T")[0],
+  };
+
   function handleConfirm(data) {
     dispatch(saveDataToFirebase({ ...data, status: "HK" }, data.id));
+    dispatch(saveTourNoteToFirebase(confirmNote, data.id));
+
     toast.success("Tour Confirmed");
     if (redirect) history.push("/tours");
 

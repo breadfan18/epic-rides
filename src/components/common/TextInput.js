@@ -1,10 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
-import {
-  APP_COLOR_BLACK_OPACITY,
-  APP_COLOR_EPIC_RED,
-  CANCELLED_COLOR_RED,
-} from "../../constants/constants";
+import { DELETE_COLOR_RED } from "../../constants/constants";
+import { useRequiredLabelPosition } from "../../hooks/useRequiredLabelPosition";
 
 const TextInput = ({
   name,
@@ -13,67 +10,39 @@ const TextInput = ({
   placeholder,
   value,
   error,
-  isCurrency,
   length,
   requiredField,
+  windowWidth,
+  isAgentField,
+  isFirstFieldInForm,
 }) => {
-  let wrapperClass = "form-group";
-  if (error && error.length > 0) {
-    wrapperClass += " has-error";
-  }
+  const absoluteLeftValue = useRequiredLabelPosition(isAgentField);
 
   return (
-    <div className={wrapperClass}>
-      <label
-        htmlFor={name}
-        className="inputLabels"
+    <div
+      className="input-container"
+      style={{ marginTop: isFirstFieldInForm ? "15px" : null }}
+    >
+      <input
+        type="text"
+        name={name}
+        placeholder={placeholder}
+        value={value}
+        onChange={onChange}
         style={{
-          backgroundColor: error ? CANCELLED_COLOR_RED : "",
+          paddingLeft: "12px",
+          border: error ? `2px solid ${DELETE_COLOR_RED}` : null,
         }}
-      >
+        maxLength={length}
+      />
+      <label className="inputLabels" htmlFor={name}>
         {label}
         {requiredField && (
-          <p
-            style={{
-              margin: "0 10px 0 0",
-              color: APP_COLOR_EPIC_RED,
-              fontSize: "0.8rem",
-            }}
-          >
+          <p className="requiredField" style={{ left: absoluteLeftValue }}>
             Required
           </p>
         )}
       </label>
-      <div className="field" style={{ display: "flex" }}>
-        {isCurrency && (
-          <p
-            style={{
-              padding: "0 10px",
-              backgroundColor: APP_COLOR_BLACK_OPACITY,
-              marginBottom: 0,
-              borderRadius: "0 0 0 10px",
-              display: "flex",
-              alignItems: "center",
-            }}
-          >
-            $
-          </p>
-        )}
-        <input
-          type="text"
-          name={name}
-          className="form-control"
-          placeholder={placeholder}
-          value={value}
-          onChange={onChange}
-          style={{
-            // borderRadius: fieldBorderRadius,
-            paddingLeft: isCurrency ? "5px" : "12px",
-          }}
-          maxLength={length}
-          // minLength={length}
-        />
-      </div>
     </div>
   );
 };

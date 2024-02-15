@@ -1,7 +1,7 @@
 // New Constants
 
 export const DIRECT_CLIENTS = {
-  name: "Direct Client",
+  name: null,
   code: "DIR",
   nationCode: null,
   nationality: null,
@@ -59,8 +59,8 @@ export const NEW_DATA = {
   tourName: null,
   groupFitName: null,
   paxNum: null,
-  dateFrom: "",
-  dateTo: "",
+  // dateFrom: "",
+  // dateTo: "",
   numOfDays: null,
   status: "OP",
   fileRef: null,
@@ -205,3 +205,9 @@ export const USER_STOCK_IMG = "https://i.imgur.com/iALkKsV.png";
 export const USER_STOCK_IMG_WHITE_BKGRD = "https://i.imgur.com/bUmgFm9.png";
 export const EPIC_LOGO = "https://i.imgur.com/M0W3075.png";
 export const AGENT_STOCK_IMG = "https://i.imgur.com/aex0YDW.png";
+export const TOUR_CANCELLED_IMG =
+  "https://firebasestorage.googleapis.com/v0/b/epic-rides-aa67e.appspot.com/o/images%2Fcancelled-rubber-stamp-free.png?alt=media&token=8a482039-3e1f-476d-8e0b-99087dfc0225";
+export const TOUR_CONFIRMED_IMG =
+  "https://firebasestorage.googleapis.com/v0/b/epic-rides-aa67e.appspot.com/o/images%2Fconfirmed_tour.png?alt=media&token=6e281ff6-911c-4a05-8f3b-c54b799b8f01";
+export const TOUR_WIP_IMG =
+  "https://firebasestorage.googleapis.com/v0/b/epic-rides-aa67e.appspot.com/o/images%2Fwork-in-progress.png?alt=media&token=18728be3-52ef-47bf-80f2-e37e510f89c5";

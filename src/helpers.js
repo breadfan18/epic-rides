@@ -3,6 +3,7 @@ import {
   CARD_COLOR_DOWNGRADED,
   CREDIT_BUREAUS,
 } from "./constants/constants";
+import COUNTRY_CODES from "./constants/countryCodes";
 
 export const pipe =
   (...fns) =>
@@ -264,4 +265,82 @@ export function isPasswordValid(pwd) {
 export function getFileNameExtension(fileName) {
   const arrSplitByDot = fileName.split(".");
   return arrSplitByDot[arrSplitByDot.length - 1];
+}
+
+export function handleSetClient(setData, name, value) {
+  setData((prevData) => {
+    const [parentField, childField] = name.split(".");
+    if (childField === "nationCode") {
+      return {
+        ...prevData,
+        [parentField]: {
+          ...prevData[parentField],
+          [childField]: value,
+          nationality: COUNTRY_CODES.find((country) => country.code === value)
+            .name,
+        },
+      };
+    } else {
+      return {
+        ...prevData,
+        [parentField]: {
+          ...prevData[parentField],
+          [childField]: value,
+        },
+      };
+    }
+  });
+}
+
+function handleTourMetadata(data, user) {
+  if (data.id) {
+    return {
+      ...data.metadata,
+      editedBy: {
+        uid: user.uid,
+        displayName: user.displayName,
+        photoURL: user.photoURL || null,
+      },
+    };
+  } else {
+    return {
+      createdBy: {
+        uid: user.uid,
+        displayName: user.displayName,
+        photoURL: user.photoURL || null,
+      },
+    };
+  }
+}
+
+export function finalizeTourData(
+  dataForModal,
+  allData,
+  user,
+  dateFrom,
+  dateTo,
+  id
+) {
+  const numOfDays = getDaysBetweenDates(dateFrom, dateTo);
+  const file = fileDataGenerator(id, dataForModal, dataForModal.agent.code);
+  const metadata = handleTourMetadata(dataForModal, user);
+  const paxNum = dataForModal.paxNum || "N/A";
+  const agent =
+    !dataForModal.id && dataForModal.agent.code === "DIR"
+      ? {
+          ...dataForModal.agent,
+          name: `DIR - ${dataForModal.agent.name}`,
+        }
+      : dataForModal.agent;
+
+  return {
+    ...dataForModal,
+    dateFrom,
+    dateTo,
+    agent,
+    numOfDays,
+    paxNum,
+    ...file,
+    metadata,
+  };
 }

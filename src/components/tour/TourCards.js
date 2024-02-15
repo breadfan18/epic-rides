@@ -3,6 +3,7 @@ import { Card } from "react-bootstrap";
 import {
   ERN_DATA_KEYS,
   APP_COLOR_BLACK_OPACITY,
+  APP_COLOR_EPIC_RED,
 } from "../../constants/constants";
 import PropTypes from "prop-types";
 import EmptyList from "../common/EmptyList";
@@ -13,10 +14,12 @@ import { setColorForTourStatus } from "../../helpers";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 import TourStatusIcon from "../common/TourStatusIcon";
 import ConfirmTourModal from "./ConfirmTourModal";
+import { useSelector } from "react-redux";
 export default function TourCards({ data, showFilter }) {
   const windowWidth = useContext(WindowWidthContext);
   const cardWidth = windowWidth < 650 ? windowWidth : "18rem";
   const history = useHistory();
+  const activeTour = useSelector((state) => state.activeTour);
 
   const routeChange = (tour) => {
     let path = `/tour/${tour.id}`;
@@ -25,7 +28,12 @@ export default function TourCards({ data, showFilter }) {
 
   const allTours = data.map((d) => {
     return (
-      <Card style={{ width: cardWidth }} key={d.id} className="cardCard">
+      <Card
+        style={{ width: cardWidth }}
+        key={d.id}
+        className="cardCard"
+        id={d.id === activeTour ? "activeTourTr" : null}
+      >
         <Card.Body style={{ padding: "0" }}>
           <div
             style={{
@@ -35,7 +43,9 @@ export default function TourCards({ data, showFilter }) {
             <Card.Title
               style={{
                 padding: "10px",
-                fontSize: "15px",
+                fontSize: "16px",
+                fontWeight: "bold",
+                color: APP_COLOR_EPIC_RED,
                 backgroundColor: setColorForTourStatus("tourCard", d.status),
                 margin: 0,
               }}
@@ -44,7 +54,7 @@ export default function TourCards({ data, showFilter }) {
                 style={{
                   display: "flex",
                   justifyContent: "space-between",
-                  alignContent: "center",
+                  alignItems: "center",
                 }}
               >
                 <p style={{ margin: 0 }}>{d.tourName}</p>

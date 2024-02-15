@@ -1,54 +1,44 @@
 import React from "react";
 import PropTypes from "prop-types";
-import {
-  APP_COLOR_EPIC_RED,
-  CANCELLED_COLOR_RED,
-} from "../../constants/constants";
+import { DELETE_COLOR_RED } from "../../constants/constants";
+import { useRequiredLabelPosition } from "../../hooks/useRequiredLabelPosition";
 
-const NumberInput = ({ name, label, onChange, placeholder, value, error }) => {
-  let wrapperClass = "form-group";
-  if (error && error.length > 0) {
-    wrapperClass += " has-error";
-  }
+const NumberInput = ({
+  name,
+  label,
+  onChange,
+  placeholder,
+  value,
+  error,
+  requiredField,
+  isAgentField,
+}) => {
+  const absoluteLeftValue = useRequiredLabelPosition(isAgentField);
 
   return (
-    <div className={wrapperClass}>
-      <label
-        htmlFor={name}
-        className="inputLabels"
-        style={{
-          backgroundColor: error ? CANCELLED_COLOR_RED : "",
-        }}
-      >
+    <div
+      className="input-container transparentPlaceholderField"
+      style={{ display: "flex" }}
+    >
+      <input
+        type="number"
+        min="0"
+        inputmode="numeric"
+        pattern="[0-9]*"
+        name={name}
+        placeholder={placeholder}
+        value={value}
+        onChange={onChange}
+        style={{ border: error ? `2px solid ${DELETE_COLOR_RED}` : null }}
+      />
+      <label className="inputLabels" htmlFor={name}>
         {label}
-        {error && (
-          <p
-            style={{
-              margin: "0 10px 0 0",
-              color: APP_COLOR_EPIC_RED,
-              fontSize: "0.8rem",
-            }}
-          >
+        {requiredField && (
+          <p className="requiredField" style={{ left: absoluteLeftValue }}>
             Required
           </p>
         )}
       </label>
-      <div
-        className="field transparentPlaceholderField"
-        style={{ display: "flex" }}
-      >
-        <input
-          type="number"
-          min="0"
-          inputmode="numeric"
-          pattern="[0-9]*"
-          name={name}
-          className="form-control"
-          placeholder={placeholder}
-          value={value}
-          onChange={onChange}
-        />
-      </div>
     </div>
   );
 };

@@ -6,6 +6,12 @@ import {
   CANCELLED_COLOR_RED,
 } from "../../constants/constants";
 import Form from "react-bootstrap/Form";
+import { useRequiredLabelPosition } from "../../hooks/useRequiredLabelPosition";
+
+/* 
+Need to figure out where to put the range checkbox.. and make sure this field 
+alings with the deisgn of other input fields
+*/
 
 const PaxRangeInput = ({
   name,
@@ -14,11 +20,15 @@ const PaxRangeInput = ({
   placeholder,
   value,
   error,
+  isAgentField,
 }) => {
   let wrapperClass = "form-group";
   if (error && error.length > 0) {
     wrapperClass += " has-error";
   }
+
+  const absoluteLeftValue = useRequiredLabelPosition(isAgentField);
+
   const [isRange, setIsRange] = useState(value.includes("-") ? true : false);
   const [startValue, setStartValue] = useState(
     value.includes("-") ? value.split(" - ")[0] : ""
@@ -39,31 +49,7 @@ const PaxRangeInput = ({
   };
 
   return (
-    <div className={wrapperClass}>
-      <label
-        htmlFor={name}
-        className="inputLabels"
-        style={{
-          backgroundColor: error ? CANCELLED_COLOR_RED : "",
-        }}
-      >
-        {label}
-        <Form.Check
-          type="switch"
-          id="paxRangeCheck"
-          label="Range"
-          onChange={handleRangeCheckbox}
-          checked={isRange}
-          style={{
-            margin: "0 10px 0 0",
-            color: APP_COLOR_EPIC_RED,
-            fontSize: "0.8rem",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-          }}
-        />
-      </label>
+    <div className="input-container">
       <div
         className="field transparentPlaceholderField"
         style={{ display: "flex" }}
@@ -117,6 +103,31 @@ const PaxRangeInput = ({
           />
         )}
       </div>
+      <label
+        htmlFor={name}
+        className="inputLabels"
+        style={{
+          backgroundColor: error ? CANCELLED_COLOR_RED : "",
+        }}
+      >
+        {label}
+        <Form.Check
+          // className="requiredField"
+          type="switch"
+          id="paxRangeCheck"
+          label="Range"
+          onChange={handleRangeCheckbox}
+          checked={isRange}
+          style={{ left: absoluteLeftValue }}
+          //   margin: "0 10px 0 0",
+          //   color: APP_COLOR_EPIC_RED,
+          //   fontSize: "0.8rem",
+          //   display: "flex",
+          //   alignItems: "center",
+          //   justifyContent: "center",
+          // }}// style={{
+        />
+      </label>
     </div>
   );
 };
