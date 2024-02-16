@@ -1,7 +1,11 @@
 "use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.fileNameGenerator = exports.sortNumberDesc = exports.calculateCurrentInquiries = exports.setColorForCardStatus = exports.handleInquiriesList = exports.formDisabledCheck = exports.normalizeData = exports.slugify = exports.formatCurrency = exports.formatDate = exports.maskPwd = exports.titleCase = exports.sortNotesByDate = exports.sortCardsByDate = exports.addUserNameToCard = exports.getDaysBetweenDates = exports.daysTillRewardsExpiration = exports.isDateApproaching = exports.wasCardOpenedWithinLast24Months = exports.pipe = void 0;
-const constants_1 = require("./constants");
+exports.finalizeTourData = exports.handleSetClient = exports.getFileNameExtension = exports.isPasswordValid = exports.isEmailAddressValid = exports.setLoginErrorText = exports.fileDataGenerator = exports.sortNumberDesc = exports.calculateCurrentInquiries = exports.setColorForTourStatus = exports.handleInquiriesList = exports.formDisabledCheck = exports.normalizeData = exports.slugify = exports.formatCurrency = exports.formatDate = exports.maskPwd = exports.titleCase = exports.getYearsFromTours = exports.sortNumbers = exports.sortNotesByDate = exports.sortToursByStatus = exports.sortCardsByDate = exports.addUserNameToCard = exports.getDaysBetweenDates = exports.daysTillRewardsExpiration = exports.isDateApproaching = exports.wasCardOpenedWithinLast24Months = exports.pipe = void 0;
+const constants_1 = require("./constants/constants");
+const countryCodes_1 = __importDefault(require("./constants/countryCodes"));
 const pipe = (...fns) => (x) => fns.reduce((v, f) => f(v), x);
 exports.pipe = pipe;
 function wasCardOpenedWithinLast24Months(appDate) {
@@ -31,7 +35,7 @@ function daysTillRewardsExpiration(rewardsExpirationDate) {
 exports.daysTillRewardsExpiration = daysTillRewardsExpiration;
 function getDaysBetweenDates(startDate, endDate) {
     if (!endDate || !startDate)
-        return;
+        return "";
     const parsedEndDate = new Date(endDate);
     const parsedStartDate = new Date(startDate);
     return (Math.round((parsedEndDate - parsedStartDate) / (1000 * 60 * 60 * 24)) + 1);
@@ -53,11 +57,36 @@ function sortCardsByDate(cards) {
     return [...cards].sort((a, b) => Date.parse(b.appDate) - Date.parse(a.appDate));
 }
 exports.sortCardsByDate = sortCardsByDate;
+function sortToursByStatus(tours) {
+    const statusIndex = {
+        OP: 1,
+        HK: 2,
+        CA: 3,
+    };
+    return [...tours].sort((a, b) => statusIndex[a.status] - statusIndex[b.status]);
+}
+exports.sortToursByStatus = sortToursByStatus;
 function sortNotesByDate(notes) {
     return notes.sort((a, b) => Date.parse(a.date) - Date.parse(b.date));
 }
 exports.sortNotesByDate = sortNotesByDate;
+function sortNumbers(data) {
+    return data.sort((a, b) => a - b);
+}
+exports.sortNumbers = sortNumbers;
+function getYearsFromTours(tours) {
+    return tours.reduce((yearArr, tour) => {
+        const thisYear = tour.dateFrom.split("-")[0];
+        if (!yearArr.includes(thisYear) && thisYear !== "") {
+            yearArr.push(thisYear);
+        }
+        return yearArr;
+    }, []);
+}
+exports.getYearsFromTours = getYearsFromTours;
 function titleCase(str) {
+    if ((str === "") | (str === null) || str === undefined)
+        return "";
     return str
         .toLowerCase()
         .split(" ")
@@ -74,7 +103,7 @@ function formatDate(dateStr) {
     if (dateStr === undefined || dateStr === "")
         return "N/A";
     const dateSplit = dateStr.split("-");
-    return `${dateSplit[1]}-${dateSplit[2]}-${dateSplit[0]}`;
+    return `${dateSplit[2]}-${dateSplit[1]}-${dateSplit[0]}`;
 }
 exports.formatDate = formatDate;
 function formatCurrency(currencyStr) {
@@ -123,37 +152,29 @@ function formDisabledCheck(dataType) {
     return (dataType === 0 || dataType === "0" || dataType === "" || dataType === null);
 }
 exports.formDisabledCheck = formDisabledCheck;
-// export function handleInquiriesList(inq, delimiter) {
-//   const inqArr = Object.keys(inq).filter((i) => inq[i]);
-//   const lastInq = inqArr[inqArr.length - 1];
-//   return inqArr.reduce(
-//     (output, i) => (output += titleCase(i) + (i === lastInq ? "" : delimiter)),
-//     ""
-//   );
-// }
 function handleInquiriesList(inq) {
     return Object.keys(inq)
         .filter((i) => inq[i])
         .map((inq) => constants_1.CREDIT_BUREAUS.find((i) => inq === i.name));
 }
 exports.handleInquiriesList = handleInquiriesList;
-function setColorForCardStatus(componentType, cardStatus) {
-    if (componentType === "cardTable") {
-        return cardStatus === "closed"
+function setColorForTourStatus(componentType, tourStatus) {
+    if (componentType === "tourTable") {
+        return tourStatus === "CA"
             ? "table-danger"
-            : cardStatus === "downgraded"
-                ? "table-warning"
+            : tourStatus === "HK"
+                ? "table-success"
                 : null;
     }
-    else if (componentType === "cardCard") {
-        return cardStatus === "closed"
+    else if (componentType === "tourCard") {
+        return tourStatus === "CA"
             ? constants_1.CARD_COLOR_CLOSED
-            : cardStatus === "downgraded"
-                ? constants_1.CARD_COLOR_DOWNGRADED
+            : tourStatus === "HK"
+                ? "#D1E7DD"
                 : null;
     }
 }
-exports.setColorForCardStatus = setColorForCardStatus;
+exports.setColorForTourStatus = setColorForTourStatus;
 function calculateCurrentInquiries(cardsByHolder) {
     const inquiriesByHolder = { ...cardsByHolder };
     Object.keys(inquiriesByHolder).forEach((holder) => {
@@ -184,14 +205,116 @@ function sortNumberDesc(num1, num2) {
     return parsedNum2 - parsedNum1;
 }
 exports.sortNumberDesc = sortNumberDesc;
-function fileNameGenerator(id, agentCode, dateFrom, numOfDays, tourName) {
-    const fileNum = dateFrom.substring(2, 7).replaceAll("-", "") +
-        ("000" + id).slice(-3) +
-        agentCode;
-    const fileName = `${fileNum}_${numOfDays}_${tourName}}`;
+function fileDataGenerator(id, data, agentCode) {
+    const fileOpenDate = data.fileOpenDate || new Date().toISOString().split("T")[0];
+    const fileRef = `${fileOpenDate.substring(2, 7).replaceAll("-", "")}${("000" + id).slice(-3)}${agentCode}`;
+    const fileName = `${fileRef}_${(0, exports.slugify)(data.tourName)}`;
     return {
-        fileNum,
+        fileRef,
         fileName,
+        fileOpenDate,
     };
 }
-exports.fileNameGenerator = fileNameGenerator;
+exports.fileDataGenerator = fileDataGenerator;
+function setLoginErrorText(errorCode) {
+    switch (errorCode) {
+        case "auth/invalid-email":
+            return "Invalid email address";
+        case "auth/invalid-login-credentials":
+            return "Invalid login credentials";
+        case "auth/missing-password":
+            return "Password Required";
+        case "auth/weak-password":
+            return "Password must be at least 6 characters";
+        case "auth/email-already-in-use":
+            return "Email address already registered";
+        default:
+            break;
+    }
+}
+exports.setLoginErrorText = setLoginErrorText;
+function isEmailAddressValid(email) {
+    const emailPattern = /^[\w-]+(\.[\w-]+)*@([\w-]+\.)+[a-zA-Z]{2,7}$/;
+    return emailPattern.test(email);
+}
+exports.isEmailAddressValid = isEmailAddressValid;
+function isPasswordValid(pwd) {
+    const passwordPattern = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d\S]{8,}$/;
+    return passwordPattern.test(pwd);
+}
+exports.isPasswordValid = isPasswordValid;
+function getFileNameExtension(fileName) {
+    const arrSplitByDot = fileName.split(".");
+    return arrSplitByDot[arrSplitByDot.length - 1];
+}
+exports.getFileNameExtension = getFileNameExtension;
+function handleSetClient(setData, name, value) {
+    setData((prevData) => {
+        const [parentField, childField] = name.split(".");
+        if (childField === "nationCode") {
+            return {
+                ...prevData,
+                [parentField]: {
+                    ...prevData[parentField],
+                    [childField]: value,
+                    nationality: countryCodes_1.default.find((country) => country.code === value)
+                        .name,
+                },
+            };
+        }
+        else {
+            return {
+                ...prevData,
+                [parentField]: {
+                    ...prevData[parentField],
+                    [childField]: value,
+                },
+            };
+        }
+    });
+}
+exports.handleSetClient = handleSetClient;
+function handleTourMetadata(data, user) {
+    if (data.id) {
+        return {
+            ...data.metadata,
+            editedBy: {
+                uid: user.uid,
+                displayName: user.displayName,
+                photoURL: user.photoURL || null,
+            },
+        };
+    }
+    else {
+        return {
+            createdBy: {
+                uid: user.uid,
+                displayName: user.displayName,
+                photoURL: user.photoURL || null,
+            },
+        };
+    }
+}
+function finalizeTourData(dataForModal, allData, user, dateFrom, dateTo, id) {
+    const numOfDays = getDaysBetweenDates(dateFrom, dateTo);
+    const file = fileDataGenerator(id, dataForModal, dataForModal.agent.code);
+    const metadata = handleTourMetadata(dataForModal, user);
+    const paxNum = dataForModal.paxNum || "N/A";
+    const agent = !dataForModal.id && dataForModal.agent.code === "DIR"
+        ? {
+            ...dataForModal.agent,
+            name: `DIR - ${dataForModal.agent.name}`,
+        }
+        : dataForModal.agent;
+    return {
+        ...dataForModal,
+        dateFrom,
+        dateTo,
+        agent,
+        numOfDays,
+        paxNum,
+        ...file,
+        metadata,
+    };
+}
+exports.finalizeTourData = finalizeTourData;

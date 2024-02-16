@@ -28,10 +28,10 @@ function deleteDataSuccess(agent) {
   return { type: DELETE_AGENT_SUCCESS, agent };
 }
 
-export function loadAgentsFromFirebase(firebaseUid) {
+export function loadAgentsFromFirebase() {
   return (dispatch) => {
     dispatch(beginApiCall());
-    getFireBaseData("agents", dispatch, loadDataSuccess, firebaseUid);
+    getFireBaseData("agents", dispatch, loadDataSuccess);
   };
 }
 
@@ -52,12 +52,12 @@ export function saveAgentToFirebase(agent) {
   };
 }
 
-export function deleteAgentFromFirebase(agent, firebaseUid) {
+export function deleteAgentFromFirebase(agent) {
   return (dispatch) => {
     // Same reason to dispatch apiCall twice here as mentioned above in save function
     dispatch(beginApiCall());
     dispatch(beginApiCall());
-    deleteFromFirebase("agents", agent.id, firebaseUid);
+    deleteFromFirebase("agents", agent.id);
     dispatch(deleteDataSuccess(agent));
   };
 }

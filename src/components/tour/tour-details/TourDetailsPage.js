@@ -51,14 +51,14 @@ function TourDetailsPage({ tours, loadDataFromFirebase, ...props }) {
 
   useEffect(() => {
     if (tours.length === 0 && status === "success") {
-      loadDataFromFirebase(user?.uid);
+      loadDataFromFirebase();
     } else {
       // Need to understand this logic..
       setTour({ ...props.tour });
     }
 
     if (agents.length === 0 && status !== "loading") {
-      dispatch(loadAgentsFromFirebase(user.uid));
+      dispatch(loadAgentsFromFirebase());
     }
   }, [props.tour, user]);
 

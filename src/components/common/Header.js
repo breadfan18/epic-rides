@@ -5,7 +5,6 @@ import { WindowWidthContext } from "../App";
 import { APP_COLOR_EPIC_RED, EPIC_LOGO } from "../../constants/constants";
 import UserProfileSection from "./UserProfileSection";
 import { useDispatch } from "react-redux";
-import { saveActiveTab } from "../../redux/actions/dataActions";
 
 const Header = ({ user }) => {
   const windowWidth = useContext(WindowWidthContext);
@@ -84,7 +83,6 @@ const Header = ({ user }) => {
         <NavLink
           to="/tours"
           activeStyle={activeStyle}
-          onClick={() => dispatch(saveActiveTab(""))}
         >
           Tours
         </NavLink>

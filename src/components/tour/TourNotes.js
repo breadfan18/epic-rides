@@ -34,20 +34,20 @@ function TourNotes({
 
   function handleSave(e) {
     e.preventDefault();
-    saveTourNoteToFirebase(note, tourId, user?.uid);
+    saveTourNoteToFirebase(note, tourId);
     toast.success("Note Added");
     setNote(NEW_NOTE);
   }
 
   function handleDelete(note) {
-    deleteTourNoteFromFirebase(note, tourId, user?.uid);
+    deleteTourNoteFromFirebase(note, tourId);
     toast.success("Note Deleted");
   }
 
   function handleSaveOnEnter(e) {
     if (e.keyCode === 13) {
       e.preventDefault();
-      saveTourNoteToFirebase(note, tourId, user?.uid);
+      saveTourNoteToFirebase(note, tourId);
       toast.success("Note Added");
       setNote(NEW_NOTE);
     }

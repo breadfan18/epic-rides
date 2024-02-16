@@ -37,12 +37,12 @@ function ConfirmDeleteModal({
   function handleDelete(data) {
     switch (dataType) {
       case DELETE_MODAL_TYPES.tour:
-        dispatch(deleteDataFromFirebase(data, user?.uid));
+        dispatch(deleteDataFromFirebase(data));
         toast.success("Tour deleted");
         if (redirect) history.push("/cards");
         break;
       case DELETE_MODAL_TYPES.agent:
-        dispatch(deleteAgentFromFirebase(data, user?.uid));
+        dispatch(deleteAgentFromFirebase(data));
         toast.success("Agent Deleted");
         break;
       default:

@@ -25,10 +25,10 @@ const AgentsPage = () => {
     dispatch(saveActiveTab(""));
     // Setting activeTab to null so that tours active tab will be set to all-tours
     if (agents.length === 0 && status !== "loading") {
-      dispatch(loadAgentsFromFirebase(user.uid));
+      dispatch(loadAgentsFromFirebase());
     }
     if (tours.length === 0 && status !== "loading" && user !== null) {
-      dispatch(loadDataFromFirebase(user.uid));
+      dispatch(loadDataFromFirebase());
     }
   }, [user]);
 

@@ -3,7 +3,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const uid_1 = require("uid");
 const helpers_1 = require("../helpers");
 const firebase_1 = require("../tools/firebase");
-const constants_1 = require("../constants");
+const constants_1 = require("../constants/constants");
 // Random Date
 function getRandomDate(startDate, endDate) {
     const timeDiff = endDate.getTime() - startDate.getTime();

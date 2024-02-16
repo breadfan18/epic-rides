@@ -25,11 +25,11 @@ const TourPage = () => {
 
   useEffect(() => {
     if (tours.length === 0 && status !== "loading" && user !== null) {
-      dispatch(loadDataFromFirebase(user.uid));
+      dispatch(loadDataFromFirebase());
     }
 
     if (agents.length === 0 && user) {
-      dispatch(loadAgentsFromFirebase(user.uid));
+      dispatch(loadAgentsFromFirebase());
     }
   }, [status, user]);
 

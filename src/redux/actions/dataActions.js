@@ -82,12 +82,12 @@ export function saveDataToFirebase(data, id) {
   };
 }
 
-export function deleteDataFromFirebase(data, firebaseUid) {
+export function deleteDataFromFirebase(data) {
   return (dispatch) => {
     // Same reason to dispatch apiCall twice here as mentioned above in save function
     dispatch(beginApiCall());
     dispatch(beginApiCall());
-    deleteFromFirebase("data", data.id, firebaseUid);
+    deleteFromFirebase("data", data.id);
     dispatch(deleteDataSuccess(data));
   };
 }
@@ -108,12 +108,12 @@ export function saveTourNoteToFirebase(note, tourId) {
   };
 }
 
-export function deleteTourNoteFromFirebase(note, tourId, firebaseUid) {
+export function deleteTourNoteFromFirebase(note, tourId) {
   return (dispatch) => {
     // Same reason to dispatch apiCall twice here as mentioned above in save function
     dispatch(beginApiCall());
     dispatch(beginApiCall());
-    deleteFromFirebase(`data/${tourId}/tourNotes`, note.id, firebaseUid);
+    deleteFromFirebase(`data/${tourId}/tourNotes`, note.id);
     dispatch(deleteDataNotesSuccess(note));
   };
 }
