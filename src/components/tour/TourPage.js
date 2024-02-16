@@ -34,7 +34,7 @@ const TourPage = () => {
   }, [status, user]);
 
   return (
-    <div className="cardsContainer">
+    <div>
       <section className="sectionHeaders">
         <h2 style={{ marginBottom: 0 }}>Tours</h2>
         <TourAddEditModal />

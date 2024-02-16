@@ -356,10 +356,7 @@ div.alert-danger {
 #cardsContainer {
   display: flex;
   flex-wrap: wrap;
-}
-
-#cardsContainer > * {
-  margin: 7px;
+  gap: 15px
 }
 
 .editDeleteOnCards {
