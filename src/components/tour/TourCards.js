@@ -15,6 +15,7 @@ import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 import TourStatusIcon from "../common/TourStatusIcon";
 import ConfirmTourModal from "./ConfirmTourModal";
 import { useSelector } from "react-redux";
+import Table from "react-bootstrap/Table";
 export default function TourCards({ data, showFilter }) {
   const windowWidth = useContext(WindowWidthContext);
   const cardWidth = windowWidth < 650 ? windowWidth : "18rem";
@@ -66,13 +67,21 @@ export default function TourCards({ data, showFilter }) {
           </div>
           <section id="cardBody" onClick={() => routeChange(d)}>
             <div>
-              <CardText data={d} dataType={ERN_DATA_KEYS.fileOpenDate} />
-              <CardText data={d} dataType={ERN_DATA_KEYS.agent} />
-              <CardText data={d} dataType={ERN_DATA_KEYS.groupFitName} />
-              <CardText data={d} dataType={ERN_DATA_KEYS.paxNum} />
-              <CardText data={d} dataType={ERN_DATA_KEYS.dateFrom} />
-              <CardText data={d} dataType={ERN_DATA_KEYS.dateTo} />
-              <CardText data={d} dataType={ERN_DATA_KEYS.numOfDays} />
+              <Table
+                size="sm"
+                borderless
+                style={{ fontSize: "14px", marginBottom: "5px" }}
+              >
+                <tbody>
+                  <CardText data={d} dataType={ERN_DATA_KEYS.fileOpenDate} />
+                  <CardText data={d} dataType={ERN_DATA_KEYS.agent} />
+                  <CardText data={d} dataType={ERN_DATA_KEYS.groupFitName} />
+                  <CardText data={d} dataType={ERN_DATA_KEYS.paxNum} />
+                  <CardText data={d} dataType={ERN_DATA_KEYS.dateFrom} />
+                  <CardText data={d} dataType={ERN_DATA_KEYS.dateTo} />
+                  <CardText data={d} dataType={ERN_DATA_KEYS.numOfDays} />
+                </tbody>
+              </Table>
             </div>
           </section>
           <div className="editDeleteCard editDeleteOnCards">

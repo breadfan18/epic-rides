@@ -2,6 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import { formatDate } from "../../helpers";
 import { ERN_DATA_KEYS } from "../../constants/constants";
+import Table from "react-bootstrap/Table";
 
 function CardText({ data, dataType }) {
   const setCardDataType = (data, dataType) => {
@@ -58,13 +59,19 @@ function CardText({ data, dataType }) {
 
   const cardDataType = setCardDataType(data, dataType);
   return (
-    <p className="mb-0 text-muted">
-      <small>
-        <b style={{ color: "black" }}>{cardDataType.fieldName}</b>
-        {": "}
-        {cardDataType.value}
-      </small>
-    </p>
+    // <p className="mb-0 text-muted">
+    //   <small>
+    //     <b style={{ color: "black" }}>{cardDataType.fieldName}</b>
+    //     {": "}
+    //     {cardDataType.value}
+    //   </small>
+    // </p>
+    <tr>
+      <td style={{ fontWeight: "bold", maxWidth: "45px", padding: "1px" }}>
+        {cardDataType.fieldName}
+      </td>
+      <td style={{ padding: "1px" }}>{cardDataType.value}</td>
+    </tr>
   );
 }
 

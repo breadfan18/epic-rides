@@ -303,22 +303,8 @@ div.alert-danger {
   box-shadow: 1px 1px 2px black;
 }
 
-#cardBody,
-#loyaltyCardBody {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  padding: 10px 10px 10px 10px;
-}
-
-.loyaltyCardTitle {
-  padding: 5px 5px 5px 10px;
-  font-size: 1.1rem;
-  border-radius: 10px;
-  margin: 0;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+#cardBody {
+  padding: 5px 10px;
 }
 
 #cardholderCardBody {
@@ -356,7 +342,7 @@ div.alert-danger {
 #cardsContainer {
   display: flex;
   flex-wrap: wrap;
-  gap: 15px
+  gap: 15px;
 }
 
 .editDeleteOnCards {
@@ -365,26 +351,6 @@ div.alert-danger {
   background-color: var(--black-opacity);
   text-align: right;
   border-radius: 0 0 5px 5px;
-}
-
-.issuerLogos {
-  height: 2.5rem;
-  width: 4rem;
-  object-fit: contain;
-  border: 1px solid var(--light-gray);
-  padding: 2px;
-  border-radius: 10px;
-  background-color: var(--black-opacity);
-}
-
-.loyaltyLogos {
-  height: 2.5rem;
-  width: 4.5rem;
-  object-fit: contain;
-  border: 1px solid var(--light-gray);
-  padding: 3px;
-  border-radius: 10px;
-  background-color: var(--black-opacity);
 }
 
 form {

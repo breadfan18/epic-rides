@@ -13,7 +13,6 @@ import { DELETE_COLOR_RED, NEW_NOTE } from "../../constants/constants";
 import { AiFillDelete } from "react-icons/ai";
 import { toast } from "react-toastify";
 import EmptyList from "../common/EmptyList";
-import { useUser } from "reactfire";
 
 function TourNotes({
   tourId,
@@ -23,7 +22,6 @@ function TourNotes({
   loading,
 }) {
   const [note, setNote] = useState(NEW_NOTE);
-  const { data: user } = useUser();
 
   function handleChange(e) {
     setNote({

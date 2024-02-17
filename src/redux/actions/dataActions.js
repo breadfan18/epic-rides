@@ -1,7 +1,7 @@
 import {
   CREATE_DATA_SUCCESS,
-  CREATE_CARD_NOTES_SUCCESS,
-  DELETE_CARD_NOTES_SUCCESS,
+  CREATE_TOUR_NOTE_SUCCESS,
+  DELETE_TOUR_NOTE_SUCCESS,
   DELETE_DATA_SUCCESS,
   LOAD_DATA_SUCCESS,
   UPDATE_DATA_SUCCESS,
@@ -35,11 +35,11 @@ function deleteDataSuccess(data) {
 }
 
 function createDataNotesSuccess(cardNote) {
-  return { type: CREATE_CARD_NOTES_SUCCESS, cardNote };
+  return { type: CREATE_TOUR_NOTE_SUCCESS, cardNote };
 }
 
 function deleteDataNotesSuccess(cardNote) {
-  return { type: DELETE_CARD_NOTES_SUCCESS, cardNote };
+  return { type: DELETE_TOUR_NOTE_SUCCESS, cardNote };
 }
 
 function setActiveTabSuccess(activeTab) {
