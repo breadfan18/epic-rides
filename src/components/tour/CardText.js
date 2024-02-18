@@ -1,10 +1,14 @@
-import React from "react";
+import React, { useContext } from "react";
 import PropTypes from "prop-types";
 import { formatDate } from "../../helpers";
 import { ERN_DATA_KEYS } from "../../constants/constants";
-import Table from "react-bootstrap/Table";
+import { WindowWidthContext } from "../App";
 
 function CardText({ data, dataType }) {
+  const windowWidth = useContext(WindowWidthContext);
+  const tableValueColWidth =
+    windowWidth > 650 ? "10rem" : windowWidth < 550 ? "12rem" : "25rem";
+
   const setCardDataType = (data, dataType) => {
     switch (dataType) {
       case ERN_DATA_KEYS.fileOpenDate:
@@ -59,18 +63,13 @@ function CardText({ data, dataType }) {
 
   const cardDataType = setCardDataType(data, dataType);
   return (
-    // <p className="mb-0 text-muted">
-    //   <small>
-    //     <b style={{ color: "black" }}>{cardDataType.fieldName}</b>
-    //     {": "}
-    //     {cardDataType.value}
-    //   </small>
-    // </p>
     <tr>
-      <td style={{ fontWeight: "bold", maxWidth: "45px", padding: "1px" }}>
+      <td style={{ fontWeight: "bold", padding: "1px" }}>
         {cardDataType.fieldName}
       </td>
-      <td style={{ padding: "1px" }}>{cardDataType.value}</td>
+      <td style={{ padding: "1px", width: tableValueColWidth }}>
+        {cardDataType.value}
+      </td>
     </tr>
   );
 }
