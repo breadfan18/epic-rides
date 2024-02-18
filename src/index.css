@@ -315,7 +315,7 @@ div.alert-danger {
 }
 
 #cardBody {
-  padding: 5px 10px;
+  padding: 10px;
 }
 
 #cardBody td {
@@ -346,7 +346,7 @@ div.alert-danger {
 }
 
 #cardBody:hover {
-  background-color: var(--black-opacity);
+  background-color: var(--epic-red-opacity);
   cursor: pointer;
 }
 

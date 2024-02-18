@@ -54,10 +54,7 @@ export default function TourCards({ data, showFilter }) {
           </div>
           <section id="cardBody" onClick={() => routeChange(d)}>
             <div>
-              <Table
-                size="sm"
-                style={{ fontSize: "14px", marginBottom: "5px" }}
-              >
+              <Table size="sm" style={{ fontSize: "14px", marginBottom: 0 }}>
                 <tbody>
                   <CardText data={d} dataType={ERN_DATA_KEYS.fileOpenDate} />
                   <CardText data={d} dataType={ERN_DATA_KEYS.agent} />
