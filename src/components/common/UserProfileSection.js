@@ -27,8 +27,9 @@ function UserProfileSection({ user, userLogout, smallNav }) {
         alt={user.displayName}
         style={{
           borderRadius: "50%",
-          height: smallNav ? "2.1rem" : "2.4rem",
+          height: smallNav ? "2.1rem" : "4rem",
           boxShadow: "0 0 10px " + APP_COLOR_EPIC_RED,
+          border: "3px solid white"
         }}
         title={user.displayName}
       />
@@ -38,7 +39,7 @@ function UserProfileSection({ user, userLogout, smallNav }) {
           fontSize: smallNav ? "1.9rem" : "2rem",
           cursor: "pointer",
           marginLeft: "5px",
-          color: smallNav ? "white" : APP_COLOR_EPIC_RED,
+          color: "white",
         }}
         title="Sign Out"
       />

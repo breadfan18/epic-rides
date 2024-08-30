@@ -4,19 +4,16 @@ import Burger from "./Burger";
 import { WindowWidthContext } from "../App";
 import { APP_COLOR_EPIC_RED, EPIC_LOGO } from "../../constants/constants";
 import UserProfileSection from "./UserProfileSection";
-import { useDispatch } from "react-redux";
 
 const Header = ({ user }) => {
   const windowWidth = useContext(WindowWidthContext);
   const [open, setOpen] = useState(false);
-  const activeStyle = { backgroundColor: APP_COLOR_EPIC_RED, color: "white" };
+  const activeStyle = { backgroundColor: "white", color: APP_COLOR_EPIC_RED };
   const activeStyleSmall = {
     backgroundColor: "white",
     color: APP_COLOR_EPIC_RED,
   };
   let navRef = useRef();
-  const dispatch = useDispatch();
-
   useEffect(() => {
     const navMenuHandler = (event) => {
       if (!navRef.current?.contains(event.target)) {
@@ -36,9 +33,8 @@ const Header = ({ user }) => {
           src={EPIC_LOGO}
           alt=""
           style={{
-            height: "2.6rem",
-            backgroundColor: "white",
-            borderRadius: "10px",
+            height: "3rem",
+            filter: "invert(100%) brightness(1000%)"
           }}
         />
         <UserProfileSection user={user} windowWidth={windowWidth} smallNav />
@@ -72,7 +68,7 @@ const Header = ({ user }) => {
     </main>
   ) : (
     <main className="navContainer">
-      <img src={EPIC_LOGO} alt="" style={{ height: "5rem" }} />
+      <img src={EPIC_LOGO} alt="" style={{ height: "5rem", filter: "invert(100%) brightness(1000%)" }} />
       <nav className="navFull">
         <NavLink to="/" activeStyle={activeStyle} exact>
           Home

@@ -64,7 +64,8 @@ body {
 }
 
 .navContainer {
-  padding: 0;
+  background-color: var(--epic-red);
+  padding: 10px 0;
   margin-bottom: 10px;
   min-height: 3rem;
   display: flex;
@@ -114,7 +115,7 @@ body {
 
 .navContainer nav a {
   text-decoration: none;
-  color: var(--epic-red);
+  color: white;
   margin-left: 1rem;
   margin-right: 1rem;
   padding: 5px 10px;
@@ -141,7 +142,7 @@ body {
 }
 
 .navFull a:hover {
-  background-color: var(--black-opacity);
+  background-color: white;
   color: var(--epic-red);
 }
 
