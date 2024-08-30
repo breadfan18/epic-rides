@@ -46,8 +46,8 @@ export default function TourCards({ data, showFilter }) {
                 backgroundColor: setColorForTourStatus("tourCard", d.status),
               }}
             >
-              <p style={{ margin: 0 }}>{d.tourName}</p>
-              <p style={{ margin: 0 }}>
+              <p>{d.tourName}</p>
+              <p>
                 <TourStatusIcon tourStatus={d.status} iconSize="1.5rem" />
               </p>
             </Card.Title>

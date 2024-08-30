@@ -11,7 +11,7 @@ export default function TourDetailsConfirmCancel({ tour }) {
         {tour.status === "CA" ? (
           <>
             <b>TOUR CANCELLED</b>
-            <p>
+            <p style={{ marginBottom: "10px" }}>
               A cancelled tour cannot be modified. If the client reaches out
               again regarding this tour, please create a new tour record.
             </p>

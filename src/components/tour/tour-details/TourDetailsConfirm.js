@@ -16,12 +16,12 @@ export default function TourDetailsConfirm({ tour }) {
 
   return (
     <div className="tourDetailsConfirmCancel">
-      <p>
+      <p style={{ marginBottom: "10px" }}>
         {tourNotReady
           ? "The following fields are REQUIRED before a tour can be confirmed. Please edit tour with the required data to enable tour confirmation"
           : "This tour has all required fields and is ready to be confirmed. "}
       </p>
-      <ul style={{ listStyle: "none", padding: 0 }}>
+      <ul style={{ listStyle: "none", padding: 0, marginBottom: "10px" }}>
         <li>
           {tour.paxNum === "N/A" ? (
             <IoRemoveCircle style={{ color: DELETE_COLOR_RED }} />

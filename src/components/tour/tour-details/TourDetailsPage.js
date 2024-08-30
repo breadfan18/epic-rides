@@ -207,7 +207,7 @@ function TourDetailsPage({ tours, loadDataFromFirebase, ...props }) {
                           justifyContent: "space-between",
                         }}
                       >
-                        <p style={{ margin: 0 }}>{tour.numOfDays}</p>
+                        <p>{tour.numOfDays}</p>
                       </div>
                     </td>
                   </tr>

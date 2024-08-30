@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useRef, useContext } from "react";
 import { NavLink } from "react-router-dom";
-import Burger from "./Burger";
+import Burger from "../common/Burger";
 import { WindowWidthContext } from "../App";
 import { APP_COLOR_EPIC_RED, EPIC_LOGO } from "../../constants/constants";
 import UserProfileSection from "./UserProfileSection";
@@ -34,7 +34,7 @@ const Header = ({ user }) => {
           alt=""
           style={{
             height: "3rem",
-            filter: "invert(100%) brightness(1000%)"
+            filter: "invert(100%) brightness(1000%)",
           }}
         />
         <UserProfileSection user={user} windowWidth={windowWidth} smallNav />
@@ -68,7 +68,11 @@ const Header = ({ user }) => {
     </main>
   ) : (
     <main className="navContainer">
-      <img src={EPIC_LOGO} alt="" style={{ height: "5rem", filter: "invert(100%) brightness(1000%)" }} />
+      <img
+        src={EPIC_LOGO}
+        alt=""
+        style={{ height: "5rem", filter: "invert(100%) brightness(1000%)" }}
+      />
       <nav className="navFull">
         <NavLink to="/" activeStyle={activeStyle} exact>
           Home
@@ -76,10 +80,7 @@ const Header = ({ user }) => {
         <NavLink to="/agents" activeStyle={activeStyle}>
           Agents
         </NavLink>
-        <NavLink
-          to="/tours"
-          activeStyle={activeStyle}
-        >
+        <NavLink to="/tours" activeStyle={activeStyle}>
           Tours
         </NavLink>
       </nav>
