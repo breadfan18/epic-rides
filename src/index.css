@@ -180,11 +180,37 @@ ol {
   color: var(--epic-red);
 }
 
-#userImg {
+#userSection {
+  display: flex;
+  align-items: center;
+  padding: 10px 20px;
+}
+
+.userProfileMenu {
+  position: absolute;
+  /* top: 6.5rem; */
+  right: 10px;
+  width: 13rem;
+  z-index: 1000;
+  background-color: white;
+  box-shadow: black 0px 4px 8px -6px;
+  border-radius: 4px;
+}
+
+.userProfileMenuIcon {
+  margin-left: 10px;
+  font-size: 1.3rem;
+  cursor: pointer;
   color: white;
-  background-color: var(--black-opacity);
-  padding: 3px;
-  border-radius: 10px;
+}
+.userProfileMenu li:hover {
+  background-color: var(--light-gray);
+}
+
+.userMenuOptions {
+  padding: 10px;
+  box-shadow: -4px 0 8px -6px rgb(59, 54, 54);
+  color: gray;
 }
 
 #userDisplayName {

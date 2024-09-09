@@ -1,6 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
 import { auth } from "../../tools/firebase";
-import { GoSignOut } from "react-icons/go";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 import { userLogout } from "../../redux/actions/authActions";
 import { connect } from "react-redux";
@@ -8,78 +7,130 @@ import {
   APP_COLOR_EPIC_RED,
   USER_STOCK_IMG_WHITE_BKGRD,
 } from "../../constants/constants";
+import { FaAngleDown, FaAngleUp } from "react-icons/fa";
+import { RiLockPasswordFill } from "react-icons/ri";
+import {
+  MdSpaceDashboard,
+  MdAdminPanelSettings,
+  MdLogout,
+} from "react-icons/md";
+import useWindhowWidth from "../../hooks/windowWidth";
 
-function UserProfileSection({ user, userLogout, smallNav }) {
+function UserProfileSection({ user, userLogout }) {
   const history = useHistory();
-  const [showUserOptions, setShowUserOptions] = useState(false);
-  const userOptionsRef = useRef(null);
+  const [showMenu, setShowMenu] = useState(false);
+  const showMenuRef = useRef(null);
+  const { isMobile } = useWindhowWidth();
+
+  const handleEscapeKey = (event) => {
+    if (event.key === "Escape") {
+      setShowMenu(false);
+    }
+  };
+
+  const hideShowMenuOnDocumentClick = (event) => {
+    if (!showMenuRef.current?.contains(event.target)) {
+      setShowMenu(false);
+    }
+  };
+
+  const toggleShowMenu = () => setShowMenu(!showMenu);
+
+  useEffect(() => {
+    document.addEventListener("mousedown", hideShowMenuOnDocumentClick);
+    document.addEventListener("keydown", handleEscapeKey);
+
+    return () => {
+      document.removeEventListener("mousedown", hideShowMenuOnDocumentClick);
+      document.removeEventListener("keydown", handleEscapeKey);
+    };
+  }, []);
 
   function handleSignOut() {
     userLogout(auth);
     history.push("/signin");
   }
 
-  const handleEscapeKey = (event) => {
-    if (event.key === "Escape") {
-      setShowUserOptions(false);
-    }
-  };
-
-  const hideUserOptionsOnDocumentClick = (event) => {
-    if (!userOptionsRef.current?.contains(event.target)) {
-      setShowUserOptions(false);
-    }
-  };
-
-  const toggleUserOptions = () => setShowUserOptions(!showUserOptions);
-
-  useEffect(() => {
-    document.addEventListener("mousedown", hideUserOptionsOnDocumentClick);
-    document.addEventListener("keydown", handleEscapeKey);
-
-    return () => {
-      document.removeEventListener("mousedown", hideUserOptionsOnDocumentClick);
-      document.removeEventListener("keydown", handleEscapeKey);
-    };
-  }, []);
-
   return (
-    <section id="userImg" style={{ marginRight: smallNav ? null : "10px" }}>
+    <section
+      id="userSection"
+      style={{
+        boxShadow: `-4px 0 8px -6px gray`,
+        cursor: "pointer",
+        color: "white",
+      }}
+    >
       <img
         src={user.photoURL || USER_STOCK_IMG_WHITE_BKGRD}
-        alt={user.displayName}
+        alt=""
         style={{
           borderRadius: "50%",
-          height: smallNav ? "2.1rem" : "4rem",
-          boxShadow: "0 0 10px " + APP_COLOR_EPIC_RED,
+          height: isMobile ? "2.5rem" : "3.5rem",
+          marginRight: "8px",
           border: "3px solid white",
-          cursor: "pointer",
         }}
         title={user.displayName}
-        onClick={toggleUserOptions}
       />
-      {showUserOptions && (
-        <section className="userOptionsSet" ref={userOptionsRef}>
-          <ul>
-            <li className="userOption" onClick={handleSignOut}>
-              <p style={{ color: APP_COLOR_EPIC_RED }}>Sign Out</p>
-              <GoSignOut
-                style={{
-                  fontSize: smallNav ? "1.9rem" : "1.4rem",
-                  cursor: "pointer",
-                  marginLeft: "5px",
-                  color: APP_COLOR_EPIC_RED,
-                }}
-                title="Sign Out"
+      <article>
+        <p
+          style={{
+            fontSize: isMobile ? "8px" : "12px",
+          }}
+        >
+          Epic Staff
+        </p>
+        {isMobile ? (
+          <h6>{user.displayName.split(" ")[0]}</h6>
+        ) : (
+          <h5>{user.displayName}</h5>
+        )}
+      </article>
+      {showMenu ? (
+        <FaAngleUp className="userProfileMenuIcon" onClick={toggleShowMenu} />
+      ) : (
+        <FaAngleDown className="userProfileMenuIcon" onClick={toggleShowMenu} />
+      )}
+      {showMenu && (
+        <div
+          className="userProfileMenu"
+          ref={showMenuRef}
+          style={{ top: isMobile ? "4.5rem" : "6.5rem" }}
+        >
+          <ul style={{ listStyle: "none", padding: "0", margin: 0 }}>
+            <li className="userMenuOptions">
+              <MdSpaceDashboard
+                style={{ marginRight: "10px", color: APP_COLOR_EPIC_RED }}
               />
+              Dashboard
+            </li>
+            <li className="userMenuOptions">
+              <RiLockPasswordFill
+                style={{ marginRight: "10px", color: APP_COLOR_EPIC_RED }}
+              />
+              Security
+            </li>
+            <li className="userMenuOptions">
+              <MdAdminPanelSettings
+                style={{ marginRight: "10px", color: APP_COLOR_EPIC_RED }}
+              />
+              Admin Portal
+            </li>
+            <li
+              className="userMenuOptions"
+              style={{ cursor: "pointer", color: "black" }}
+              onClick={handleSignOut}
+            >
+              <MdLogout
+                style={{ marginRight: "10px", color: APP_COLOR_EPIC_RED }}
+              />
+              Sign Out
             </li>
           </ul>
-        </section>
+        </div>
       )}
     </section>
   );
 }
-
 const mapDispatchToProps = {
   userLogout,
 };
